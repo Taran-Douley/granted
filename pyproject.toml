@@ -26,6 +26,8 @@ classifiers = [
 [project.optional-dependencies]
 # For organisations that use an Anthropic API key instead of an AWS account.
 anthropic = ["strands-agents[anthropic]"]
+# Deploy the agent graph on the Amazon Bedrock AgentCore Runtime.
+agentcore = ["bedrock-agentcore", "bedrock-agentcore-starter-toolkit"]
 
 [project.urls]
 Homepage = "https://github.com/example/granted"

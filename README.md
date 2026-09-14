@@ -96,6 +96,29 @@ Then open a prebuilt run in a browser:
 For a real run against Amazon Bedrock, add AWS credentials and run `granted run`
 (details further down).
 
+## Deploying on Amazon Bedrock AgentCore
+
+The whole agent graph is also exposed as an **Amazon Bedrock AgentCore Runtime**
+app in [`src/granted/agentcore_app.py`](src/granted/agentcore_app.py), so Granted
+can run as a managed, serverless endpoint rather than only from a shell. The
+Strands graph and the Bedrock models are unchanged — this is just the deployment
+surface in front of them.
+
+```bash
+pip install "granted[agentcore]"
+
+# health check — no AWS needed
+python -c "from granted.agentcore_app import invoke; print(invoke({'ping': True}))"
+
+# deploy to AgentCore (needs AWS credentials + Docker/Finch or CodeBuild)
+agentcore configure --entrypoint src/granted/agentcore_app.py
+agentcore launch
+agentcore invoke '{"home": "/path/to/workspace"}'
+```
+
+The endpoint takes a workspace path, runs Granted's home-mode pipeline on it, and
+returns the run record the dashboard reads.
+
 ## Silence is the default
 
 The brief for this agent was "runs autonomously and only surfaces when there's a
