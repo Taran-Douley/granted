@@ -1,0 +1,3528 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Granted</title>
+<script>
+// GENERATED from dc-runtime/src/*.ts — do not edit. Rebuild with `cd dc-runtime && bun run build`.
+"use strict";
+(() => {
+  var __defProp = Object.defineProperty;
+  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+
+  // src/react.ts
+  function getReact() {
+    const R = window.React;
+    if (!R) throw new Error("dc-runtime: window.React is not available yet");
+    return R;
+  }
+  function getReactDOM() {
+    const RD = window.ReactDOM;
+    if (!RD) throw new Error("dc-runtime: window.ReactDOM is not available yet");
+    return RD;
+  }
+  var h = ((...args) => getReact().createElement(
+    ...args
+  ));
+
+  // src/parse.ts
+  function parseDcDocument(doc) {
+    const dc = doc.querySelector("x-dc");
+    if (!dc) return null;
+    const scriptEl = doc.querySelector("script[data-dc-script]");
+    const { props, preview } = parseDataProps(
+      scriptEl?.getAttribute("data-props") ?? null
+    );
+    return {
+      template: dc.innerHTML,
+      js: scriptEl ? scriptEl.textContent || "" : "",
+      props,
+      preview
+    };
+  }
+  function parseDcText(src) {
+    const openMatch = /<x-\x64c(?:\s[^>]*)?>/.exec(src);
+    if (!openMatch) return null;
+    const close = src.lastIndexOf("</x-dc>");
+    if (close === -1 || close < openMatch.index) return null;
+    const template = src.slice(openMatch.index + openMatch[0].length, close);
+    const doc = new DOMParser().parseFromString(src, "text/html");
+    const scriptEl = doc.querySelector("script[data-dc-script]");
+    const { props, preview } = parseDataProps(
+      scriptEl?.getAttribute("data-props") ?? null
+    );
+    return {
+      template,
+      js: scriptEl ? scriptEl.textContent || "" : "",
+      props,
+      preview
+    };
+  }
+  function parseDataProps(raw) {
+    if (!raw) return { props: null, preview: null };
+    let parsed;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      return { props: null, preview: null };
+    }
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return { props: null, preview: null };
+    }
+    const obj = parsed;
+    const preview = obj.$preview && typeof obj.$preview === "object" ? obj.$preview : null;
+    const rest = {};
+    for (const k of Object.keys(obj)) {
+      if (k[0] !== "$") rest[k] = obj[k];
+    }
+    return { props: Object.keys(rest).length ? rest : null, preview };
+  }
+  function dcNameFromPath(pathname) {
+    let p = pathname || "";
+    try {
+      p = decodeURIComponent(p);
+    } catch {
+    }
+    const base = p.split("/").pop() || "Root";
+    return base.replace(/\.dc\.html$/, "").replace(/\.html?$/, "") || "Root";
+  }
+
+  // src/boot.ts
+  var BASE_CSS = `
+    .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
+      border:1px solid color-mix(in srgb,currentColor 50%,transparent);
+      border-radius:2px;box-sizing:border-box;overflow:hidden}
+    @keyframes sc-shine{0%{background-position:100% 50%}100%{background-position:0% 50%}}
+    html.sc-dc-streaming .sc-placeholder,
+    html.sc-dc-streaming .sc-interp.sc-missing{position:relative;
+      background:color-mix(in srgb,currentColor 5%,transparent);
+      border-color:transparent}
+    html.sc-dc-streaming .sc-placeholder::before,
+    html.sc-dc-streaming .sc-interp.sc-missing::before{content:'';
+      position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(90deg,rgba(217,119,87,0) 25%,rgba(247,225,211,.95) 37%,rgba(217,119,87,0) 63%);
+      background-size:400% 100%;animation:sc-shine 1.4s ease infinite}
+    html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before,
+    html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before{animation:none;
+      background:color-mix(in srgb,currentColor 8%,transparent)}
+    .sc-placeholder-error{padding:4px 8px;font:11px/1.4 ui-monospace,monospace;
+      color:color-mix(in srgb,currentColor 70%,transparent);word-break:break-word}
+    .sc-interp.sc-missing{display:inline-block;width:2em;height:1em;overflow:hidden;
+      vertical-align:text-bottom;background:rgba(255,255,255,.3);border:1px solid rgba(0,0,0,.5);
+      border-radius:2px;box-sizing:border-box;color:transparent;
+      user-select:none}
+    .sc-interp.sc-unresolved{font-family:ui-monospace,monospace;font-size:.85em;
+      color:color-mix(in srgb,currentColor 50%,transparent);
+      background:color-mix(in srgb,currentColor 10%,transparent);border-radius:3px;
+      padding:0 3px}
+    .sc-host.sc-has-error{position:relative}
+    .sc-logic-error{position:absolute;top:8px;left:8px;z-index:2147483647;max-width:60ch;
+      padding:6px 10px;background:#b00020;color:#fff;font:12px/1.4 ui-monospace,monospace;
+      border-radius:4px;white-space:pre-wrap;pointer-events:none}
+    /* Mirrors PRINT_BASELINE_CSS in apps/web deck-stage-export.ts \u2014 keep both
+       in sync until dc-runtime regains a build step. */
+    @media print {
+      @page { margin: 0.5cm; }
+      figure, table { break-inside: avoid; }
+      #dc-root, #dc-root > .sc-host { height: auto; }
+      *, *::before, *::after {
+        print-color-adjust: exact; -webkit-print-color-adjust: exact;
+        backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+        animation-delay: -99s !important; animation-duration: .001s !important;
+        animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+        animation-play-state: running !important; transition-duration: 0s !important;
+      }
+    }
+  `;
+  var FULL_PAGE_CSS = "html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}";
+  function rootNameForDocument(doc, loc) {
+    let bootPath = loc.pathname || "";
+    if (!/\.dc\.html?$/i.test(safeDecode(bootPath))) {
+      try {
+        bootPath = new URL(doc.baseURI || "/").pathname;
+      } catch {
+      }
+    }
+    return dcNameFromPath(bootPath);
+  }
+  function safeDecode(s) {
+    try {
+      return decodeURIComponent(s);
+    } catch {
+      return s;
+    }
+  }
+  function boot(runtime, doc = document) {
+    const parsed = parseDcDocument(doc);
+    if (!parsed) return null;
+    const React = getReact();
+    const rootName = rootNameForDocument(doc, location);
+    runtime.markFetched(rootName);
+    runtime.setRootName(rootName);
+    runtime.adoptParsed(rootName, parsed);
+    if (!window.__resources) {
+      fetch(location.href).then((res) => res.ok ? res.text() : "").then((t) => {
+        const raw = t ? parseDcText(t) : null;
+        if (raw?.template) runtime.updateHtml(rootName, raw.template);
+      }).catch(() => {
+      });
+    }
+    const dc = doc.querySelector("x-dc");
+    const hostEl = doc.createElement("div");
+    hostEl.id = "dc-root";
+    dc.replaceWith(hostEl);
+    if (!parsed.preview) {
+      const s = doc.createElement("style");
+      s.textContent = FULL_PAGE_CSS;
+      doc.head.appendChild(s);
+    }
+    const Root = runtime.getDC(rootName);
+    const entry = runtime.registry.get(rootName);
+    function StandaloneRoot() {
+      const [, setTick] = React.useState(0);
+      React.useEffect(() => {
+        const sub = () => setTick((n) => n + 1);
+        entry.subs.add(sub);
+        return () => {
+          entry.subs.delete(sub);
+        };
+      }, []);
+      const defaults = React.useMemo(() => {
+        const d = {};
+        for (const k in entry.propsMeta || {}) {
+          const v = entry.propsMeta?.[k]?.default;
+          if (v !== void 0) d[k] = v;
+        }
+        return d;
+      }, [entry.propsMeta]);
+      return h(Root, { ...defaults, ...entry.propOverrides || {} });
+    }
+    const ReactDOM = getReactDOM();
+    if (ReactDOM.createRoot)
+      ReactDOM.createRoot(hostEl).render(h(StandaloneRoot));
+    else ReactDOM.render(h(StandaloneRoot), hostEl);
+    return rootName;
+  }
+
+  // src/expr.ts
+  var IDENT_RE = /^[A-Za-z_$][A-Za-z0-9_$]*/;
+  var NUMBER_RE = /^-?\d+(\.\d+)?$/;
+  function resolve(vals, src) {
+    const expr = String(src).trim();
+    if (!expr) return void 0;
+    if (expr[0] === "(" && expr[expr.length - 1] === ")" && parensWrapWhole(expr)) {
+      return resolve(vals, expr.slice(1, -1));
+    }
+    const eq = findTopLevelEquality(expr);
+    if (eq) {
+      const lv = resolve(vals, expr.slice(0, eq.index));
+      const rv = resolve(vals, expr.slice(eq.index + eq.op.length));
+      switch (eq.op) {
+        case "===":
+          return lv === rv;
+        case "!==":
+          return lv !== rv;
+        case "==":
+          return lv == rv;
+        default:
+          return lv != rv;
+      }
+    }
+    if (expr[0] === "!") return !resolve(vals, expr.slice(1));
+    if (expr === "true") return true;
+    if (expr === "false") return false;
+    if (expr === "null") return null;
+    if (expr === "undefined") return void 0;
+    if (NUMBER_RE.test(expr)) return Number(expr);
+    if (expr.length >= 2 && (expr[0] === '"' || expr[0] === "'") && expr[expr.length - 1] === expr[0]) {
+      return expr.slice(1, -1);
+    }
+    return resolvePath(vals, expr);
+  }
+  function parensWrapWhole(expr) {
+    let depth = 0;
+    for (let i = 0; i < expr.length - 1; i++) {
+      if (expr[i] === "(") depth++;
+      else if (expr[i] === ")") {
+        depth--;
+        if (depth === 0) return false;
+      }
+    }
+    return true;
+  }
+  function findTopLevelEquality(expr) {
+    let depth = 0;
+    for (let i = 0; i < expr.length; i++) {
+      const c = expr[i];
+      if (c === "[" || c === "(") depth++;
+      else if (c === "]" || c === ")") depth--;
+      else if (depth === 0 && (c === "=" || c === "!") && expr[i + 1] === "=") {
+        if (i > 0 && (expr[i - 1] === "=" || expr[i - 1] === "!")) continue;
+        if (!expr.slice(0, i).trim()) continue;
+        const op = expr[i + 2] === "=" ? c + "==" : c + "=";
+        return { index: i, op };
+      }
+    }
+    return null;
+  }
+  function resolvePath(vals, expr) {
+    const head = expr.match(IDENT_RE);
+    if (!head) return void 0;
+    let cur = vals == null ? void 0 : vals[head[0]];
+    let i = head[0].length;
+    while (i < expr.length) {
+      if (expr[i] === ".") {
+        const m = expr.slice(i + 1).match(IDENT_RE) || expr.slice(i + 1).match(/^\d+/);
+        if (!m) return void 0;
+        cur = cur == null ? void 0 : cur[m[0]];
+        i += 1 + m[0].length;
+      } else if (expr[i] === "[") {
+        let depth = 1;
+        let j = i + 1;
+        while (j < expr.length && depth > 0) {
+          if (expr[j] === "[") depth++;
+          else if (expr[j] === "]") {
+            depth--;
+            if (depth === 0) break;
+          }
+          j++;
+        }
+        if (depth !== 0) return void 0;
+        const key = resolve(vals, expr.slice(i + 1, j));
+        cur = cur == null ? void 0 : cur[key];
+        i = j + 1;
+      } else {
+        return void 0;
+      }
+    }
+    return cur;
+  }
+
+  // src/encode.ts
+  var CAMEL_ATTR = "sc-camel-";
+  var INLINE_TEXT_TAGS = new Set(
+    "a abbr b bdi bdo br cite code del dfn em i ins kbd mark q s samp small span strike strong sub sup u var wbr".split(
+      " "
+    )
+  );
+  var RAW_WRAP = {
+    select: "sc-raw-select",
+    table: "sc-raw-table",
+    tbody: "sc-raw-tbody",
+    thead: "sc-raw-thead",
+    tfoot: "sc-raw-tfoot",
+    tr: "sc-raw-tr",
+    td: "sc-raw-td",
+    th: "sc-raw-th",
+    caption: "sc-raw-caption"
+  };
+  var RAW_UNWRAP = Object.fromEntries(
+    Object.entries(RAW_WRAP).map(([k, v]) => [v, k])
+  );
+  var EVENT_MAP = {
+    onclick: "onClick",
+    onchange: "onChange",
+    oninput: "onInput",
+    onsubmit: "onSubmit",
+    onkeydown: "onKeyDown",
+    onkeyup: "onKeyUp",
+    onkeypress: "onKeyPress",
+    onmousedown: "onMouseDown",
+    onmouseup: "onMouseUp",
+    onmouseenter: "onMouseEnter",
+    onmouseleave: "onMouseLeave",
+    onfocus: "onFocus",
+    onblur: "onBlur",
+    ondoubleclick: "onDoubleClick",
+    oncontextmenu: "onContextMenu",
+    onmousemove: "onMouseMove",
+    onmouseover: "onMouseOver",
+    onmouseout: "onMouseOut",
+    onpointerdown: "onPointerDown",
+    onpointerup: "onPointerUp",
+    onpointermove: "onPointerMove",
+    onpointerenter: "onPointerEnter",
+    onpointerleave: "onPointerLeave",
+    onpointercancel: "onPointerCancel",
+    onpointerover: "onPointerOver",
+    onpointerout: "onPointerOut",
+    ongotpointercapture: "onGotPointerCapture",
+    onlostpointercapture: "onLostPointerCapture",
+    ontouchstart: "onTouchStart",
+    ontouchend: "onTouchEnd",
+    ontouchmove: "onTouchMove",
+    ontouchcancel: "onTouchCancel",
+    ondragstart: "onDragStart",
+    ondragend: "onDragEnd",
+    ondragenter: "onDragEnter",
+    ondragleave: "onDragLeave",
+    ondragover: "onDragOver",
+    onanimationstart: "onAnimationStart",
+    onanimationend: "onAnimationEnd",
+    onanimationiteration: "onAnimationIteration",
+    ontransitionend: "onTransitionEnd"
+  };
+  var ATTRS = `(?:[^>"']|"[^"]*"|'[^']*')*`;
+  var IMPORT_SELF_CLOSE_RE = new RegExp(
+    "<(x-import|dc-import)(" + ATTRS + ")/>",
+    "gi"
+  );
+  var CAMEL_ATTR_RE = /(\s)([a-z]+[A-Z][A-Za-z0-9]*)(\s*=)/g;
+  function encodeCamelAttrs(html) {
+    return html.replace(
+      CAMEL_ATTR_RE,
+      (_, sp, name, eq) => sp + CAMEL_ATTR + name.replace(/[A-Z]/g, (c) => "-" + c.toLowerCase()) + eq
+    );
+  }
+  function encodeCase(html) {
+    html = html.replace(
+      IMPORT_SELF_CLOSE_RE,
+      (_, t, a) => "<" + t + a + "></" + t + ">"
+    );
+    html = html.replace(/<helmet(\s|>)/gi, "<sc-helmet$1");
+    html = html.replace(/<\/helmet\s*>/gi, "</sc-helmet>");
+    html = encodeCamelAttrs(html);
+    for (const [real, alias] of Object.entries(RAW_WRAP)) {
+      html = html.replace(
+        new RegExp("(</?)" + real + "(?=[\\s>])", "gi"),
+        "$1" + alias
+      );
+    }
+    return html;
+  }
+  function kebabToCamel(s) {
+    return s.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+  }
+  function cssToObj(css) {
+    const o = {};
+    for (const decl of css.split(";")) {
+      const i = decl.indexOf(":");
+      if (i < 0) continue;
+      const prop = decl.slice(0, i).trim();
+      o[prop.startsWith("--") ? prop : kebabToCamel(prop)] = decl.slice(i + 1).trim();
+    }
+    return o;
+  }
+  function compileAttr(raw) {
+    const whole = raw.match(/^\s*\{\{([\s\S]+?)\}\}\s*$/);
+    if (whole) {
+      const path = whole[1];
+      return (vals) => resolve(vals, path);
+    }
+    if (raw.includes("{{")) {
+      const parts = raw.split(/\{\{([\s\S]+?)\}\}/g);
+      return (vals) => parts.map((s, i) => i & 1 ? resolve(vals, s) ?? "" : s).join("");
+    }
+    return () => raw;
+  }
+
+  // src/compile.ts
+  function collectProps(node, kind, host) {
+    const propGetters = [];
+    const pseudoClasses = [];
+    let hintSize = null;
+    for (const { name, value } of [...node.attributes]) {
+      if (name === "sc-name" || name === "data-dc-tpl") continue;
+      let key = name;
+      if (key.startsWith(CAMEL_ATTR))
+        key = kebabToCamel(key.slice(CAMEL_ATTR.length));
+      if (key === "hint-size") {
+        hintSize = value;
+        continue;
+      }
+      if (key.startsWith("style-")) {
+        pseudoClasses.push(host.pseudoClass(key.slice(6), value));
+        continue;
+      }
+      if (kind !== "dom") {
+        if (key.includes("-") && !(kind === "x-import" && (key.startsWith("aria-") || key.startsWith("data-"))))
+          key = kebabToCamel(key);
+      } else {
+        if (key === "class") key = "className";
+        else if (key === "for") key = "htmlFor";
+        else if (key.startsWith("on"))
+          key = EVENT_MAP[key] || "on" + key[2].toUpperCase() + key.slice(3);
+      }
+      propGetters.push([key, compileAttr(value)]);
+    }
+    return { propGetters, pseudoClasses, hintSize };
+  }
+  var HOST_STYLE_PROPS = /* @__PURE__ */ new Set([
+    "position",
+    "left",
+    "right",
+    "top",
+    "bottom",
+    "inset",
+    "width",
+    "height",
+    "z-index",
+    "transform"
+  ]);
+  function hostPositionStyle(style) {
+    const all = typeof style === "string" ? cssToObj(style) : style != null && typeof style === "object" ? style : null;
+    if (!all) return void 0;
+    const out = {};
+    for (const [k, v] of Object.entries(all)) {
+      const kebab = k.replace(/[A-Z]/g, (c) => "-" + c.toLowerCase());
+      if (HOST_STYLE_PROPS.has(kebab)) out[k] = v;
+    }
+    return Object.keys(out).length ? out : void 0;
+  }
+  function compileTemplate(html, host) {
+    const tpl = document.createElement("template");
+    //! nosemgrep: direct-inner-html-assignment
+    tpl.innerHTML = encodeCase(html);
+    let tplN = 0;
+    (function stamp(node) {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        node.setAttribute("data-dc-tpl", String(tplN++));
+      }
+      for (const c of node.childNodes) stamp(c);
+    })(tpl.content);
+    const builders = walkChildren(tpl.content, host);
+    const render = ((vals, ctx) => builders.map((b, i) => b(vals || {}, ctx, i)));
+    render.__annotated = tpl.innerHTML;
+    return render;
+  }
+  function walkChildren(node, host) {
+    return [...node.childNodes].map((c) => walk(c, host)).filter((b) => b != null);
+  }
+  var SLIDE_ID_VALUE_RE = /^[0-9a-f]{8}$/;
+  var DECK_CONTROL_FLOW_RE = /^(sc-if|sc-for|sc-else|dc-import|x-import)$/;
+  var DECK_AUX_RE = /^(template|script|style|sc-helmet|helmet)$/;
+  function isDeckMountTag(el) {
+    if (el.localName === "deck-stage") return true;
+    return el.localName === "x-import" && (el.getAttribute("component-from-global-scope") || "") === "deck-stage";
+  }
+  function walkDeckChildren(el, host) {
+    const pairs = [...el.childNodes].map((c) => ({ c, b: walk(c, host) })).filter((p) => p.b !== null);
+    const kids = pairs.map((p) => p.b);
+    const seen = /* @__PURE__ */ new Set();
+    const wsSeen = /* @__PURE__ */ new Map();
+    const keys = [];
+    const nextSlideId = new Array(pairs.length);
+    {
+      let upcoming = null;
+      for (let j = pairs.length - 1; j >= 0; j--) {
+        const n = pairs[j].c;
+        if (n.nodeType === Node.ELEMENT_NODE) {
+          const t = n.localName;
+          upcoming = !DECK_AUX_RE.test(t) && !DECK_CONTROL_FLOW_RE.test(t) ? n.getAttribute("data-om-slide-id") : null;
+        }
+        nextSlideId[j] = upcoming;
+      }
+    }
+    for (let j = 0; j < pairs.length; j++) {
+      const { c } = pairs[j];
+      if (c.nodeType === Node.TEXT_NODE) {
+        if ((c.nodeValue ?? "").trim() === "") {
+          const base = nextSlideId[j] ? "omid-ws:" + nextSlideId[j] : "omid-ws:aux";
+          const n = wsSeen.get(base) ?? 0;
+          wsSeen.set(base, n + 1);
+          keys.push(n === 0 ? base : base + ":" + n);
+          continue;
+        }
+        return { kids, keys: null };
+      }
+      if (c.nodeType !== Node.ELEMENT_NODE) {
+        keys.push(j);
+        continue;
+      }
+      const child = c;
+      const tag = child.localName;
+      if (DECK_AUX_RE.test(tag)) {
+        keys.push(j);
+        continue;
+      }
+      if (DECK_CONTROL_FLOW_RE.test(tag)) return { kids, keys: null };
+      const v = child.getAttribute("data-om-slide-id");
+      if (!v || !SLIDE_ID_VALUE_RE.test(v) || seen.has(v)) {
+        return { kids, keys: null };
+      }
+      seen.add(v);
+      keys.push("omid:" + v);
+    }
+    return { kids, keys };
+  }
+  function renderDeckKids(kids, kidKeys, vals, ctx) {
+    return kids.map((b, j) => {
+      const k = kidKeys ? kidKeys[j] : j;
+      const out = b(vals, ctx, k);
+      return kidKeys != null && typeof out === "string" ? h(getReact().Fragment, { key: k }, out) : out;
+    });
+  }
+  function walk(node, host) {
+    if (node.nodeType === Node.TEXT_NODE) return walkText(node);
+    if (node.nodeType !== Node.ELEMENT_NODE) return null;
+    const el = node;
+    const tag = el.tagName.toLowerCase();
+    if (tag === "sc-for") return walkFor(el, host);
+    if (tag === "sc-if") return walkIf(el, host);
+    if (tag === "x-import") return walkXImport(el, host);
+    if (tag === "sc-helmet") return host.helmet(el);
+    if (tag === "dc-import") return walkComponent(el, host);
+    return walkElement(el, host);
+  }
+  var warnedHoles = /* @__PURE__ */ new Set();
+  function warnUnresolved(ctx, what) {
+    const key = (ctx?.__name || "?") + "\0" + what;
+    if (warnedHoles.has(key)) return;
+    warnedHoles.add(key);
+    console.warn("[dc-runtime] " + (ctx?.__name || "template") + ": " + what);
+  }
+  function walkText(node) {
+    const txt = node.nodeValue ?? "";
+    if (!txt.includes("{{")) {
+      if (!txt.trim() && !txt.includes(" ")) return null;
+      return () => txt;
+    }
+    const parts = txt.split(/\{\{([\s\S]+?)\}\}/g);
+    return (vals, ctx, key) => h(
+      getReact().Fragment,
+      { key },
+      ...parts.map((p, i) => {
+        if (!(i & 1)) return p;
+        const v = resolve(vals, p);
+        if (v === void 0) {
+          if (!ctx?.__streamingNow) {
+            if (document.body?.hasAttribute("data-dc-editor-on")) {
+              return h(
+                "span",
+                { key: i, className: "sc-interp sc-unresolved" },
+                "{{ " + p.trim() + " }}"
+              );
+            }
+            warnUnresolved(
+              ctx,
+              "{{ " + p.trim() + " }} never resolved \u2014 rendered as empty"
+            );
+            return null;
+          }
+          return h(
+            "span",
+            { key: i, className: "sc-interp sc-missing" },
+            p.trim()
+          );
+        }
+        if (getReact().isValidElement(v) || Array.isArray(v)) {
+          return h(getReact().Fragment, { key: i }, v);
+        }
+        if (v === null || typeof v === "boolean") return null;
+        return h("span", { key: i, className: "sc-interp" }, String(v));
+      })
+    );
+  }
+  function walkFor(el, host) {
+    const listGet = compileAttr(el.getAttribute("list") || "");
+    const asName = el.getAttribute("as") || "item";
+    const hintN = parseInt(el.getAttribute("hint-placeholder-count") || "0", 10);
+    const kids = walkChildren(el, host);
+    const listSrc = el.getAttribute("list") || "";
+    return (vals, ctx, key) => {
+      let list = listGet(vals);
+      if (!Array.isArray(list)) {
+        if (!ctx?.__streamingNow) {
+          if (list !== void 0 && list !== null) {
+            warnUnresolved(
+              ctx,
+              'sc-for list="' + listSrc + '" is not an array (' + typeof list + ")"
+            );
+          }
+          list = [];
+        } else {
+          list = hintN > 0 ? Array(hintN).fill(void 0) : [];
+        }
+      }
+      return h(
+        getReact().Fragment,
+        { key },
+        list.map((item, i) => {
+          const sub = { ...vals, [asName]: item, $index: i };
+          return h(
+            getReact().Fragment,
+            { key: i },
+            kids.map((b, j) => b(sub, ctx, j))
+          );
+        })
+      );
+    };
+  }
+  function walkIf(el, host) {
+    const valGet = compileAttr(el.getAttribute("value") || "");
+    const hintRaw = el.getAttribute("hint-placeholder-val");
+    const hintGet = hintRaw != null ? compileAttr(hintRaw) : null;
+    const kids = walkChildren(el, host);
+    return (vals, ctx, key) => {
+      let v = valGet(vals);
+      if (v === void 0 && hintGet && ctx?.__streamingNow) v = hintGet(vals);
+      return v ? h(
+        getReact().Fragment,
+        { key },
+        kids.map((b, j) => b(vals, ctx, j))
+      ) : null;
+    };
+  }
+  function walkComponent(el, host) {
+    const name = el.getAttribute("name") || el.getAttribute("component") || "";
+    el.removeAttribute("name");
+    el.removeAttribute("component");
+    const tplId = el.getAttribute("data-dc-tpl");
+    const styleRaw = el.getAttribute("style");
+    el.removeAttribute("style");
+    const styleGet = styleRaw != null ? compileAttr(styleRaw) : null;
+    const { propGetters, hintSize } = collectProps(el, "dc-import", host);
+    const kids = walkChildren(el, host);
+    return (vals, ctx, key) => {
+      const props = {
+        key,
+        __hintSize: hintSize,
+        __tplId: tplId,
+        __hostStyle: styleGet ? hostPositionStyle(styleGet(vals)) : void 0
+      };
+      for (const [k, g] of propGetters) {
+        const v = g(vals);
+        if (k === "dcProps") {
+          if (v && typeof v === "object") Object.assign(props, v);
+          continue;
+        }
+        props[k] = v;
+      }
+      if (kids.length) props.children = kids.map((b, j) => b(vals, ctx, j));
+      return h(host.component(name), props);
+    };
+  }
+  function walkXImport(el, host) {
+    const globalNameGet = compileAttr(
+      el.getAttribute("component-from-global-scope") || ""
+    );
+    const exportNameGet = compileAttr(
+      el.getAttribute("component") || el.getAttribute("name") || ""
+    );
+    const fromRaw = el.getAttribute("from") || (el.getAttribute("component-from-global-scope") ? "" : el.getAttribute("src") || el.getAttribute("import") || "");
+    const urls = fromRaw.trim() ? fromRaw.trim().split(/\s+/) : [];
+    const url = urls.length ? urls[urls.length - 1] : "";
+    const kindOf = (u) => /\.(jsx|tsx)(\?|#|$)/i.test(u) ? "jsx" : "js";
+    const tplId = el.getAttribute("data-dc-tpl");
+    const styleRaw = el.getAttribute("style");
+    el.removeAttribute("style");
+    const styleGet = styleRaw != null ? compileAttr(styleRaw) : null;
+    const wrap = tplId != null || styleGet != null;
+    const { propGetters, hintSize } = collectProps(el, "x-import", host);
+    const hasContent = el.children.length > 0 || !!(el.textContent || "").trim();
+    const deckKeyed = hasContent && isDeckMountTag(el) ? walkDeckChildren(el, host) : null;
+    const kids = deckKeyed ? deckKeyed.kids : hasContent ? walkChildren(el, host) : [];
+    const kidKeys = deckKeyed?.keys ?? null;
+    const urlBindable = fromRaw.includes("{{");
+    if (urls.length && !urlBindable) {
+      let prev;
+      for (const u of urls) prev = host.loadExternal(kindOf(u), u, prev);
+    }
+    const evalName = (g, vals) => {
+      const v = g(vals);
+      const s = v == null ? "" : String(v);
+      return s.includes("{{") ? "" : s;
+    };
+    return (vals, ctx, key) => {
+      const globalName = evalName(globalNameGet, vals);
+      const name = globalName || evalName(exportNameGet, vals);
+      const C = !name || urlBindable ? null : globalName ? host.resolveExternalGlobal(url, globalName) : host.resolveExternal(url, name);
+      const hostStyle = styleGet ? hostPositionStyle(styleGet(vals)) : void 0;
+      const wrapper = wrap ? {
+        key,
+        className: "sc-host-x",
+        "data-dc-tpl": tplId,
+        style: hostStyle || { display: "contents" }
+      } : null;
+      if (!C) {
+        const error = urlBindable ? "x-import `from` cannot contain {{ \u2026 }} \u2014 module URLs are resolved at parse time; use a literal URL" : host.resolveExternalError(url, name);
+        const ph = host.placeholder({
+          key: wrapper ? void 0 : key,
+          name,
+          hintSize,
+          error
+        });
+        return wrapper ? h("div", wrapper, ph) : ph;
+      }
+      const props = wrapper ? {} : { key };
+      let unresolvedHole = false;
+      for (const [k, g] of propGetters) {
+        if (k === "component" || k === "componentFromGlobalScope" || k === "from") {
+          continue;
+        }
+        const v = g(vals);
+        if (v === void 0) unresolvedHole = true;
+        if (k === "dcProps") {
+          if (v && typeof v === "object") Object.assign(props, v);
+          continue;
+        }
+        props[k] = v;
+      }
+      if (unresolvedHole && ctx?.__htmlStreamingNow) {
+        const ph = host.placeholder({
+          key: wrapper ? void 0 : key,
+          name,
+          hintSize,
+          error: null
+        });
+        return wrapper ? h("div", wrapper, ph) : ph;
+      }
+      if (kids.length) {
+        props.children = renderDeckKids(kids, kidKeys, vals, ctx);
+      }
+      return wrapper ? h("div", wrapper, h(C, props)) : h(C, props);
+    };
+  }
+  function contentKey(el) {
+    const clone = el.cloneNode(true);
+    for (const d of clone.querySelectorAll("*")) {
+      while (d.attributes.length) d.removeAttribute(d.attributes[0].name);
+    }
+    const s = clone.innerHTML;
+    let h2 = 5381;
+    for (let i = 0; i < s.length; i++) h2 = (h2 << 5) + h2 + s.charCodeAt(i) | 0;
+    return s.length + "." + (h2 >>> 0).toString(36);
+  }
+  var NEVER_CONTENT_KEYED = new Set(
+    "script style textarea option title select canvas iframe video audio".split(
+      " "
+    )
+  );
+  var NOT_INLINE_SELECTOR = ":not(" + [...INLINE_TEXT_TAGS].join(",") + ")";
+  function walkElement(el, host) {
+    const realTag = RAW_UNWRAP[el.localName] || el.localName;
+    const tplId = el.getAttribute("data-dc-tpl");
+    const inlineOnly = el.childNodes.length > 0 && !NEVER_CONTENT_KEYED.has(realTag) && el.querySelector(NOT_INLINE_SELECTOR) === null;
+    const keySuffix = inlineOnly ? "|" + contentKey(el) : "";
+    const { propGetters, pseudoClasses } = collectProps(el, "dom", host);
+    const deckKeyed = isDeckMountTag(el) ? walkDeckChildren(el, host) : null;
+    const kids = deckKeyed ? deckKeyed.kids : walkChildren(el, host);
+    const kidKeys = deckKeyed?.keys ?? null;
+    return (vals, ctx, key) => {
+      const props = {
+        key: key + keySuffix,
+        "data-dc-tpl": tplId
+      };
+      for (const [k, g] of propGetters) {
+        let v = g(vals);
+        if (k === "style" && typeof v === "string") v = cssToObj(v);
+        if ((k === "value" || k === "checked") && v === void 0) {
+          v = k === "checked" ? false : "";
+        }
+        props[k] = v;
+      }
+      if (pseudoClasses.length) {
+        props.className = [props.className, ...pseudoClasses].filter(Boolean).join(" ");
+      }
+      return h(realTag, props, ...renderDeckKids(kids, kidKeys, vals, ctx));
+    };
+  }
+
+  // src/logic.ts
+  var StreamableLogic = class {
+    constructor(props) {
+      __publicField(this, "props");
+      __publicField(this, "state", {});
+      /** Back-pointer to the wrapper component, installed after construction. */
+      __publicField(this, "__host");
+      this.props = props || {};
+    }
+    setState(update, cb) {
+      this.__host && this.__host.__setLogicState(update, cb);
+    }
+    forceUpdate() {
+      this.__host && this.__host.forceUpdate();
+    }
+    componentDidMount() {
+    }
+    componentDidUpdate(_prevProps) {
+    }
+    componentWillUnmount() {
+    }
+    /** The flat object the template renders against (merged over props). */
+    renderVals() {
+      return {};
+    }
+  };
+  function evalDcLogic(src) {
+    //! nosemgrep: eval-and-function-constructor
+    const fn = new Function(
+      "DCLogic",
+      "StreamableLogic",
+      "React",
+      src + '\n;return (typeof Component!=="undefined"&&Component)||undefined;'
+    );
+    return fn(StreamableLogic, StreamableLogic, getReact());
+  }
+
+  // src/component.ts
+  function shallowEqual(a, b) {
+    if (!b) return false;
+    const ak = Object.keys(a).filter((k) => k !== "children");
+    const bk = Object.keys(b).filter((k) => k !== "children");
+    if (ak.length !== bk.length) return false;
+    for (const k of ak) if (a[k] !== b[k]) return false;
+    return true;
+  }
+  function Placeholder({
+    name,
+    hintSize,
+    streaming,
+    error
+  }) {
+    const [w, hgt] = (hintSize || "100%,60px").split(",");
+    return h(
+      "div",
+      {
+        className: "sc-placeholder" + (streaming ? " sc-streaming" : ""),
+        style: { width: w.trim(), height: hgt && hgt.trim() },
+        title: name
+      },
+      error ? h(
+        "div",
+        { className: "sc-placeholder-error" },
+        (name ? name + ": " : "") + error
+      ) : null
+    );
+  }
+  function hintToMin(hint) {
+    if (!hint) return void 0;
+    const [w, hgt] = hint.split(",");
+    return { minWidth: w.trim(), minHeight: hgt && hgt.trim() };
+  }
+  function createComponentFactory(registry, ensureFetched) {
+    const React = getReact();
+    const AncestorContext = React.createContext([]);
+    class StreamableComponent extends React.Component {
+      constructor(props) {
+        super(props);
+        __publicField(this, "__name");
+        __publicField(this, "__sub");
+        __publicField(this, "__needsDidMount", false);
+        /** Snapshot of the registry's streaming flags taken at render time —
+         *  builders read it off the RenderCtx (this) to pick placeholder vs
+         *  render-nothing for unresolved values. */
+        __publicField(this, "__streamingNow", false);
+        __publicField(this, "__htmlStreamingNow", false);
+        /** When a construct throws, remember the (class, registry.ver, props)
+         *  triple so render-time reconcile doesn't re-attempt it on every parent
+         *  re-render. A registry bump (new class, template, external module
+         *  resolving via bumpAll) changes `ver` and breaks the memo so an
+         *  env-dependent constructor can self-heal. */
+        __publicField(this, "__failedLogic", null);
+        __publicField(this, "__failedUserProps", null);
+        __publicField(this, "__failedVer", -1);
+        /** Per-instance constructor error — kept here (not on the registry entry)
+         *  so one instance's successful construct can't hide a sibling's failure,
+         *  and a construct can never wipe an eval error `updateJs` recorded on
+         *  `r.logicError`. */
+        __publicField(this, "__ctorError", null);
+        __publicField(this, "logic");
+        this.__name = props.__name;
+        this.state = { __v: 0, __err: null };
+        this.__sub = () => {
+          if (this.state.__err) this.setState({ __err: null });
+          this.forceUpdate();
+        };
+        this.__makeLogic(registry.get(this.__name).Logic, null);
+        ensureFetched(this.__name);
+      }
+      /** Error-boundary hook: a render crash anywhere in this DC's subtree
+       *  (its own template, an x-import'd component, a child DC without its
+       *  own deeper boundary) lands here instead of unmounting the page. */
+      static getDerivedStateFromError(e) {
+        return { __err: e instanceof Error && e.message ? e.message : String(e) };
+      }
+      componentDidCatch(e, info) {
+        console.error(
+          "[dc-runtime] render error in <" + this.__name + ">:",
+          e,
+          info?.componentStack || ""
+        );
+      }
+      /** Instantiate the logic class (or the no-op base) and adopt `prevState`
+       *  over its initial state — used both at mount and on hot-swap. */
+      __makeLogic(Logic, prevState) {
+        const L = Logic || StreamableLogic;
+        try {
+          this.logic = new L(this.__userProps());
+          this.__failedLogic = null;
+          this.__failedUserProps = null;
+          this.__ctorError = null;
+        } catch (e) {
+          console.error(e);
+          this.__failedLogic = Logic;
+          this.__failedUserProps = this.__userProps();
+          this.__failedVer = registry.get(this.__name).ver;
+          this.__ctorError = this.__name + ": " + (e instanceof Error && e.message ? e.message : String(e));
+          this.logic = new StreamableLogic(
+            this.__userProps()
+          );
+        }
+        this.logic.__host = this;
+        if (prevState)
+          this.logic.state = { ...this.logic.state || {}, ...prevState };
+      }
+      /** The props the author's logic + template see — internal __-prefixed
+       *  wiring stripped. */
+      __userProps() {
+        const { __name, __hintSize, __tplId, __hostStyle, ...rest } = this.props;
+        return rest;
+      }
+      __setLogicState(update, cb) {
+        const prev = this.logic.state;
+        const patch = typeof update === "function" ? update(prev) : update;
+        this.logic.state = { ...prev, ...patch };
+        this.setState((s) => ({ __v: s.__v + 1 }), cb);
+      }
+      /** Swap the logic instance when the registry's Logic class changed
+       *  (streaming completion, hot reload). State carries over; didMount
+       *  re-fires after the swap commits so refs exist. */
+      __reconcileLogic() {
+        const r = registry.get(this.__name);
+        const Next = r.Logic;
+        const Cur = this.logic.constructor;
+        if (Next === Cur || !Next && Cur === StreamableLogic || Next === this.__failedLogic && r.ver === this.__failedVer && shallowEqual(this.__userProps(), this.__failedUserProps)) {
+          return;
+        }
+        if (!this.__needsDidMount) {
+          try {
+            this.logic.componentWillUnmount();
+          } catch (e) {
+            console.error(e);
+          }
+        }
+        this.__makeLogic(Next, this.logic.state);
+        this.__needsDidMount = true;
+      }
+      componentDidMount() {
+        registry.get(this.__name).subs.add(this.__sub);
+        try {
+          this.logic.componentDidMount();
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      componentDidUpdate(prevProps) {
+        this.logic.props = this.__userProps();
+        if (this.__needsDidMount) {
+          if (this.state.__err || !registry.get(this.__name).tpl) return;
+          this.__needsDidMount = false;
+          try {
+            this.logic.componentDidMount();
+          } catch (e) {
+            console.error(e);
+          }
+        } else {
+          try {
+            this.logic.componentDidUpdate(prevProps);
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      }
+      componentWillUnmount() {
+        registry.get(this.__name).subs.delete(this.__sub);
+        if (!this.__needsDidMount) {
+          try {
+            this.logic.componentWillUnmount();
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      }
+      render() {
+        const r = registry.get(this.__name);
+        const cls = "sc-host" + (r.htmlStreaming ? " sc-streaming-html" : "") + (r.jsStreaming ? " sc-streaming-js" : "");
+        const hintStyle = r.htmlStreaming ? hintToMin(this.props.__hintSize) : void 0;
+        const hostStyle = this.props.__hostStyle || hintStyle ? { ...hintStyle || {}, ...this.props.__hostStyle || {} } : void 0;
+        const hostBase = {
+          className: cls,
+          style: hostStyle,
+          "data-sc-name": this.__name,
+          "data-dc-tpl": this.props.__tplId
+        };
+        const chain = Array.isArray(this.context) ? this.context : [];
+        if (chain.includes(this.__name)) {
+          const cycle = [
+            ...chain.slice(chain.indexOf(this.__name)),
+            this.__name
+          ].join(" \u2192 ");
+          return h(
+            "div",
+            { ...hostBase, className: cls + " sc-has-error" },
+            h(Placeholder, {
+              name: this.__name,
+              hintSize: this.props.__hintSize,
+              error: "circular import: " + cycle
+            })
+          );
+        }
+        if (this.state.__err) {
+          return h(
+            "div",
+            { ...hostBase, className: cls + " sc-has-error" },
+            h(
+              "div",
+              { className: "sc-logic-error", "data-omelette-chrome": "" },
+              this.__name + ": " + this.state.__err
+            ),
+            h(Placeholder, {
+              name: this.__name,
+              hintSize: this.props.__hintSize,
+              error: this.state.__err
+            })
+          );
+        }
+        this.__reconcileLogic();
+        if (!r.tpl) {
+          return h(
+            "div",
+            hostBase,
+            h(Placeholder, { name: this.__name, hintSize: this.props.__hintSize })
+          );
+        }
+        const userProps = this.__userProps();
+        this.logic.props = userProps;
+        let vals = userProps;
+        let renderErr = r.logicError || this.__ctorError;
+        try {
+          vals = { ...userProps, ...this.logic.renderVals() || {} };
+        } catch (e) {
+          console.error(e);
+          renderErr = this.__name + ".renderVals(): " + (e instanceof Error && e.message ? e.message : String(e));
+        }
+        this.__streamingNow = !!(r.htmlStreaming || r.jsStreaming);
+        this.__htmlStreamingNow = !!r.htmlStreaming;
+        return h(
+          "div",
+          { ...hostBase, className: cls + (renderErr ? " sc-has-error" : "") },
+          renderErr && h(
+            "div",
+            { className: "sc-logic-error", "data-omelette-chrome": "" },
+            renderErr
+          ),
+          h(
+            AncestorContext.Provider,
+            { value: [...chain, this.__name] },
+            r.tpl(vals, this)
+          )
+        );
+      }
+    }
+    __publicField(StreamableComponent, "contextType", AncestorContext);
+    const named = /* @__PURE__ */ new Map();
+    function getDC(name) {
+      const hit = named.get(name);
+      if (hit) return hit;
+      function Dispatcher(p) {
+        const [, setTick] = React.useState(0);
+        React.useEffect(() => {
+          const sub = () => setTick((n) => n + 1);
+          registry.get(name).subs.add(sub);
+          return () => {
+            registry.get(name).subs.delete(sub);
+          };
+        }, []);
+        ensureFetched(name);
+        return h(StreamableComponent, { ...p, __name: name });
+      }
+      Dispatcher.displayName = name;
+      named.set(name, Dispatcher);
+      return Dispatcher;
+    }
+    return {
+      getDC,
+      StreamableComponent
+    };
+  }
+
+  // src/bundled.ts
+  function bundledBlob(url) {
+    const blobs = window.__resourceBlobs;
+    const b = blobs ? blobs[url.split("#")[0]] : void 0;
+    return b instanceof Blob ? b : null;
+  }
+
+  // src/cdn.ts
+  var REACT_URL = "https://unpkg.com/react@18.3.1/umd/react.production.min.js";
+  var REACT_SRI = "sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z";
+  var REACT_DOM_URL = "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js";
+  var REACT_DOM_SRI = "sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1";
+  var BABEL_URL = "https://unpkg.com/@babel/standalone@7.29.0/babel.min.js";
+  var BABEL_SRI = "sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y";
+  function cdnScriptFor(url, sri) {
+    const res = window.__resources;
+    const v = res ? res[url] : void 0;
+    return typeof v === "string" && v ? { src: v } : { src: url, integrity: sri };
+  }
+
+  // src/external.ts
+  var isCustomElementName = (n) => !n.includes(".") && n.includes("-");
+  function isRenderableType(g) {
+    if (typeof g === "function") return !isElementClass(g);
+    return typeof g === "object" && g !== null && typeof g.$$typeof === "symbol";
+  }
+  function resolveDottedPath(root, name) {
+    let cur = root;
+    for (const seg of name.split(".")) {
+      if (cur == null) return void 0;
+      cur = cur[seg];
+    }
+    return cur;
+  }
+  var GLOBAL_POLL_INTERVAL_MS = 50;
+  var GLOBAL_POLL_TIMEOUT_MS = 3e4;
+  function createExternalModules(onResolved) {
+    const cache = /* @__PURE__ */ new Map();
+    let babelLoading = null;
+    const reportedMissing = /* @__PURE__ */ new Map();
+    const polling = /* @__PURE__ */ new Set();
+    function ensureBabel() {
+      if (window.Babel) return Promise.resolve();
+      if (babelLoading) return babelLoading;
+      const babel = cdnScriptFor(BABEL_URL, BABEL_SRI);
+      babelLoading = new Promise((res, rej) => {
+        const s = document.createElement("script");
+        s.src = babel.src;
+        if (babel.integrity) {
+          s.integrity = babel.integrity;
+          s.crossOrigin = "anonymous";
+        }
+        s.onload = () => res();
+        s.onerror = rej;
+        document.head.appendChild(s);
+      });
+      return babelLoading;
+    }
+    const pending = /* @__PURE__ */ new Map();
+    function load(kind, url, after) {
+      const existing = pending.get(url);
+      if (existing) return existing;
+      cache.set(url, null);
+      console.info("[dc-runtime] x-import: loading", url, "(" + kind + ")");
+      const ready = Promise.all([
+        kind === "jsx" ? ensureBabel() : Promise.resolve(),
+        after ?? Promise.resolve()
+      ]);
+      const p = ready.then(() => {
+        const pre = bundledBlob(url);
+        if (pre) return pre.text();
+        return fetch(url).then((r) => {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.text();
+        });
+      }).then((src) => {
+        const code = kind === "jsx" ? window.Babel.transform(src, {
+          filename: url,
+          presets: ["react", "typescript"]
+        }).code : src;
+        const module = { exports: {} };
+        const before = new Set(Object.keys(window));
+        //! nosemgrep: eval-and-function-constructor
+        new Function("React", "module", "exports", "require", code)(
+          getReact(),
+          module,
+          module.exports,
+          () => ({})
+        );
+        const globals = {};
+        for (const k of Object.keys(window)) {
+          if (!before.has(k) && typeof window[k] === "function") {
+            globals[k] = window[k];
+          }
+        }
+        cache.set(url, { mod: module.exports, globals });
+        console.info(
+          "[dc-runtime] x-import: loaded",
+          url,
+          "\u2014 exports:",
+          Object.keys(module.exports),
+          "window globals:",
+          Object.keys(globals)
+        );
+        onResolved();
+      }).catch((e) => {
+        cache.set(url, {
+          mod: {},
+          globals: {},
+          error: "failed to load: " + (e instanceof Error && e.message ? e.message : String(e))
+        });
+        console.error(
+          "[dc-runtime] x-import: FAILED to load",
+          url,
+          "(" + kind + ")",
+          e
+        );
+        onResolved();
+      });
+      pending.set(url, p);
+      return p;
+    }
+    function resolve2(url, name) {
+      const entry = cache.get(url);
+      if (!entry) return null;
+      const { mod, globals } = entry;
+      const C = mod && mod[name] || globals && globals[name] || typeof window !== "undefined" && window[name] || mod && mod.default;
+      if (typeof C === "function") return C;
+      const key = url + "\0" + name;
+      if (!reportedMissing.has(key)) {
+        reportedMissing.set(
+          key,
+          entry.error || 'no export named "' + name + '" (has: ' + Object.keys(mod).join(", ") + ")"
+        );
+        console.error(
+          "[dc-runtime] x-import: module",
+          url,
+          "loaded but has no component named",
+          JSON.stringify(name),
+          "\u2014 available exports:",
+          Object.keys(mod),
+          "window globals:",
+          Object.keys(globals),
+          ". The module must `module.exports = {" + name + "}` or set `window." + name + "`."
+        );
+      }
+      return null;
+    }
+    function waitForGlobal(name) {
+      if (polling.has(name)) return;
+      polling.add(name);
+      const started = Date.now();
+      const isCE = isCustomElementName(name);
+      const tick = () => {
+        const found = isCE ? customElements.get(name) : isRenderableType(resolveDottedPath(window, name));
+        if (found) {
+          polling.delete(name);
+          onResolved();
+          return;
+        }
+        if (Date.now() - started >= GLOBAL_POLL_TIMEOUT_MS) {
+          console.warn(
+            "[dc-runtime] x-import: global",
+            JSON.stringify(name),
+            "never appeared on window after " + GLOBAL_POLL_TIMEOUT_MS + "ms"
+          );
+          return;
+        }
+        setTimeout(tick, GLOBAL_POLL_INTERVAL_MS);
+      };
+      setTimeout(tick, GLOBAL_POLL_INTERVAL_MS);
+    }
+    function resolveGlobal(url, name) {
+      const isCE = isCustomElementName(name);
+      if (!url) {
+        if (isCE) {
+          if (customElements.get(name)) return name;
+          waitForGlobal(name);
+          return null;
+        }
+        const g2 = resolveDottedPath(window, name);
+        if (isRenderableType(g2)) return g2;
+        waitForGlobal(name);
+        return null;
+      }
+      const entry = cache.get(url);
+      if (!entry) return null;
+      if (isCE && customElements.get(name)) return name;
+      const g = entry.globals[name] ?? resolveDottedPath(window, name);
+      if (isRenderableType(g)) return g;
+      if (name.includes(".")) return null;
+      const key = url + "\0global\0" + name;
+      if (!reportedMissing.has(key)) {
+        reportedMissing.set(key, null);
+        if (isCE && !customElements.get(name)) {
+          console.warn(
+            "[dc-runtime] x-import:",
+            url,
+            "loaded but no custom element",
+            JSON.stringify(name),
+            "is registered and window." + name + " is not a function \u2014 rendering <" + name + "> as an unknown element."
+          );
+        }
+      }
+      return name;
+    }
+    function getError(url, name) {
+      const entry = cache.get(url);
+      if (entry?.error) return entry.error;
+      return reportedMissing.get(url + "\0" + name) || null;
+    }
+    return { load, resolve: resolve2, resolveGlobal, getError };
+  }
+  function isElementClass(g) {
+    try {
+      return typeof g === "function" && typeof HTMLElement !== "undefined" && g.prototype instanceof HTMLElement;
+    } catch {
+      return false;
+    }
+  }
+
+  // src/atomics.ts
+  var ATOMIC_CSS = (
+    // layout
+    ".fx{display:flex}.col{display:flex;flex-direction:column}.grid{display:grid}.ac{align-items:center}.jc{justify-content:center}.jb{justify-content:space-between}.f1{flex:1}.noshrink{flex-shrink:0}.wrap{flex-wrap:wrap}.fw5{font-weight:500}.fw6{font-weight:600}.fw7{font-weight:700}.fw8{font-weight:800}.fs11{font-size:11px}.fs12{font-size:12px}.fs13{font-size:13px}.fs14{font-size:14px}.fs15{font-size:15px}.fs16{font-size:16px}.fs20{font-size:20px}.fs22{font-size:22px}.upper{text-transform:uppercase}.tc{text-align:center}.nowrap{white-space:nowrap}.gap8{gap:8px}.gap10{gap:10px}.gap12{gap:12px}.gap16{gap:16px}.gap24{gap:24px}.m0{margin:0}.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}.mb8{margin-bottom:8px}.mb12{margin-bottom:12px}.mb16{margin-bottom:16px}.posrel{position:relative}.posabs{position:absolute}.round{border-radius:50%}.ohide{overflow:hidden}.bbox{box-sizing:border-box}.pointer{cursor:pointer}.w100{width:100%}.b0{border:none}"
+  );
+
+  // src/helmet.ts
+  var DESIGN_DOC_MODE_RE = /<meta\b[^>]*\bname\s*=\s*["']design_doc_mode["'][^>]*\b(?:content|value)\s*=\s*["'](\w+)["']/i;
+  var CANVAS_BG_LIGHT = "#f0eee6";
+  var CANVAS_BG_DARK = "#2e2c26";
+  function createHelmetManager(doc, isStreaming) {
+    const mounted = /* @__PURE__ */ new Set();
+    const live = /* @__PURE__ */ new Map();
+    let designDocMode = null;
+    let canvasStyleEl = null;
+    let appTheme = "light";
+    try {
+      const ds = doc.documentElement.dataset.theme;
+      appTheme = ds === "dark" || ds === "light" ? ds : new URLSearchParams(doc.defaultView?.location.search ?? "").get(
+        "theme"
+      ) === "dark" ? "dark" : "light";
+    } catch {
+    }
+    function applyCanvasBg() {
+      if (!canvasStyleEl) return;
+      const bg = appTheme === "dark" ? CANVAS_BG_DARK : CANVAS_BG_LIGHT;
+      canvasStyleEl.textContent = `html,body{background:${bg}}#dc-root>.sc-host{position:relative}`;
+    }
+    function postDesignMode(mode) {
+      if (window.parent === window) return;
+      try {
+        window.parent.postMessage({ type: "__dc_design_mode", mode }, "*");
+      } catch {
+      }
+    }
+    function setDesignDocMode(mode) {
+      if (mode === designDocMode) return;
+      designDocMode = mode;
+      postDesignMode(mode);
+      if (mode === "canvas") {
+        doc.documentElement.setAttribute("data-dc-canvas", "");
+        canvasStyleEl = doc.createElement("style");
+        canvasStyleEl.setAttribute("data-dc-canvas", "");
+        applyCanvasBg();
+        doc.head.appendChild(canvasStyleEl);
+      } else {
+        doc.documentElement.removeAttribute("data-dc-canvas");
+        canvasStyleEl?.remove();
+        canvasStyleEl = null;
+      }
+    }
+    window.addEventListener("message", (e) => {
+      const type = e.data && e.data.type;
+      if (type === "__dc_theme") {
+        const t = e.data.theme;
+        if (t === "light" || t === "dark") {
+          appTheme = t;
+          applyCanvasBg();
+        }
+        return;
+      }
+      if (!designDocMode || type !== "__dc_probe") return;
+      postDesignMode(designDocMode);
+    });
+    function compile(node) {
+      const raw = [...node.children];
+      const helmetClosed = node.nextSibling != null || node.parentNode?.nextSibling != null;
+      if (node.hasAttribute("data-dc-atomics") && !mounted.has("__dc-atomics")) {
+        mounted.add("__dc-atomics");
+        const el = doc.createElement("style");
+        el.id = "__dc-atomics";
+        el.textContent = ATOMIC_CSS;
+        doc.head.appendChild(el);
+      }
+      return (_vals, ctx) => {
+        const name = ctx && ctx.__name || "";
+        const streaming = !!(name && isStreaming(name));
+        for (let i = 0; i < raw.length; i++) {
+          const child = raw[i];
+          const tag = child.tagName;
+          const mayBePartial = streaming && !helmetClosed && i === raw.length - 1;
+          if (tag === "SCRIPT") {
+            if (mayBePartial) continue;
+            const key = "SCRIPT|" + (child.getAttribute("src") || child.textContent || "");
+            if (mounted.has(key)) continue;
+            mounted.add(key);
+            const el = doc.createElement("script");
+            for (const { name: an, value } of [...child.attributes])
+              el.setAttribute(an, value);
+            if (child.textContent) el.textContent = child.textContent;
+            doc.head.appendChild(el);
+          } else if (tag === "LINK" || tag === "META") {
+            if (mayBePartial) continue;
+            const key = tag + "|" + (child.getAttribute("href") || child.getAttribute("src") || child.outerHTML);
+            if (mounted.has(key)) continue;
+            mounted.add(key);
+            if (tag === "LINK") {
+              const rel = (child.getAttribute("rel") || "").toLowerCase().split(/\s+/);
+              const href = (child.getAttribute("href") || "").trim();
+              const res = window.__resources;
+              const pre = res && rel.includes("stylesheet") && !rel.includes("alternate") ? res[href] : void 0;
+              const blob = typeof pre === "string" && pre ? bundledBlob(pre) : null;
+              if (blob) {
+                const el = doc.createElement("style");
+                if (child.hasAttribute("disabled")) {
+                  el.setAttribute("media", "not all");
+                } else if (child.getAttribute("media")) {
+                  el.setAttribute("media", child.getAttribute("media"));
+                }
+                if (child.getAttribute("title"))
+                  el.setAttribute("title", child.getAttribute("title"));
+                void blob.text().then((css) => {
+                  el.textContent = css;
+                });
+                doc.head.appendChild(el);
+                continue;
+              }
+            }
+            doc.head.appendChild(child.cloneNode(true));
+          } else {
+            const key = name + "|" + i;
+            let el = live.get(key);
+            if (!el || el.tagName !== tag) {
+              if (el) el.remove();
+              el = doc.createElement(tag.toLowerCase());
+              live.set(key, el);
+              doc.head.appendChild(el);
+            }
+            for (const { name: an, value } of [...child.attributes]) {
+              if (el.getAttribute(an) !== value) el.setAttribute(an, value);
+            }
+            if (el.textContent !== child.textContent)
+              el.textContent = child.textContent;
+          }
+        }
+        return null;
+      };
+    }
+    return { compile, setDesignDocMode };
+  }
+
+  // src/pseudo.ts
+  function scanUnquotedUrl(css, i) {
+    if (css[i] !== "u" && css[i] !== "U" || css.slice(i, i + 4).toLowerCase() !== "url(" || /[a-z0-9_-]/i.test(css[i - 1] ?? "")) {
+      return -1;
+    }
+    let j = i + 4;
+    while (j < css.length && /\s/.test(css[j])) j++;
+    if (css[j] === '"' || css[j] === "'") return -1;
+    while (j < css.length && css[j] !== ")") {
+      if (css[j] === "\\") j++;
+      j++;
+    }
+    return j < css.length ? j + 1 : css.length;
+  }
+  function stripComments(css) {
+    let out = "";
+    let quote = "";
+    for (let i = 0; i < css.length; i++) {
+      const c = css[i];
+      if (quote) {
+        if (c === "\\") {
+          out += c + (css[i + 1] ?? "");
+          i++;
+          continue;
+        }
+        if (c === quote) quote = "";
+        out += c;
+      } else if (c === "'" || c === '"') {
+        quote = c;
+        out += c;
+      } else if (c === "/" && css[i + 1] === "*") {
+        const end = css.indexOf("*/", i + 2);
+        i = end === -1 ? css.length : end + 1;
+        out += " ";
+      } else {
+        const end = scanUnquotedUrl(css, i);
+        if (end === -1) out += c;
+        else {
+          out += css.slice(i, end);
+          i = end - 1;
+        }
+      }
+    }
+    return out;
+  }
+  function importantify(css) {
+    css = stripComments(css);
+    const decls = [];
+    let start = 0;
+    let depth = 0;
+    let quote = "";
+    for (let i = 0; i < css.length; i++) {
+      const c = css[i];
+      if (quote) {
+        if (c === "\\") i++;
+        else if (c === quote) quote = "";
+      } else if (c === "'" || c === '"') quote = c;
+      else if (c === "(") depth++;
+      else if (c === ")") depth = Math.max(0, depth - 1);
+      else if (c === ";" && depth === 0) {
+        decls.push(css.slice(start, i));
+        start = i + 1;
+      } else {
+        const end = scanUnquotedUrl(css, i);
+        if (end !== -1) i = end - 1;
+      }
+    }
+    decls.push(css.slice(start));
+    return decls.map((d) => d.trim()).filter(Boolean).map((d) => /!\s*important$/i.test(d) ? d : d + " !important").join(";");
+  }
+  function createPseudoSheet(doc) {
+    let el = null;
+    const cache = /* @__PURE__ */ new Map();
+    let n = 0;
+    return (pseudo, css) => {
+      const k = pseudo + "|" + css;
+      const hit = cache.get(k);
+      if (hit) return hit;
+      if (!el) {
+        el = doc.createElement("style");
+        doc.head.appendChild(el);
+      }
+      const cls = "scp" + (n++).toString(36);
+      const isPseudoElement = pseudo === "before" || pseudo === "after";
+      const sel = isPseudoElement ? "." + cls + "::" + pseudo : "." + cls + ":" + pseudo;
+      el.sheet.insertRule(
+        sel + "{" + (isPseudoElement ? css : importantify(css)) + "}",
+        el.sheet.cssRules.length
+      );
+      cache.set(k, cls);
+      return cls;
+    };
+  }
+
+  // src/registry.ts
+  function createRegistry() {
+    const entries = /* @__PURE__ */ Object.create(null);
+    function get(name) {
+      return entries[name] || (entries[name] = {
+        html: "",
+        tpl: null,
+        Logic: null,
+        jsStreaming: false,
+        htmlStreaming: false,
+        ver: 0,
+        subs: /* @__PURE__ */ new Set(),
+        fetched: false
+      });
+    }
+    function bump(name) {
+      const r = get(name);
+      r.ver++;
+      for (const fn of r.subs) fn();
+    }
+    return {
+      entries,
+      get,
+      bump,
+      bumpAll() {
+        for (const n in entries) bump(n);
+      }
+    };
+  }
+
+  // src/runtime.ts
+  var COMPONENT_DIR = ".";
+  function createRuntime(doc = document) {
+    const registry = createRegistry();
+    const pseudoClass = createPseudoSheet(doc);
+    const helmet = createHelmetManager(
+      doc,
+      (name) => registry.get(name).htmlStreaming
+    );
+    const external = createExternalModules(() => registry.bumpAll());
+    const factory = createComponentFactory(registry, ensureFetched);
+    const host = {
+      component: (name) => factory.getDC(name),
+      placeholder: (props) => h(Placeholder, props),
+      helmet: (node) => helmet.compile(node),
+      loadExternal: (kind, url, after) => external.load(kind, url, after),
+      resolveExternal: (url, name) => external.resolve(url, name),
+      resolveExternalGlobal: (url, name) => external.resolveGlobal(url, name),
+      resolveExternalError: (url, name) => external.getError(url, name),
+      pseudoClass
+    };
+    function ensureFetched(name) {
+      const r = registry.get(name);
+      if (r.fetched) return;
+      r.fetched = true;
+      const url = COMPONENT_DIR + "/" + encodeURIComponent(name) + ".dc.html";
+      const res = window.__resources;
+      const pre = res ? res[url] : void 0;
+      const target = typeof pre === "string" && pre ? pre : url;
+      const blob = bundledBlob(target);
+      (blob ? blob.text() : fetch(target).then((res2) => {
+        if (!res2.ok) {
+          console.error(
+            '[dc-runtime] sibling fetch for "' + name + '" failed:',
+            url,
+            "returned",
+            res2.status,
+            "\u2014 the reference renders as an empty placeholder."
+          );
+          return "";
+        }
+        return res2.text();
+      })).then((t) => {
+        if (!t) return;
+        const parsed = parseDcText(t);
+        if (!parsed) {
+          console.error(
+            '[dc-runtime] sibling fetch for "' + name + '":',
+            url,
+            "has no <x-\x64c> block \u2014 not a Design Component."
+          );
+          return;
+        }
+        if (parsed.props) r.propsMeta = parsed.props;
+        if (parsed.preview) r.preview = parsed.preview;
+        if (parsed.template && !r.html) updateHtml(name, parsed.template);
+        if (parsed.js && !r.Logic) updateJs(name, parsed.js);
+      }).catch(
+        (e) => console.error(
+          '[dc-runtime] sibling fetch for "' + name + '" threw:',
+          url,
+          e
+        )
+      );
+    }
+    let rootName = null;
+    function updateHtml(name, html) {
+      const r = registry.get(name);
+      r.html = html;
+      if (name === rootName) {
+        const mode = DESIGN_DOC_MODE_RE.exec(html)?.[1] ?? null;
+        if (mode || !r.htmlStreaming) helmet.setDesignDocMode(mode);
+      }
+      try {
+        r.tpl = compileTemplate(html, host);
+      } catch (e) {
+        console.error("[dc-runtime] template compile FAILED for", name, e);
+      }
+      registry.bump(name);
+    }
+    function updateJs(name, src) {
+      const r = registry.get(name);
+      const seq = r.jsSeq = (r.jsSeq || 0) + 1;
+      try {
+        const Cls = evalDcLogic(src);
+        if (r.jsSeq !== seq) return;
+        if (typeof Cls !== "function") {
+          r.logicError = name + ".dc.html: <script data-dc-script> must define `class Component extends DCLogic`";
+        } else {
+          r.logicError = null;
+          r.Logic = Cls;
+        }
+      } catch (e) {
+        if (r.jsSeq !== seq) return;
+        console.error(
+          "[dc-runtime] logic class eval FAILED for",
+          name,
+          "\u2014 the template renders with props only.",
+          e
+        );
+        r.logicError = name + ": " + (e instanceof Error && e.message ? e.message : String(e));
+      }
+      registry.bump(name);
+    }
+    function setStreaming(name, kind, on) {
+      const r = registry.get(name);
+      if (kind === "html") r.htmlStreaming = !!on;
+      else r.jsStreaming = !!on;
+      let any = false;
+      for (const n in registry.entries) {
+        const e = registry.entries[n];
+        if (e && (e.htmlStreaming || e.jsStreaming)) {
+          any = true;
+          break;
+        }
+      }
+      doc.documentElement.classList.toggle("sc-dc-streaming", any);
+      registry.bump(name);
+    }
+    function dcUpdate(name, kind, content, streaming) {
+      if (streaming) registry.get(name).fetched = true;
+      if (kind === "html") {
+        setStreaming(name, "html", !!streaming);
+        updateHtml(name, content);
+      } else if (kind === "js") {
+        setStreaming(name, "js", !!streaming);
+        if (!streaming) updateJs(name, content);
+      } else if (kind === "props") {
+        const { props, preview } = parseDataProps(content);
+        const r = registry.get(name);
+        r.propsMeta = props ?? void 0;
+        r.preview = preview;
+        registry.bump(name);
+      }
+    }
+    function setProps(name, overrides) {
+      registry.get(name).propOverrides = overrides && typeof overrides === "object" ? { ...overrides } : null;
+      registry.bump(name);
+    }
+    function adoptParsed(name, parsed) {
+      if (!parsed) return;
+      const r = registry.get(name);
+      if (parsed.props) r.propsMeta = parsed.props;
+      if (parsed.preview) r.preview = parsed.preview;
+      if (parsed.template) updateHtml(name, parsed.template);
+      if (parsed.js) updateJs(name, parsed.js);
+    }
+    return {
+      registry,
+      getDC: factory.getDC,
+      updateHtml,
+      updateJs,
+      dcUpdate,
+      setProps,
+      adoptParsed,
+      setRootName: (name) => {
+        rootName = name;
+      },
+      markFetched: (name) => {
+        registry.get(name).fetched = true;
+      },
+      annotatedTemplate: (name) => {
+        const r = registry.get(name);
+        return r.tpl && r.tpl.__annotated || null;
+      },
+      templateSource: (name) => registry.get(name).html || null,
+      StreamableLogic
+    };
+  }
+
+  // src/stream-state.ts
+  function createStreamTracker(staleMs = 6e4, now = Date.now) {
+    const since = /* @__PURE__ */ new Map();
+    const liveOne = (n) => {
+      const t = since.get(n);
+      if (t === void 0) return false;
+      if (now() - t > staleMs) {
+        since.delete(n);
+        return false;
+      }
+      return true;
+    };
+    return {
+      push(name, streaming, viewportKey) {
+        if (viewportKey === "dc-model") return;
+        if (streaming) since.set(name, now());
+        else since.delete(name);
+      },
+      live(name) {
+        if (name !== void 0) return liveOne(name);
+        for (const n of [...since.keys()]) if (liveOne(n)) return true;
+        return false;
+      }
+    };
+  }
+
+  // src/index.ts
+  function hideRawTemplate() {
+    const s = document.createElement("style");
+    s.textContent = "x-dc{display:none!important}";
+    document.head.appendChild(s);
+  }
+  function loadScript(src, integrity) {
+    return new Promise((resolve2, reject) => {
+      //! nosemgrep: create-script-element
+      const s = document.createElement("script");
+      s.src = src;
+      if (integrity) {
+        s.integrity = integrity;
+        s.crossOrigin = "anonymous";
+      }
+      s.async = false;
+      s.onload = () => resolve2();
+      s.onerror = () => reject(new Error(`failed to load ${src}`));
+      document.head.appendChild(s);
+    });
+  }
+  function loadReactUmd() {
+    const w = window;
+    if (w.React && w.ReactDOM) return Promise.resolve();
+    const react = cdnScriptFor(REACT_URL, REACT_SRI);
+    const reactDom = cdnScriptFor(REACT_DOM_URL, REACT_DOM_SRI);
+    return Promise.all([
+      loadScript(react.src, react.integrity),
+      loadScript(reactDom.src, reactDom.integrity)
+    ]).then(() => void 0);
+  }
+  function init() {
+    const runtime = createRuntime(document);
+    let rootName = "Root";
+    const baseCss = document.createElement("style");
+    baseCss.textContent = BASE_CSS;
+    document.head.prepend(baseCss);
+    const notifyHost = () => {
+      if (window.parent === window) return;
+      const r = runtime.registry.entries[rootName];
+      try {
+        window.parent.postMessage(
+          {
+            type: "__dc_booted",
+            rootName,
+            propsMeta: r && r.propsMeta || null,
+            preview: r && r.preview || null
+          },
+          "*"
+        );
+      } catch {
+      }
+    };
+    const streams = createStreamTracker();
+    const api = {
+      __dcUpdate: (name, kind, content, streaming, viewportKey) => {
+        streams.push(name, streaming, viewportKey);
+        runtime.dcUpdate(name, kind, content, streaming);
+        if (name === rootName && !streaming && kind === "props") notifyHost();
+      },
+      __dcStreaming: (name) => streams.live(name),
+      __dcSetProps: (name, overrides) => runtime.setProps(name, overrides),
+      /** Name of the component currently mounted as the page root — DC tools
+       *  push their template-stream here when targeting "the open page". */
+      __dcRootName: () => rootName,
+      /** Editor bridge — the encoded, `data-dc-tpl`-annotated template source.
+       *  The host editor parses this into its own template DOM so it can map a
+       *  rendered node (carrying the same `data-dc-tpl`) back to the source
+       *  node that emitted it. Returns the encoded form (`sc-camel-*` attrs,
+       *  `<sc-raw-*>`/`<sc-helmet>` tags); the editor decodes on serialize. */
+      __dcAnnotatedTemplate: (name) => runtime.annotatedTemplate(name),
+      /** Editor bridge — the *original* (decoded) template source. */
+      __dcTemplateSource: (name) => runtime.templateSource(name),
+      __dcBoot: () => {
+        rootName = boot(runtime, document) ?? rootName;
+        notifyHost();
+      },
+      __dcRegistry: runtime.registry.entries,
+      getDC: (name) => runtime.getDC(name),
+      // `DCLogic` is the documented base class name; `StreamableLogic` is the
+      // implementation alias kept for any project that already references it.
+      DCLogic: runtime.StreamableLogic,
+      StreamableLogic: runtime.StreamableLogic
+    };
+    Object.assign(window, api);
+    window.__dcContentKeyed = true;
+    if (document.readyState !== "loading") api.__dcBoot();
+    else document.addEventListener("DOMContentLoaded", () => api.__dcBoot());
+  }
+  hideRawTemplate();
+  loadReactUmd().then(init).catch((err) => {
+    console.error("[dc] failed to load React or boot:", err);
+    throw err;
+  });
+})();
+
+</script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+/* Organic — design-system tokens and component classes. This file is the source of truth for the system's look; retune it here and see readme.md. */
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo:wght@400&family=Figtree:wght@400;600;700&display=swap');
+
+:root {
+  --color-bg: #f5ead8;
+  --color-surface: #ebddc5;
+  --color-text: #201e1d;
+  --color-accent: #c67139;
+  --color-accent-2: #7a8a5e;
+  --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
+
+  /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
+     same step of any role matches the others in visual value. */
+  --color-neutral-100: #f9f4ed;
+  --color-neutral-200: #eee7db;
+  --color-neutral-300: #dcd3c4;
+  --color-neutral-400: #c0b6a5;
+  --color-neutral-500: #a19786;
+  --color-neutral-600: #82796a;
+  --color-neutral-700: #645c50;
+  --color-neutral-800: #474238;
+  --color-neutral-900: #2e2b25;
+
+  --color-accent-100: #fff2eb;
+  --color-accent-200: #ffe1d0;
+  --color-accent-300: #ffc6a5;
+  --color-accent-400: #f6a06b;
+  --color-accent-500: #d67f48;
+  --color-accent-600: #b2622d;
+  --color-accent-700: #8c491a;
+  --color-accent-800: #643312;
+  --color-accent-900: #402310;
+
+  --color-accent-2-100: #f0fae1;
+  --color-accent-2-200: #e1eecc;
+  --color-accent-2-300: #ccdbb2;
+  --color-accent-2-400: #aebf92;
+  --color-accent-2-500: #8fa073;
+  --color-accent-2-600: #728157;
+  --color-accent-2-700: #56633f;
+  --color-accent-2-800: #3d472b;
+  --color-accent-2-900: #272e1b;
+
+  --font-heading: "Caprasimo", system-ui, sans-serif;
+  --font-heading-weight: 400;
+  --font-body: "Figtree", system-ui, sans-serif;
+
+  --space-1: 4.4px;
+  --space-2: 8.8px;
+  --space-3: 13.2px;
+  --space-4: 17.6px;
+  --space-6: 26.4px;
+  --space-8: 35.2px;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+
+  /* Elevation — derived from the ground: soft ink-tinted shadows on a
+     light theme, a hairline edge + ambient darkness on a dark one. */
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2e2b25 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2e2b25 16%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #2e2b25 22%, transparent);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); }
+
+.washed{filter:saturate(0.6) contrast(0.85) brightness(1.1) opacity(0.94)}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Components — built with the tokens above. Plain CSS
+   on plain HTML: no JavaScript, no build step. Each class is documented in
+   readme.md and demonstrated in foundations/ and components/.
+   ══════════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2);
+}
+h1 { font-size: 42px; }
+h2 { font-size: 32px; }
+h3 { font-size: 25px; }
+h4 { font-size: 20px; }
+h5 { font-size: 16px; }
+h6 { font-size: 13px; }
+h6 { letter-spacing: 0.08em; text-transform: uppercase; }
+p { margin: 0 0 var(--space-3); }
+a { color: var(--color-accent); text-underline-offset: 3px; }
+img { display: block; max-width: 100%; }
+figure { margin: 0; }
+figcaption {
+  font-size: 11px; margin-top: var(--space-1);
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+.text-muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+
+/* — rules — */
+.hr {
+  height: 1px; border: 0; margin: var(--space-4) 0;
+  background: var(--color-divider);
+}
+
+/* — buttons — */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  cursor: pointer; text-decoration: none;
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 14px; line-height: 1.2; color: var(--color-text); /* matches the .input's 14px —
+     the pair sits side by side in sign-up rows */
+  background: transparent; border: 1px solid transparent;
+  padding: var(--space-2) calc(var(--space-3) * 1.2);
+  border-radius: var(--radius-md);
+}
+.btn svg { display: block; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-primary { background: var(--color-accent); color: var(--color-bg); }
+.btn-primary:hover { background: var(--color-accent-600); }
+.btn-primary:active { background: var(--color-accent-700); }
+.btn-secondary { border-color: var(--color-divider); }
+.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
+.btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+.btn-ghost:active { background: color-mix(in srgb, var(--color-accent) 18%, transparent); }
+.btn-icon { width: 36px; height: 36px; padding: 0; }
+.btn-block { width: 100%; margin-top: var(--space-2); }
+
+/* — forms — */
+.field > label {
+  display: block; font-size: 12px; margin-bottom: 5px;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+.input {
+  width: 100%; min-height: 36px; padding: 6px 10px; font: inherit;
+  font-size: 14px; color: var(--color-text); caret-color: var(--color-accent);
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
+}
+.input:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
+.input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
+textarea.input { min-height: 90px; resize: vertical; }
+.radio { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; }
+.radio input, .seg-opt input {
+  position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none;
+}
+.radio .dot {
+  width: 16px; height: 16px; flex: none; border-radius: 50%;
+  border: 1.5px solid var(--color-divider);
+}
+.radio:hover .dot { border-color: var(--color-accent); }
+.radio input:checked + .dot {
+  border-color: var(--color-accent); background: var(--color-accent);
+  box-shadow: inset 0 0 0 4px var(--color-bg);
+}
+.radio input:focus-visible + .dot { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.seg {
+  display: inline-flex; overflow: hidden;
+  border: 1px solid var(--color-divider); border-radius: var(--radius-md);
+}
+.seg-opt {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 12px; font-size: 13px; cursor: pointer;
+}
+.seg-opt + .seg-opt { border-left: 1px solid var(--color-divider); }
+.seg-opt:has(input:checked) { background: var(--color-accent); color: var(--color-bg); }
+.seg-opt:not(:has(input:checked)):hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.seg-opt:has(input:focus-visible) { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+
+/* — cards — */
+.card {
+  display: flex; flex-direction: column; gap: var(--space-2);
+  padding: var(--space-3); border-radius: var(--radius-md); background: var(--color-surface);
+}
+.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
+.card-title {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 17px; line-height: 1.2;
+}
+.card-body { margin: 0; font-size: 13px; opacity: 0.8; flex: 1; }
+.card-meta {
+  display: flex; align-items: center; gap: 6px; font-size: 11px;
+  color: color-mix(in srgb, var(--color-text) 50%, transparent);
+}
+.elev-sm { box-shadow: var(--shadow-sm); }
+.elev-md { box-shadow: var(--shadow-md); }
+.elev-lg { box-shadow: var(--shadow-lg); }
+
+/* — tags — */
+.tag {
+  display: inline-flex; align-items: center; font-size: 11px;
+  letter-spacing: 0.02em; padding: 3px 10px;
+  border-radius: calc(var(--radius-md) * 0.75);
+}
+.tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
+.tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
+.tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
+.tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent); }
+
+/* — navigation — */
+.nav {
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: none;
+}
+.nav-brand {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 18px; margin-right: auto;
+}
+.nav a { color: inherit; text-decoration: none; font-size: 14px; }
+.nav a:hover, .nav a[aria-current='page'] { color: var(--color-accent); }
+
+/* — tables — */
+.table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.table th {
+  text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  padding: var(--space-2); border-bottom: 1px solid var(--color-divider);
+}
+.table td {
+  padding: var(--space-2);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+.table tbody tr:hover { background: color-mix(in srgb, var(--color-text) 4%, transparent); }
+
+/* — dialog — */
+.dialog-backdrop {
+  position: fixed; inset: 0; display: grid; place-items: center;
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--color-neutral-900) 50%, transparent);
+}
+.dialog {
+  width: min(440px, 100%); display: flex; flex-direction: column; gap: var(--space-3);
+  padding: var(--space-4); border-radius: var(--radius-lg);
+  background: var(--color-surface); box-shadow: var(--shadow-lg);
+}
+.dialog-title {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 20px;
+}
+.dialog-body { font-size: 14px; opacity: 0.85; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: var(--space-2); margin-top: var(--space-2); }
+
+/* — rounded frame: everything softens, small controls go pill — */
+.card, .dialog { border-radius: calc(var(--radius-lg) * 1.15); }
+.btn, .tag, .seg, .input { border-radius: 999px; }
+.input { padding-inline: 14px; }
+
+
+</style>
+  <script>
+/* @ds-bundle: {"format":4,"namespace":"Organic_organi","components":[],"sourceHashes":{},"inlinedExternals":[],"unexposedExports":[]} */
+
+(() => {
+
+const __ds_ns = (window.Organic_organi = window.Organic_organi || {});
+
+const __ds_scope = {};
+
+(__ds_ns.__errors = __ds_ns.__errors || []);
+
+})();
+
+</script>
+  <style>
+    body { margin: 0; background: #2e2b25; color: #201e1d; }
+    a { color: var(--color-accent-700); text-decoration: none; }
+    a:hover { color: var(--color-accent-800); text-decoration: underline; }
+    button { font: inherit; color: inherit; }
+    @keyframes gr-pulse { 0%, 100% { opacity: 1 } 50% { opacity: 0.35 } }
+    @media (max-width: 768px) {
+      #gr-shell { grid-template-columns: 1fr; }
+      #gr-nav { position: static; height: auto; }
+      #gr-nav-list { flex-direction: row; flex-wrap: wrap; }
+      #gr-nav-list li { flex: 1 1 auto; }
+      #gr-main { border-radius: 0; }
+      .gr-stack thead { display: none; }
+      .gr-stack tr { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--color-divider); }
+      .gr-stack td, .gr-stack th { border-bottom: 0; padding: 0; text-align: left; }
+    }
+  </style>
+</helmet>
+
+<div id="gr-shell" style="min-height: 100vh; display: grid; grid-template-columns: 232px minmax(0, 1fr); background: var(--color-neutral-900)">
+
+  <nav id="gr-nav" aria-label="Granted screens" style="padding: 24px 14px 18px; display: flex; flex-direction: column; gap: 20px; position: sticky; top: 0; height: 100vh; box-sizing: border-box">
+    <div style="display: flex; flex-direction: column; gap: 3px; padding: 0 10px">
+      <span style="font-family: var(--font-heading); font-size: 18px; color: var(--color-accent-300); letter-spacing: -0.01em">Granted</span>
+      <span style="font-size: 11px; color: var(--color-neutral-400)">{{meta.org}}</span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: var(--radius-md); background: {{feed.bg}}">
+      <span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 999px; background: {{feed.dot}}; flex: none; animation: gr-pulse 2.4s ease-in-out infinite"></span>
+      <div style="display: flex; flex-direction: column; gap: 1px; min-width: 0">
+        <span style="font-size: 10.5px; color: {{feed.ink}}; white-space: nowrap">{{feed.label}}</span>
+        <span style="font-size: 10px; color: var(--color-neutral-400); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{feed.sub}}</span>
+      </div>
+    </div>
+
+    <ul id="gr-nav-list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="7">
+        <li>
+          <button type="button" onClick="{{ n.go }}" aria-current="{{n.current}}" style="width: 100%; display: flex; align-items: center; gap: 9px; padding: 8px 12px; border-radius: 999px; border: none; cursor: pointer; font-size: 13.5px; text-align: left; background: {{n.bg}}; color: {{n.ink}}; font-weight: {{n.weight}}" style-hover="background: color-mix(in srgb, #f9f4ed 9%, transparent)">
+            <span style="flex: 1">{{n.label}}</span>
+            <span style="font-size: 10.5px; color: {{n.countInk}}; font-variant-numeric: tabular-nums; letter-spacing: 0.04em">{{n.count}}</span>
+          </button>
+        </li>
+      </sc-for>
+    </ul>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding: 0 10px">
+      <div style="display: flex; flex-direction: column; gap: 3px">
+        <span style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-500)">Workspace on disk</span>
+        <span style="font-size: 10px; line-height: 1.5; color: var(--color-neutral-400); word-break: break-all; font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{meta.workspace}}</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; border-top: 1px solid color-mix(in srgb, #f9f4ed 12%, transparent); padding-top: 9px">
+        <span style="font-size: 10px; color: var(--color-neutral-400); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all">{{meta.model}}</span>
+        <span style="font-size: 10px; color: var(--color-neutral-400); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{meta.runLine}}</span>
+      </div>
+    </div>
+  </nav>
+
+  <main id="gr-main" style="background: var(--color-bg); border-radius: 24px 0 0 24px; min-width: 0; display: flex; flex-direction: column">
+
+    <header style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; padding: 20px clamp(18px, 3vw, 34px); border-bottom: 1px solid var(--color-divider)">
+      <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; min-width: 0; flex: 1">
+        <h1 style="margin: 0; font-size: 20px; white-space: nowrap">{{head.title}}</h1>
+        <p style="margin: 0; font-size: 12.5px; color: var(--color-neutral-700); text-wrap: pretty">{{head.sub}}</p>
+      </div>
+      <sc-if value="{{showActions}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; gap: 8px; align-items: center; flex: none; flex-wrap: wrap">
+          <span class="tag tag-accent" style="white-space: nowrap">Awaiting your yes</span>
+          <button type="button" class="btn btn-secondary" onClick="{{ decline }}" style="font-size: 13px; white-space: nowrap">Not this one</button>
+          <button type="button" class="btn btn-primary" onClick="{{ approve }}" style="font-size: 13px; white-space: nowrap">Approve — build the plan</button>
+        </div>
+      </sc-if>
+    </header>
+
+    <div style="padding: 24px clamp(18px, 3vw, 34px) 20px; display: flex; flex-direction: column; gap: 22px; min-width: 0; flex: 1">
+
+      <sc-if value="{{banner.show}}">
+        <div role="status" style="display: flex; gap: 12px; align-items: flex-start; background: {{banner.bg}}; border: 1px solid {{banner.border}}; border-radius: var(--radius-md); padding: 12px 16px">
+          <span class="tag {{banner.tagClass}}" style="flex: none; white-space: nowrap">{{banner.tag}}</span>
+          <p style="margin: 0; flex: 1; font-size: 13px; line-height: 1.5; color: {{banner.ink}}; text-wrap: pretty">{{banner.text}}</p>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isDecision}}" hint-placeholder-val="{{ true }}">
+        <section aria-label="Decision" style="display: flex; flex-direction: column; gap: 22px">
+
+          <sc-if value="{{loading}}">
+            <div role="status" style="display: flex; flex-direction: column; gap: 10px; background: var(--color-surface); border-radius: var(--radius-lg); padding: 26px clamp(20px, 3vw, 34px); max-width: 74ch">
+              <span style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700)">Reading the run file</span>
+              <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty">Nothing is shown until the agent's own file has been read. <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px">{{loadingUrl}}</span></p>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{silent.show}}">
+            <div style="display: flex; flex-direction: column; gap: 12px; background: var(--color-surface); border-radius: var(--radius-lg); padding: 30px clamp(20px, 3vw, 34px); max-width: 74ch">
+              <h2 style="margin: 0; font-size: clamp(26px, 3.4vw, 38px)">Nothing worth your time today.</h2>
+              <p style="margin: 0; font-size: 15px; line-height: 1.62; color: var(--color-neutral-800); text-wrap: pretty">{{silent.line}}</p>
+              <p style="margin: 0; font-size: 13px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty">An empty screen is indistinguishable from a crash, so here is the accounting. This is the product working: most days it produces nothing.</p>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{nearby.showQuiet}}">
+            <section aria-label="Funders active near you" style="display: flex; flex-direction: column; gap: 12px; max-width: 74ch">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                <h2 style="margin: 0; font-size: 19px">Funders active near you</h2>
+                <span style="font-size: 11.5px; color: var(--color-neutral-700)">{{nearby.where}}</span>
+              </div>
+              <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty">From their published award histories, these fund organisations near you. Their open calls are on their own websites: a list worth a look, not a decision.</p>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+                <sc-for list="{{nearby.items}}" as="s" hint-placeholder-count="4">
+                  <li style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap; background: var(--color-surface); border-radius: var(--radius-md); padding: 13px 16px">
+                    <span style="flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 2px">
+                      <a href="{{s.link}}" target="_blank" rel="noopener" style="font-size: 14.5px; font-weight: 600">{{s.name}}</a>
+                      <span style="font-size: 11.5px; color: var(--color-neutral-800); text-wrap: pretty">{{s.detail}}</span>
+                    </span>
+                    <span class="tag tag-outline" style="flex: none; white-space: nowrap">{{s.tag}}</span>
+                  </li>
+                </sc-for>
+              </ul>
+            </section>
+          </sc-if>
+
+          <sc-if value="{{decision.show}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 22px">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr)); gap: 12px">
+                <sc-for list="{{metrics}}" as="m" hint-placeholder-count="5">
+                  <div style="background: {{m.bg}}; border: 1px solid {{m.border}}; border-radius: var(--radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 3px">
+                    <span style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: {{m.labelInk}}">{{m.label}}</span>
+                    <span style="font-family: var(--font-heading); font-size: 26px; line-height: 1.1; color: {{m.ink}}; font-variant-numeric: tabular-nums">{{m.value}}<span style="font-family: var(--font-body); font-size: 13px; font-weight: 400; color: {{m.labelInk}}"> {{m.unit}}</span></span>
+                    <span style="font-size: 11px; color: {{m.labelInk}}">{{m.note}}</span>
+                  </div>
+                </sc-for>
+              </div>
+
+              <sc-if value="{{showTrace}}" hint-placeholder-val="{{ true }}">
+                <ol aria-label="What the run did" style="list-style: none; margin: 0; padding: 11px 16px; display: flex; align-items: center; gap: 10px 0; flex-wrap: wrap; background: var(--color-neutral-200); border-radius: var(--radius-md)">
+                  <sc-for list="{{trace}}" as="t" hint-placeholder-count="4">
+                    <li style="display: flex; align-items: center; gap: 10px">
+                      <span style="display: flex; flex-direction: column; gap: 1px; padding-right: 14px">
+                        <span style="font-size: 12px; color: var(--color-neutral-900); font-weight: 600">{{t.step}}</span>
+                        <span style="font-size: 10.5px; color: var(--color-neutral-700); font-variant-numeric: tabular-nums">{{t.cost}}</span>
+                      </span>
+                      <sc-if value="{{t.arrow}}" hint-placeholder-val="{{ true }}">
+                        <span aria-hidden="true" style="color: var(--color-neutral-700); font-size: 15px; padding-right: 14px">&rarr;</span>
+                      </sc-if>
+                    </li>
+                  </sc-for>
+                </ol>
+              </sc-if>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; min-width: 0">
+                <article class="card elev-sm" style="padding: 20px; gap: 12px; min-width: 0">
+                  <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                    <span class="card-kicker">The recommendation</span>
+                    <span style="font-size: 10.5px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">01-decision/match.json</span>
+                  </div>
+                  <h2 style="margin: 0; font-size: 23px; line-height: 1.15">{{decision.programme}}</h2>
+                  <p style="margin: 0; font-size: 13px; color: var(--color-neutral-700)">{{decision.funder}} · closes {{decision.closesLong}}</p>
+                  <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px">
+                    <sc-for list="{{decision.reasons}}" as="r" hint-placeholder-count="3">
+                      <li style="display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; line-height: 1.55; color: var(--color-neutral-900); text-wrap: pretty">
+                        <span aria-hidden="true" style="color: var(--color-accent-2-600); flex: none">&bull;</span>
+                        <span>{{r.text}}</span>
+                      </li>
+                    </sc-for>
+                  </ul>
+                  <div style="display: flex; flex-direction: column; gap: 5px; border-top: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent); padding-top: 11px">
+                    <span style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700)">Not a probability</span>
+                    <p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">{{decision.notProbability}}</p>
+                  </div>
+                </article>
+
+                <section aria-label="Eligibility checks" style="display: flex; flex-direction: column; gap: 11px; min-width: 0">
+                  <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                    <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{decision.checksLabel}}</h2>
+                    <span style="font-size: 11px; color: var(--color-neutral-700)">{{decision.checksSplit}}</span>
+                  </div>
+                  <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+                    <sc-for list="{{decision.checks}}" as="r" hint-placeholder-count="6">
+                      <li style="display: flex; gap: 11px; align-items: flex-start; background: {{r.bg}}; border-left: 3px solid {{r.edge}}; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 10px 13px">
+                        <span style="flex: 1; font-size: 13px; line-height: 1.5; color: var(--color-neutral-900); text-wrap: pretty">{{r.text}}</span>
+                        <span class="tag {{r.tagClass}}" style="flex: none; white-space: nowrap">{{r.confidence}}</span>
+                      </li>
+                    </sc-for>
+                  </ul>
+                </section>
+              </div>
+
+              <sc-if value="{{decision.hasStats}}">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; min-width: 0">
+                  <section aria-label="Funder award history" style="display: flex; flex-direction: column; gap: 11px; min-width: 0">
+                    <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{decision.statsLabel}}</h2>
+                    <table class="table gr-stack">
+                      <tbody>
+                        <sc-for list="{{decision.stats}}" as="f" hint-placeholder-count="5">
+                          <tr>
+                            <th scope="row" style="font-size: 12.5px; color: var(--color-neutral-700); padding-left: 0; font-weight: 400; text-transform: none; letter-spacing: 0; border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent)">{{f.label}}</th>
+                            <td style="font-size: 12.5px; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; padding-right: 0">{{f.value}}</td>
+                          </tr>
+                        </sc-for>
+                      </tbody>
+                    </table>
+                    <p style="margin: 0; font-size: 11px; color: var(--color-neutral-700); font-style: italic">{{decision.statsSource}}</p>
+                  </section>
+
+                  <section aria-label="Where the funder's money goes" style="display: flex; flex-direction: column; gap: 11px; min-width: 0">
+                    <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">Where their money goes</h2>
+                    <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px">
+                      <sc-for list="{{decision.regions}}" as="r" hint-placeholder-count="5">
+                        <li style="display: flex; align-items: center; gap: 10px">
+                          <span style="font-size: 11.5px; width: 74px; flex: none; color: {{r.ink}}; font-weight: {{r.weight}}">{{r.name}}</span>
+                          <span style="flex: 1; height: 8px; border-radius: 999px; background: var(--color-neutral-300); overflow: hidden">
+                            <span style="display: block; height: 100%; border-radius: 999px; width: {{r.width}}; background: {{r.bar}}"></span>
+                          </span>
+                          <span style="font-size: 11px; color: var(--color-neutral-700); width: 18px; text-align: right; font-variant-numeric: tabular-nums">{{r.n}}</span>
+                        </li>
+                      </sc-for>
+                    </ul>
+                    <p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">{{decision.regionNote}}</p>
+                  </section>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isRadar}}">
+        <section aria-label="Radar" style="display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
+            <p style="margin: 0; font-size: 13px; color: var(--color-neutral-800); text-wrap: pretty">{{radar.line}}</p>
+            <span style="font-size: 11px; color: var(--color-neutral-700); font-variant-numeric: tabular-nums; white-space: nowrap">{{radar.bands}}</span>
+          </div>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+            <sc-for list="{{calls}}" as="c" hint-placeholder-count="3">
+              <li>
+                <article style="border: {{c.border}}; border-radius: var(--radius-md); background: {{c.bg}}; overflow: hidden">
+                  <button type="button" onClick="{{ c.pick }}" aria-expanded="{{c.expanded}}" style="width: 100%; border: none; background: transparent; cursor: pointer; padding: 14px 16px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; text-align: left" style-hover="background: color-mix(in srgb, var(--color-text) 4%, transparent)">
+                    <span class="tag {{c.bandClass}}" style="flex: none; width: 62px; justify-content: center; white-space: nowrap">{{c.band}}</span>
+                    <span style="flex: 1; min-width: 170px; display: flex; flex-direction: column; gap: 1px">
+                      <span style="font-size: 15px; font-weight: 600; color: {{c.ink}}">{{c.programme}}</span>
+                      <span style="font-size: 11.5px; color: var(--color-neutral-700)">{{c.funder}} · {{c.state}}</span>
+                    </span>
+                    <span style="font-size: 12px; color: var(--color-neutral-800); font-variant-numeric: tabular-nums; width: 104px; text-align: right">{{c.closes}}</span>
+                    <span style="font-family: var(--font-heading); font-size: 19px; color: {{c.fitInk}}; font-variant-numeric: tabular-nums; width: 48px; text-align: right">{{c.fit}}</span>
+                  </button>
+                  <sc-if value="{{c.open}}">
+                    <div style="padding: 4px 16px 16px; display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--color-divider)">
+                      <sc-if value="{{c.vetoed}}">
+                        <div style="display: flex; gap: 11px; align-items: flex-start; background: var(--color-accent-200); border-left: 3px solid var(--color-accent-600); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 11px 13px; margin-top: 10px">
+                          <span class="tag tag-outline" style="flex: none; white-space: nowrap">Vetoed</span>
+                          <p style="margin: 0; flex: 1; font-size: 13px; line-height: 1.55; color: var(--color-accent-900); text-wrap: pretty">{{c.vetoed}}</p>
+                        </div>
+                      </sc-if>
+                      <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; padding-top: 6px">
+                        <sc-for list="{{c.reasons}}" as="r" hint-placeholder-count="3">
+                          <li style="display: flex; gap: 10px; align-items: flex-start">
+                            <span aria-hidden="true" style="color: {{r.mark}}; flex: none; font-size: 13px; width: 12px">{{r.sign}}</span>
+                            <span style="flex: 1; font-size: 13px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">{{r.text}}</span>
+                          </li>
+                        </sc-for>
+                      </ul>
+                      <p style="margin: 0; font-size: 11.5px; color: var(--color-neutral-700); font-style: italic">{{c.cost}}</p>
+                      <a href="{{c.url}}" target="_blank" rel="noopener" style="font-size: 11.5px; word-break: break-all">{{c.url}}</a>
+                    </div>
+                  </sc-if>
+                </article>
+              </li>
+            </sc-for>
+          </ul>
+          <p style="margin: 0; font-size: 13px; line-height: 1.6; color: var(--color-neutral-800); border-top: 1px solid var(--color-divider); padding-top: 14px; text-wrap: pretty">{{radar.foot}}</p>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isAngle}}">
+        <section aria-label="Angle" style="display: flex; flex-direction: column; gap: 20px">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+            <article class="card elev-sm" style="padding: 20px; gap: 12px">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                <span class="card-kicker">The angle, verbatim</span>
+                <span style="font-size: 10.5px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">02-direction/angle.md</span>
+              </div>
+              <sc-for list="{{direction}}" as="d" hint-placeholder-count="3">
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.66; color: {{d.ink}}; text-wrap: pretty">{{d.text}}</p>
+              </sc-for>
+              <p style="margin: 0; font-size: 12px; color: var(--color-neutral-700); border-top: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent); padding-top: 10px">Edit that file and the next run reads your version.</p>
+            </article>
+
+            <div style="display: flex; flex-direction: column; gap: 18px">
+              <section aria-label="Voice check" style="display: flex; flex-direction: column; gap: 12px">
+                <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{voice.heading}}</h2>
+                <div class="card" style="padding: 18px; gap: 9px; background: {{voice.bg}}">
+                  <p style="margin: 0; font-size: 13px; line-height: 1.55; color: {{voice.ink}}; text-wrap: pretty">{{voice.flagLine}}</p>
+                  <p style="margin: 0; font-size: 12px; line-height: 1.5; color: {{voice.subInk}}">{{voice.note}}</p>
+                </div>
+                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px">
+                  <sc-for list="{{voice.facts}}" as="f" hint-placeholder-count="2">
+                    <li style="display: flex; justify-content: space-between; gap: 12px; font-size: 12.5px; border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent); padding-bottom: 7px">
+                      <span style="color: var(--color-neutral-700)">{{f.label}}</span>
+                      <span style="font-weight: 600; font-variant-numeric: tabular-nums; text-align: right">{{f.value}}</span>
+                    </li>
+                  </sc-for>
+                </ul>
+              </section>
+
+              <section aria-label="Gaps before you start" style="display: flex; flex-direction: column; gap: 11px">
+                <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); font-family: var(--font-body); font-weight: 600">{{gapsLabel}}</h2>
+                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px">
+                  <sc-for list="{{gapList}}" as="g" hint-placeholder-count="2">
+                    <li style="background: var(--color-accent-100); border-left: 3px solid var(--color-accent-500); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 11px 13px; font-size: 13px; line-height: 1.55; color: var(--color-accent-900); text-wrap: pretty">{{g.text}}</li>
+                  </sc-for>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isPlan}}">
+        <section aria-label="Plan" style="display: flex; flex-direction: column; gap: 20px">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr)); gap: 12px">
+            <sc-for list="{{planStats}}" as="s" hint-placeholder-count="4">
+              <div style="background: {{s.bg}}; border: 1px solid {{s.border}}; border-radius: var(--radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 3px">
+                <span style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: {{s.labelInk}}">{{s.label}}</span>
+                <span style="font-family: var(--font-heading); font-size: 24px; line-height: 1.1; color: {{s.ink}}; font-variant-numeric: tabular-nums">{{s.value}}<span style="font-family: var(--font-body); font-size: 13px; font-weight: 400; color: {{s.labelInk}}"> {{s.unit}}</span></span>
+                <span style="font-size: 11px; color: {{s.labelInk}}">{{s.note}}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{flight.show}}">
+            <div style="display: flex; flex-direction: column; gap: 10px; background: {{flight.bg}}; border: 1px solid {{flight.border}}; border-radius: var(--radius-md); padding: 16px">
+              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap">
+                <span class="tag {{flight.tagClass}}" style="flex: none; white-space: nowrap">{{flight.tag}}</span>
+                <span style="font-size: 11px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">watcher_state.in_flight.summary</span>
+              </div>
+              <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: {{flight.ink}}; text-wrap: pretty">{{flight.summary}}</p>
+              <sc-if value="{{flight.showWithdraw}}">
+                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 2px">
+                  <button type="button" class="btn btn-primary" style="font-size: 13px; white-space: nowrap">Withdraw and keep the time</button>
+                  <button type="button" class="btn btn-secondary" style="font-size: 13px; white-space: nowrap">Commit someone this week</button>
+                  <span style="font-size: 11.5px; color: var(--color-neutral-800)">recommending withdrawal is a legitimate output</span>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <ol aria-label="Steps back from the deadline" style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0">
+            <sc-for list="{{flow}}" as="f" hint-placeholder-count="8">
+              <li style="display: grid; grid-template-columns: minmax(88px, auto) 30px minmax(0, 1fr); align-items: stretch; column-gap: 12px">
+                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 1px; padding-top: 12px">
+                  <span style="font-size: 13px; font-weight: 600; color: {{f.dateInk}}; font-variant-numeric: tabular-nums; white-space: nowrap">{{f.date}}</span>
+                  <span style="font-size: 10.5px; color: var(--color-neutral-700); font-variant-numeric: tabular-nums; white-space: nowrap">{{f.away}}</span>
+                </div>
+
+                <div aria-hidden="true" style="display: flex; flex-direction: column; align-items: center; gap: 0">
+                  <span style="width: 2px; height: 12px; background: {{f.railTop}}"></span>
+                  <button type="button" onClick="{{ f.toggle }}" aria-label="{{f.toggleLabel}}" style="width: 26px; height: 26px; border-radius: 999px; flex: none; cursor: {{f.cursor}}; display: grid; place-items: center; background: {{f.nodeBg}}; border: 2px solid {{f.nodeBorder}}; color: {{f.nodeInk}}; font-size: 13px; font-weight: 700; line-height: 1; padding: 0" style-hover="filter: brightness(0.95)">{{f.nodeMark}}</button>
+                  <span style="width: 2px; flex: 1; min-height: 14px; background: {{f.railBottom}}"></span>
+                </div>
+
+                <div style="padding: 6px 0 14px">
+                  <div style="background: {{f.cardBg}}; border: 1px solid {{f.cardBorder}}; border-radius: var(--radius-md); padding: 12px 15px; display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap">
+                    <div style="flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: 5px">
+                      <span style="font-size: 13.5px; line-height: 1.5; color: {{f.taskInk}}; text-decoration: {{f.strike}}; text-wrap: pretty; font-weight: {{f.taskWeight}}">{{f.task}}</span>
+                      <span style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap">
+                        <span class="tag {{f.ownerTag}}" style="flex: none; white-space: nowrap">{{f.owner}}</span>
+                        <sc-if value="{{f.stateLabel}}">
+                          <span style="font-size: 11px; color: {{f.stateInk}}; font-weight: 600">{{f.stateLabel}}</span>
+                        </sc-if>
+                      </span>
+                    </div>
+                    <sc-if value="{{f.gateLabel}}">
+                      <span style="font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); flex: none; padding-top: 2px; text-align: right; white-space: nowrap">{{f.gateLabel}}</span>
+                    </sc-if>
+                  </div>
+                </div>
+              </li>
+            </sc-for>
+          </ol>
+
+          <div style="border-top: 1px solid var(--color-divider); padding-top: 14px; display: flex; flex-direction: column; gap: 6px">
+            <p style="margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty" aria-live="polite">{{localNote}}</p>
+            <span style="font-size: 11.5px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">ticking a step writes 05-timeline/done.txt · the next run reads it</span>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isDrafts}}">
+        <section aria-label="Drafts" style="display: flex; flex-direction: column; gap: 18px">
+          <div style="background: var(--color-neutral-200); border-radius: var(--radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+            <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">The funder's question, verbatim</h2>
+            <p style="margin: 0; font-size: 14.5px; line-height: 1.55; text-wrap: pretty">{{draft.question}}</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; min-width: 0">
+            <article style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+                <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); white-space: nowrap; font-family: var(--font-body); font-weight: 600">Draft answer</h2>
+                <span style="font-size: 11px; color: var(--color-neutral-700); text-wrap: pretty">click a number to see the line it came from</span>
+              </div>
+              <sc-for list="{{paras}}" as="p" hint-placeholder-count="5">
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.72; color: var(--color-text); text-wrap: pretty">
+                  <sc-for list="{{p.segs}}" as="s" hint-placeholder-count="3">
+                    <span style="background: {{s.bg}}; border-bottom: {{s.rule}}">{{s.t}}</span><sc-if value="{{s.n}}"><sup><button type="button" onClick="{{ s.click }}" aria-label="{{s.label}}" style="cursor: pointer; border: none; background: transparent; padding: 0 1px 0 2px; font-size: 10px; font-weight: 700; color: {{s.supInk}}; font-variant-numeric: tabular-nums">{{s.n}}</button></sup></sc-if>
+                  </sc-for>
+                </p>
+              </sc-for>
+              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; border-top: 1px solid var(--color-divider); padding-top: 14px">
+                <button type="button" class="btn btn-primary" style="font-size: 13px; white-space: nowrap">Accept this answer</button>
+                <button type="button" class="btn btn-secondary" style="font-size: 13px; white-space: nowrap">Edit before saving</button>
+                <span style="font-size: 11.5px; color: var(--color-neutral-800)">nothing is saved until you say so</span>
+              </div>
+            </article>
+
+            <aside style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
+              <div class="card elev-sm" style="padding: 18px; gap: 10px; background: var(--color-accent-2-100)">
+                <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+                  <span class="card-kicker" style="color: var(--color-accent-2-700)">Grounding</span>
+                  <span style="font-size: 11px; color: var(--color-accent-2-800); font-variant-numeric: tabular-nums">{{grounding.label}}</span>
+                </div>
+                <div aria-hidden="true" style="display: flex; gap: 3px; height: 7px">
+                  <sc-for list="{{bars}}" as="b" hint-placeholder-count="11">
+                    <span style="flex: 1; border-radius: 999px; background: {{b.fill}}"></span>
+                  </sc-for>
+                </div>
+                <p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--color-accent-2-900); text-wrap: pretty">Every figure resolves to a line number a trustee can open. The one thing it could not ground became a question for you, not a footnote nobody can follow.</p>
+              </div>
+
+              <div class="card elev-sm" style="padding: 18px; gap: 8px; min-height: 128px" aria-live="polite">
+                <span class="card-kicker">{{cite.kicker}}</span>
+                <p style="margin: 0; font-size: 13px; font-weight: 600; line-height: 1.45; text-wrap: pretty">{{cite.claim}}</p>
+                <blockquote style="margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--color-neutral-800); font-style: italic; text-wrap: pretty">{{cite.quote}}</blockquote>
+                <span style="font-size: 11px; color: var(--color-accent-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{cite.locator}}</span>
+              </div>
+
+              <section aria-label="All sources" style="display: flex; flex-direction: column; gap: 8px">
+                <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">Sources</h2>
+                <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+                  <sc-for list="{{sourceList}}" as="s" hint-placeholder-count="11">
+                    <li>
+                      <button type="button" onClick="{{ s.click }}" style="width: 100%; display: flex; gap: 9px; align-items: baseline; border: none; background: {{s.bg}}; border-radius: var(--radius-sm); padding: 5px 8px; cursor: pointer; text-align: left" style-hover="background: var(--color-neutral-200)">
+                        <span style="font-size: 10.5px; font-weight: 700; color: var(--color-accent-700); font-variant-numeric: tabular-nums; flex: none">{{s.n}}</span>
+                        <span style="flex: 1; font-size: 11.5px; color: var(--color-neutral-800); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{s.locator}}</span>
+                      </button>
+                    </li>
+                  </sc-for>
+                </ol>
+              </section>
+
+              <section aria-label="Needs a human" style="display: flex; flex-direction: column; gap: 9px">
+                <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); font-family: var(--font-body); font-weight: 600">{{needsHumanLabel}}</h2>
+                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+                  <sc-for list="{{needsHuman}}" as="g" hint-placeholder-count="1">
+                    <li style="font-size: 13px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">{{g.text}}</li>
+                  </sc-for>
+                </ul>
+              </section>
+            </aside>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isPortfolio}}">
+        <section aria-label="Portfolio" style="display: flex; flex-direction: column; gap: 22px">
+          <sc-if value="{{changes.show}}">
+            <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+              <sc-for list="{{changes.items}}" as="c" hint-placeholder-count="1">
+                <li style="display: flex; gap: 13px; align-items: flex-start; background: {{c.bg}}; border: 1px solid {{c.border}}; border-radius: var(--radius-md); padding: 14px 16px">
+                  <span class="tag {{c.tagClass}}" style="flex: none; white-space: nowrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{c.kind}}</span>
+                  <div style="flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0">
+                    <p style="margin: 0; font-size: 13.5px; line-height: 1.5; color: {{c.ink}}; text-wrap: pretty">{{c.line}}</p>
+                    <p style="margin: 0; font-size: 11.5px; color: {{c.subInk}}">Work already in flight outranks any new opportunity. Run it again with nothing changed and it says nothing at all — the register remembers what it has already told you.</p>
+                  </div>
+                </li>
+              </sc-for>
+            </ul>
+          </sc-if>
+
+          <section aria-label="Bids in flight" style="display: flex; flex-direction: column; gap: 11px">
+            <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{portfolio.inFlightLabel}}</h2>
+            <table class="table gr-stack">
+              <thead>
+                <tr>
+                  <th scope="col" style="padding-left: 0">Programme</th>
+                  <th scope="col">Band</th>
+                  <th scope="col">Watcher</th>
+                  <th scope="col" style="text-align: right">Ask</th>
+                  <th scope="col" style="text-align: right">Fit</th>
+                  <th scope="col" style="text-align: right; padding-right: 0">Closes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{portfolio.inFlight}}" as="r" hint-placeholder-count="1">
+                  <tr>
+                    <th scope="row" style="padding-left: 0; font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 14px; border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent)">{{r.programme}}<br><span style="font-size: 11.5px; color: var(--color-neutral-700); font-weight: 400">{{r.funder}}</span></th>
+                    <td><span class="tag {{r.bandClass}}" style="white-space: nowrap">{{r.band}}</span></td>
+                    <td><span class="tag tag-neutral" style="white-space: nowrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{r.watcher}}</span></td>
+                    <td style="text-align: right; font-variant-numeric: tabular-nums">{{r.ask}}</td>
+                    <td style="text-align: right; font-variant-numeric: tabular-nums">{{r.fit}}</td>
+                    <td style="text-align: right; padding-right: 0; font-variant-numeric: tabular-nums">{{r.closes}}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </section>
+
+          <section aria-label="Watcher lifecycle" style="display: flex; flex-direction: column; gap: 11px">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+              <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">What would make it speak again</h2>
+              <span style="font-size: 11px; color: var(--color-neutral-700)">{{portfolio.watcherLine}}</span>
+            </div>
+            <ul style="list-style: none; margin: 0; padding: 0; display: flex; gap: 8px; flex-wrap: wrap">
+              <sc-for list="{{lifecycle}}" as="l" hint-placeholder-count="8">
+                <li style="display: flex; align-items: center; gap: 7px; border: 1px solid {{l.border}}; background: {{l.bg}}; border-radius: 999px; padding: 5px 12px">
+                  <span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 999px; background: {{l.dot}}; flex: none"></span>
+                  <span style="font-size: 11.5px; color: {{l.ink}}; font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{l.name}}</span>
+                  <span style="font-size: 10.5px; color: var(--color-neutral-700); white-space: nowrap">{{l.note}}</span>
+                </li>
+              </sc-for>
+            </ul>
+            <p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">Five of these eight surface to you. The other three are tracked silently — a call opening or closing on schedule is not news.</p>
+          </section>
+
+          <sc-if value="{{portfolio.hasRejected}}">
+            <section aria-label="Calls not pursued" style="display: flex; flex-direction: column; gap: 11px">
+              <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{portfolio.notPursuedLabel}}</h2>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px">
+                <sc-for list="{{portfolio.rejected}}" as="r" hint-placeholder-count="2">
+                  <li style="display: flex; gap: 14px; align-items: flex-start; border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent); padding-bottom: 11px; flex-wrap: wrap">
+                    <span style="min-width: 190px; display: flex; flex-direction: column; gap: 3px; line-height: 1.4">
+                      <span style="font-size: 13.5px; color: var(--color-neutral-700); text-decoration: line-through">{{r.programme}}</span>
+                      <span style="font-size: 11px; color: var(--color-accent-700); font-weight: 600">{{r.meta}}</span>
+                    </span>
+                    <span style="flex: 1; min-width: 220px; font-size: 12.5px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">{{r.reason}}</span>
+                  </li>
+                </sc-for>
+              </ul>
+            </section>
+          </sc-if>
+
+          <section aria-label="Outcome loop and track record" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px">
+            <article class="card elev-sm" style="padding: 18px; gap: 10px">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+                <span class="card-kicker">The outcome loop</span>
+                <span style="font-size: 10.5px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">06-submitted/outcome.meta.json</span>
+              </div>
+              <p style="margin: 0; font-size: 13px; line-height: 1.55; text-wrap: pretty">Outcome is <strong>{{outcomeStatus}}</strong>, and {{outcomeUnknownLine}}. When you hear back, record it — and paste the assessor's feedback verbatim, good or bad. That is the only thing that makes the next decision better instead of staler.</p>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px">
+                <sc-for list="{{outcomes}}" as="o" hint-placeholder-count="3">
+                  <button type="button" onClick="{{ o.pick }}" class="btn {{o.btnClass}}" style="font-size: 12.5px; white-space: nowrap">{{o.label}}</button>
+                </sc-for>
+              </div>
+              <p style="margin: 0; font-size: 11.5px; color: var(--color-neutral-800)" aria-live="polite">{{outcomeNote}}</p>
+            </article>
+
+            <section aria-label="Your own record" style="display: flex; flex-direction: column; gap: 11px">
+              <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{record.heading}}</h2>
+              <sc-if value="{{record.cold}}">
+                <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty">No outcomes are recorded yet, so there is no track record to show. Point Granted at a folder of past bids, or record the outcome of this one, and this panel starts working.</p>
+              </sc-if>
+              <sc-if value="{{record.show}}" hint-placeholder-val="{{ true }}">
+                <div style="display: flex; flex-direction: column; gap: 12px">
+                  <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; background: var(--color-surface); border-radius: var(--radius-md); padding: 14px 16px">
+                    <span style="font-family: var(--font-heading); font-size: 30px; line-height: 1; font-variant-numeric: tabular-nums">{{record.rate}}</span>
+                    <span style="font-size: 12.5px; color: var(--color-neutral-800); font-weight: 600">{{record.qualifier}}</span>
+                  </div>
+                  <dl style="margin: 0; display: flex; gap: 22px; flex-wrap: wrap">
+                    <sc-for list="{{record.stats}}" as="r" hint-placeholder-count="3">
+                      <div style="display: flex; flex-direction: column; gap: 1px">
+                        <dd style="margin: 0; font-family: var(--font-heading); font-size: 22px; line-height: 1.1; font-variant-numeric: tabular-nums">{{r.value}}</dd>
+                        <dt style="font-size: 11px; color: var(--color-neutral-700)">{{r.label}}</dt>
+                      </div>
+                    </sc-for>
+                  </dl>
+                  <p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">{{record.note}}</p>
+                </div>
+              </sc-if>
+            </section>
+          </section>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isArchive}}">
+        <section aria-label="Archive" style="display: flex; flex-direction: column; gap: 22px">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr)); gap: 12px">
+            <sc-for list="{{archiveStats}}" as="s" hint-placeholder-count="4">
+              <div style="background: {{s.bg}}; border: 1px solid {{s.border}}; border-radius: var(--radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 3px">
+                <span style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: {{s.labelInk}}">{{s.label}}</span>
+                <span style="font-family: var(--font-heading); font-size: 24px; line-height: 1.1; color: {{s.ink}}; font-variant-numeric: tabular-nums">{{s.value}}<span style="font-family: var(--font-body); font-size: 13px; font-weight: 400; color: {{s.labelInk}}"> {{s.unit}}</span></span>
+                <span style="font-size: 11px; color: {{s.labelInk}}">{{s.note}}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{revisit.show}}">
+            <section aria-label="Funders won from but not approached since" style="display: flex; flex-direction: column; gap: 12px">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                <h2 style="margin: 0; font-size: 19px">Won from, but not approached since</h2>
+                <span style="font-size: 11.5px; color: var(--color-neutral-700)">stale after 550 days of no contact</span>
+              </div>
+              <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty; max-width: 74ch">A funder who said yes and was never approached again is money left on the table. The test is chronological: no submission to them dated after the one they awarded.</p>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+                <sc-for list="{{revisit.items}}" as="s" hint-placeholder-count="3">
+                  <li style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap; background: var(--color-accent-2-100); border-radius: var(--radius-md); padding: 13px 16px">
+                    <span style="flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 2px">
+                      <span style="font-size: 14.5px; font-weight: 600; color: var(--color-accent-2-900)">{{s.funder}}</span>
+                      <span style="font-size: 11.5px; color: var(--color-accent-2-800); text-wrap: pretty">{{s.detail}}</span>
+                    </span>
+                    <span class="tag tag-outline" style="flex: none; white-space: nowrap">Worth revisiting</span>
+                  </li>
+                </sc-for>
+              </ul>
+            </section>
+          </sc-if>
+
+          <sc-if value="{{nearby.show}}">
+            <section aria-label="Funders active near you" style="display: flex; flex-direction: column; gap: 12px; max-width: 74ch">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                <h2 style="margin: 0; font-size: 19px">Funders active near you</h2>
+                <span style="font-size: 11.5px; color: var(--color-neutral-700)">{{nearby.where}}</span>
+              </div>
+              <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty">From their published award histories, these fund organisations near you. Their open calls are on their own websites: a list worth a look, not a decision.</p>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+                <sc-for list="{{nearby.items}}" as="s" hint-placeholder-count="4">
+                  <li style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap; background: var(--color-surface); border-radius: var(--radius-md); padding: 13px 16px">
+                    <span style="flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 2px">
+                      <a href="{{s.link}}" target="_blank" rel="noopener" style="font-size: 14.5px; font-weight: 600">{{s.name}}</a>
+                      <span style="font-size: 11.5px; color: var(--color-neutral-800); text-wrap: pretty">{{s.detail}}</span>
+                    </span>
+                    <span class="tag tag-outline" style="flex: none; white-space: nowrap">{{s.tag}}</span>
+                  </li>
+                </sc-for>
+              </ul>
+            </section>
+          </sc-if>
+
+          <section aria-label="Files read and skipped" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px">
+            <div style="display: flex; flex-direction: column; gap: 11px">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+                <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{scope.skippedLabel}}</h2>
+                <button type="button" class="btn btn-ghost" onClick="{{ scope.toggle }}" aria-expanded="{{scope.expanded}}" style="font-size: 12px">{{scope.toggleLabel}}</button>
+              </div>
+              <sc-if value="{{scope.open}}">
+                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+                  <sc-for list="{{scope.skipped}}" as="s" hint-placeholder-count="7">
+                    <li style="display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent); padding-bottom: 8px">
+                      <span style="flex: 1; min-width: 170px; font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--color-neutral-800); text-decoration: line-through">{{s.name}}</span>
+                      <span class="tag {{s.tagClass}}" style="flex: none; white-space: nowrap">{{s.reason}}</span>
+                    </li>
+                  </sc-for>
+                </ul>
+              </sc-if>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 11px">
+              <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">Scope, in one paragraph</h2>
+              <p style="margin: 0; font-size: 13.5px; line-height: 1.62; color: var(--color-text); text-wrap: pretty">{{scope.policy}}</p>
+              <span style="font-size: 11.5px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{scope.folderLine}}</span>
+            </div>
+          </section>
+
+          <section aria-label="Files written" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px">
+            <div style="display: flex; flex-direction: column; gap: 9px">
+              <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">Files on disk, not rows in a database</h2>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px">
+                <sc-for list="{{files}}" as="f" hint-placeholder-count="7">
+                  <li style="display: flex; justify-content: space-between; gap: 10px; font-size: 11.5px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--color-neutral-800); padding: 2px 0">
+                    <span>{{f.name}}</span>
+                    <span style="color: var(--color-neutral-700)">{{f.size}}</span>
+                  </li>
+                </sc-for>
+              </ul>
+              <p style="margin: 0; font-size: 12px; line-height: 1.5; color: var(--color-neutral-800); margin-top: 4px; text-wrap: pretty">Open them, edit them, keep them after this tool is gone.</p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 9px">
+              <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">Which module produced what</h2>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+                <sc-for list="{{producedBy}}" as="p" hint-placeholder-count="6">
+                  <li style="display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 11px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; border-bottom: 1px solid color-mix(in srgb, var(--color-text) 6%, transparent); padding-bottom: 4px">
+                    <span style="flex: 1; min-width: 140px; color: var(--color-neutral-800)">{{p.fields}}</span>
+                    <span style="color: var(--color-accent-700)">{{p.module}}</span>
+                  </li>
+                </sc-for>
+              </ul>
+            </div>
+          </section>
+        </section>
+      </sc-if>
+    </div>
+
+    <footer style="margin-top: auto; padding: 18px clamp(18px, 3vw, 34px) 26px; border-top: 1px solid var(--color-divider); display: flex; flex-direction: column; gap: 6px">
+      <p style="margin: 0; font-size: 11.5px; line-height: 1.6; color: var(--color-neutral-700); text-wrap: pretty; max-width: 86ch">Contains public sector information licensed under the Open Government Licence v3.0. Source: Find a grant, GOV.UK. Grant award data from 360Giving, CC-BY-SA.</p>
+      <p style="margin: 0; font-size: 11px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{meta.footLine}}</p>
+    </footer>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1320,&quot;height&quot;:900},&quot;showAgentTrace&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Agent&quot;},&quot;gateThreshold&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:65,&quot;min&quot;:40,&quot;max&quot;:90,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Triage&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      screen: 'decision',
+      openCall: 0,
+      cite: 1,
+      data: null,
+      readAt: '—',
+      unreachable: false,
+      doneLocal: null,
+      outcome: null,
+      scopeOpen: true,
+    };
+  }
+
+  componentDidMount() {
+    this.pull();
+    this.timer = setInterval(() => this.pull(), 60000);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+
+  // Fixed, and at the bucket root: the agent writes run.json beside this
+  // page, and a configurable path is one more thing to get wrong.
+  url() { return 'run.json'; }
+
+  pull() {
+    // Opened from a Granted folder, a browser will not fetch the run file, but it
+    // will run a script. Each run writes .granted/run.js beside run.json, and
+    // reloading it every minute picks up a new run without reopening the page.
+    if (location.protocol === 'file:') {
+      const s = document.createElement('script');
+      s.src = '.granted/run.js?t=' + Date.now();
+      s.onload = () => {
+        s.remove();
+        const data = window.__GRANTED_RUN__;
+        if (!data) { this.setState({ unreachable: true }); return; }
+        const t = new Date();
+        const pad = (n) => String(n).padStart(2, '0');
+        this.setState({ data, unreachable: false, readAt: pad(t.getHours()) + ':' + pad(t.getMinutes()) + ':' + pad(t.getSeconds()) });
+      };
+      s.onerror = () => { s.remove(); this.setState({ unreachable: true }); };
+      document.head.appendChild(s);
+      return;
+    }
+    const u = this.url();
+    const get = (target) => fetch(target, { cache: 'no-store' })
+      .then((res) => { if (!res.ok) throw new Error('run.json ' + res.status); return res.json(); });
+    // Cache-bust first (S3 serves stale copies otherwise); some static hosts
+    // refuse the query string, so fall back to the bare path.
+    get(u + '?t=' + Date.now())
+      .catch(() => get(u))
+      .then((data) => {
+        if (data.schema_version !== 2) console.warn('schema drift', data.schema_version);
+        const t = new Date();
+        const pad = (n) => String(n).padStart(2, '0');
+        this.setState({ data, unreachable: false, readAt: pad(t.getHours()) + ':' + pad(t.getMinutes()) + ':' + pad(t.getSeconds()) });
+      })
+      .catch(() => this.setState({ unreachable: true }));
+  }
+
+  go(screen) { return () => this.setState({ screen }); }
+
+  renderVals() {
+    const d = this.state.data || {};
+    const p = this.props;
+    const NEU = 'var(--color-neutral-700)';
+    const SAGE = 'var(--color-accent-2-600)', ACC = 'var(--color-accent-500)';
+    const gbp = (n) => (n === null || n === undefined ? '—' : '£' + Number(n).toLocaleString('en-GB'));
+    // Dates come from a model as well as from listings; anything that is not a
+    // date reads as a rolling deadline instead of breaking the page.
+    const dayMonth = (iso) => {
+      const dt = new Date((iso || '') + 'T00:00:00');
+      if (!iso || Number.isNaN(dt.getTime())) return 'a rolling deadline';
+      return dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+    };
+    const longDate = (iso) => {
+      const dt = new Date((iso || '') + 'T00:00:00');
+      if (!iso || Number.isNaN(dt.getTime())) return 'no fixed date';
+      return dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    };
+    const bandClassOf = (b) => (b === 'High' ? 'tag-accent-2' : b === 'Medium' ? 'tag-accent' : 'tag-neutral');
+
+    const surfaced = d.surfaced || [];
+    const notPursued = d.not_pursued || [];
+    // The fixed lines below were written for a run where everything not
+    // surfaced was vetoed before a model was called. A live run can also stop
+    // calls that have no award history to score, and can send calls to the
+    // matcher that the gate then holds, at a real cost in model calls. Those
+    // days get their own sentences; the originals stay for the runs they describe.
+    const heldAtGate = d.held_at_gate || [];
+    const vetoedCount = notPursued.filter((c) => c.vetoed).length;
+    const allVetoed = vetoedCount === notPursued.length;
+    const scoredCount = surfaced.length + heldAtGate.length;
+    const modelCalls = d.model_calls ?? 0;
+    const threshold = p.gateThreshold ?? d.threshold ?? 65;
+    const archive = d.archive || {};
+    const coldStart = !archive.n_decided;
+    const voice = d.voice || {};
+    const vFlags = voice.flags || {};
+    const timeline = d.timeline || {};
+    // Steps carry days_before_deadline; the calendar date is derived from the
+    // deadline so the flowchart works whether or not the file spells it out.
+    const isoMinus = (iso, days) => {
+      if (!iso || days === null || days === undefined) return null;
+      const t = new Date(iso + 'T00:00:00').getTime();
+      if (Number.isNaN(t)) return null;
+      return new Date(t - days * 86400000).toISOString().slice(0, 10);
+    };
+    const steps = (timeline.steps || []).map((s) => {
+      const date = s.date || isoMinus(timeline.deadline, s.days_before_deadline);
+      return { ...s, date, key: date || String(s.days_before_deadline) };
+    });
+    const inFlight = (d.watcher_state || {}).in_flight || null;
+    const scope = d.scope || {};
+    const draft = d.draft || {};
+    // Claims arrive either exploded, or as schema-v2 composite source strings
+    // ("ORG.md, Heading — ORG.md#L32 — \"the line\""). Normalise to one shape.
+    const claims = (draft.claims || []).map((c) => {
+      if (c.locator || c.source_line) return c;
+      const parts = String((c.sources || [])[0] || '').split(' — ');
+      return {
+        text: c.text,
+        grounded: c.grounded,
+        source_heading: (parts[0] || '').replace(/^ORG\.md,\s*/, ''),
+        locator: parts[1] || 'ORG.md',
+        source_line: (parts[2] || '').replace(/^"|"$/g, ''),
+      };
+    });
+    const grounded = d.grounded ?? 0;
+    const totalClaims = d.total_claims ?? claims.length;
+    const bands = d.bands || {};
+    const top = surfaced[0] || null;
+
+    // On a silent run the downstream sections are absent. Those screens are not
+    // rendered empty — they are not offered at all.
+    // Before the first response nothing is known: offer every screen and claim
+    // nothing. Silence is a finding, and a finding needs data behind it.
+    const loaded = !!this.state.data;
+    const avail = {
+      radar: true,
+      decision: true,
+      angle: !loaded || (d.direction || []).length > 0,
+      plan: !loaded || steps.length > 0,
+      drafts: !loaded || !!draft.answer,
+      portfolio: !loaded || surfaced.length > 0 || notPursued.length > 0,
+      archive: !loaded || !!(scope.files_read || archive.n_files),
+    };
+    const screen = avail[this.state.screen] ? this.state.screen : 'decision';
+
+    // ── staleness ──
+    let staleDays = 0;
+    if (d.run_date) staleDays = Math.floor((Date.now() - new Date(d.run_date + 'T00:00:00').getTime()) / 86400000);
+    const stale = staleDays > 2;
+
+    // ── win rate never travels alone: rate + confidence + n_decided, one unit ──
+    const rate = archive.win_rate === null || archive.win_rate === undefined ? null : Math.round(archive.win_rate * 100) + '%';
+    const rateQualifier = rate ? archive.confidence + ' · n=' + archive.n_decided + ' decided applications' : '';
+
+    const heads = {
+      radar: { title: 'Radar', sub: (d.calls_considered || 0) + ' calls considered · ' + notPursued.length + (allVetoed ? ' vetoed' : ' stopped') + ' before a model was called' },
+      decision: { title: 'Decision', sub: !loaded ? 'Reading the latest run' : surfaced.length ? 'Written ' + (d.run_time || '') + ' on ' + longDate(d.run_date) : 'Nothing cleared the gate this run' },
+      angle: { title: 'Angle', sub: 'How to pitch it, and what not to claim' },
+      plan: { title: 'Plan', sub: steps.length + ' steps back from ' + longDate(timeline.deadline) },
+      drafts: { title: 'Drafts', sub: grounded + ' of ' + totalClaims + ' claims traced to a line' },
+      portfolio: { title: 'Portfolio', sub: surfaced.length + ' in flight · ' + notPursued.length + ' ruled out for nothing' },
+      archive: { title: 'Archive', sub: (scope.files_read || 0) + ' bids read · ' + (scope.files_skipped || 0) + ' files refused' },
+    };
+
+    const navSpec = [
+      ['radar', 'Radar', String(d.calls_considered ?? '')],
+      ['decision', 'Decision', loaded ? (top ? top.band : 'quiet') : ''],
+      ['angle', 'Angle', ''],
+      ['plan', 'Plan', steps.length ? String(steps.length) : ''],
+      ['drafts', 'Drafts', totalClaims ? grounded + '/' + totalClaims : ''],
+      ['portfolio', 'Portfolio', loaded ? String(surfaced.length) : ''],
+      ['archive', 'Archive', String(scope.files_read ?? '')],
+    ];
+
+    // ── Plan flow: timeline.steps, done from the file, ticks kept locally ──
+    const doneFromFile = timeline.done || [];
+    const done = this.state.doneLocal || doneFromFile.reduce((a, k) => ({ ...a, [k]: true }), {});
+    const nDone = steps.filter((s) => done[s.key]).length;
+    const perStep = steps.length ? (timeline.total_hours_estimate || 0) / steps.length : 0;
+    const proRata = Math.round(perStep * (steps.length - nDone));
+    const newDeadline = inFlight ? inFlight.deadline : null;
+    const ownerTag = { Coordinator: 'tag-neutral', Trustee: 'tag-accent', 'Finance Lead': 'tag-accent-2', Drafter: 'tag-neutral' };
+    const overdue = inFlight ? inFlight.overdue || [] : [];
+    const dueNow = inFlight ? inFlight.due_now || [] : [];
+    const hits = (list, task) => list.some((t) => task.toLowerCase().indexOf(t.toLowerCase().slice(0, 28)) === 0 || t.toLowerCase().indexOf(task.toLowerCase().slice(0, 28)) === 0);
+
+    const flow = steps.map((s, i) => {
+      const isDone = !!done[s.key];
+      const prevDone = i === 0 ? true : !!done[steps[i - 1].key];
+      const stranded = !!newDeadline && !isDone && !!s.date && s.date > newDeadline;
+      const isOverdue = !isDone && hits(overdue, s.task);
+      const isDue = !isDone && hits(dueNow, s.task);
+      return {
+        date: dayMonth(s.date),
+        away: stranded ? 'past close' : s.days_before_deadline + 'd out',
+        task: s.task,
+        owner: s.owner_role,
+        gateLabel: s.gate || '',
+        stateLabel: isOverdue ? 'Overdue' : isDue ? 'Due now' : '',
+        stateInk: isOverdue ? 'var(--color-accent-700)' : 'var(--color-accent-2-700)',
+        cursor: 'pointer',
+        toggleLabel: (isDone ? 'Untick: ' : 'Tick as done: ') + s.task,
+        dateInk: stranded ? 'var(--color-accent-700)' : isDone ? NEU : 'var(--color-text)',
+        nodeMark: isDone ? '✓' : String(i + 1),
+        nodeBg: isDone ? SAGE : stranded ? 'var(--color-accent-200)' : 'var(--color-bg)',
+        nodeBorder: isDone ? SAGE : stranded || isOverdue ? ACC : 'var(--color-neutral-400)',
+        nodeInk: isDone ? 'var(--color-accent-2-100)' : stranded ? 'var(--color-accent-800)' : NEU,
+        railTop: i === 0 ? 'transparent' : (prevDone ? SAGE : 'var(--color-neutral-300)'),
+        railBottom: isDone ? SAGE : 'var(--color-neutral-300)',
+        cardBg: isDone ? 'transparent' : stranded ? 'var(--color-accent-100)' : 'var(--color-surface)',
+        cardBorder: isDone ? 'var(--color-divider)' : stranded || isOverdue ? 'var(--color-accent-300)' : 'transparent',
+        taskInk: isDone ? NEU : stranded ? 'var(--color-accent-900)' : 'var(--color-text)',
+        taskWeight: isDone ? '400' : '500',
+        strike: isDone ? 'line-through' : 'none',
+        ownerTag: ownerTag[s.owner_role] || 'tag-neutral',
+        toggle: () => this.setState({ doneLocal: { ...done, [s.key]: !isDone } }),
+      };
+    });
+    if (timeline.deadline) {
+      const moved = !!newDeadline && newDeadline !== timeline.deadline;
+      flow.push({
+        date: dayMonth(moved ? newDeadline : timeline.deadline), away: 'deadline',
+        task: moved
+          ? 'The funder pulled the close forward to ' + longDate(newDeadline) + '.'
+          : (top ? top.funder + ' closes ' + top.programme + '.' : 'The funder closes this call.'),
+        owner: 'Funder portal', gateLabel: 'Hard stop', stateLabel: '', stateInk: NEU,
+        cursor: 'default', toggleLabel: 'The funder’s deadline',
+        dateInk: 'var(--color-accent-700)', nodeMark: '·', nodeBg: ACC, nodeBorder: ACC,
+        nodeInk: 'var(--color-accent-100)', railTop: 'var(--color-neutral-300)', railBottom: 'transparent',
+        cardBg: 'var(--color-accent-100)', cardBorder: 'var(--color-accent-300)', taskInk: 'var(--color-accent-900)',
+        taskWeight: '600', strike: 'none', ownerTag: 'tag-outline', toggle: () => {},
+      });
+    }
+
+    // ── Draft: mark claims inline where their text appears verbatim ──
+    const wrongTerm = (() => {
+      const v = (vFlags.term_violations || [])[0];
+      if (!v) return null;
+      const m = v.match(/"([^"]+)"/);
+      return m ? m[1] : null;
+    })();
+    const theirTerm = voice.beneficiary_term || null;
+    const active = this.state.cite;
+    const styleFor = (n) => ({
+      n: String(n),
+      bg: active === n ? 'var(--color-accent-200)' : 'transparent',
+      rule: '1px solid var(--color-accent-300)',
+      supInk: active === n ? 'var(--color-accent-800)' : 'var(--color-accent-700)',
+      label: 'Source ' + n + ': ' + (claims[n - 1] ? claims[n - 1].locator : ''),
+      click: () => this.setState({ cite: n }),
+    });
+    const plainStyle = { n: '', bg: 'transparent', rule: 'none', supInk: 'transparent', label: '', click: undefined };
+    const flagStyle = { n: '', bg: 'var(--color-accent-200)', rule: '1px dashed var(--color-accent-600)', supInk: 'transparent', label: '', click: undefined };
+
+    const explode = (text, n) => {
+      const base = n ? styleFor(n) : plainStyle;
+      if (!wrongTerm || text.indexOf(wrongTerm) === -1) return [{ t: text, ...base }];
+      const at = text.indexOf(wrongTerm);
+      const out = [];
+      if (at > 0) out.push({ t: text.slice(0, at), ...base, n: '' });
+      out.push({ t: wrongTerm, ...flagStyle });
+      const rest = text.slice(at + wrongTerm.length);
+      if (rest) out.push({ t: rest, ...base });
+      else if (n) out[out.length - 1] = { ...out[out.length - 1], ...base };
+      return out;
+    };
+
+    const paras = String(draft.answer || '').split('\n\n').filter(Boolean).map((para) => {
+      const marks = claims
+        .map((c, i) => ({ n: i + 1, at: para.indexOf(c.text), len: (c.text || '').length }))
+        .filter((m) => m.at >= 0)
+        .sort((a, b) => a.at - b.at);
+      const segs = [];
+      let cursor = 0;
+      marks.forEach((m) => {
+        if (m.at < cursor) return;
+        if (m.at > cursor) explode(para.slice(cursor, m.at), null).forEach((s) => segs.push(s));
+        explode(para.slice(m.at, m.at + m.len), m.n).forEach((s) => segs.push(s));
+        cursor = m.at + m.len;
+      });
+      if (cursor < para.length) explode(para.slice(cursor), null).forEach((s) => segs.push(s));
+      return { segs };
+    });
+
+    const src = claims[active - 1] || claims[0] || {};
+
+    const checks = (top ? (top.eligibility_met || []).map((t) => ({ text: t, confidence: 'Passed', tagClass: 'tag-accent-2', edge: SAGE, bg: 'var(--color-accent-2-100)' })) : [])
+      .concat(top ? (top.eligibility_gaps || []).map((t) => ({ text: t, confidence: 'Your call', tagClass: 'tag-accent', edge: ACC, bg: 'var(--color-accent-100)' })) : []);
+    if (top && !checks.length) {
+      (top.reasons || []).forEach((t) => checks.push({ text: t, confidence: 'Passed', tagClass: 'tag-accent-2', edge: SAGE, bg: 'var(--color-accent-2-100)' }));
+    }
+
+    const fs = top ? top.funder_stats : null;
+    const maxRegion = fs && fs.regions && fs.regions.length ? Math.max.apply(null, fs.regions.map((r) => r.n)) : 1;
+
+    // Only a surfaced row cleared the gate. A not-pursued row stopped at triage
+    // whether or not it was vetoed: scored below the floor, or with no award
+    // history to score against. Files written before `stage` existed read as before.
+    const calls = surfaced.concat(notPursued).map((c, i) => {
+      const stopped = !!c.vetoed || (c.stage !== undefined && c.stage !== 'surfaced');
+      return {
+      programme: c.programme,
+      funder: c.funder,
+      band: c.band,
+      bandClass: bandClassOf(c.band),
+      fit: c.vetoed || c.fit === null || c.fit === undefined ? '—' : String(c.fit),
+      closes: (c.closes ? dayMonth(c.closes) : 'rolling') + (c.days_left === null || c.days_left === undefined ? '' : ' · ' + c.days_left + 'd'),
+      state: c.vetoed ? 'vetoed at triage' : stopped ? 'stopped at triage' : 'cleared the gate of ' + threshold,
+      vetoed: c.vetoed || '',
+      url: c.url,
+      ink: stopped ? NEU : 'var(--color-text)',
+      fitInk: stopped ? NEU : 'var(--color-accent-700)',
+      border: c.vetoed ? '1px dashed var(--color-accent-400)' : stopped ? '1px solid var(--color-accent-400)' : '1px solid var(--color-accent-2-300)',
+      bg: stopped ? 'transparent' : 'var(--color-accent-2-100)',
+      open: this.state.openCall === i,
+      expanded: this.state.openCall === i ? 'true' : 'false',
+      pick: () => this.setState({ openCall: this.state.openCall === i ? null : i }),
+      cost: stopped
+        ? 'No model was called. Ruling this out cost nothing.'
+        : 'Alignment ' + c.alignment + ' · plausibility ' + c.plausibility + ' (' + c.plausibility_confidence + ') · scored with ' + d.model_calls + ' model calls in ' + Math.round(d.duration_s) + 's.',
+      reasons: (c.reasons || []).map((t) => ({ sign: stopped ? '−' : '+', mark: stopped ? NEU : SAGE, text: t })),
+      };
+    });
+
+    const lifeMeta = {
+      new: 'surfaces', deadline_moved: 'surfaces', final_call: 'surfaces', withdrawn: 'surfaces', behind_schedule: 'surfaces',
+      upcoming: 'silent', now_open: 'silent', open: 'silent', closing_soon: 'silent', closed: 'silent',
+    };
+    const activeKinds = (d.changes || []).map((c) => c.kind)
+      .concat(Object.keys((d.watcher_state || {}).by_status || {}));
+    const lifecycle = ['new', 'deadline_moved', 'final_call', 'behind_schedule', 'withdrawn', 'now_open', 'closing_soon', 'closed'].map((name) => {
+      const surfaces = lifeMeta[name] === 'surfaces';
+      const isActive = activeKinds.indexOf(name) >= 0;
+      return {
+        name,
+        note: lifeMeta[name] + (isActive ? ' · active' : ''),
+        dot: surfaces ? ACC : 'var(--color-neutral-500)',
+        bg: isActive ? 'var(--color-accent-200)' : surfaces ? 'var(--color-accent-100)' : 'transparent',
+        border: isActive ? 'var(--color-accent-500)' : surfaces ? 'var(--color-accent-300)' : 'var(--color-divider)',
+        ink: surfaces ? 'var(--color-accent-900)' : NEU,
+      };
+    });
+
+    const banner = this.state.unreachable
+      ? { show: true, tag: 'last known', tagClass: 'tag-neutral', bg: 'var(--color-neutral-200)', border: 'var(--color-divider)', ink: 'var(--color-neutral-900)',
+          text: 'Could not reach ' + this.url() + ' on the last poll, so this is the last good render — nothing here has been blanked. It will pick the file up again on the next attempt.' }
+      : stale
+        ? { show: true, tag: staleDays + ' days old', tagClass: 'tag-accent', bg: 'var(--color-accent-100)', border: 'var(--color-accent-300)', ink: 'var(--color-accent-900)',
+            text: 'This run is ' + staleDays + ' days old. The figures are real but the agent has not written since ' + longDate(d.run_date) + ' — check the cron before trusting the deadlines.' }
+        : { show: false };
+
+    return {
+      isRadar: screen === 'radar', isDecision: screen === 'decision', isAngle: screen === 'angle',
+      isPlan: screen === 'plan', isDrafts: screen === 'drafts', isPortfolio: screen === 'portfolio',
+      isArchive: screen === 'archive',
+      head: heads[screen],
+      showActions: !!top && (screen === 'decision' || screen === 'radar'),
+      approve: () => this.setState({ screen: 'plan' }),
+      decline: () => this.setState({ screen: 'radar' }),
+      showTrace: p.showAgentTrace ?? true,
+      banner,
+
+      meta: {
+        org: d.org || (loaded ? 'your organisation' : 'reading the run file'),
+        workspace: d.workspace ? d.workspace + '/' : (loaded ? 'no workspace written' : this.url()),
+        model: loaded ? (d.model || '—') : '',
+        runLine: loaded ? 'gate ' + threshold + '/100 · ' + (d.duration_s ? Math.round(d.duration_s) + 's' : '—') + ' · ' + (d.model_calls ?? 0) + ' calls' : '',
+        footLine: loaded
+          ? 'schema v' + (d.schema_version ?? '?') + ' · ' + this.url() + ' · run ' + (d.run_date || '—') + ' ' + (d.run_time || '') + ' · read ' + this.state.readAt
+          : 'reading ' + this.url() + ' …',
+      },
+      feed: !loaded && !this.state.unreachable
+        ? { label: 'Reading run.json', sub: 'first fetch', dot: 'var(--color-neutral-400)', bg: 'color-mix(in srgb, #f9f4ed 6%, transparent)', ink: 'var(--color-neutral-300)' }
+        : this.state.unreachable
+        ? { label: 'Cannot reach run.json', sub: 'last read ' + this.state.readAt, dot: ACC, bg: 'color-mix(in srgb, #c67139 22%, transparent)', ink: 'var(--color-accent-200)' }
+        : { label: stale ? 'Stale · ' + staleDays + ' days' : 'Watching · on a cron', sub: 'read ' + this.state.readAt, dot: stale ? ACC : 'var(--color-accent-2-400)', bg: 'color-mix(in srgb, #f9f4ed 6%, transparent)', ink: stale ? 'var(--color-accent-200)' : 'var(--color-accent-2-300)' },
+
+      nav: navSpec.filter(([id]) => avail[id]).map(([id, label, count]) => ({
+        label, count,
+        go: this.go(id),
+        current: screen === id ? 'page' : 'false',
+        bg: screen === id ? 'var(--color-accent-700)' : 'transparent',
+        ink: screen === id ? 'var(--color-accent-100)' : 'var(--color-neutral-200)',
+        weight: screen === id ? '600' : '400',
+        countInk: screen === id ? 'var(--color-accent-200)' : 'var(--color-neutral-400)',
+      })),
+
+      loading: !loaded,
+      loadingUrl: this.url(),
+      silent: {
+        show: loaded && !top,
+        line: (d.calls_considered || 0) + ' calls considered, none above the gate of ' + threshold + '. ' + (allVetoed && !modelCalls
+          ? notPursued.length + ' were vetoed on time or eligibility before a model was called, so today cost nothing.'
+          : notPursued.length + ' stopped before a model was called' + (vetoedCount ? ', ' + vetoedCount + ' of them vetoed on time or eligibility' : '') + '. '
+            + (heldAtGate.length ? heldAtGate.length + ' went to the matcher and were held below the gate, for ' + modelCalls + ' model calls.' : 'So today cost nothing.')),
+      },
+
+      decision: {
+        show: !!top,
+        programme: top ? top.programme : '',
+        funder: top ? top.funder : '',
+        closesLong: top ? longDate(top.closes) : '',
+        reasons: top ? (top.reasons || []).map((t) => ({ text: t })) : [],
+        notProbability: top
+          ? top.fit + ' is fit against award history, banded High at 70 and Medium at 45, with plausibility ' + top.plausibility + ' rated ' + top.plausibility_confidence + '. 360Giving publishes awards only, so no rejection data exists anywhere — your own archive is the only record of those.'
+          : '',
+        checks,
+        checksLabel: 'Eligibility · ' + checks.length + ' checks',
+        checksSplit: top ? (top.eligibility_met || []).length + ' passed · ' + (top.eligibility_gaps || []).length + ' need a human' : '',
+        hasStats: !!fs,
+        statsLabel: fs ? 'What this funder actually buys · ' + fs.awards_measured + ' awards' : '',
+        stats: fs ? [
+          { label: 'Median award', value: gbp(fs.median_award) },
+          { label: 'Typical range (p10–p90)', value: gbp(fs.p10) + ' – ' + gbp(fs.p90) },
+          { label: 'Recipient legal forms', value: fs.legal_forms },
+          { label: 'Repeat funding', value: Math.round(fs.repeat_funding_rate * 100) + '%' },
+          { label: 'Awards measured', value: String(fs.awards_measured) },
+        ] : [],
+        statsSource: fs ? fs.source : '',
+        regions: fs && fs.regions ? fs.regions.map((r) => ({
+          name: r.name, n: String(r.n), width: Math.round((r.n / maxRegion) * 100) + '%',
+          bar: r.n === (fs.regions[1] ? fs.regions[1].n : -1) ? ACC : 'var(--color-neutral-500)',
+          ink: r.n === (fs.regions[1] ? fs.regions[1].n : -1) ? 'var(--color-text)' : NEU,
+          weight: r.n === (fs.regions[1] ? fs.regions[1].n : -1) ? '600' : '400',
+        })) : [],
+        regionNote: fs && fs.regions && fs.regions[1] ? fs.regions[1].name + ' is their second-largest concentration. That is why this one cleared and the others did not.' : '',
+      },
+
+      metrics: top ? [
+        { label: 'Fit', value: String(top.fit), unit: '/100', note: top.band + ' band · gate ' + threshold, bg: 'var(--color-accent-100)', border: 'var(--color-accent-300)', ink: 'var(--color-accent-800)', labelInk: 'var(--color-accent-700)' },
+        { label: 'Alignment', value: String(top.alignment ?? '—'), unit: '/100', note: 'against their award history', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        { label: 'Plausibility', value: String(top.plausibility ?? '—'), unit: '/100', note: top.plausibility_confidence || 'confidence unknown', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        top.suggested_ask ? { label: 'Suggested ask', value: gbp(top.suggested_ask), unit: '', note: fs && top.suggested_ask === fs.median_award ? 'their median award, exactly' : 'inside their usual range', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU } : null,
+        { label: 'Deadline', value: String(top.days_left ?? '—'), unit: 'days', note: longDate(top.closes), bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+      ].filter(Boolean) : [],
+
+      trace: [
+        { step: (d.calls_considered || 0) + ' calls read', cost: Object.keys(d.sources || {}).map((k) => ({ 'find-a-grant': 'Find a grant', 'national-lottery': 'Lottery', 'innovate-uk': 'Innovate UK' }[k] || k)).join(' · ') || 'Find a grant + 360Giving', arrow: true },
+        { step: notPursued.length + (allVetoed ? ' vetoed at triage' : ' stopped at triage'), cost: 'arithmetic · £0 · 0 tokens', arrow: true },
+        { step: scoredCount + ' scored', cost: (d.model_calls ?? 0) + ' model calls · ' + (d.duration_s ? Math.round(d.duration_s) : 0) + 's', arrow: true },
+        { step: (d.files_written || []).length + ' files written', cost: (d.provider || 'bedrock') + ' · ' + (d.model || '').split('.').pop(), arrow: false },
+      ],
+
+      radar: {
+        line: (d.calls_considered || 0) + ' calls considered, banded High above 70 and Medium above 45. ' + surfaced.length + ' cleared the gate of ' + threshold + '.',
+        bands: 'High ' + (bands.High ?? 0) + ' · Medium ' + (bands.Medium ?? 0) + ' · Low ' + (bands.Low ?? 0),
+        foot: notPursued.length && allVetoed
+          ? notPursued.length + ' of the ' + (d.calls_considered || 0) + ' were vetoed on time alone: a veto forces Low whatever the alignment score would have been. They stopped before a model was called, so ruling them out cost nothing — no tokens, no workspace, no tabs.'
+          : notPursued.length
+            ? notPursued.length + ' of the ' + (d.calls_considered || 0) + ' stopped before a model was called: ' + vetoedCount + ' vetoed on time or eligibility, the rest below the triage floor or with no award history to score against. Ruling them out cost nothing — no tokens, no workspace, no tabs.'
+            : 'Nothing was vetoed this run. Triage is arithmetic over the funder’s published award history, so anything ruled out costs nothing.',
+      },
+      calls,
+
+      direction: (d.direction || []).map((t, i) => ({ text: t, ink: i === (d.direction || []).length - 1 ? 'var(--color-accent-900)' : 'var(--color-text)' })),
+      voice: {
+        heading: 'Your voice, measured from ' + (voice.corpus_documents || 0) + ' past bids',
+        flagLine: (vFlags.term_violations || []).length
+          ? 'One flag in this draft: it ' + (vFlags.term_violations || [])[0] + '.'
+          : 'No voice flags. The draft uses your own vocabulary throughout.',
+        note: (vFlags.term_violations || []).length
+          ? 'Not a house style. Yours — read off the language in your filing cabinet, not a rulebook.'
+          : 'Measured against your own past bids, not a rulebook.',
+        bg: (vFlags.term_violations || []).length ? 'var(--color-accent-2-100)' : 'var(--color-accent-2-100)',
+        ink: 'var(--color-accent-2-900)',
+        subInk: 'var(--color-accent-2-800)',
+        facts: [
+          voice.beneficiary_term ? { label: 'What you call the people you serve', value: voice.beneficiary_term } : null,
+          voice.median_sentence_words ? { label: 'Median sentence length', value: voice.median_sentence_words + ' words' } : null,
+          voice.corpus_sentences ? { label: 'Sentences read', value: String(voice.corpus_sentences) } : null,
+          (vFlags.tells || []).length ? { label: 'Phrases you never use', value: (vFlags.tells || []).join(', ') } : null,
+        ].filter(Boolean),
+      },
+      gapsLabel: 'Before you start · ' + (top ? (top.eligibility_gaps || []).length + (draft.unevidenced_gaps || []).length : 0) + ' gaps',
+      gapList: (top ? (top.eligibility_gaps || []) : []).concat(draft.unevidenced_gaps || []).map((t) => ({ text: t })),
+
+      planStats: [
+        { label: 'Done', value: String(nDone), unit: 'of ' + steps.length, note: nDone ? 'ticked by you' : 'nothing started', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        { label: 'Estimated work', value: String(Math.round(timeline.total_hours_estimate || 0)), unit: 'hrs', note: 'written by the timeliner', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        { label: 'Remaining, pro-rata', value: String(proRata), unit: 'hrs', note: steps.length - nDone + ' steps left', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        inFlight
+          ? { label: 'Days to close', value: String(inFlight.days_left), unit: 'days', note: inFlight.feasible ? 'fits at a realistic pace' : 'does not fit at a realistic pace', bg: inFlight.feasible ? 'var(--color-accent-2-100)' : 'var(--color-accent-100)', border: inFlight.feasible ? 'var(--color-accent-2-300)' : 'var(--color-accent-300)', ink: inFlight.feasible ? 'var(--color-accent-2-800)' : 'var(--color-accent-800)', labelInk: inFlight.feasible ? 'var(--color-accent-2-700)' : 'var(--color-accent-700)' }
+          : { label: 'Days to close', value: String(top && top.days_left !== null && top.days_left !== undefined ? top.days_left : '—'), unit: 'days', note: 'not yet in flight', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+      ],
+      flow,
+      flight: inFlight
+        ? { show: true, summary: inFlight.summary, showWithdraw: !inFlight.feasible,
+            tag: inFlight.feasible ? 'on schedule' : 'behind_schedule',
+            tagClass: inFlight.feasible ? 'tag-accent-2' : 'tag-accent',
+            bg: inFlight.feasible ? 'var(--color-accent-2-100)' : 'var(--color-accent-100)',
+            border: inFlight.feasible ? 'var(--color-accent-2-300)' : 'var(--color-accent-300)',
+            ink: inFlight.feasible ? 'var(--color-accent-2-900)' : 'var(--color-accent-900)' }
+        : { show: false },
+      localNote: nDone === (this.state.doneLocal ? nDone : doneFromFile.length)
+        ? 'Ticks are yours and stay local until the next run reads done.txt. The verdict above is the timeliner’s own sentence, not a recalculation.'
+        : 'Ticks are yours and stay local until the next run reads done.txt. The verdict above is the timeliner’s own sentence, not a recalculation.',
+
+      hasDirection: (d.direction || []).length > 0,
+      noDirection: !(d.direction || []).length,
+      hasDraft: !!draft.answer,
+      noDraft: !draft.answer,
+      noSteps: !steps.length,
+      draft: { question: draft.question || '' },
+      paras,
+      bars: Array.from({ length: totalClaims || 1 }, (_, i) => ({ fill: i < grounded ? SAGE : 'var(--color-neutral-400)' })),
+      grounding: { label: grounded + ' of ' + totalClaims + ' claims' },
+      cite: {
+        kicker: 'Source ' + active + ' of ' + (claims.length || totalClaims),
+        claim: src.text || '',
+        quote: src.source_line ? '“' + src.source_line + '”' : '',
+        locator: src.locator ? src.locator + (src.source_heading ? ' · ' + src.source_heading : '') : '',
+      },
+      sourceList: claims.map((c, i) => ({
+        n: String(i + 1),
+        locator: c.locator,
+        bg: active === i + 1 ? 'var(--color-accent-200)' : 'transparent',
+        click: () => this.setState({ cite: i + 1 }),
+      })),
+      needsHumanLabel: 'Needs a human · ' + (draft.unevidenced_gaps || []).length,
+      needsHuman: (draft.unevidenced_gaps || []).map((t) => ({ text: t })),
+
+      changes: {
+        show: (d.changes || []).length > 0,
+        items: (d.changes || []).map((c) => ({
+          kind: c.kind,
+          line: c.funder + ' — ' + c.detail,
+          tagClass: c.urgent ? 'tag-accent' : 'tag-neutral',
+          bg: c.urgent ? 'var(--color-accent-100)' : 'var(--color-neutral-100)',
+          border: c.urgent ? 'var(--color-accent-300)' : 'var(--color-divider)',
+          ink: c.urgent ? 'var(--color-accent-900)' : 'var(--color-neutral-900)',
+          subInk: c.urgent ? 'var(--color-accent-800)' : NEU,
+        })),
+      },
+      portfolio: {
+        inFlightLabel: 'In flight · ' + surfaced.length,
+        inFlight: surfaced.map((c) => ({
+          programme: c.programme, funder: c.funder, band: c.band, bandClass: bandClassOf(c.band),
+          watcher: inFlight && inFlight.programme === c.programme ? (inFlight.feasible ? 'on_schedule' : 'behind_schedule') : 'open',
+          ask: gbp(c.suggested_ask), fit: String(c.fit), closes: dayMonth(inFlight && inFlight.programme === c.programme ? inFlight.deadline : c.closes),
+        })),
+        watcherLine: (d.watcher_state || {}).tracked + ' tracked · ' + (d.watcher_state || {}).silent + ' silent this run',
+        hasRejected: notPursued.length > 0,
+        notPursuedLabel: 'Not pursued · ' + notPursued.length + ' · cost £0',
+        rejected: notPursued.map((c) => ({
+          programme: c.programme,
+          meta: c.band + (c.vetoed ? ' · vetoed · ' : ' · ') + (c.days_left ?? '—') + ' days left',
+          reason: c.vetoed || (c.reasons || [])[0] || '',
+        })),
+      },
+
+      outcomeStatus: this.state.outcome || (d.outcome || {}).status || 'pending',
+      outcomeUnknownLine: (archive.n_unknown_outcome || 0) + ' older bids still have no outcome recorded',
+      outcomes: ['Awarded', 'Rejected', 'Withdrawn'].map((label) => ({
+        label,
+        btnClass: this.state.outcome === label.toLowerCase() ? 'btn-primary' : 'btn-secondary',
+        pick: () => this.setState({ outcome: label.toLowerCase() }),
+      })),
+      outcomeNote: this.state.outcome
+        ? 'Recorded ' + this.state.outcome + ' locally. Writing it to outcome.meta.json changes the win rate, the ask anchor, and which funders count as neglected on the next run.'
+        : 'Nothing recorded yet. Until you do, this bid stays out of your own track record.',
+
+      record: {
+        heading: 'Your own record · read from ' + (archive.n_files || 0) + ' past bids',
+        cold: coldStart,
+        show: !coldStart,
+        rate: rate || '—',
+        qualifier: rateQualifier,
+        stats: [
+          { value: String(archive.n_decided ?? 0), label: 'decided applications' },
+          { value: String(archive.n_awarded ?? 0), label: 'awarded' },
+          { value: gbp(archive.median_successful_ask), label: 'median winning ask' },
+          { value: gbp(archive.median_unsuccessful_ask), label: 'median losing ask' },
+        ],
+        note: 'At n=' + (archive.n_decided ?? 0) + ' this is ' + (archive.confidence || 'indicative') + ', not a statistic, and it is never used as a probability. It is also the only rejection record that exists — 360Giving publishes awards only.',
+      },
+
+      archiveStats: [
+        { label: 'Bids read', value: String(scope.files_read ?? 0), unit: 'files', note: 'of ' + (scope.files_seen ?? 0) + ' seen in the folder', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        { label: 'Refused', value: String(scope.files_skipped ?? 0), unit: 'files', note: 'logged, never opened', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        { label: 'Outcomes recorded', value: String(archive.n_decided ?? 0), unit: 'of ' + (archive.n_files ?? 0), note: (archive.n_unknown_outcome ?? 0) + ' still unknown', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        { label: 'Left on the table', value: String((d.revisit || []).length), unit: 'funders', note: 'won from, never re-approached', bg: 'var(--color-accent-2-100)', border: 'var(--color-accent-2-300)', ink: 'var(--color-accent-2-800)', labelInk: 'var(--color-accent-2-700)' },
+      ],
+      revisit: {
+        show: (d.revisit || []).length > 0,
+        items: (d.revisit || []).map((line) => {
+          const parts = String(line).split(' — ');
+          return { funder: parts[0], detail: parts[1] || 'No contact recorded since they last said yes.' };
+        }),
+      },
+      nearby: {
+        show: (d.local_funders || []).length > 0,
+        showQuiet: (d.local_funders || []).length > 0 && !(d.surfaced || []).length,
+        where: d.place ? 'near ' + d.place : '',
+        items: (d.local_funders || []).slice(0, 8).map((f) => ({
+          name: f.name,
+          link: f.website || f.grantnav,
+          detail: (f.awards_near_you
+            ? f.awards_near_you + ' of ' + f.sample + ' sampled awards near you'
+            : f.awards_in_region + ' of ' + f.sample + ' sampled awards in your region')
+            + (f.median_award ? ', typically £' + Math.round(f.median_award).toLocaleString('en-GB') : ''),
+          tag: f.awards_near_you ? 'Funds near you' : 'Funds in your region',
+        })),
+      },
+      scope: {
+        skippedLabel: (scope.files_read ?? 0) + ' read, ' + (scope.files_skipped ?? 0) + ' skipped',
+        open: this.state.scopeOpen,
+        expanded: this.state.scopeOpen ? 'true' : 'false',
+        toggleLabel: this.state.scopeOpen ? 'Hide reasons' : 'Show reasons',
+        toggle: () => this.setState({ scopeOpen: !this.state.scopeOpen }),
+        skipped: (scope.skipped_detail || []).map((s) => ({
+          name: s.name,
+          reason: s.reason.indexOf('sensitive') >= 0 ? 'sensitive name' : s.reason,
+          tagClass: s.reason.indexOf('sensitive') >= 0 ? 'tag-accent' : 'tag-neutral',
+        })),
+        policy: scope.policy || '',
+        folderLine: (scope.folder || '—') + '/ · ' + (scope.files_seen ?? 0) + ' files seen',
+      },
+      files: d.files_written || [],
+      producedBy: Object.keys(d._produced_by || {}).map((k) => ({ fields: k, module: d._produced_by[k] })),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,2527 @@
+{
+  "run_date": "2026-09-10",
+  "run_time": "21:52",
+  "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+  "provider": "bedrock",
+  "duration_s": 377.6,
+  "model_calls": 20,
+  "threshold": 65,
+  "calls_considered": 113,
+  "bands": {
+    "High": 0,
+    "Medium": 7,
+    "Low": 56
+  },
+  "surfaced": [
+    {
+      "funder": "The National Lottery Community Fund",
+      "programme": "National Lottery Awards for All England",
+      "band": "Medium",
+      "fit": 82,
+      "alignment": 76,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": null,
+      "closes": null,
+      "url": "https://www.tnlcommunityfund.org.uk/funding/funding-programmes/national-lottery-awards-for-all-england",
+      "vetoed": null,
+      "reasons": [
+        "funder has backed GB-CHC organisations (56% of awards)",
+        "£10,000 sits inside this programme's stated range (£300 to £20,000)"
+      ],
+      "stage": "surfaced",
+      "basis": "award history"
+    }
+  ],
+  "not_pursued": [
+    {
+      "funder": "Department for Environment Food and Rural Affairs / Forestry Commission – Defra Trees Programme",
+      "programme": "Trees, woodlands and forestry - Woodland Creation Planning Grant",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 1299,
+      "closes": "2030-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/trees-woodlands-and-forestry---woodland-creation-planning-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open to organisations in Southwark, London (England)",
+        "awards up to £30,500 suit an organisation your size"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Department for Environment, Food and Rural Affairs / Forestry Commission – Defra Trees Programme",
+      "programme": "England Woodland Creation Offer (EWCO)",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 1299,
+      "closes": "2030-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/england-woodland-creation-offer-ewco-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £2,000,000, over three times your income; expect to compete with much larger organisations",
+        "open to organisations in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Office for Zero Emission Vehicles",
+      "programme": "Electric vehicle chargepoint grant for residential landlords",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 203,
+      "closes": "2027-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/electric-vehicle-chargepoint-and-infrastructure-grants-for-landlords-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open across the UK",
+        "awards up to £100,000 suit an organisation your size"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Office for Zero Emission Vehicles",
+      "programme": "Workplace Charging Scheme",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 203,
+      "closes": "2027-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/workplace-charging-scheme-2",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open across the UK",
+        "awards up to £350 suit an organisation your size"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Scottish Government",
+      "programme": "Business Support for Scotland",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 1481,
+      "closes": "2030-09-30",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/business-support-for-scotland",
+      "vetoed": null,
+      "reasons": [
+        "this call is for Scotland; you are in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "National Highways",
+      "programme": "National Highways Lorry Parking Facilities Improvements Scheme",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 1664,
+      "closes": "2031-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/national-highways-lorry-parking-facilities-improvements-scheme-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £20,000,000, over three times your income; expect to compete with much larger organisations",
+        "open to organisations in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "British Film Institute",
+      "programme": "UK Global Screen Fund: International Business Development",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 934,
+      "closes": "2029-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/uk-global-screen-fund-business-development-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open across the UK",
+        "awards up to £100,000 suit an organisation your size"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "British Film Institute",
+      "programme": "UK Global Screen Fund: International Co-production",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 934,
+      "closes": "2029-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/uk-global-screen-fund-co-production-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open across the UK",
+        "awards up to £300,000 suit an organisation your size"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "British Film Institute",
+      "programme": "UK Global Screen Fund: International Distribution (P&A Support)",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 569,
+      "closes": "2028-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/uk-global-screen-fund-international-distribution-pa-support-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open across the UK",
+        "awards up to £100,000 suit an organisation your size"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "British Film Institute",
+      "programme": "UK Global Screen Fund International Distribution Festival Launch Support",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 934,
+      "closes": "2029-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/uk-global-screen-fund-international-distribution-festival-launch-support-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open across the UK",
+        "awards up to £15,000 suit an organisation your size"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Homes England (England), Department for Levelling up, Housing & Communities (NI)",
+      "programme": "Cladding Safety Scheme",
+      "band": "Low",
+      "fit": 27,
+      "alignment": 0,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 1299,
+      "closes": "2030-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/cladding-safety-scheme-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "the smallest award (£250,000) is more than your annual income (£136,000)",
+        "open to organisations in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "UK Research and Innovation, Arts and Humanities Research Council (AHRC), State of São Paulo Research Foundation (FAPESP)",
+      "programme": "AHRC responsive mode: working with Brazilian researchers (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 12,
+      "closes": "2026-09-22",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/ahrc-responsive-mode-working-with-brazilian-researchers-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Arts and Humanities Research Council (AHRC), Fonds National de la Recherche (FNR)",
+      "programme": "AHRC responsive mode: collaborate with researchers in Luxembourg (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 12,
+      "closes": "2026-09-22",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/ahrc-responsive-mode-collaborate-with-researchers-in-luxembourg-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Arts and Humanities Research Council (AHRC)",
+      "programme": "AHRC responsive mode: standard research grant (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 12,
+      "closes": "2026-09-22",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/ahrc-responsive-mode-standard-research-grant-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Advanced Research and Invention Agency",
+      "programme": "Opportunities for the Advanced Research and Invention Agency (ARIA)",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 494,
+      "closes": "2028-01-17",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/opportunities-for-the-advanced-research-and-invention-agency-aria-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £10,000,000, over three times your income; expect to compete with much larger organisations",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "UK Research and Innovation, Arts and Humanities Research Council",
+      "programme": "AHRC responsive mode: Curiosity Award (Grant)",
+      "band": "Low",
+      "fit": 0,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 12,
+      "closes": "2026-09-22",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/ahrc-responsive-mode-curiosity-award-grant-1",
+      "vetoed": "12 days left is about 18 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "reasons": [
+        "12 days left is about 18 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "nothing in the call matches what you do (food insecurity)",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "UK Research and Innovation, Arts and Humanities Research Council",
+      "programme": "AHRC responsive mode: catalyst awards (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 12,
+      "closes": "2026-09-22",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/ahrc-responsive-mode-catalyst-awards-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Department for Energy Security and Net Zero",
+      "programme": "Heat Network Efficiency Scheme (HNES)",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 1299,
+      "closes": "2030-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/heat-network-efficiency-scheme-hnes-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £9,999,900, over three times your income; expect to compete with much larger organisations",
+        "open to organisations in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Department for Transport",
+      "programme": "Electric Car Grant",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 46,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 1299,
+      "closes": "2030-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/electric-car-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (4% of its awards)",
+        "funder has backed GB-CHC organisations (4% of awards)",
+        "no recorded awards in London; concentrated in Redacted, BRISTOL, BIRMINGHAM"
+      ],
+      "stage": "triage",
+      "basis": "award history"
+    },
+    {
+      "funder": "The National Archives",
+      "programme": "Community Hub Bursaries",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 297,
+      "closes": "2027-07-04",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/community-hub-bursaries-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open across the UK",
+        "awards up to £1,000 suit an organisation your size"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Forestry Commission",
+      "programme": "Spruce Site Assessment",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 934,
+      "closes": "2029-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/spruce-site-assessment-1",
+      "vetoed": null,
+      "reasons": [
+        "this call is for South East England; you are in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Office for Zero Emission Vehicles, Department for Transport",
+      "programme": "Depot Charging Scheme",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 47,
+      "closes": "2026-10-27",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/depot-charging-scheme-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £1,000,000, over three times your income; expect to compete with much larger organisations",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Department for Transport",
+      "programme": "Zero Emission Vessels and Infrastructure 2: Electric Power",
+      "band": "Low",
+      "fit": 0,
+      "alignment": 46,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 6,
+      "closes": "2026-09-16",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/zero-emission-vessels-and-infrastructure-2-electric-power-1",
+      "vetoed": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "reasons": [
+        "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (4% of its awards)",
+        "funder has backed GB-CHC organisations (4% of awards)"
+      ],
+      "stage": "triage",
+      "basis": "award history"
+    },
+    {
+      "funder": "Department for Transport",
+      "programme": "Zero Emission Vessels and Infrastructure 2: Energy Efficiency",
+      "band": "Low",
+      "fit": 0,
+      "alignment": 46,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 6,
+      "closes": "2026-09-16",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/zero-emission-vessels-and-infrastructure-2-energy-efficiency-1",
+      "vetoed": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "reasons": [
+        "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (4% of its awards)",
+        "funder has backed GB-CHC organisations (4% of awards)"
+      ],
+      "stage": "triage",
+      "basis": "award history"
+    },
+    {
+      "funder": "Department for Transport",
+      "programme": "Zero Emission Vessels and Infrastructure 2: Alternative Fuels",
+      "band": "Low",
+      "fit": 0,
+      "alignment": 46,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 6,
+      "closes": "2026-09-16",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/zero-emission-vessels-and-infrastructure-2-alternative-fuels-1",
+      "vetoed": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "reasons": [
+        "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (4% of its awards)",
+        "funder has backed GB-CHC organisations (4% of awards)"
+      ],
+      "stage": "triage",
+      "basis": "award history"
+    },
+    {
+      "funder": "UK Research and Innovation, Natural Environment Research Council (NERC)",
+      "programme": "Pushing the frontiers of environmental research (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 12,
+      "closes": "2026-09-22",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/pushing-the-frontiers-of-environmental-research-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Historic England",
+      "programme": "Places grants",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 203,
+      "closes": "2027-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/places-grants-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £1,000,000, over three times your income; expect to compete with much larger organisations",
+        "open to organisations in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Historic England",
+      "programme": "People and Research",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 203,
+      "closes": "2027-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/people-and-research-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open to organisations in Southwark, London (England)",
+        "awards up to £300,000 suit an organisation your size"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "British Film Institute",
+      "programme": "UK Global Screen Fund (UKGSF) International Distribution Video Game Release funding",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 934,
+      "closes": "2029-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/uk-global-screen-fund-international-distribution-video-game-release-funding-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open across the UK",
+        "awards up to £50,000 suit an organisation your size"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "The National Forest Company, Department for Environment, Food and Rural Affairs",
+      "programme": "Forest Creation Grant",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 144,
+      "closes": "2027-02-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/forest-creation-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "this call is for Midlands; you are in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Environment Agency",
+      "programme": "Local Water Environment Grant",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 16,
+      "closes": "2026-09-26",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/local-water-environment-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open to organisations in Southwark, London (England)",
+        "awards up to £100,000 suit an organisation your size"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Department for Transport",
+      "programme": "Plug-in Wheelchair Accessible Vehicle Grant",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 46,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 208,
+      "closes": "2027-04-06",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/plug-in-wheelchair-accessible-vehicle-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (4% of its awards)",
+        "funder has backed GB-CHC organisations (4% of awards)",
+        "no recorded awards in London; concentrated in Redacted, BRISTOL, BIRMINGHAM"
+      ],
+      "stage": "triage",
+      "basis": "award history"
+    },
+    {
+      "funder": "UK Research and Innovation, Biotechnology and Biological Sciences Research Council",
+      "programme": "BBSRC standard research grant: applicant-led mode (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 231,
+      "closes": "2027-04-29",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/bbsrc-standard-research-grant-applicant-led-mode-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Biotechnology and Biological Sciences Research Council",
+      "programme": "BBSRC new investigator award: applicant-led mode (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 231,
+      "closes": "2027-04-29",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/bbsrc-new-investigator-award-applicant-led-mode-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Historic England",
+      "programme": "Heritage at Risk Capital Fund",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 1299,
+      "closes": "2030-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/heritage-at-risk-capital-fund-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £1,000,000, over three times your income; expect to compete with much larger organisations",
+        "open to organisations in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Historic England",
+      "programme": "Places of Worship Renewal Fund",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 1299,
+      "closes": "2030-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/places-of-worship-renewal-fund-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £1,000,000, over three times your income; expect to compete with much larger organisations",
+        "open to organisations in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "UK Research and Innovation, Engineering and Physical Sciences Research Council (EPSRC)",
+      "programme": "Mathematical Sciences Early Independence Fellowship (Fellowship)",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 202,
+      "closes": "2027-03-31",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/mathematical-sciences-early-independence-fellowship-fellowship-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £1,250,000, over three times your income; expect to compete with much larger organisations",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "UK Research and Innovation, Science and Technology Facilities Council (STFC)",
+      "programme": "Early Independence: Ernest Rutherford Fellowships 2026 (Fellowship)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 20,
+      "closes": "2026-09-30",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/early-independence-ernest-rutherford-fellowships-2026-fellowship-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Department for Business and Trade (DBT)",
+      "programme": "DRIVE35 Innovation Fund: Collaborate 3",
+      "band": "Low",
+      "fit": 0,
+      "alignment": 0,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 6,
+      "closes": "2026-09-16",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/drive35-innovation-fund-collaborate-03-1",
+      "vetoed": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "reasons": [
+        "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "nothing in the call matches what you do (food insecurity)",
+        "the smallest award (£2,500,000) is more than your annual income (£136,000)"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Innovate UK, part of UK Research and Innovation (UKRI)",
+      "programme": "Scaling performance of quantum computing hardware: CR&D",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 0,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 22,
+      "closes": "2026-10-02",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/scaling-performance-of-quantum-computing-hardware-crd-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "the smallest award (£1,000,000) is more than your annual income (£136,000)",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Environment Agency",
+      "programme": "Lowland Peat Water Implementation Grant",
+      "band": "Low",
+      "fit": 0,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 9,
+      "closes": "2026-09-19",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/lowland-peat-water-implementation-grant-1",
+      "vetoed": "9 days left is about 14 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "reasons": [
+        "9 days left is about 14 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £2,000,000, over three times your income; expect to compete with much larger organisations"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Department for Work and Pensions",
+      "programme": "Youth Jobs Grant",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 81,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 783,
+      "closes": "2028-11-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/youth-jobs-grant-2",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity), and Department for Work and Pensions rarely funds charities (3% of its awards)",
+        "funder has backed GB-CHC organisations (3% of awards)",
+        "funds in London"
+      ],
+      "stage": "triage",
+      "basis": "award history"
+    },
+    {
+      "funder": "UK Research and Innovation, Science and Technology Research Council",
+      "programme": "Doctoral focal awards in data-intensive sciences (grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 6,
+      "closes": "2026-09-16",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/doctoral-focal-awards-in-data-intensive-sciences-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation",
+      "programme": "Enhancing resilience to wildfires in the wildland-urban interface (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 21,
+      "closes": "2026-10-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/enhancing-resilience-to-wildfires-in-the-wildland-urban-interface-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Biotechnology and Biological Sciences Research Council (BBSRC)",
+      "programme": "Early independence: BBSRC fellowships: full stage (Fellowship)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 13,
+      "closes": "2026-09-23",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/early-independence-bbsrc-fellowships-full-stage-fellowship-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Engineering and Physical Sciences Research Council",
+      "programme": "Optical wireless communications research and testing facility (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 5,
+      "closes": "2026-09-15",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/optical-wireless-communications-research-and-testing-facility-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Economic and Social Research Council",
+      "programme": "Doctoral focal award plus: innovating in data-driven research (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 34,
+      "closes": "2026-10-14",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/doctoral-focal-award-plus-innovating-in-data-driven-research-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Engineering and Physical Sciences Research Council (EPSRC)",
+      "programme": "UKRI Translation: Impact Acceleration: CHERI IKC (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 7,
+      "closes": "2026-09-17",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/ukri-translation-impact-acceleration-cheri-ikc-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research & Innovation, Engineering & Physical Sciences Research Council, NICT",
+      "programme": "Japan-UK Joint call for collaborations in Advanced Connectivity Technologies (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 26,
+      "closes": "2026-10-06",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/japan-uk-joint-call-for-collaborations-in-advanced-connectivity-technologies-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Medical Research Council",
+      "programme": "UKRI Translation: MRC Impact Acceleration Awards (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 62,
+      "closes": "2026-11-11",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/ukri-translation-mrc-impact-acceleration-awards-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Department for Science, Innovation and Technology",
+      "programme": "National Space Innovation Programme - Call 3",
+      "band": "Low",
+      "fit": 27,
+      "alignment": 0,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 64,
+      "closes": "2026-11-13",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/national-space-innovation-programme---call-3-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "the smallest award (£150,000) is more than your annual income (£136,000)",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "UK Research and Innovation, Arts and Humanities Research Council",
+      "programme": "Design Generators round two (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 19,
+      "closes": "2026-09-29",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/design-generators-round-two-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Biotechnology and Biological Sciences Research Council (BBSRC)",
+      "programme": "BBSRC Brazil pump-priming award (FAPPA) (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 321,
+      "closes": "2027-07-28",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/bbsrc-brazil-pump-priming-award-fappa-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Arts and Humanities Research Council",
+      "programme": "A guide for the commercialisation of Creative Industries Research (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 35,
+      "closes": "2026-10-15",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/a-guide-for-the-commercialisation-of-creative-industries-research-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Department for Digital, Culture, Media and Sport",
+      "programme": "DCMS 'Connections Through Gaming' Pilot Fund (Boys 11-16)",
+      "band": "Low",
+      "fit": 0,
+      "alignment": 84,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 2,
+      "closes": "2026-09-12",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/dcms-connections-through-gaming-pilot-fund-boys-11-16-1",
+      "vetoed": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "reasons": [
+        "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "nothing in the call matches what you do (food insecurity), and Department for Culture, Media & Sport rarely funds charities (18% of its awards)",
+        "funder has backed GB-CHC organisations (18% of awards)"
+      ],
+      "stage": "triage",
+      "basis": "award history"
+    },
+    {
+      "funder": "Department for Business, Innovation, Science and Trade",
+      "programme": "AI Growth Lab",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 25,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 18,
+      "closes": "2026-09-28",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/ai-growth-labs-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Defra and Innovate UK",
+      "programme": "Farming Futures R&D fund: Automation and Robotics Round 2",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 20,
+      "closes": "2026-09-30",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/farming-futures-rd-fund-automation-and-robotics-round-2-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £1,225,000, over three times your income; expect to compete with much larger organisations",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Innovate UK, part of UK Research and Innovation (UKRI)",
+      "programme": "Quantum computing applications for large scale impact: CR&D",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 0,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 14,
+      "closes": "2026-09-24",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/quantum-computing-applications-for-large-scale-impact-crd-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "the smallest award (£300,000) is more than your annual income (£136,000)",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Innovate UK, part of UK Research and Innovation (UKRI)",
+      "programme": "Accelerating adoption of quantum enabled sensing and PNT",
+      "band": "Low",
+      "fit": 0,
+      "alignment": 0,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 6,
+      "closes": "2026-09-16",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/accelerating-adoption-of-quantum-enabled-sensing-and-pnt-1",
+      "vetoed": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "reasons": [
+        "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "nothing in the call matches what you do (food insecurity)",
+        "the smallest award (£1,000,000) is more than your annual income (£136,000)"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Department for Environment, Food and Rural Affairs",
+      "programme": "Farmer Collaboration Fund",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 50,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 21,
+      "closes": "2026-10-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/famer-collaboration-fund-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity), and Department for Environment, Food and Rural Affairs rarely funds charities (0% of its awards)",
+        "funder has never funded a GB-CHC in 300 recorded awards",
+        "funds in London"
+      ],
+      "stage": "triage",
+      "basis": "award history"
+    },
+    {
+      "funder": "UK Research and Innovation, Biotechnology and Biological Sciences Research Council (BBSRC)",
+      "programme": "UKRI Translation: BBSRC Proof of Concept 2026 (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 34,
+      "closes": "2026-10-14",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/ukri-translation-bbsrc-proof-of-concept-2026-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Innovate UK, part of UK Research and Innovation (UKRI), will work with the Department for Business, Innovation, Science and Trade (BIST) and the Advanced Propulsion Centre UK (APC)",
+      "programme": "DRIVE35 Scale-up Fund Drawdown 5",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 0,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 55,
+      "closes": "2026-11-04",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/drive35-scale-up-fund-drawdown-5-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "the smallest award (£2,500,000) is more than your annual income (£136,000)",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "UK Research and Innovation, Engineering and Physical Sciences Research Council (EPSRC)",
+      "programme": "Next generation artificial intelligence (AI): explainable AI (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 40,
+      "closes": "2026-10-20",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/next-generation-artificial-intelligence-ai-explainable-ai-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Ministry of Defence",
+      "programme": "An Official Oral History of Women Veterans in the UK",
+      "band": "Low",
+      "fit": 0,
+      "alignment": 86,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 13,
+      "closes": "2026-09-23",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/an-official-oral-history-of-women-veterans-in-the-uk-1",
+      "vetoed": "13 days left is about 20 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "reasons": [
+        "13 days left is about 20 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "funder has backed GB-CHC organisations (31% of awards)",
+        "funds in London"
+      ],
+      "stage": "triage",
+      "basis": "award history"
+    },
+    {
+      "funder": "UK Research and Innovation, Natural Environment Research Council",
+      "programme": "Resilient economy and security through ecosystem transitions grants (Grant)",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 42,
+      "closes": "2026-10-22",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/resilient-economy-and-security-through-ecosystem-transitions-grants-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £2,500,000, over three times your income; expect to compete with much larger organisations",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "UK Research and Innovation, Medical Research Council",
+      "programme": "Purchase mid-range equipment for biomedical research: MRC Equip (Grant)",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 0,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 56,
+      "closes": "2026-11-05",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/purchase-mid-range-equipment-for-biomedical-research-mrc-equip-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "the smallest award (£200,000) is more than your annual income (£136,000)",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "UK Research and Innovation, Natural Environment Research Council (NERC)",
+      "programme": "Advancing atmospheric and aerial autonomy (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 41,
+      "closes": "2026-10-21",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/advancing-atmospheric-and-aerial-autonomy-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Natural Environment Research Council (NERC)",
+      "programme": "Research Infrastructure Renewal (Grant)",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 0,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 41,
+      "closes": "2026-10-21",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/research-infrastructure-renewal-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "the smallest award (£300,000) is more than your annual income (£136,000)",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "UK Research and Innovation (UKRI) and the Department for Energy Security and Net Zero (DESNZ)",
+      "programme": "Electricity Demand Turn Up trial: EOI for flexibility providers",
+      "band": "Low",
+      "fit": 0,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 6,
+      "closes": "2026-09-16",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/electricity-demand-turn-up-trial-eoi-for-flexibility-providers-1",
+      "vetoed": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "reasons": [
+        "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £3,000,000, over three times your income; expect to compete with much larger organisations"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "UK Research and Innovation",
+      "programme": "Transformative sustainable AI technologies (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 61,
+      "closes": "2026-11-10",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/transformative-sustainable-ai-technologies-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Arts and Humanities Research Council",
+      "programme": "CoSTAR Satellite Labs: Accessible creative R&D infrastructure (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 49,
+      "closes": "2026-10-29",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/costar-satellite-labs-accessible-creative-rd-infrastructure-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Arts and Humanities Research Council",
+      "programme": "CoSTAR Showcase Labs: Createch infrastructure and commercialisation (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 49,
+      "closes": "2026-10-29",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/costar-showcase-labs-createch-infrastructure-and-commercialisation-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Department for Education (DfE)",
+      "programme": "Sustainable Drainage Systems (SuDS) in Schools Grant Scheme",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 50,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 53,
+      "closes": "2026-11-02",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/sustainable-drainage-systems-suds-in-schools-fy-202728-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity), and Department for Education rarely funds charities (0% of its awards)",
+        "funder has never funded a GB-CHC in 300 recorded awards",
+        "funds in London"
+      ],
+      "stage": "triage",
+      "basis": "award history"
+    },
+    {
+      "funder": "Department for Education (DfE)",
+      "programme": "Sustainable Drainage Systems (SuDS) in Schools Market Engagement Event",
+      "band": "Low",
+      "fit": 0,
+      "alignment": 50,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 1,
+      "closes": "2026-09-11",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/sustainable-drainage-systems-suds-in-schools-market-engagement-event-fy-27-28-1",
+      "vetoed": "1 day left is about 2 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "reasons": [
+        "1 day left is about 2 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "nothing in the call matches what you do (food insecurity), and Department for Education rarely funds charities (0% of its awards)",
+        "funder has never funded a GB-CHC in 300 recorded awards"
+      ],
+      "stage": "triage",
+      "basis": "award history"
+    },
+    {
+      "funder": "UK Research and Innovation, Engineering and Physical Sciences Research Council (EPSRC)",
+      "programme": "Future computing paradigms Network Plus (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 33,
+      "closes": "2026-10-13",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/future-computing-paradigms-network-plus-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Engineering and Physical Sciences Research Council (EPSRC)",
+      "programme": "High performance compute resources for EPSRC communities (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 47,
+      "closes": "2026-10-27",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/high-performance-compute-resources-for-epsrc-communities-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "The Department for Environment, Food and Rural Affairs (Defra)",
+      "programme": "Farming Innovation Programme: Small R&D Partnership Projects Rd 5",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 50,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 34,
+      "closes": "2026-10-14",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/farming-innovation-programme-small-rd-partnership-projects-rd-5-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity), and Department for Environment, Food and Rural Affairs rarely funds charities (0% of its awards)",
+        "funder has never funded a GB-CHC in 300 recorded awards",
+        "funds in London"
+      ],
+      "stage": "triage",
+      "basis": "award history"
+    },
+    {
+      "funder": "Home Office",
+      "programme": "Support for Victims and Survivors of Child Sexual Abuse Fund 2027 - 2029",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 82,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 18,
+      "closes": "2026-09-28",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/support-for-victims-and-survivors-of-child-sexual-abuse-fund-2027---2029-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity), and Home Office rarely funds charities (8% of its awards)",
+        "funder has backed GB-CHC organisations (8% of awards)",
+        "funds in London"
+      ],
+      "stage": "triage",
+      "basis": "award history"
+    },
+    {
+      "funder": "UK Research and Innovation, Engineering and Physical Sciences Research Council, Science and Technology Facilities Council",
+      "programme": "UKRI: Integration of AI/HPC with quantum computing (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 54,
+      "closes": "2026-11-03",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/ukri-integration-of-aihpc-with-quantum-computing-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Arts and Humanities Research Council",
+      "programme": "Unlocking advanced capabilities in conservation and heritage science (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 76,
+      "closes": "2026-11-25",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/unlocking-advanced-capabilities-in-conservation-and-heritage-science-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Innovate UK, part of UK Research and Innovation (UKRI)",
+      "programme": "Medicines Manufacturing Data Institute: Phase 1",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 34,
+      "closes": "2026-10-14",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/medicines-manufacturing-data-institute-phase-1-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open across the UK",
+        "awards up to £100,000 suit an organisation your size"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "UK Research and Innovation, Engineering and Physical Sciences Research Council",
+      "programme": "Focal award: EPSRC and MHCLG Fire Engineering Skills Hub (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 54,
+      "closes": "2026-11-03",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/focal-award-epsrc-and-mhclg-fire-engineering-skills-hub-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Medical Research Council",
+      "programme": "Small molecule high throughput screen using AstraZeneca facilities (Grant)",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 35,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 140,
+      "closes": "2027-01-28",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/small-molecule-high-throughput-screen-using-astrazeneca-facilities-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "open across the UK",
+        "awards up to £270,000 suit an organisation your size"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "UK Research and Innovation, Economic and Social Research Council",
+      "programme": "Economic research on the returns to R&D investment (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 70,
+      "closes": "2026-11-19",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/economic-research-on-the-returns-to-rd-investment-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "UK Research and Innovation, Natural Environment Research Council (NERC)",
+      "programme": "Exploring the frontiers of environmental research 2026 (Grant)",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 63,
+      "closes": "2026-11-12",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/exploring-the-frontiers-of-environmental-research-2026-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "only UK research organisations eligible for UKRI funding can apply; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "The National Lottery Community Fund",
+      "programme": "Community Action",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": null,
+      "closes": null,
+      "url": "https://www.tnlcommunityfund.org.uk/funding/funding-programmes/community-action",
+      "vetoed": null,
+      "reasons": [
+        "this call is for Scotland; you are in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "The National Lottery Community Fund",
+      "programme": "Dormant Assets for All",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": null,
+      "closes": null,
+      "url": "https://www.tnlcommunityfund.org.uk/funding/funding-programmes/dormant-assets-for-all",
+      "vetoed": null,
+      "reasons": [
+        "this call is for Northern Ireland; you are in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "The National Lottery Community Fund",
+      "programme": "Fairer Life Chances",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": null,
+      "closes": null,
+      "url": "https://www.tnlcommunityfund.org.uk/funding/funding-programmes/fairer-life-chances",
+      "vetoed": null,
+      "reasons": [
+        "this call is for Scotland; you are in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "The National Lottery Community Fund",
+      "programme": "National Lottery Awards for All Northern Ireland",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": null,
+      "closes": null,
+      "url": "https://www.tnlcommunityfund.org.uk/funding/funding-programmes/national-lottery-awards-for-all-northern-ireland",
+      "vetoed": null,
+      "reasons": [
+        "this call is for Northern Ireland; you are in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "The National Lottery Community Fund",
+      "programme": "National Lottery Awards for All Scotland",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": null,
+      "closes": null,
+      "url": "https://www.tnlcommunityfund.org.uk/funding/funding-programmes/national-lottery-awards-for-all-scotland",
+      "vetoed": null,
+      "reasons": [
+        "this call is for Scotland; you are in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "The National Lottery Community Fund",
+      "programme": "National Lottery Awards for All Wales",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": null,
+      "closes": null,
+      "url": "https://www.tnlcommunityfund.org.uk/funding/funding-programmes/national-lottery-awards-for-all-wales",
+      "vetoed": null,
+      "reasons": [
+        "this call is for Wales; you are in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "The National Lottery Community Fund",
+      "programme": "Scottish Land Fund",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": null,
+      "closes": null,
+      "url": "https://www.tnlcommunityfund.org.uk/funding/funding-programmes/scottish-land-fund",
+      "vetoed": null,
+      "reasons": [
+        "this call is for Scotland; you are in Southwark, London (England)"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "Battery Innovation: Concept Development Rd 3",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 83,
+      "closes": "2026-12-02",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2572/overview/7410b013-814e-4db6-9011-c39efe67e2d6",
+      "vetoed": null,
+      "reasons": [
+        "only businesses can apply or lead; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "Engineering Biology Collaborative R&D: Round 3",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 54,
+      "closes": "2026-11-03",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2542/overview/b687b240-4dff-4149-889b-308e61447460",
+      "vetoed": null,
+      "reasons": [
+        "only businesses can apply or lead; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "Engineering Biology Access to Infrastructure Pilot",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 41,
+      "closes": "2026-10-21",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2546/overview/d8b3252c-a147-4088-89ab-7991141da64a",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £5,000,000, over three times your income; expect to compete with much larger organisations"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "National Materials Innovation Programme: CR&D Rd1",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 48,
+      "closes": "2026-10-28",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2569/overview/a3448c9e-38ae-4759-957c-bccf6c40c281",
+      "vetoed": null,
+      "reasons": [
+        "only businesses can apply or lead; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "Investor Partnerships – ACT and Semiconductors",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 34,
+      "closes": "2026-10-14",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2567/overview/53ee8d14-5670-4f09-8825-0d7ca9c09100",
+      "vetoed": null,
+      "reasons": [
+        "only businesses can apply or lead; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "CfI: Engineering Biology for Defra and FSA Phase 1",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 34,
+      "closes": "2026-10-14",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2566/overview/bd333690-b6c6-4bdc-8447-4c8b5853ef52",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £3,000,000, over three times your income; expect to compete with much larger organisations"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "Advancing innovation in accelerated cancer diagnosis",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 48,
+      "closes": "2026-10-28",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2527/overview/d48f61f8-2bd5-4067-9c05-29dd08487623",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £25,400,000, over three times your income; expect to compete with much larger organisations"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "Advanced Manufacturing: Measurement and Sensing Pilot",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 27,
+      "closes": "2026-10-07",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2559/overview/54e68d9c-8be2-449c-8b6b-07fcd5014582",
+      "vetoed": null,
+      "reasons": [
+        "only businesses can apply or lead; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "UK-Singapore CRD 2026",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 97,
+      "closes": "2026-12-16",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2526/overview/4a4b67b9-9b73-4816-8e21-bdfab83f5909",
+      "vetoed": null,
+      "reasons": [
+        "only businesses can apply or lead; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "ADOPT Facilitator Support Grant: Round 11",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 20,
+      "closes": "2026-09-30",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2556/overview/ff6d6e0a-92ee-4719-a0fb-2e4bc2aa9c4d",
+      "vetoed": null,
+      "reasons": [
+        "only businesses can apply or lead; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "Full ADOPT Grant: Round 9",
+      "band": "Low",
+      "fit": null,
+      "alignment": null,
+      "plausibility": null,
+      "plausibility_confidence": null,
+      "days_left": 27,
+      "closes": "2026-10-07",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2544/overview/fe16ecd4-5413-4fa5-8ccc-4bfdcb390944",
+      "vetoed": null,
+      "reasons": [
+        "only businesses can apply or lead; you are a registered charity"
+      ],
+      "stage": "triage",
+      "basis": null
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "Knowledge Transfer Partnership (KTP): 2026 – 2027 Round 3",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 34,
+      "closes": "2026-10-14",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2514/overview/81b3dcb8-7d03-42ed-8b97-5e6e51c4d1ed",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £12,500,000, over three times your income; expect to compete with much larger organisations"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "Future Leaders Fellowships: Round 11, business and non-academic",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 55,
+      "closes": "2026-11-04",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2499/overview/60da9000-d438-47fb-92aa-e8d9435a17ab",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £110,000,000, over three times your income; expect to compete with much larger organisations"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Innovate UK",
+      "programme": "Innovation Loans Expression of Interest",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 25,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": null,
+      "closes": null,
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2505/overview/8ef63f10-ea07-4ffd-9812-e944542751b6",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    }
+  ],
+  "held_at_gate": [
+    {
+      "funder": "HS2 Ltd",
+      "programme": "Community and Environment Fund (CEF) and Business and Local Economy Fund (BLEF)",
+      "band": "Medium",
+      "fit": 25,
+      "alignment": 60,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 3124,
+      "closes": "2035-03-31",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/community-and-environment-fund-cef-and-business-and-local-economy-fund-blef-1",
+      "vetoed": null,
+      "reasons": [
+        "Geographic scope: HS2 CEF/BLEF targets communities disrupted by Phase One/2a construction (London–Crewe route). Peckham and Nunhead do not sit on or immediately adjacent to the published HS2 corridor. Call is route-specific, not open to all England.",
+        "open to organisations in Southwark, London (England)",
+        "open to charities and community groups generally, not tied to one cause"
+      ],
+      "stage": "gate",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Ministry of Justice",
+      "programme": "Commissioned Rehabilitative Services General Grant Scheme",
+      "band": "Medium",
+      "fit": 5,
+      "alignment": 86,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 200,
+      "closes": "2027-03-29",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/commissioned-rehabilitative-services-general-grant-scheme-1",
+      "vetoed": null,
+      "reasons": [
+        "Organisation's work (food security) does not align with this call's scope (criminal justice rehabilitative services)",
+        "funder has backed GB-CHC organisations (29% of awards)",
+        "funds in London"
+      ],
+      "stage": "gate",
+      "basis": "award history"
+    },
+    {
+      "funder": "Architectural Heritage Fund",
+      "programme": "Heritage Revival Fund",
+      "band": "Medium",
+      "fit": 8,
+      "alignment": 49,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 1299,
+      "closes": "2030-04-01",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/heritage-revival-fund-1",
+      "vetoed": null,
+      "reasons": [
+        "Mission mismatch: Funder exists to rescue and repurpose historic buildings; organisation operates a community food bank with no heritage asset involvement",
+        "funder has backed GB-CHC organisations (18% of awards)",
+        "no recorded awards in London; concentrated in Scotland, England, Wales"
+      ],
+      "stage": "gate",
+      "basis": "award history"
+    },
+    {
+      "funder": "UK Research and Innovation, AHRC, BBSRC, ESRC, EPSRC, MRC, NERC, STFC",
+      "programme": "Trust and confidence in policing: Research & Innovation Consortium (Grant)",
+      "band": "Medium",
+      "fit": 5,
+      "alignment": 40,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 47,
+      "closes": "2026-10-27",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/trust-and-confidence-in-policing-research--innovation-consortium-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "Mission scope: call funds research and innovation in policing trust measurement; organisation runs community food services. No operational connection.",
+        "awards run to £2,000,000, over three times your income; expect to compete with much larger organisations",
+        "open across the UK"
+      ],
+      "stage": "gate",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "The National Lottery Community Fund",
+      "programme": "National Lottery Awards for All England – Environment",
+      "band": "Medium",
+      "fit": 15,
+      "alignment": 76,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": null,
+      "closes": null,
+      "url": "https://www.tnlcommunityfund.org.uk/funding/funding-programmes/national-lottery-awards-for-all-england-environment",
+      "vetoed": null,
+      "reasons": [
+        "Programme theme mismatch: Awards for All Environment requires climate/nature/environment focus. Rye Lane does food security and community cohesion with no environmental component evidenced.",
+        "funder has backed GB-CHC organisations (56% of awards)",
+        "£10,000 sits inside this programme's stated range (£300 to £20,000)"
+      ],
+      "stage": "gate",
+      "basis": "award history"
+    },
+    {
+      "funder": "The National Lottery Community Fund",
+      "programme": "Reaching Communities England",
+      "band": "Medium",
+      "fit": 68,
+      "alignment": 76,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": null,
+      "closes": null,
+      "url": "https://www.tnlcommunityfund.org.uk/funding/funding-programmes/reaching-communities-england",
+      "vetoed": null,
+      "reasons": [
+        "the matcher recommends not applying: Project definition: No specific use of £20,001 is stated. The application question requires clarity on 'the difference this funding will make, who it will reach, and how you will evidence the outcomes.' Current funding model and target beneficiaries are already defined; the application must articulate what changes with this grant.",
+        "funder has backed GB-CHC organisations (56% of awards)",
+        "£20,001 sits inside this programme's stated range (£20,001 to £20,000,000)"
+      ],
+      "stage": "gate",
+      "basis": "award history"
+    }
+  ],
+  "calls_source": "find-a-grant,national-lottery,innovate-uk",
+  "sources": {
+    "find-a-grant": 90,
+    "national-lottery": 10,
+    "innovate-uk": 26
+  },
+  "place": "Southwark, London (England)",
+  "local_funders": [
+    {
+      "name": "The London Community Foundation",
+      "org_id": "GB-CHC-1091263",
+      "website": "https://londoncf.org.uk/",
+      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-CHC-1091263",
+      "awards_near_you": 9,
+      "awards_in_region": 0,
+      "sample": 100,
+      "median_award": 8772,
+      "latest_in_sample": "2020-12-11"
+    },
+    {
+      "name": "Sport England",
+      "org_id": "GB-COH-RC000766",
+      "website": "https://www.sportengland.org/",
+      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-COH-RC000766",
+      "awards_near_you": 2,
+      "awards_in_region": 0,
+      "sample": 100,
+      "median_award": 257870.5,
+      "latest_in_sample": "2009-06-25"
+    },
+    {
+      "name": "London Councils",
+      "org_id": "GB-COH-03037449",
+      "website": "http://www.londoncouncils.gov.uk/",
+      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-COH-03037449",
+      "awards_near_you": 0,
+      "awards_in_region": 29,
+      "sample": 29,
+      "median_award": 1047148,
+      "latest_in_sample": "2024-03-27"
+    },
+    {
+      "name": "Lloyds Bank Foundation for England and Wales",
+      "org_id": "GB-CHC-327114",
+      "website": "http://www.lloydsbankfoundation.org.uk/",
+      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-CHC-327114",
+      "awards_near_you": 0,
+      "awards_in_region": 20,
+      "sample": 100,
+      "median_award": 37463.5,
+      "latest_in_sample": "2015-12-17"
+    },
+    {
+      "name": "Arts Council England",
+      "org_id": "GB-CHC-1036733",
+      "website": "https://www.artscouncil.org.uk/",
+      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-CHC-1036733",
+      "awards_near_you": 0,
+      "awards_in_region": 10,
+      "sample": 100,
+      "median_award": 246910.0,
+      "latest_in_sample": "2018-04-19"
+    }
+  ],
+  "watcher_state": {
+    "tracked": 113,
+    "by_status": {
+      "open": 83,
+      "closing_soon": 19,
+      "final_call": 11
+    },
+    "silent": 111
+  },
+  "changes": [
+    {
+      "kind": "new",
+      "funder": "The National Lottery Community Fund",
+      "detail": "fit 82/100, closes no stated deadline",
+      "urgent": false
+    },
+    {
+      "kind": "new",
+      "funder": "The National Lottery Community Fund",
+      "detail": "fit 68/100, closes no stated deadline",
+      "urgent": false
+    }
+  ],
+  "archive": {
+    "n_files": 21,
+    "n_decided": 14,
+    "n_awarded": 9,
+    "n_unknown_outcome": 7,
+    "win_rate": 0.643,
+    "confidence": "indicative",
+    "median_successful_ask": 9000,
+    "median_unsuccessful_ask": 46500.0
+  },
+  "revisit": [
+    "National Lottery Community Fund — two awards, £19,600 in total, last said yes January 2024",
+    "Southwark Council — four awards, £22,500 in total, last said yes August 2023",
+    "United St Saviour's Charity — one award, £15,000 in total, last said yes July 2024"
+  ],
+  "scope": {
+    "files_seen": 28,
+    "files_read": 21,
+    "files_skipped": 7,
+    "skipped_detail": [
+      {
+        "name": "DBS check register.md",
+        "reason": "name matches sensitive-record pattern"
+      },
+      {
+        "name": "HR - staff contracts.md",
+        "reason": "name matches sensitive-record pattern"
+      },
+      {
+        "name": "beneficiary contact list.md",
+        "reason": "name matches sensitive-record pattern"
+      },
+      {
+        "name": "budget template.xlsx",
+        "reason": "unsupported type .xlsx"
+      },
+      {
+        "name": "logo.png",
+        "reason": "unsupported type .png"
+      },
+      {
+        "name": "referral form blank.md",
+        "reason": "name matches sensitive-record pattern"
+      },
+      {
+        "name": "safeguarding log 2025.md",
+        "reason": "name matches sensitive-record pattern"
+      }
+    ]
+  },
+  "org": "Rye Lane Community Kitchen",
+  "org_id": "GB-CHC-1178432",
+  "workspace": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En",
+  "direction": [
+    "**Lead with the freezer replacement as essential infrastructure for scaling your existing community meals programme.**",
+    "Rye Lane's community meals deliver measurable outcomes (74% of surveyed members eating hot meals daily more than before), reach 1,120 individuals annually, and operate at high capacity (7,400 meals across 148 sittings in 2025-26). The monthly failures of your 2016 commercial freezer currently constrain this proven delivery model. A £10,000 grant for replacement equipment removes this bottleneck, enabling you to expand sittings or serve additional households without operational risk—and the investment directly enables the \"bring people together\" outcome the funder prioritises.",
+    "Avoid framing this as a general funding gap or using language about financial hardship. The funder sees you as operationally competent (5-star food hygiene, unqualified audit, Level 3 safeguarding); they fund activity expansion, not deficit cover.",
+    "Avoid proposing the crèche provision within this grant. You have no track record delivering childcare, no staff capacity noted, and it dilutes focus from your core strength. If childcare barriers emerge from beneficiary feedback, that's a future application to a different funder; for now, solve the freezer and deepen what you do brilliantly."
+  ],
+  "draft": {
+    "question": "Describe the difference this funding will make, who it will reach, and how you will evidence the outcomes.",
+    "answer": "We will use this funding to replace our commercial freezer, which fails monthly and limits our capacity to serve members reliably. The new freezer will enable us to store prepared meals in advance and expand our Community meals provision from three sittings a week to four sittings, reaching an additional 200 members annually.\n\nWe will reach members from Peckham and Nunhead wards, Southwark, who currently access our Community meals and Food Pantry. Our members are typically on low incomes and struggle to afford regular hot meals; 74% of surveyed members reported eating at least one hot meal a day more often than before attending our sittings.\n\nWe will evidence outcomes through our established monitoring systems. We run beneficiary surveys twice yearly with a 31% response rate, asking members about meal frequency and food security. We will track the number of additional meals served at the new fourth sitting and measure whether members report further improvements in eating patterns. We submit quarterly monitoring returns to Southwark Council, which will include data on freezer reliability and meal output. Our independent evaluation by Southwark Impact Partnership, published June 2025, provides a baseline for comparison.",
+    "claims": [
+      {
+        "text": "Our commercial freezer fails monthly",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Funding history — ORG.md#L51 — \"Currently unfunded for: replacement commercial freezer (the 2016 unit fails monthly), a second-hand refrigerated van,...\""
+        ]
+      },
+      {
+        "text": "We currently serve members at three sittings a week from Rye Lane Baptist Hall",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Community meals — ORG.md#L22 — \"Delivery: three sittings a week from Rye Lane Baptist Hall, no referral needed\""
+        ]
+      },
+      {
+        "text": "We serve members from Peckham and Nunhead wards, Southwark",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Identity — ORG.md#L9 — \"Area served: Peckham and Nunhead wards, Southwark, London\""
+        ]
+      },
+      {
+        "text": "74% of surveyed members reported eating at least one hot meal a day more often than before attending",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Community meals — ORG.md#L24 — \"Outcome: 74% of surveyed members (n=180) reported eating at least one hot\""
+        ]
+      },
+      {
+        "text": "We run beneficiary surveys twice yearly with a 31% response rate",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Evidence and evaluation — ORG.md#L36 — \"Beneficiary survey run twice yearly since 2022, response rate 31%\""
+        ]
+      },
+      {
+        "text": "We submit quarterly monitoring returns to Southwark Council",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Evidence and evaluation — ORG.md#L37 — \"Quarterly monitoring returns submitted to Southwark Council since 2021\""
+        ]
+      },
+      {
+        "text": "Our independent evaluation by Southwark Impact Partnership was published June 2025",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Evidence and evaluation — ORG.md#L35 — \"Independent evaluation by Southwark Impact Partnership, published June 2025\""
+        ]
+      },
+      {
+        "text": "Suggested ask is anchored on The National Lottery Community Fund's award history (300 grants).",
+        "grounded": true,
+        "sources": [
+          "360Giving award history, The National Lottery Community Fund — https://grantnav.threesixtygiving.org/org/GB-GOR-PB188 — \"median £10,000; p10-p90 £10,000-£10,000\" — accessed 2026-09-10"
+        ]
+      }
+    ],
+    "unevidenced_gaps": [
+      "Whether we can realistically expand from three sittings to four sittings per week with the new freezer (operational capacity question)",
+      "Confirmation that 200 additional members annually is an achievable target with improved freezer capacity",
+      "Specific metrics or thresholds we will track to measure success of the additional sitting"
+    ]
+  },
+  "timeline": {
+    "deadline": "rolling",
+    "total_hours_estimate": 18.0,
+    "steps": [
+      {
+        "days_before_deadline": 21,
+        "task": "Coordinator drafts project narrative and outcomes section",
+        "owner_role": "Coordinator"
+      },
+      {
+        "days_before_deadline": 16,
+        "task": "Finance lead compiles budget, match funding evidence, reserves approval",
+        "owner_role": "Finance Lead"
+      },
+      {
+        "days_before_deadline": 14,
+        "task": "Designated safeguarding lead reviews compliance and governance attachments",
+        "owner_role": "Designated Safeguarding Lead"
+      },
+      {
+        "days_before_deadline": 10,
+        "task": "Trustee chair reviews full draft application and sign-off",
+        "owner_role": "Trustee"
+      },
+      {
+        "days_before_deadline": 7,
+        "task": "Coordinator incorporates feedback and finalises supporting evidence pack",
+        "owner_role": "Coordinator"
+      },
+      {
+        "days_before_deadline": 3,
+        "task": "Finance lead audits all figures against Xero and submits application",
+        "owner_role": "Finance Lead"
+      }
+    ]
+  },
+  "files_written": [
+    {
+      "name": "00-brief/call.md",
+      "size": "0.5 kb"
+    },
+    {
+      "name": "01-decision/Decision.docx",
+      "size": "3.5 kb"
+    },
+    {
+      "name": "01-decision/match.json",
+      "size": "2.1 kb"
+    },
+    {
+      "name": "02-direction/Direction.docx",
+      "size": "2.7 kb"
+    },
+    {
+      "name": "02-direction/angle.md",
+      "size": "1.3 kb"
+    },
+    {
+      "name": "03-drafts/Draft answer v1.docx",
+      "size": "3.0 kb"
+    },
+    {
+      "name": "03-drafts/answer-1.json",
+      "size": "3.6 kb"
+    },
+    {
+      "name": "03-drafts/answer-1.md",
+      "size": "1.2 kb"
+    },
+    {
+      "name": "03-drafts/style-card.md",
+      "size": "1.6 kb"
+    },
+    {
+      "name": "04-evidence/Evidence and sources.docx",
+      "size": "3.0 kb"
+    },
+    {
+      "name": "04-evidence/audit.json",
+      "size": "0.1 kb"
+    },
+    {
+      "name": "04-evidence/claims.md",
+      "size": "3.3 kb"
+    },
+    {
+      "name": "05-timeline/Timeline.docx",
+      "size": "2.6 kb"
+    },
+    {
+      "name": "05-timeline/schedule.json",
+      "size": "1.1 kb"
+    },
+    {
+      "name": "06-submitted/outcome.meta.json",
+      "size": "0.4 kb"
+    }
+  ],
+  "outcome": {
+    "status": "pending",
+    "note": "Set outcome to awarded or rejected when you hear back. Paste any assessor feedback into feedback, verbatim, good or bad."
+  },
+  "voice": {
+    "corpus_documents": 20,
+    "corpus_sentences": 199,
+    "median_sentence_words": 12,
+    "sentence_word_sd": 8.9,
+    "beneficiary_term": "members",
+    "first_person_plural": true,
+    "flags": {
+      "tells": [],
+      "uniformity": null,
+      "term_violations": [],
+      "clean": true
+    }
+  },
+  "grounded": 8,
+  "total_claims": 8,
+  "gaps": 3,
+  "audit": {
+    "verdict": "pass",
+    "rate": 1.0,
+    "grounded_claims": 7,
+    "total_claims": 7,
+    "ungrounded": []
+  },
+  "schema_version": 2,
+  "_comment": "Written by granted.digest on every run. Every figure here is computed by a module; none are hand-entered. The dashboard reads this file directly and needs no rebuild.",
+  "_produced_by": {
+    "bands, surfaced, not_pursued, held_at_gate": "triage.triage; fit is the graph matcher's once it has run",
+    "watcher_state, changes": "watcher.Register.poll / watcher.check_timeline",
+    "archive, revisit, scope": "archive.load_archive",
+    "direction, draft, timeline": "graph director / drafter / timeliner",
+    "audit": "graph auditor",
+    "grounded, total_claims, gaps": "run.build_evidence (citations.find_support)",
+    "workspace, files_written, outcome": "workspace.create",
+    "voice": "voice.build_style_card / voice.check",
+    "org, org_id": "org.parse (ORG.md, Identity)",
+    "sources": "sources.fetch_source",
+    "place, local_funders": "location.resolve (postcodes.io) / local.refresh (360Giving)",
+    "duration_s, model_calls": "trace.RunTrace"
+  }
+}

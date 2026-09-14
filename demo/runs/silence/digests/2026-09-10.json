@@ -1,0 +1,71 @@
+{
+  "org": "Easton Community Kitchen",
+  "run_date": "2026-09-10",
+  "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+  "threshold": 65,
+  "calls_considered": 3,
+  "unreadable": [],
+  "model_calls": 5,
+  "tool_calls": 10,
+  "duration_s": 66.7,
+  "trace": {
+    "model_calls": 5,
+    "tool_calls": 10,
+    "duration_s": 66.7,
+    "tools_used": {
+      "awards_in_place": 4,
+      "funder_themes": 1,
+      "awards_to_legal_form": 1,
+      "awards_near_amount": 1,
+      "has_funded": 1
+    },
+    "lookups": [
+      "awards_in_place(Bristol)",
+      "funder_themes(all)",
+      "awards_to_legal_form(GB-CHC)",
+      "awards_near_amount(12200)",
+      "awards_in_place(England)",
+      "awards_in_place(West Midlands)",
+      "awards_in_place(South West)",
+      "has_funded(Easton Community Kitchen)"
+    ]
+  },
+  "archive": {
+    "confidence": "indicative",
+    "n_decided": 17,
+    "n_awarded": 10,
+    "win_rate": 0.5882352941176471,
+    "note": "Your own record: 17 decided applications, 59% won. Treat as indicative."
+  },
+  "decision": null,
+  "considered": [
+    {
+      "funder": "The Clothworkers Foundation",
+      "programme": "Small Grants Programme",
+      "title": "The Clothworkers Foundation \u2014 Small Grants Programme",
+      "fit": 32,
+      "reason": "Geographic: Clothworkers Foundation has funded only 1 of 300 awards in Bristol (0.3%). Funder is London-concentrated (19% of awards). Revealed preference shows minimal non-London activity outside specific cities. Bristol sits outside established funding footprint.",
+      "days_left": 43,
+      "stopped_at": "gate"
+    },
+    {
+      "funder": "The Clothworkers Foundation",
+      "programme": "Proactive Programme",
+      "title": "The Clothworkers Foundation \u2014 Proactive Programme",
+      "fit": 0,
+      "reason": "3 days left is about 4 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "days_left": 3,
+      "stopped_at": "triage"
+    },
+    {
+      "funder": "The Clothworkers Foundation",
+      "programme": "Emergency Winter Response",
+      "title": "The Clothworkers Foundation \u2014 Emergency Winter Response",
+      "fit": 0,
+      "reason": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "days_left": 2,
+      "stopped_at": "triage"
+    }
+  ],
+  "alerts": []
+}

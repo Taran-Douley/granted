@@ -1,0 +1,9 @@
+{
+  "_comment": "Settings for this Granted folder; edit in any text editor. 'archive' is the folder of past applications, relative to this one or a full path. 'calls' lists where calls come from, separated by commas: find-a-grant, national-lottery, innovate-uk, or the name of a calls file. 'funder' is a 360Giving id for calls that name no funder of their own. 'cap' is how many of a funder's past awards to read.",
+  "organisation": "Rye Lane Community Kitchen",
+  "archive": "../../../../fixtures/rye-lane-funding",
+  "calls": "find-a-grant,national-lottery,innovate-uk",
+  "funder": null,
+  "funder_ids": "funders.json",
+  "cap": 300
+}

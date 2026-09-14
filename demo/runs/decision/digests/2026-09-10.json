@@ -1,0 +1,112 @@
+{
+  "org": "Rye Lane Community Kitchen",
+  "run_date": "2026-09-10",
+  "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+  "threshold": 65,
+  "calls_considered": 3,
+  "unreadable": [],
+  "model_calls": 7,
+  "tool_calls": 11,
+  "duration_s": 83.2,
+  "trace": {
+    "model_calls": 7,
+    "tool_calls": 11,
+    "duration_s": 83.2,
+    "tools_used": {
+      "awards_in_place": 2,
+      "funder_themes": 1,
+      "awards_to_legal_form": 1,
+      "awards_near_amount": 1,
+      "has_funded": 1
+    },
+    "lookups": [
+      "awards_in_place(Southwark)",
+      "funder_themes(all)",
+      "awards_to_legal_form(GB-CHC)",
+      "awards_near_amount(12200)",
+      "awards_in_place(London)",
+      "has_funded(Rye Lane Community Kitchen)"
+    ]
+  },
+  "archive": {
+    "confidence": "indicative",
+    "n_decided": 14,
+    "n_awarded": 9,
+    "win_rate": 0.6428571428571429,
+    "note": "Your own record: 14 decided applications, 64% won. Treat as indicative."
+  },
+  "decision": {
+    "funder": "The Clothworkers Foundation",
+    "programme": "Small Grants Programme",
+    "title": "The Clothworkers Foundation \u2014 Small Grants Programme",
+    "fit": 78,
+    "suggested_ask": 12200,
+    "closes": "2026-10-23",
+    "days_left": 43,
+    "why": [
+      "funder has backed GB-CHC organisations (81% of awards)",
+      "funds in London",
+      "\u00a312,200 sits inside their usual range"
+    ],
+    "gaps": [
+      "No prior Clothworkers funding (cold approach)",
+      "Match funding requirement not explicitly confirmed in call brief (\u00a36,000 reserves available but requires board sign-off)",
+      "How a refrigerated van will specifically expand the Food Pantry model or geographical reach (funding history lists it as needed, but does not explain the intended use or expansion mechanism)",
+      "Specific new capacity or member numbers expected from van addition",
+      "auditor could not ground: A refrigerated van will let us expand our Food Pantry model beyond our current 190 member households"
+    ],
+    "direction": "Lead with the freezer as the direct enabler of meal volume and consistency for your most food-insecure households in Peckham and Nunhead.\n\nYour 2025-26 data shows exactly why: 7,400 meals served across 148 sittings with 74% of surveyed members (n=180) now eating a hot meal daily more often than before, and your food pantry members reporting an average \u00a361 monthly reduction in food spend. The current 2016 freezer fails monthly\u2014each breakdown directly interrupts this consistency. Your independent evaluation by Southwark Impact Partnership (June 2025) and twice-yearly beneficiary surveys (31% response rate since 2022) give the funder concrete evidence that replacement equipment translates into measurable outcomes for people facing financial hardship.\n\nAvoid framing this as organisational need rather than beneficiary impact; the funder backs capital equipment *for buildings and services to disadvantaged communities*, not operational resilience alone. Do not mention the van in your lead narrative\u2014it diffuses the case and raises complexity around match funding that you'll need board approval to confirm; keep the freezer as your single focused ask unless the funder's form explicitly invites multiple items.",
+    "question": "What difference will this funding make to the people you work with, and how will you know? Give us evidence from your existing work.",
+    "question_is_generic": false,
+    "timeline": "43 days to deadline, about 38 hours of work",
+    "timeline_steps": [
+      "40d before \u2014 Board approves \u00a36,000 match funding from reserves (Coordinator (with trustee chair))",
+      "38d before \u2014 Draft application narrative: freezer impact on meals, van on reach (Coordinator)",
+      "32d before \u2014 Compile evidence: evaluation summary, survey outcomes, quotes (Coordinator)",
+      "28d before \u2014 Internal review: trustee checks narrative against ORG.md (Designated trustee)",
+      "24d before \u2014 Draft budget breakdown: freezer, van, match funding allocation (Finance lead)",
+      "18d before \u2014 Coordinator + finance review: narratives match budget, edit for word limits (Coordinator + Finance lead)"
+    ],
+    "hours_estimate": 38.0,
+    "own_record": [
+      "only 0% repeat funding; open to new applicants",
+      "your own win rate is 64% across 14 decided applications (indicative)"
+    ],
+    "voice_checked": true,
+    "voice_flags": [
+      "Sentence lengths too uniform: sd 5.1 against their measured 8.9. Break up the rhythm.",
+      "wrong term for the people you serve: used \"households\" where they say \"members\""
+    ],
+    "grounded": 11,
+    "total_claims": 12,
+    "audit": {
+      "verdict": "revise",
+      "rate": 0.9090909090909091,
+      "ungrounded": [
+        "A refrigerated van will let us expand our Food Pantry model beyond our current 190 member households"
+      ]
+    },
+    "workspace": "demo/runs/decision/workspaces/2026-09-10-the-clothworkers-foundation-small-grants-programme"
+  },
+  "considered": [
+    {
+      "funder": "The Clothworkers Foundation",
+      "programme": "Proactive Programme",
+      "title": "The Clothworkers Foundation \u2014 Proactive Programme",
+      "fit": 0,
+      "reason": "3 days left is about 4 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "days_left": 3,
+      "stopped_at": "triage"
+    },
+    {
+      "funder": "The Clothworkers Foundation",
+      "programme": "Emergency Winter Response",
+      "title": "The Clothworkers Foundation \u2014 Emergency Winter Response",
+      "fit": 0,
+      "reason": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "days_left": 2,
+      "stopped_at": "triage"
+    }
+  ],
+  "alerts": []
+}

@@ -1,0 +1,46 @@
+{
+  "deadline": "2026-10-23",
+  "steps": [
+    {
+      "days_before_deadline": 43,
+      "task": "Coordinator drafts case for need: freezer failures, pantry demand.",
+      "owner_role": "Coordinator"
+    },
+    {
+      "days_before_deadline": 38,
+      "task": "Finance lead confirms match funding available; board approval sought.",
+      "owner_role": "Finance lead"
+    },
+    {
+      "days_before_deadline": 33,
+      "task": "Trustee reviews draft; checks thematic fit against funder priorities.",
+      "owner_role": "Trustee"
+    },
+    {
+      "days_before_deadline": 27,
+      "task": "Coordinator obtains three quotes for freezer and van.",
+      "owner_role": "Coordinator"
+    },
+    {
+      "days_before_deadline": 20,
+      "task": "Finance lead prepares budget, match contribution, project timeline.",
+      "owner_role": "Finance lead"
+    },
+    {
+      "days_before_deadline": 14,
+      "task": "Coordinator completes full application with evaluation data attached.",
+      "owner_role": "Coordinator"
+    },
+    {
+      "days_before_deadline": 7,
+      "task": "Trustee final review; sign-off before submission.",
+      "owner_role": "Trustee"
+    },
+    {
+      "days_before_deadline": 2,
+      "task": "Finance lead submits application and retains submission receipt.",
+      "owner_role": "Finance lead"
+    }
+  ],
+  "total_hours_estimate": 32.0
+}

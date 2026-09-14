@@ -1,0 +1,61 @@
+{
+  "built": "2026-09-10",
+  "place": "England|London|Greater London|Southwark",
+  "funders": [
+    {
+      "name": "The London Community Foundation",
+      "org_id": "GB-CHC-1091263",
+      "website": "https://londoncf.org.uk/",
+      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-CHC-1091263",
+      "awards_near_you": 9,
+      "awards_in_region": 0,
+      "sample": 100,
+      "median_award": 8772,
+      "latest_in_sample": "2020-12-11"
+    },
+    {
+      "name": "Sport England",
+      "org_id": "GB-COH-RC000766",
+      "website": "https://www.sportengland.org/",
+      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-COH-RC000766",
+      "awards_near_you": 2,
+      "awards_in_region": 0,
+      "sample": 100,
+      "median_award": 257870.5,
+      "latest_in_sample": "2009-06-25"
+    },
+    {
+      "name": "London Councils",
+      "org_id": "GB-COH-03037449",
+      "website": "http://www.londoncouncils.gov.uk/",
+      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-COH-03037449",
+      "awards_near_you": 0,
+      "awards_in_region": 29,
+      "sample": 29,
+      "median_award": 1047148,
+      "latest_in_sample": "2024-03-27"
+    },
+    {
+      "name": "Lloyds Bank Foundation for England and Wales",
+      "org_id": "GB-CHC-327114",
+      "website": "http://www.lloydsbankfoundation.org.uk/",
+      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-CHC-327114",
+      "awards_near_you": 0,
+      "awards_in_region": 20,
+      "sample": 100,
+      "median_award": 37463.5,
+      "latest_in_sample": "2015-12-17"
+    },
+    {
+      "name": "Arts Council England",
+      "org_id": "GB-CHC-1036733",
+      "website": "https://www.artscouncil.org.uk/",
+      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-CHC-1036733",
+      "awards_near_you": 0,
+      "awards_in_region": 10,
+      "sample": 100,
+      "median_award": 246910.0,
+      "latest_in_sample": "2018-04-19"
+    }
+  ]
+}

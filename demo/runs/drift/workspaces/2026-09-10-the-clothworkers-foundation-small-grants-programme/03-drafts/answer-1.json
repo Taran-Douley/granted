@@ -1,0 +1,59 @@
+{
+  "question": "What difference will this funding make to the people you work with, and how will you know? Give us evidence from your existing work.",
+  "answer": "The funding will address a critical operational constraint that currently limits our ability to serve members reliably. Our commercial freezer, installed in 2016, fails monthly and restricts the volume and variety of meals we can prepare for our three weekly sittings. A replacement will let us maintain consistent service to the 1,120 individuals and 410 households we reached in 2025-26, and expand capacity.\n\nWe will know this funding makes a difference because we track outcomes rigorously. Our beneficiary survey, run twice yearly since 2022, shows that 74% of surveyed members reported eating at least one hot meal a day more often than before attending. We will measure the impact of the replacement freezer by comparing meal volume and member feedback before and after installation, using the same survey methodology we have embedded in our practice.\n\nWe also measure impact through our Food Pantry membership model. Members report an average £61 monthly reduction in food spend. This outcome came from a self-reported survey (n=74) that ran in January 2026. Improved freezer capacity will allow us to stock a greater range of produce, which should increase the food value available to pantry members and deepen these savings.\n\nOur approach is grounded in independent evaluation. Southwark Impact Partnership published an independent evaluation of our work in June 2025. We also submit quarterly monitoring returns to Southwark Council, a practice we have maintained since 2021. These systems mean we will capture and report the operational and member-level impact of this capital investment within our existing evidence framework.",
+  "claims": [
+    {
+      "text": "Our commercial freezer, installed in 2016, fails monthly and restricts the volume and variety of meals we can prepare for our three weekly sittings.",
+      "source_heading": "Funding history",
+      "source_line": "Currently unfunded for: replacement commercial freezer (the 2016 unit fails monthly)",
+      "grounded": true
+    },
+    {
+      "text": "The 1,120 individuals and 410 households we reached in 2025-26",
+      "source_heading": "Scale",
+      "source_line": "Beneficiaries reached 2025-26: 1,120 individuals, 410 households",
+      "grounded": true
+    },
+    {
+      "text": "74% of surveyed members reported eating at least one hot meal a day more often than before attending.",
+      "source_heading": "Community meals",
+      "source_line": "Outcome: 74% of surveyed members (n=180) reported eating at least one hot meal a day more often than before attending",
+      "grounded": true
+    },
+    {
+      "text": "Our beneficiary survey, run twice yearly since 2022",
+      "source_heading": "Evidence and evaluation",
+      "source_line": "Beneficiary survey run twice yearly since 2022, response rate 31%",
+      "grounded": true
+    },
+    {
+      "text": "Members report an average £61 monthly reduction in food spend.",
+      "source_heading": "Food pantry",
+      "source_line": "Outcome: members reported an average £61 monthly reduction in food spend (self-reported, n=74, survey ran Jan 2026)",
+      "grounded": true
+    },
+    {
+      "text": "Southwark Impact Partnership published an independent evaluation of our work in June 2025.",
+      "source_heading": "Evidence and evaluation",
+      "source_line": "Independent evaluation by Southwark Impact Partnership, published June 2025",
+      "grounded": true
+    },
+    {
+      "text": "We submit quarterly monitoring returns to Southwark Council, a practice we have maintained since 2021.",
+      "source_heading": "Evidence and evaluation",
+      "source_line": "Quarterly monitoring returns submitted to Southwark Council since 2021",
+      "grounded": true
+    },
+    {
+      "text": "We deliver three sittings a week from Rye Lane Baptist Hall",
+      "source_heading": "Community meals",
+      "source_line": "Delivery: three sittings a week from Rye Lane Baptist Hall, no referral needed",
+      "grounded": true
+    }
+  ],
+  "unevidenced_gaps": [
+    "How many additional members or meals the replacement freezer would enable us to serve (growth projection)",
+    "Whether the van funding is being requested in this application or separately",
+    "Timeline for implementation and measurement after funding receipt"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "b3116224027c": {
+    "funder": "The Clothworkers Foundation",
+    "programme": "Small Grants Programme",
+    "url": "https://example.org/clothworkers/small-grants",
+    "opens": "2026-08-01",
+    "closes": "2026-09-20",
+    "amount_max": 30000,
+    "summary": "Capital grants to smaller UK charities for buildings, equipment and vehicles. Priority areas include disadvantaged minority communities, domestic and sexual violence, and provision for people facing financial hardship.",
+    "first_seen": "2026-09-10",
+    "last_seen": "2026-09-10",
+    "status": "closing_soon",
+    "fit_score": 72,
+    "questions": [
+      "What difference will this funding make to the people you work with, and how will you know? Give us evidence from your existing work.",
+      "How is your organisation rooted in the community it serves?"
+    ],
+    "notified_states": [
+      "new",
+      "closing_soon"
+    ],
+    "workspace": "demo/runs/drift/workspaces/2026-09-10-the-clothworkers-foundation-small-grants-programme"
+  },
+  "c26a5db18c12": {
+    "funder": "The Clothworkers Foundation",
+    "programme": "Proactive Programme",
+    "url": "https://example.org/clothworkers/proactive",
+    "opens": "2026-07-15",
+    "closes": "2026-09-13",
+    "amount_max": 250000,
+    "summary": "Invitation-only strategic funding for organisations with a turnover above \u00a31m and a national footprint.",
+    "first_seen": "2026-09-10",
+    "last_seen": "2026-09-10",
+    "status": "final_call",
+    "fit_score": null,
+    "questions": [],
+    "notified_states": [],
+    "workspace": null
+  },
+  "c4fdb465f6a5": {
+    "funder": "The Clothworkers Foundation",
+    "programme": "Emergency Winter Response",
+    "url": "https://example.org/clothworkers/winter",
+    "opens": "2026-09-01",
+    "closes": "2026-09-12",
+    "amount_max": 3000,
+    "summary": "Small, fast grants for immediate winter pressures. Decisions within ten working days.",
+    "first_seen": "2026-09-10",
+    "last_seen": "2026-09-10",
+    "status": "final_call",
+    "fit_score": null,
+    "questions": [],
+    "notified_states": [],
+    "workspace": null
+  }
+}

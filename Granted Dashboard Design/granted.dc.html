@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Granted</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/organic-53c53784-fc7c-4fd2-9014-2cccfbbcbdb6/styles.css">
+  <script src="_ds/organic-53c53784-fc7c-4fd2-9014-2cccfbbcbdb6/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; background: #2e2b25; color: #201e1d; }
+    a { color: var(--color-accent-700); text-decoration: none; }
+    a:hover { color: var(--color-accent-800); text-decoration: underline; }
+    button { font: inherit; color: inherit; }
+    @keyframes gr-pulse { 0%, 100% { opacity: 1 } 50% { opacity: 0.35 } }
+    @media (max-width: 768px) {
+      #gr-shell { grid-template-columns: 1fr; }
+      #gr-nav { position: static; height: auto; }
+      #gr-nav-list { flex-direction: row; flex-wrap: wrap; }
+      #gr-nav-list li { flex: 1 1 auto; }
+      #gr-main { border-radius: 0; }
+      .gr-stack thead { display: none; }
+      .gr-stack tr { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--color-divider); }
+      .gr-stack td, .gr-stack th { border-bottom: 0; padding: 0; text-align: left; }
+    }
+  </style>
+</helmet>
+
+<div id="gr-shell" style="min-height: 100vh; display: grid; grid-template-columns: 232px minmax(0, 1fr); background: var(--color-neutral-900)">
+
+  <nav id="gr-nav" aria-label="Granted screens" style="padding: 24px 14px 18px; display: flex; flex-direction: column; gap: 20px; position: sticky; top: 0; height: 100vh; box-sizing: border-box">
+    <div style="display: flex; flex-direction: column; gap: 3px; padding: 0 10px">
+      <span style="font-family: var(--font-heading); font-size: 18px; color: var(--color-accent-300); letter-spacing: -0.01em">Granted</span>
+      <span style="font-size: 11px; color: var(--color-neutral-400)">{{meta.org}}</span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: var(--radius-md); background: {{feed.bg}}">
+      <span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 999px; background: {{feed.dot}}; flex: none; animation: gr-pulse 2.4s ease-in-out infinite"></span>
+      <div style="display: flex; flex-direction: column; gap: 1px; min-width: 0">
+        <span style="font-size: 10.5px; color: {{feed.ink}}; white-space: nowrap">{{feed.label}}</span>
+        <span style="font-size: 10px; color: var(--color-neutral-400); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{feed.sub}}</span>
+      </div>
+    </div>
+
+    <ul id="gr-nav-list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="7">
+        <li>
+          <button type="button" onClick="{{ n.go }}" aria-current="{{n.current}}" style="width: 100%; display: flex; align-items: center; gap: 9px; padding: 8px 12px; border-radius: 999px; border: none; cursor: pointer; font-size: 13.5px; text-align: left; background: {{n.bg}}; color: {{n.ink}}; font-weight: {{n.weight}}" style-hover="background: color-mix(in srgb, #f9f4ed 9%, transparent)">
+            <span style="flex: 1">{{n.label}}</span>
+            <span style="font-size: 10.5px; color: {{n.countInk}}; font-variant-numeric: tabular-nums; letter-spacing: 0.04em">{{n.count}}</span>
+          </button>
+        </li>
+      </sc-for>
+    </ul>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding: 0 10px">
+      <div style="display: flex; flex-direction: column; gap: 3px">
+        <span style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-500)">Workspace on disk</span>
+        <span style="font-size: 10px; line-height: 1.5; color: var(--color-neutral-400); word-break: break-all; font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{meta.workspace}}</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px; border-top: 1px solid color-mix(in srgb, #f9f4ed 12%, transparent); padding-top: 9px">
+        <span style="font-size: 10px; color: var(--color-neutral-400); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all">{{meta.model}}</span>
+        <span style="font-size: 10px; color: var(--color-neutral-400); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{meta.runLine}}</span>
+      </div>
+    </div>
+  </nav>
+
+  <main id="gr-main" style="background: var(--color-bg); border-radius: 24px 0 0 24px; min-width: 0; display: flex; flex-direction: column">
+
+    <header style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; padding: 20px clamp(18px, 3vw, 34px); border-bottom: 1px solid var(--color-divider)">
+      <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; min-width: 0; flex: 1">
+        <h1 style="margin: 0; font-size: 20px; white-space: nowrap">{{head.title}}</h1>
+        <p style="margin: 0; font-size: 12.5px; color: var(--color-neutral-700); text-wrap: pretty">{{head.sub}}</p>
+      </div>
+      <sc-if value="{{showActions}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; gap: 8px; align-items: center; flex: none; flex-wrap: wrap">
+          <span class="tag tag-accent" style="white-space: nowrap">Awaiting your yes</span>
+          <button type="button" class="btn btn-secondary" onClick="{{ decline }}" style="font-size: 13px; white-space: nowrap">Not this one</button>
+          <button type="button" class="btn btn-primary" onClick="{{ approve }}" style="font-size: 13px; white-space: nowrap">Approve — build the plan</button>
+        </div>
+      </sc-if>
+    </header>
+
+    <div style="padding: 24px clamp(18px, 3vw, 34px) 20px; display: flex; flex-direction: column; gap: 22px; min-width: 0; flex: 1">
+
+      <sc-if value="{{banner.show}}">
+        <div role="status" style="display: flex; gap: 12px; align-items: flex-start; background: {{banner.bg}}; border: 1px solid {{banner.border}}; border-radius: var(--radius-md); padding: 12px 16px">
+          <span class="tag {{banner.tagClass}}" style="flex: none; white-space: nowrap">{{banner.tag}}</span>
+          <p style="margin: 0; flex: 1; font-size: 13px; line-height: 1.5; color: {{banner.ink}}; text-wrap: pretty">{{banner.text}}</p>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isDecision}}" hint-placeholder-val="{{ true }}">
+        <section aria-label="Decision" style="display: flex; flex-direction: column; gap: 22px">
+
+          <sc-if value="{{loading}}">
+            <div role="status" style="display: flex; flex-direction: column; gap: 10px; background: var(--color-surface); border-radius: var(--radius-lg); padding: 26px clamp(20px, 3vw, 34px); max-width: 74ch">
+              <span style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700)">Reading the run file</span>
+              <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty">Nothing is shown until the agent's own file has been read. <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px">{{loadingUrl}}</span></p>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{silent.show}}">
+            <div style="display: flex; flex-direction: column; gap: 12px; background: var(--color-surface); border-radius: var(--radius-lg); padding: 30px clamp(20px, 3vw, 34px); max-width: 74ch">
+              <h2 style="margin: 0; font-size: clamp(26px, 3.4vw, 38px)">Nothing worth your time today.</h2>
+              <p style="margin: 0; font-size: 15px; line-height: 1.62; color: var(--color-neutral-800); text-wrap: pretty">{{silent.line}}</p>
+              <p style="margin: 0; font-size: 13px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty">An empty screen is indistinguishable from a crash, so here is the accounting. This is the product working: most days it produces nothing.</p>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{nearby.showQuiet}}">
+            <section aria-label="Funders active near you" style="display: flex; flex-direction: column; gap: 12px; max-width: 74ch">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                <h2 style="margin: 0; font-size: 19px">Funders active near you</h2>
+                <span style="font-size: 11.5px; color: var(--color-neutral-700)">{{nearby.where}}</span>
+              </div>
+              <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty">From their published award histories, these fund organisations near you. Their open calls are on their own websites: a list worth a look, not a decision.</p>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+                <sc-for list="{{nearby.items}}" as="s" hint-placeholder-count="4">
+                  <li style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap; background: var(--color-surface); border-radius: var(--radius-md); padding: 13px 16px">
+                    <span style="flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 2px">
+                      <a href="{{s.link}}" target="_blank" rel="noopener" style="font-size: 14.5px; font-weight: 600">{{s.name}}</a>
+                      <span style="font-size: 11.5px; color: var(--color-neutral-800); text-wrap: pretty">{{s.detail}}</span>
+                    </span>
+                    <span class="tag tag-outline" style="flex: none; white-space: nowrap">{{s.tag}}</span>
+                  </li>
+                </sc-for>
+              </ul>
+            </section>
+          </sc-if>
+
+          <sc-if value="{{decision.show}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 22px">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr)); gap: 12px">
+                <sc-for list="{{metrics}}" as="m" hint-placeholder-count="5">
+                  <div style="background: {{m.bg}}; border: 1px solid {{m.border}}; border-radius: var(--radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 3px">
+                    <span style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: {{m.labelInk}}">{{m.label}}</span>
+                    <span style="font-family: var(--font-heading); font-size: 26px; line-height: 1.1; color: {{m.ink}}; font-variant-numeric: tabular-nums">{{m.value}}<span style="font-family: var(--font-body); font-size: 13px; font-weight: 400; color: {{m.labelInk}}"> {{m.unit}}</span></span>
+                    <span style="font-size: 11px; color: {{m.labelInk}}">{{m.note}}</span>
+                  </div>
+                </sc-for>
+              </div>
+
+              <sc-if value="{{showTrace}}" hint-placeholder-val="{{ true }}">
+                <ol aria-label="What the run did" style="list-style: none; margin: 0; padding: 11px 16px; display: flex; align-items: center; gap: 10px 0; flex-wrap: wrap; background: var(--color-neutral-200); border-radius: var(--radius-md)">
+                  <sc-for list="{{trace}}" as="t" hint-placeholder-count="4">
+                    <li style="display: flex; align-items: center; gap: 10px">
+                      <span style="display: flex; flex-direction: column; gap: 1px; padding-right: 14px">
+                        <span style="font-size: 12px; color: var(--color-neutral-900); font-weight: 600">{{t.step}}</span>
+                        <span style="font-size: 10.5px; color: var(--color-neutral-700); font-variant-numeric: tabular-nums">{{t.cost}}</span>
+                      </span>
+                      <sc-if value="{{t.arrow}}" hint-placeholder-val="{{ true }}">
+                        <span aria-hidden="true" style="color: var(--color-neutral-700); font-size: 15px; padding-right: 14px">&rarr;</span>
+                      </sc-if>
+                    </li>
+                  </sc-for>
+                </ol>
+              </sc-if>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; min-width: 0">
+                <article class="card elev-sm" style="padding: 20px; gap: 12px; min-width: 0">
+                  <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                    <span class="card-kicker">The recommendation</span>
+                    <span style="font-size: 10.5px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">01-decision/match.json</span>
+                  </div>
+                  <h2 style="margin: 0; font-size: 23px; line-height: 1.15">{{decision.programme}}</h2>
+                  <p style="margin: 0; font-size: 13px; color: var(--color-neutral-700)">{{decision.funder}} · closes {{decision.closesLong}}</p>
+                  <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px">
+                    <sc-for list="{{decision.reasons}}" as="r" hint-placeholder-count="3">
+                      <li style="display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; line-height: 1.55; color: var(--color-neutral-900); text-wrap: pretty">
+                        <span aria-hidden="true" style="color: var(--color-accent-2-600); flex: none">&bull;</span>
+                        <span>{{r.text}}</span>
+                      </li>
+                    </sc-for>
+                  </ul>
+                  <div style="display: flex; flex-direction: column; gap: 5px; border-top: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent); padding-top: 11px">
+                    <span style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700)">Not a probability</span>
+                    <p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">{{decision.notProbability}}</p>
+                  </div>
+                </article>
+
+                <section aria-label="Eligibility checks" style="display: flex; flex-direction: column; gap: 11px; min-width: 0">
+                  <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                    <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{decision.checksLabel}}</h2>
+                    <span style="font-size: 11px; color: var(--color-neutral-700)">{{decision.checksSplit}}</span>
+                  </div>
+                  <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+                    <sc-for list="{{decision.checks}}" as="r" hint-placeholder-count="6">
+                      <li style="display: flex; gap: 11px; align-items: flex-start; background: {{r.bg}}; border-left: 3px solid {{r.edge}}; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 10px 13px">
+                        <span style="flex: 1; font-size: 13px; line-height: 1.5; color: var(--color-neutral-900); text-wrap: pretty">{{r.text}}</span>
+                        <span class="tag {{r.tagClass}}" style="flex: none; white-space: nowrap">{{r.confidence}}</span>
+                      </li>
+                    </sc-for>
+                  </ul>
+                </section>
+              </div>
+
+              <sc-if value="{{decision.hasStats}}">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; min-width: 0">
+                  <section aria-label="Funder award history" style="display: flex; flex-direction: column; gap: 11px; min-width: 0">
+                    <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{decision.statsLabel}}</h2>
+                    <table class="table gr-stack">
+                      <tbody>
+                        <sc-for list="{{decision.stats}}" as="f" hint-placeholder-count="5">
+                          <tr>
+                            <th scope="row" style="font-size: 12.5px; color: var(--color-neutral-700); padding-left: 0; font-weight: 400; text-transform: none; letter-spacing: 0; border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent)">{{f.label}}</th>
+                            <td style="font-size: 12.5px; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; padding-right: 0">{{f.value}}</td>
+                          </tr>
+                        </sc-for>
+                      </tbody>
+                    </table>
+                    <p style="margin: 0; font-size: 11px; color: var(--color-neutral-700); font-style: italic">{{decision.statsSource}}</p>
+                  </section>
+
+                  <section aria-label="Where the funder's money goes" style="display: flex; flex-direction: column; gap: 11px; min-width: 0">
+                    <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">Where their money goes</h2>
+                    <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px">
+                      <sc-for list="{{decision.regions}}" as="r" hint-placeholder-count="5">
+                        <li style="display: flex; align-items: center; gap: 10px">
+                          <span style="font-size: 11.5px; width: 74px; flex: none; color: {{r.ink}}; font-weight: {{r.weight}}">{{r.name}}</span>
+                          <span style="flex: 1; height: 8px; border-radius: 999px; background: var(--color-neutral-300); overflow: hidden">
+                            <span style="display: block; height: 100%; border-radius: 999px; width: {{r.width}}; background: {{r.bar}}"></span>
+                          </span>
+                          <span style="font-size: 11px; color: var(--color-neutral-700); width: 18px; text-align: right; font-variant-numeric: tabular-nums">{{r.n}}</span>
+                        </li>
+                      </sc-for>
+                    </ul>
+                    <p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">{{decision.regionNote}}</p>
+                  </section>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isRadar}}">
+        <section aria-label="Radar" style="display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
+            <p style="margin: 0; font-size: 13px; color: var(--color-neutral-800); text-wrap: pretty">{{radar.line}}</p>
+            <span style="font-size: 11px; color: var(--color-neutral-700); font-variant-numeric: tabular-nums; white-space: nowrap">{{radar.bands}}</span>
+          </div>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+            <sc-for list="{{calls}}" as="c" hint-placeholder-count="3">
+              <li>
+                <article style="border: {{c.border}}; border-radius: var(--radius-md); background: {{c.bg}}; overflow: hidden">
+                  <button type="button" onClick="{{ c.pick }}" aria-expanded="{{c.expanded}}" style="width: 100%; border: none; background: transparent; cursor: pointer; padding: 14px 16px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; text-align: left" style-hover="background: color-mix(in srgb, var(--color-text) 4%, transparent)">
+                    <span class="tag {{c.bandClass}}" style="flex: none; width: 62px; justify-content: center; white-space: nowrap">{{c.band}}</span>
+                    <span style="flex: 1; min-width: 170px; display: flex; flex-direction: column; gap: 1px">
+                      <span style="font-size: 15px; font-weight: 600; color: {{c.ink}}">{{c.programme}}</span>
+                      <span style="font-size: 11.5px; color: var(--color-neutral-700)">{{c.funder}} · {{c.state}}</span>
+                    </span>
+                    <span style="font-size: 12px; color: var(--color-neutral-800); font-variant-numeric: tabular-nums; width: 104px; text-align: right">{{c.closes}}</span>
+                    <span style="font-family: var(--font-heading); font-size: 19px; color: {{c.fitInk}}; font-variant-numeric: tabular-nums; width: 48px; text-align: right">{{c.fit}}</span>
+                  </button>
+                  <sc-if value="{{c.open}}">
+                    <div style="padding: 4px 16px 16px; display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--color-divider)">
+                      <sc-if value="{{c.vetoed}}">
+                        <div style="display: flex; gap: 11px; align-items: flex-start; background: var(--color-accent-200); border-left: 3px solid var(--color-accent-600); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 11px 13px; margin-top: 10px">
+                          <span class="tag tag-outline" style="flex: none; white-space: nowrap">Vetoed</span>
+                          <p style="margin: 0; flex: 1; font-size: 13px; line-height: 1.55; color: var(--color-accent-900); text-wrap: pretty">{{c.vetoed}}</p>
+                        </div>
+                      </sc-if>
+                      <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; padding-top: 6px">
+                        <sc-for list="{{c.reasons}}" as="r" hint-placeholder-count="3">
+                          <li style="display: flex; gap: 10px; align-items: flex-start">
+                            <span aria-hidden="true" style="color: {{r.mark}}; flex: none; font-size: 13px; width: 12px">{{r.sign}}</span>
+                            <span style="flex: 1; font-size: 13px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">{{r.text}}</span>
+                          </li>
+                        </sc-for>
+                      </ul>
+                      <p style="margin: 0; font-size: 11.5px; color: var(--color-neutral-700); font-style: italic">{{c.cost}}</p>
+                      <a href="{{c.url}}" target="_blank" rel="noopener" style="font-size: 11.5px; word-break: break-all">{{c.url}}</a>
+                    </div>
+                  </sc-if>
+                </article>
+              </li>
+            </sc-for>
+          </ul>
+          <p style="margin: 0; font-size: 13px; line-height: 1.6; color: var(--color-neutral-800); border-top: 1px solid var(--color-divider); padding-top: 14px; text-wrap: pretty">{{radar.foot}}</p>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isAngle}}">
+        <section aria-label="Angle" style="display: flex; flex-direction: column; gap: 20px">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+            <article class="card elev-sm" style="padding: 20px; gap: 12px">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                <span class="card-kicker">The angle, verbatim</span>
+                <span style="font-size: 10.5px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">02-direction/angle.md</span>
+              </div>
+              <sc-for list="{{direction}}" as="d" hint-placeholder-count="3">
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.66; color: {{d.ink}}; text-wrap: pretty">{{d.text}}</p>
+              </sc-for>
+              <p style="margin: 0; font-size: 12px; color: var(--color-neutral-700); border-top: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent); padding-top: 10px">Edit that file and the next run reads your version.</p>
+            </article>
+
+            <div style="display: flex; flex-direction: column; gap: 18px">
+              <section aria-label="Voice check" style="display: flex; flex-direction: column; gap: 12px">
+                <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{voice.heading}}</h2>
+                <div class="card" style="padding: 18px; gap: 9px; background: {{voice.bg}}">
+                  <p style="margin: 0; font-size: 13px; line-height: 1.55; color: {{voice.ink}}; text-wrap: pretty">{{voice.flagLine}}</p>
+                  <p style="margin: 0; font-size: 12px; line-height: 1.5; color: {{voice.subInk}}">{{voice.note}}</p>
+                </div>
+                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px">
+                  <sc-for list="{{voice.facts}}" as="f" hint-placeholder-count="2">
+                    <li style="display: flex; justify-content: space-between; gap: 12px; font-size: 12.5px; border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent); padding-bottom: 7px">
+                      <span style="color: var(--color-neutral-700)">{{f.label}}</span>
+                      <span style="font-weight: 600; font-variant-numeric: tabular-nums; text-align: right">{{f.value}}</span>
+                    </li>
+                  </sc-for>
+                </ul>
+              </section>
+
+              <section aria-label="Gaps before you start" style="display: flex; flex-direction: column; gap: 11px">
+                <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); font-family: var(--font-body); font-weight: 600">{{gapsLabel}}</h2>
+                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px">
+                  <sc-for list="{{gapList}}" as="g" hint-placeholder-count="2">
+                    <li style="background: var(--color-accent-100); border-left: 3px solid var(--color-accent-500); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 11px 13px; font-size: 13px; line-height: 1.55; color: var(--color-accent-900); text-wrap: pretty">{{g.text}}</li>
+                  </sc-for>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isPlan}}">
+        <section aria-label="Plan" style="display: flex; flex-direction: column; gap: 20px">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr)); gap: 12px">
+            <sc-for list="{{planStats}}" as="s" hint-placeholder-count="4">
+              <div style="background: {{s.bg}}; border: 1px solid {{s.border}}; border-radius: var(--radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 3px">
+                <span style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: {{s.labelInk}}">{{s.label}}</span>
+                <span style="font-family: var(--font-heading); font-size: 24px; line-height: 1.1; color: {{s.ink}}; font-variant-numeric: tabular-nums">{{s.value}}<span style="font-family: var(--font-body); font-size: 13px; font-weight: 400; color: {{s.labelInk}}"> {{s.unit}}</span></span>
+                <span style="font-size: 11px; color: {{s.labelInk}}">{{s.note}}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{flight.show}}">
+            <div style="display: flex; flex-direction: column; gap: 10px; background: {{flight.bg}}; border: 1px solid {{flight.border}}; border-radius: var(--radius-md); padding: 16px">
+              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap">
+                <span class="tag {{flight.tagClass}}" style="flex: none; white-space: nowrap">{{flight.tag}}</span>
+                <span style="font-size: 11px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">watcher_state.in_flight.summary</span>
+              </div>
+              <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: {{flight.ink}}; text-wrap: pretty">{{flight.summary}}</p>
+              <sc-if value="{{flight.showWithdraw}}">
+                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 2px">
+                  <button type="button" class="btn btn-primary" style="font-size: 13px; white-space: nowrap">Withdraw and keep the time</button>
+                  <button type="button" class="btn btn-secondary" style="font-size: 13px; white-space: nowrap">Commit someone this week</button>
+                  <span style="font-size: 11.5px; color: var(--color-neutral-800)">recommending withdrawal is a legitimate output</span>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <ol aria-label="Steps back from the deadline" style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0">
+            <sc-for list="{{flow}}" as="f" hint-placeholder-count="8">
+              <li style="display: grid; grid-template-columns: minmax(88px, auto) 30px minmax(0, 1fr); align-items: stretch; column-gap: 12px">
+                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 1px; padding-top: 12px">
+                  <span style="font-size: 13px; font-weight: 600; color: {{f.dateInk}}; font-variant-numeric: tabular-nums; white-space: nowrap">{{f.date}}</span>
+                  <span style="font-size: 10.5px; color: var(--color-neutral-700); font-variant-numeric: tabular-nums; white-space: nowrap">{{f.away}}</span>
+                </div>
+
+                <div aria-hidden="true" style="display: flex; flex-direction: column; align-items: center; gap: 0">
+                  <span style="width: 2px; height: 12px; background: {{f.railTop}}"></span>
+                  <button type="button" onClick="{{ f.toggle }}" aria-label="{{f.toggleLabel}}" style="width: 26px; height: 26px; border-radius: 999px; flex: none; cursor: {{f.cursor}}; display: grid; place-items: center; background: {{f.nodeBg}}; border: 2px solid {{f.nodeBorder}}; color: {{f.nodeInk}}; font-size: 13px; font-weight: 700; line-height: 1; padding: 0" style-hover="filter: brightness(0.95)">{{f.nodeMark}}</button>
+                  <span style="width: 2px; flex: 1; min-height: 14px; background: {{f.railBottom}}"></span>
+                </div>
+
+                <div style="padding: 6px 0 14px">
+                  <div style="background: {{f.cardBg}}; border: 1px solid {{f.cardBorder}}; border-radius: var(--radius-md); padding: 12px 15px; display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap">
+                    <div style="flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: 5px">
+                      <span style="font-size: 13.5px; line-height: 1.5; color: {{f.taskInk}}; text-decoration: {{f.strike}}; text-wrap: pretty; font-weight: {{f.taskWeight}}">{{f.task}}</span>
+                      <span style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap">
+                        <span class="tag {{f.ownerTag}}" style="flex: none; white-space: nowrap">{{f.owner}}</span>
+                        <sc-if value="{{f.stateLabel}}">
+                          <span style="font-size: 11px; color: {{f.stateInk}}; font-weight: 600">{{f.stateLabel}}</span>
+                        </sc-if>
+                      </span>
+                    </div>
+                    <sc-if value="{{f.gateLabel}}">
+                      <span style="font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-700); flex: none; padding-top: 2px; text-align: right; white-space: nowrap">{{f.gateLabel}}</span>
+                    </sc-if>
+                  </div>
+                </div>
+              </li>
+            </sc-for>
+          </ol>
+
+          <div style="border-top: 1px solid var(--color-divider); padding-top: 14px; display: flex; flex-direction: column; gap: 6px">
+            <p style="margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty" aria-live="polite">{{localNote}}</p>
+            <span style="font-size: 11.5px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">ticking a step writes 05-timeline/done.txt · the next run reads it</span>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isDrafts}}">
+        <section aria-label="Drafts" style="display: flex; flex-direction: column; gap: 18px">
+          <div style="background: var(--color-neutral-200); border-radius: var(--radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+            <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">The funder's question, verbatim</h2>
+            <p style="margin: 0; font-size: 14.5px; line-height: 1.55; text-wrap: pretty">{{draft.question}}</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; min-width: 0">
+            <article style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+                <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); white-space: nowrap; font-family: var(--font-body); font-weight: 600">Draft answer</h2>
+                <span style="font-size: 11px; color: var(--color-neutral-700); text-wrap: pretty">click a number to see the line it came from</span>
+              </div>
+              <sc-for list="{{paras}}" as="p" hint-placeholder-count="5">
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.72; color: var(--color-text); text-wrap: pretty">
+                  <sc-for list="{{p.segs}}" as="s" hint-placeholder-count="3">
+                    <span style="background: {{s.bg}}; border-bottom: {{s.rule}}">{{s.t}}</span><sc-if value="{{s.n}}"><sup><button type="button" onClick="{{ s.click }}" aria-label="{{s.label}}" style="cursor: pointer; border: none; background: transparent; padding: 0 1px 0 2px; font-size: 10px; font-weight: 700; color: {{s.supInk}}; font-variant-numeric: tabular-nums">{{s.n}}</button></sup></sc-if>
+                  </sc-for>
+                </p>
+              </sc-for>
+              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; border-top: 1px solid var(--color-divider); padding-top: 14px">
+                <button type="button" class="btn btn-primary" style="font-size: 13px; white-space: nowrap">Accept this answer</button>
+                <button type="button" class="btn btn-secondary" style="font-size: 13px; white-space: nowrap">Edit before saving</button>
+                <span style="font-size: 11.5px; color: var(--color-neutral-800)">nothing is saved until you say so</span>
+              </div>
+            </article>
+
+            <aside style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
+              <div class="card elev-sm" style="padding: 18px; gap: 10px; background: var(--color-accent-2-100)">
+                <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+                  <span class="card-kicker" style="color: var(--color-accent-2-700)">Grounding</span>
+                  <span style="font-size: 11px; color: var(--color-accent-2-800); font-variant-numeric: tabular-nums">{{grounding.label}}</span>
+                </div>
+                <div aria-hidden="true" style="display: flex; gap: 3px; height: 7px">
+                  <sc-for list="{{bars}}" as="b" hint-placeholder-count="11">
+                    <span style="flex: 1; border-radius: 999px; background: {{b.fill}}"></span>
+                  </sc-for>
+                </div>
+                <p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--color-accent-2-900); text-wrap: pretty">Every figure resolves to a line number a trustee can open. The one thing it could not ground became a question for you, not a footnote nobody can follow.</p>
+              </div>
+
+              <div class="card elev-sm" style="padding: 18px; gap: 8px; min-height: 128px" aria-live="polite">
+                <span class="card-kicker">{{cite.kicker}}</span>
+                <p style="margin: 0; font-size: 13px; font-weight: 600; line-height: 1.45; text-wrap: pretty">{{cite.claim}}</p>
+                <blockquote style="margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--color-neutral-800); font-style: italic; text-wrap: pretty">{{cite.quote}}</blockquote>
+                <span style="font-size: 11px; color: var(--color-accent-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{cite.locator}}</span>
+              </div>
+
+              <section aria-label="All sources" style="display: flex; flex-direction: column; gap: 8px">
+                <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">Sources</h2>
+                <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+                  <sc-for list="{{sourceList}}" as="s" hint-placeholder-count="11">
+                    <li>
+                      <button type="button" onClick="{{ s.click }}" style="width: 100%; display: flex; gap: 9px; align-items: baseline; border: none; background: {{s.bg}}; border-radius: var(--radius-sm); padding: 5px 8px; cursor: pointer; text-align: left" style-hover="background: var(--color-neutral-200)">
+                        <span style="font-size: 10.5px; font-weight: 700; color: var(--color-accent-700); font-variant-numeric: tabular-nums; flex: none">{{s.n}}</span>
+                        <span style="flex: 1; font-size: 11.5px; color: var(--color-neutral-800); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{s.locator}}</span>
+                      </button>
+                    </li>
+                  </sc-for>
+                </ol>
+              </section>
+
+              <section aria-label="Needs a human" style="display: flex; flex-direction: column; gap: 9px">
+                <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-700); font-family: var(--font-body); font-weight: 600">{{needsHumanLabel}}</h2>
+                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+                  <sc-for list="{{needsHuman}}" as="g" hint-placeholder-count="1">
+                    <li style="font-size: 13px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">{{g.text}}</li>
+                  </sc-for>
+                </ul>
+              </section>
+            </aside>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isPortfolio}}">
+        <section aria-label="Portfolio" style="display: flex; flex-direction: column; gap: 22px">
+          <sc-if value="{{changes.show}}">
+            <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+              <sc-for list="{{changes.items}}" as="c" hint-placeholder-count="1">
+                <li style="display: flex; gap: 13px; align-items: flex-start; background: {{c.bg}}; border: 1px solid {{c.border}}; border-radius: var(--radius-md); padding: 14px 16px">
+                  <span class="tag {{c.tagClass}}" style="flex: none; white-space: nowrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{c.kind}}</span>
+                  <div style="flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0">
+                    <p style="margin: 0; font-size: 13.5px; line-height: 1.5; color: {{c.ink}}; text-wrap: pretty">{{c.line}}</p>
+                    <p style="margin: 0; font-size: 11.5px; color: {{c.subInk}}">Work already in flight outranks any new opportunity. Run it again with nothing changed and it says nothing at all — the register remembers what it has already told you.</p>
+                  </div>
+                </li>
+              </sc-for>
+            </ul>
+          </sc-if>
+
+          <section aria-label="Bids in flight" style="display: flex; flex-direction: column; gap: 11px">
+            <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{portfolio.inFlightLabel}}</h2>
+            <table class="table gr-stack">
+              <thead>
+                <tr>
+                  <th scope="col" style="padding-left: 0">Programme</th>
+                  <th scope="col">Band</th>
+                  <th scope="col">Watcher</th>
+                  <th scope="col" style="text-align: right">Ask</th>
+                  <th scope="col" style="text-align: right">Fit</th>
+                  <th scope="col" style="text-align: right; padding-right: 0">Closes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{portfolio.inFlight}}" as="r" hint-placeholder-count="1">
+                  <tr>
+                    <th scope="row" style="padding-left: 0; font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 14px; border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent)">{{r.programme}}<br><span style="font-size: 11.5px; color: var(--color-neutral-700); font-weight: 400">{{r.funder}}</span></th>
+                    <td><span class="tag {{r.bandClass}}" style="white-space: nowrap">{{r.band}}</span></td>
+                    <td><span class="tag tag-neutral" style="white-space: nowrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{r.watcher}}</span></td>
+                    <td style="text-align: right; font-variant-numeric: tabular-nums">{{r.ask}}</td>
+                    <td style="text-align: right; font-variant-numeric: tabular-nums">{{r.fit}}</td>
+                    <td style="text-align: right; padding-right: 0; font-variant-numeric: tabular-nums">{{r.closes}}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </section>
+
+          <section aria-label="Watcher lifecycle" style="display: flex; flex-direction: column; gap: 11px">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+              <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">What would make it speak again</h2>
+              <span style="font-size: 11px; color: var(--color-neutral-700)">{{portfolio.watcherLine}}</span>
+            </div>
+            <ul style="list-style: none; margin: 0; padding: 0; display: flex; gap: 8px; flex-wrap: wrap">
+              <sc-for list="{{lifecycle}}" as="l" hint-placeholder-count="8">
+                <li style="display: flex; align-items: center; gap: 7px; border: 1px solid {{l.border}}; background: {{l.bg}}; border-radius: 999px; padding: 5px 12px">
+                  <span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 999px; background: {{l.dot}}; flex: none"></span>
+                  <span style="font-size: 11.5px; color: {{l.ink}}; font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{l.name}}</span>
+                  <span style="font-size: 10.5px; color: var(--color-neutral-700); white-space: nowrap">{{l.note}}</span>
+                </li>
+              </sc-for>
+            </ul>
+            <p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">Five of these eight surface to you. The other three are tracked silently — a call opening or closing on schedule is not news.</p>
+          </section>
+
+          <sc-if value="{{portfolio.hasRejected}}">
+            <section aria-label="Calls not pursued" style="display: flex; flex-direction: column; gap: 11px">
+              <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{portfolio.notPursuedLabel}}</h2>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px">
+                <sc-for list="{{portfolio.rejected}}" as="r" hint-placeholder-count="2">
+                  <li style="display: flex; gap: 14px; align-items: flex-start; border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent); padding-bottom: 11px; flex-wrap: wrap">
+                    <span style="min-width: 190px; display: flex; flex-direction: column; gap: 3px; line-height: 1.4">
+                      <span style="font-size: 13.5px; color: var(--color-neutral-700); text-decoration: line-through">{{r.programme}}</span>
+                      <span style="font-size: 11px; color: var(--color-accent-700); font-weight: 600">{{r.meta}}</span>
+                    </span>
+                    <span style="flex: 1; min-width: 220px; font-size: 12.5px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">{{r.reason}}</span>
+                  </li>
+                </sc-for>
+              </ul>
+            </section>
+          </sc-if>
+
+          <section aria-label="Outcome loop and track record" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px">
+            <article class="card elev-sm" style="padding: 18px; gap: 10px">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+                <span class="card-kicker">The outcome loop</span>
+                <span style="font-size: 10.5px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">06-submitted/outcome.meta.json</span>
+              </div>
+              <p style="margin: 0; font-size: 13px; line-height: 1.55; text-wrap: pretty">Outcome is <strong>{{outcomeStatus}}</strong>, and {{outcomeUnknownLine}}. When you hear back, record it — and paste the assessor's feedback verbatim, good or bad. That is the only thing that makes the next decision better instead of staler.</p>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px">
+                <sc-for list="{{outcomes}}" as="o" hint-placeholder-count="3">
+                  <button type="button" onClick="{{ o.pick }}" class="btn {{o.btnClass}}" style="font-size: 12.5px; white-space: nowrap">{{o.label}}</button>
+                </sc-for>
+              </div>
+              <p style="margin: 0; font-size: 11.5px; color: var(--color-neutral-800)" aria-live="polite">{{outcomeNote}}</p>
+            </article>
+
+            <section aria-label="Your own record" style="display: flex; flex-direction: column; gap: 11px">
+              <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{record.heading}}</h2>
+              <sc-if value="{{record.cold}}">
+                <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty">No outcomes are recorded yet, so there is no track record to show. Point Granted at a folder of past bids, or record the outcome of this one, and this panel starts working.</p>
+              </sc-if>
+              <sc-if value="{{record.show}}" hint-placeholder-val="{{ true }}">
+                <div style="display: flex; flex-direction: column; gap: 12px">
+                  <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; background: var(--color-surface); border-radius: var(--radius-md); padding: 14px 16px">
+                    <span style="font-family: var(--font-heading); font-size: 30px; line-height: 1; font-variant-numeric: tabular-nums">{{record.rate}}</span>
+                    <span style="font-size: 12.5px; color: var(--color-neutral-800); font-weight: 600">{{record.qualifier}}</span>
+                  </div>
+                  <dl style="margin: 0; display: flex; gap: 22px; flex-wrap: wrap">
+                    <sc-for list="{{record.stats}}" as="r" hint-placeholder-count="3">
+                      <div style="display: flex; flex-direction: column; gap: 1px">
+                        <dd style="margin: 0; font-family: var(--font-heading); font-size: 22px; line-height: 1.1; font-variant-numeric: tabular-nums">{{r.value}}</dd>
+                        <dt style="font-size: 11px; color: var(--color-neutral-700)">{{r.label}}</dt>
+                      </div>
+                    </sc-for>
+                  </dl>
+                  <p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--color-neutral-800); text-wrap: pretty">{{record.note}}</p>
+                </div>
+              </sc-if>
+            </section>
+          </section>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{isArchive}}">
+        <section aria-label="Archive" style="display: flex; flex-direction: column; gap: 22px">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(158px, 1fr)); gap: 12px">
+            <sc-for list="{{archiveStats}}" as="s" hint-placeholder-count="4">
+              <div style="background: {{s.bg}}; border: 1px solid {{s.border}}; border-radius: var(--radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 3px">
+                <span style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: {{s.labelInk}}">{{s.label}}</span>
+                <span style="font-family: var(--font-heading); font-size: 24px; line-height: 1.1; color: {{s.ink}}; font-variant-numeric: tabular-nums">{{s.value}}<span style="font-family: var(--font-body); font-size: 13px; font-weight: 400; color: {{s.labelInk}}"> {{s.unit}}</span></span>
+                <span style="font-size: 11px; color: {{s.labelInk}}">{{s.note}}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{revisit.show}}">
+            <section aria-label="Funders won from but not approached since" style="display: flex; flex-direction: column; gap: 12px">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                <h2 style="margin: 0; font-size: 19px">Won from, but not approached since</h2>
+                <span style="font-size: 11.5px; color: var(--color-neutral-700)">stale after 550 days of no contact</span>
+              </div>
+              <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty; max-width: 74ch">A funder who said yes and was never approached again is money left on the table. The test is chronological: no submission to them dated after the one they awarded.</p>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+                <sc-for list="{{revisit.items}}" as="s" hint-placeholder-count="3">
+                  <li style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap; background: var(--color-accent-2-100); border-radius: var(--radius-md); padding: 13px 16px">
+                    <span style="flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 2px">
+                      <span style="font-size: 14.5px; font-weight: 600; color: var(--color-accent-2-900)">{{s.funder}}</span>
+                      <span style="font-size: 11.5px; color: var(--color-accent-2-800); text-wrap: pretty">{{s.detail}}</span>
+                    </span>
+                    <span class="tag tag-outline" style="flex: none; white-space: nowrap">Worth revisiting</span>
+                  </li>
+                </sc-for>
+              </ul>
+            </section>
+          </sc-if>
+
+          <sc-if value="{{nearby.show}}">
+            <section aria-label="Funders active near you" style="display: flex; flex-direction: column; gap: 12px; max-width: 74ch">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+                <h2 style="margin: 0; font-size: 19px">Funders active near you</h2>
+                <span style="font-size: 11.5px; color: var(--color-neutral-700)">{{nearby.where}}</span>
+              </div>
+              <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--color-neutral-800); text-wrap: pretty">From their published award histories, these fund organisations near you. Their open calls are on their own websites: a list worth a look, not a decision.</p>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+                <sc-for list="{{nearby.items}}" as="s" hint-placeholder-count="4">
+                  <li style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap; background: var(--color-surface); border-radius: var(--radius-md); padding: 13px 16px">
+                    <span style="flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 2px">
+                      <a href="{{s.link}}" target="_blank" rel="noopener" style="font-size: 14.5px; font-weight: 600">{{s.name}}</a>
+                      <span style="font-size: 11.5px; color: var(--color-neutral-800); text-wrap: pretty">{{s.detail}}</span>
+                    </span>
+                    <span class="tag tag-outline" style="flex: none; white-space: nowrap">{{s.tag}}</span>
+                  </li>
+                </sc-for>
+              </ul>
+            </section>
+          </sc-if>
+
+          <section aria-label="Files read and skipped" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px">
+            <div style="display: flex; flex-direction: column; gap: 11px">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+                <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">{{scope.skippedLabel}}</h2>
+                <button type="button" class="btn btn-ghost" onClick="{{ scope.toggle }}" aria-expanded="{{scope.expanded}}" style="font-size: 12px">{{scope.toggleLabel}}</button>
+              </div>
+              <sc-if value="{{scope.open}}">
+                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+                  <sc-for list="{{scope.skipped}}" as="s" hint-placeholder-count="7">
+                    <li style="display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; border-bottom: 1px solid color-mix(in srgb, var(--color-text) 8%, transparent); padding-bottom: 8px">
+                      <span style="flex: 1; min-width: 170px; font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--color-neutral-800); text-decoration: line-through">{{s.name}}</span>
+                      <span class="tag {{s.tagClass}}" style="flex: none; white-space: nowrap">{{s.reason}}</span>
+                    </li>
+                  </sc-for>
+                </ul>
+              </sc-if>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 11px">
+              <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">Scope, in one paragraph</h2>
+              <p style="margin: 0; font-size: 13.5px; line-height: 1.62; color: var(--color-text); text-wrap: pretty">{{scope.policy}}</p>
+              <span style="font-size: 11.5px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{scope.folderLine}}</span>
+            </div>
+          </section>
+
+          <section aria-label="Files written" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px">
+            <div style="display: flex; flex-direction: column; gap: 9px">
+              <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">Files on disk, not rows in a database</h2>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px">
+                <sc-for list="{{files}}" as="f" hint-placeholder-count="7">
+                  <li style="display: flex; justify-content: space-between; gap: 10px; font-size: 11.5px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--color-neutral-800); padding: 2px 0">
+                    <span>{{f.name}}</span>
+                    <span style="color: var(--color-neutral-700)">{{f.size}}</span>
+                  </li>
+                </sc-for>
+              </ul>
+              <p style="margin: 0; font-size: 12px; line-height: 1.5; color: var(--color-neutral-800); margin-top: 4px; text-wrap: pretty">Open them, edit them, keep them after this tool is gone.</p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 9px">
+              <h2 style="margin: 0; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-700); font-family: var(--font-body); font-weight: 600">Which module produced what</h2>
+              <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+                <sc-for list="{{producedBy}}" as="p" hint-placeholder-count="6">
+                  <li style="display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 11px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; border-bottom: 1px solid color-mix(in srgb, var(--color-text) 6%, transparent); padding-bottom: 4px">
+                    <span style="flex: 1; min-width: 140px; color: var(--color-neutral-800)">{{p.fields}}</span>
+                    <span style="color: var(--color-accent-700)">{{p.module}}</span>
+                  </li>
+                </sc-for>
+              </ul>
+            </div>
+          </section>
+        </section>
+      </sc-if>
+    </div>
+
+    <footer style="margin-top: auto; padding: 18px clamp(18px, 3vw, 34px) 26px; border-top: 1px solid var(--color-divider); display: flex; flex-direction: column; gap: 6px">
+      <p style="margin: 0; font-size: 11.5px; line-height: 1.6; color: var(--color-neutral-700); text-wrap: pretty; max-width: 86ch">Contains public sector information licensed under the Open Government Licence v3.0. Source: Find a grant, GOV.UK. Grant award data from 360Giving, CC-BY-SA.</p>
+      <p style="margin: 0; font-size: 11px; color: var(--color-neutral-700); font-family: ui-monospace, SFMono-Regular, Menlo, monospace">{{meta.footLine}}</p>
+    </footer>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1320,&quot;height&quot;:900},&quot;dataUrl&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;data/run.json&quot;,&quot;uploads/run.example-f15e7ceb.json&quot;,&quot;uploads/run.example.json&quot;],&quot;default&quot;:&quot;data/run.json&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Data&quot;,&quot;label&quot;:&quot;run.json to read&quot;},&quot;showAgentTrace&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Agent&quot;},&quot;gateThreshold&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:65,&quot;min&quot;:40,&quot;max&quot;:90,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Triage&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      screen: 'decision',
+      openCall: 0,
+      cite: 1,
+      data: null,
+      readAt: '—',
+      unreachable: false,
+      doneLocal: null,
+      outcome: null,
+      scopeOpen: true,
+    };
+  }
+
+  componentDidMount() {
+    this.pull();
+    this.timer = setInterval(() => this.pull(), 60000);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+
+  url() { return this.props.dataUrl || 'data/run.json'; }
+
+  pull() {
+    // Opened from a Granted folder, a browser will not fetch the run file, but it
+    // will run a script. Each run writes .granted/run.js beside run.json, and
+    // reloading it every minute picks up a new run without reopening the page.
+    if (location.protocol === 'file:') {
+      const s = document.createElement('script');
+      s.src = '.granted/run.js?t=' + Date.now();
+      s.onload = () => {
+        s.remove();
+        const data = window.__GRANTED_RUN__;
+        if (!data) { this.setState({ unreachable: true }); return; }
+        const t = new Date();
+        const pad = (n) => String(n).padStart(2, '0');
+        this.setState({ data, unreachable: false, readAt: pad(t.getHours()) + ':' + pad(t.getMinutes()) + ':' + pad(t.getSeconds()) });
+      };
+      s.onerror = () => { s.remove(); this.setState({ unreachable: true }); };
+      document.head.appendChild(s);
+      return;
+    }
+    const u = this.url();
+    const get = (target) => fetch(target, { cache: 'no-store' })
+      .then((res) => { if (!res.ok) throw new Error('run.json ' + res.status); return res.json(); });
+    // Cache-bust first (S3 serves stale copies otherwise); some static hosts
+    // refuse the query string, so fall back to the bare path.
+    get(u + '?t=' + Date.now())
+      .catch(() => get(u))
+      .then((data) => {
+        if (data.schema_version !== 2) console.warn('schema drift', data.schema_version);
+        const t = new Date();
+        const pad = (n) => String(n).padStart(2, '0');
+        this.setState({ data, unreachable: false, readAt: pad(t.getHours()) + ':' + pad(t.getMinutes()) + ':' + pad(t.getSeconds()) });
+      })
+      .catch(() => this.setState({ unreachable: true }));
+  }
+
+  go(screen) { return () => this.setState({ screen }); }
+
+  renderVals() {
+    const d = this.state.data || {};
+    const p = this.props;
+    const NEU = 'var(--color-neutral-700)';
+    const SAGE = 'var(--color-accent-2-600)', ACC = 'var(--color-accent-500)';
+    const gbp = (n) => (n === null || n === undefined ? '—' : '£' + Number(n).toLocaleString('en-GB'));
+    // Dates come from a model as well as from listings; anything that is not a
+    // date reads as a rolling deadline instead of breaking the page.
+    const dayMonth = (iso) => {
+      const dt = new Date((iso || '') + 'T00:00:00');
+      if (!iso || Number.isNaN(dt.getTime())) return 'a rolling deadline';
+      return dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+    };
+    const longDate = (iso) => {
+      const dt = new Date((iso || '') + 'T00:00:00');
+      if (!iso || Number.isNaN(dt.getTime())) return 'no fixed date';
+      return dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    };
+    const bandClassOf = (b) => (b === 'High' ? 'tag-accent-2' : b === 'Medium' ? 'tag-accent' : 'tag-neutral');
+
+    const surfaced = d.surfaced || [];
+    const notPursued = d.not_pursued || [];
+    // The fixed lines below were written for a run where everything not
+    // surfaced was vetoed before a model was called. A live run can also stop
+    // calls that have no award history to score, and can send calls to the
+    // matcher that the gate then holds, at a real cost in model calls. Those
+    // days get their own sentences; the originals stay for the runs they describe.
+    const heldAtGate = d.held_at_gate || [];
+    const vetoedCount = notPursued.filter((c) => c.vetoed).length;
+    const allVetoed = vetoedCount === notPursued.length;
+    const scoredCount = surfaced.length + heldAtGate.length;
+    const modelCalls = d.model_calls ?? 0;
+    const threshold = p.gateThreshold ?? d.threshold ?? 65;
+    const archive = d.archive || {};
+    const coldStart = !archive.n_decided;
+    const voice = d.voice || {};
+    const vFlags = voice.flags || {};
+    const timeline = d.timeline || {};
+    // Steps carry days_before_deadline; the calendar date is derived from the
+    // deadline so the flowchart works whether or not the file spells it out.
+    const isoMinus = (iso, days) => {
+      if (!iso || days === null || days === undefined) return null;
+      const t = new Date(iso + 'T00:00:00').getTime();
+      if (Number.isNaN(t)) return null;
+      return new Date(t - days * 86400000).toISOString().slice(0, 10);
+    };
+    const steps = (timeline.steps || []).map((s) => {
+      const date = s.date || isoMinus(timeline.deadline, s.days_before_deadline);
+      return { ...s, date, key: date || String(s.days_before_deadline) };
+    });
+    const inFlight = (d.watcher_state || {}).in_flight || null;
+    const scope = d.scope || {};
+    const draft = d.draft || {};
+    // Claims arrive either exploded, or as schema-v2 composite source strings
+    // ("ORG.md, Heading — ORG.md#L32 — \"the line\""). Normalise to one shape.
+    const claims = (draft.claims || []).map((c) => {
+      if (c.locator || c.source_line) return c;
+      const parts = String((c.sources || [])[0] || '').split(' — ');
+      return {
+        text: c.text,
+        grounded: c.grounded,
+        source_heading: (parts[0] || '').replace(/^ORG\.md,\s*/, ''),
+        locator: parts[1] || 'ORG.md',
+        source_line: (parts[2] || '').replace(/^"|"$/g, ''),
+      };
+    });
+    const grounded = d.grounded ?? 0;
+    const totalClaims = d.total_claims ?? claims.length;
+    const bands = d.bands || {};
+    const top = surfaced[0] || null;
+
+    // On a silent run the downstream sections are absent. Those screens are not
+    // rendered empty — they are not offered at all.
+    // Before the first response nothing is known: offer every screen and claim
+    // nothing. Silence is a finding, and a finding needs data behind it.
+    const loaded = !!this.state.data;
+    const avail = {
+      radar: true,
+      decision: true,
+      angle: !loaded || (d.direction || []).length > 0,
+      plan: !loaded || steps.length > 0,
+      drafts: !loaded || !!draft.answer,
+      portfolio: !loaded || surfaced.length > 0 || notPursued.length > 0,
+      archive: !loaded || !!(scope.files_read || archive.n_files),
+    };
+    const screen = avail[this.state.screen] ? this.state.screen : 'decision';
+
+    // ── staleness ──
+    let staleDays = 0;
+    if (d.run_date) staleDays = Math.floor((Date.now() - new Date(d.run_date + 'T00:00:00').getTime()) / 86400000);
+    const stale = staleDays > 2;
+
+    // ── win rate never travels alone: rate + confidence + n_decided, one unit ──
+    const rate = archive.win_rate === null || archive.win_rate === undefined ? null : Math.round(archive.win_rate * 100) + '%';
+    const rateQualifier = rate ? archive.confidence + ' · n=' + archive.n_decided + ' decided applications' : '';
+
+    const heads = {
+      radar: { title: 'Radar', sub: (d.calls_considered || 0) + ' calls considered · ' + notPursued.length + (allVetoed ? ' vetoed' : ' stopped') + ' before a model was called' },
+      decision: { title: 'Decision', sub: !loaded ? 'Reading the latest run' : surfaced.length ? 'Written ' + (d.run_time || '') + ' on ' + longDate(d.run_date) : 'Nothing cleared the gate this run' },
+      angle: { title: 'Angle', sub: 'How to pitch it, and what not to claim' },
+      plan: { title: 'Plan', sub: steps.length + ' steps back from ' + longDate(timeline.deadline) },
+      drafts: { title: 'Drafts', sub: grounded + ' of ' + totalClaims + ' claims traced to a line' },
+      portfolio: { title: 'Portfolio', sub: surfaced.length + ' in flight · ' + notPursued.length + ' ruled out for nothing' },
+      archive: { title: 'Archive', sub: (scope.files_read || 0) + ' bids read · ' + (scope.files_skipped || 0) + ' files refused' },
+    };
+
+    const navSpec = [
+      ['radar', 'Radar', String(d.calls_considered ?? '')],
+      ['decision', 'Decision', loaded ? (top ? top.band : 'quiet') : ''],
+      ['angle', 'Angle', ''],
+      ['plan', 'Plan', steps.length ? String(steps.length) : ''],
+      ['drafts', 'Drafts', totalClaims ? grounded + '/' + totalClaims : ''],
+      ['portfolio', 'Portfolio', loaded ? String(surfaced.length) : ''],
+      ['archive', 'Archive', String(scope.files_read ?? '')],
+    ];
+
+    // ── Plan flow: timeline.steps, done from the file, ticks kept locally ──
+    const doneFromFile = timeline.done || [];
+    const done = this.state.doneLocal || doneFromFile.reduce((a, k) => ({ ...a, [k]: true }), {});
+    const nDone = steps.filter((s) => done[s.key]).length;
+    const perStep = steps.length ? (timeline.total_hours_estimate || 0) / steps.length : 0;
+    const proRata = Math.round(perStep * (steps.length - nDone));
+    const newDeadline = inFlight ? inFlight.deadline : null;
+    const ownerTag = { Coordinator: 'tag-neutral', Trustee: 'tag-accent', 'Finance Lead': 'tag-accent-2', Drafter: 'tag-neutral' };
+    const overdue = inFlight ? inFlight.overdue || [] : [];
+    const dueNow = inFlight ? inFlight.due_now || [] : [];
+    const hits = (list, task) => list.some((t) => task.toLowerCase().indexOf(t.toLowerCase().slice(0, 28)) === 0 || t.toLowerCase().indexOf(task.toLowerCase().slice(0, 28)) === 0);
+
+    const flow = steps.map((s, i) => {
+      const isDone = !!done[s.key];
+      const prevDone = i === 0 ? true : !!done[steps[i - 1].key];
+      const stranded = !!newDeadline && !isDone && !!s.date && s.date > newDeadline;
+      const isOverdue = !isDone && hits(overdue, s.task);
+      const isDue = !isDone && hits(dueNow, s.task);
+      return {
+        date: dayMonth(s.date),
+        away: stranded ? 'past close' : s.days_before_deadline + 'd out',
+        task: s.task,
+        owner: s.owner_role,
+        gateLabel: s.gate || '',
+        stateLabel: isOverdue ? 'Overdue' : isDue ? 'Due now' : '',
+        stateInk: isOverdue ? 'var(--color-accent-700)' : 'var(--color-accent-2-700)',
+        cursor: 'pointer',
+        toggleLabel: (isDone ? 'Untick: ' : 'Tick as done: ') + s.task,
+        dateInk: stranded ? 'var(--color-accent-700)' : isDone ? NEU : 'var(--color-text)',
+        nodeMark: isDone ? '✓' : String(i + 1),
+        nodeBg: isDone ? SAGE : stranded ? 'var(--color-accent-200)' : 'var(--color-bg)',
+        nodeBorder: isDone ? SAGE : stranded || isOverdue ? ACC : 'var(--color-neutral-400)',
+        nodeInk: isDone ? 'var(--color-accent-2-100)' : stranded ? 'var(--color-accent-800)' : NEU,
+        railTop: i === 0 ? 'transparent' : (prevDone ? SAGE : 'var(--color-neutral-300)'),
+        railBottom: isDone ? SAGE : 'var(--color-neutral-300)',
+        cardBg: isDone ? 'transparent' : stranded ? 'var(--color-accent-100)' : 'var(--color-surface)',
+        cardBorder: isDone ? 'var(--color-divider)' : stranded || isOverdue ? 'var(--color-accent-300)' : 'transparent',
+        taskInk: isDone ? NEU : stranded ? 'var(--color-accent-900)' : 'var(--color-text)',
+        taskWeight: isDone ? '400' : '500',
+        strike: isDone ? 'line-through' : 'none',
+        ownerTag: ownerTag[s.owner_role] || 'tag-neutral',
+        toggle: () => this.setState({ doneLocal: { ...done, [s.key]: !isDone } }),
+      };
+    });
+    if (timeline.deadline) {
+      const moved = !!newDeadline && newDeadline !== timeline.deadline;
+      flow.push({
+        date: dayMonth(moved ? newDeadline : timeline.deadline), away: 'deadline',
+        task: moved
+          ? 'The funder pulled the close forward to ' + longDate(newDeadline) + '.'
+          : (top ? top.funder + ' closes ' + top.programme + '.' : 'The funder closes this call.'),
+        owner: 'Funder portal', gateLabel: 'Hard stop', stateLabel: '', stateInk: NEU,
+        cursor: 'default', toggleLabel: 'The funder’s deadline',
+        dateInk: 'var(--color-accent-700)', nodeMark: '·', nodeBg: ACC, nodeBorder: ACC,
+        nodeInk: 'var(--color-accent-100)', railTop: 'var(--color-neutral-300)', railBottom: 'transparent',
+        cardBg: 'var(--color-accent-100)', cardBorder: 'var(--color-accent-300)', taskInk: 'var(--color-accent-900)',
+        taskWeight: '600', strike: 'none', ownerTag: 'tag-outline', toggle: () => {},
+      });
+    }
+
+    // ── Draft: mark claims inline where their text appears verbatim ──
+    const wrongTerm = (() => {
+      const v = (vFlags.term_violations || [])[0];
+      if (!v) return null;
+      const m = v.match(/"([^"]+)"/);
+      return m ? m[1] : null;
+    })();
+    const theirTerm = voice.beneficiary_term || null;
+    const active = this.state.cite;
+    const styleFor = (n) => ({
+      n: String(n),
+      bg: active === n ? 'var(--color-accent-200)' : 'transparent',
+      rule: '1px solid var(--color-accent-300)',
+      supInk: active === n ? 'var(--color-accent-800)' : 'var(--color-accent-700)',
+      label: 'Source ' + n + ': ' + (claims[n - 1] ? claims[n - 1].locator : ''),
+      click: () => this.setState({ cite: n }),
+    });
+    const plainStyle = { n: '', bg: 'transparent', rule: 'none', supInk: 'transparent', label: '', click: undefined };
+    const flagStyle = { n: '', bg: 'var(--color-accent-200)', rule: '1px dashed var(--color-accent-600)', supInk: 'transparent', label: '', click: undefined };
+
+    const explode = (text, n) => {
+      const base = n ? styleFor(n) : plainStyle;
+      if (!wrongTerm || text.indexOf(wrongTerm) === -1) return [{ t: text, ...base }];
+      const at = text.indexOf(wrongTerm);
+      const out = [];
+      if (at > 0) out.push({ t: text.slice(0, at), ...base, n: '' });
+      out.push({ t: wrongTerm, ...flagStyle });
+      const rest = text.slice(at + wrongTerm.length);
+      if (rest) out.push({ t: rest, ...base });
+      else if (n) out[out.length - 1] = { ...out[out.length - 1], ...base };
+      return out;
+    };
+
+    const paras = String(draft.answer || '').split('\n\n').filter(Boolean).map((para) => {
+      const marks = claims
+        .map((c, i) => ({ n: i + 1, at: para.indexOf(c.text), len: (c.text || '').length }))
+        .filter((m) => m.at >= 0)
+        .sort((a, b) => a.at - b.at);
+      const segs = [];
+      let cursor = 0;
+      marks.forEach((m) => {
+        if (m.at < cursor) return;
+        if (m.at > cursor) explode(para.slice(cursor, m.at), null).forEach((s) => segs.push(s));
+        explode(para.slice(m.at, m.at + m.len), m.n).forEach((s) => segs.push(s));
+        cursor = m.at + m.len;
+      });
+      if (cursor < para.length) explode(para.slice(cursor), null).forEach((s) => segs.push(s));
+      return { segs };
+    });
+
+    const src = claims[active - 1] || claims[0] || {};
+
+    const checks = (top ? (top.eligibility_met || []).map((t) => ({ text: t, confidence: 'Passed', tagClass: 'tag-accent-2', edge: SAGE, bg: 'var(--color-accent-2-100)' })) : [])
+      .concat(top ? (top.eligibility_gaps || []).map((t) => ({ text: t, confidence: 'Your call', tagClass: 'tag-accent', edge: ACC, bg: 'var(--color-accent-100)' })) : []);
+    if (top && !checks.length) {
+      (top.reasons || []).forEach((t) => checks.push({ text: t, confidence: 'Passed', tagClass: 'tag-accent-2', edge: SAGE, bg: 'var(--color-accent-2-100)' }));
+    }
+
+    const fs = top ? top.funder_stats : null;
+    const maxRegion = fs && fs.regions && fs.regions.length ? Math.max.apply(null, fs.regions.map((r) => r.n)) : 1;
+
+    // Only a surfaced row cleared the gate. A not-pursued row stopped at triage
+    // whether or not it was vetoed: scored below the floor, or with no award
+    // history to score against. Files written before `stage` existed read as before.
+    const calls = surfaced.concat(notPursued).map((c, i) => {
+      const stopped = !!c.vetoed || (c.stage !== undefined && c.stage !== 'surfaced');
+      return {
+      programme: c.programme,
+      funder: c.funder,
+      band: c.band,
+      bandClass: bandClassOf(c.band),
+      fit: c.vetoed || c.fit === null || c.fit === undefined ? '—' : String(c.fit),
+      closes: (c.closes ? dayMonth(c.closes) : 'rolling') + (c.days_left === null || c.days_left === undefined ? '' : ' · ' + c.days_left + 'd'),
+      state: c.vetoed ? 'vetoed at triage' : stopped ? 'stopped at triage' : 'cleared the gate of ' + threshold,
+      vetoed: c.vetoed || '',
+      url: c.url,
+      ink: stopped ? NEU : 'var(--color-text)',
+      fitInk: stopped ? NEU : 'var(--color-accent-700)',
+      border: c.vetoed ? '1px dashed var(--color-accent-400)' : stopped ? '1px solid var(--color-accent-400)' : '1px solid var(--color-accent-2-300)',
+      bg: stopped ? 'transparent' : 'var(--color-accent-2-100)',
+      open: this.state.openCall === i,
+      expanded: this.state.openCall === i ? 'true' : 'false',
+      pick: () => this.setState({ openCall: this.state.openCall === i ? null : i }),
+      cost: stopped
+        ? 'No model was called. Ruling this out cost nothing.'
+        : 'Alignment ' + c.alignment + ' · plausibility ' + c.plausibility + ' (' + c.plausibility_confidence + ') · scored with ' + d.model_calls + ' model calls in ' + Math.round(d.duration_s) + 's.',
+      reasons: (c.reasons || []).map((t) => ({ sign: stopped ? '−' : '+', mark: stopped ? NEU : SAGE, text: t })),
+      };
+    });
+
+    const lifeMeta = {
+      new: 'surfaces', deadline_moved: 'surfaces', final_call: 'surfaces', withdrawn: 'surfaces', behind_schedule: 'surfaces',
+      upcoming: 'silent', now_open: 'silent', open: 'silent', closing_soon: 'silent', closed: 'silent',
+    };
+    const activeKinds = (d.changes || []).map((c) => c.kind)
+      .concat(Object.keys((d.watcher_state || {}).by_status || {}));
+    const lifecycle = ['new', 'deadline_moved', 'final_call', 'behind_schedule', 'withdrawn', 'now_open', 'closing_soon', 'closed'].map((name) => {
+      const surfaces = lifeMeta[name] === 'surfaces';
+      const isActive = activeKinds.indexOf(name) >= 0;
+      return {
+        name,
+        note: lifeMeta[name] + (isActive ? ' · active' : ''),
+        dot: surfaces ? ACC : 'var(--color-neutral-500)',
+        bg: isActive ? 'var(--color-accent-200)' : surfaces ? 'var(--color-accent-100)' : 'transparent',
+        border: isActive ? 'var(--color-accent-500)' : surfaces ? 'var(--color-accent-300)' : 'var(--color-divider)',
+        ink: surfaces ? 'var(--color-accent-900)' : NEU,
+      };
+    });
+
+    const banner = this.state.unreachable
+      ? { show: true, tag: 'last known', tagClass: 'tag-neutral', bg: 'var(--color-neutral-200)', border: 'var(--color-divider)', ink: 'var(--color-neutral-900)',
+          text: 'Could not reach ' + this.url() + ' on the last poll, so this is the last good render — nothing here has been blanked. It will pick the file up again on the next attempt.' }
+      : stale
+        ? { show: true, tag: staleDays + ' days old', tagClass: 'tag-accent', bg: 'var(--color-accent-100)', border: 'var(--color-accent-300)', ink: 'var(--color-accent-900)',
+            text: 'This run is ' + staleDays + ' days old. The figures are real but the agent has not written since ' + longDate(d.run_date) + ' — check the cron before trusting the deadlines.' }
+        : { show: false };
+
+    return {
+      isRadar: screen === 'radar', isDecision: screen === 'decision', isAngle: screen === 'angle',
+      isPlan: screen === 'plan', isDrafts: screen === 'drafts', isPortfolio: screen === 'portfolio',
+      isArchive: screen === 'archive',
+      head: heads[screen],
+      showActions: !!top && (screen === 'decision' || screen === 'radar'),
+      approve: () => this.setState({ screen: 'plan' }),
+      decline: () => this.setState({ screen: 'radar' }),
+      showTrace: p.showAgentTrace ?? true,
+      banner,
+
+      meta: {
+        org: d.org || (loaded ? 'your organisation' : 'reading the run file'),
+        workspace: d.workspace ? d.workspace + '/' : (loaded ? 'no workspace written' : this.url()),
+        model: loaded ? (d.model || '—') : '',
+        runLine: loaded ? 'gate ' + threshold + '/100 · ' + (d.duration_s ? Math.round(d.duration_s) + 's' : '—') + ' · ' + (d.model_calls ?? 0) + ' calls' : '',
+        footLine: loaded
+          ? 'schema v' + (d.schema_version ?? '?') + ' · ' + this.url() + ' · run ' + (d.run_date || '—') + ' ' + (d.run_time || '') + ' · read ' + this.state.readAt
+          : 'reading ' + this.url() + ' …',
+      },
+      feed: !loaded && !this.state.unreachable
+        ? { label: 'Reading run.json', sub: 'first fetch', dot: 'var(--color-neutral-400)', bg: 'color-mix(in srgb, #f9f4ed 6%, transparent)', ink: 'var(--color-neutral-300)' }
+        : this.state.unreachable
+        ? { label: 'Cannot reach run.json', sub: 'last read ' + this.state.readAt, dot: ACC, bg: 'color-mix(in srgb, #c67139 22%, transparent)', ink: 'var(--color-accent-200)' }
+        : { label: stale ? 'Stale · ' + staleDays + ' days' : 'Watching · on a cron', sub: 'read ' + this.state.readAt, dot: stale ? ACC : 'var(--color-accent-2-400)', bg: 'color-mix(in srgb, #f9f4ed 6%, transparent)', ink: stale ? 'var(--color-accent-200)' : 'var(--color-accent-2-300)' },
+
+      nav: navSpec.filter(([id]) => avail[id]).map(([id, label, count]) => ({
+        label, count,
+        go: this.go(id),
+        current: screen === id ? 'page' : 'false',
+        bg: screen === id ? 'var(--color-accent-700)' : 'transparent',
+        ink: screen === id ? 'var(--color-accent-100)' : 'var(--color-neutral-200)',
+        weight: screen === id ? '600' : '400',
+        countInk: screen === id ? 'var(--color-accent-200)' : 'var(--color-neutral-400)',
+      })),
+
+      loading: !loaded,
+      loadingUrl: this.url(),
+      silent: {
+        show: loaded && !top,
+        line: (d.calls_considered || 0) + ' calls considered, none above the gate of ' + threshold + '. ' + (allVetoed && !modelCalls
+          ? notPursued.length + ' were vetoed on time or eligibility before a model was called, so today cost nothing.'
+          : notPursued.length + ' stopped before a model was called' + (vetoedCount ? ', ' + vetoedCount + ' of them vetoed on time or eligibility' : '') + '. '
+            + (heldAtGate.length ? heldAtGate.length + ' went to the matcher and were held below the gate, for ' + modelCalls + ' model calls.' : 'So today cost nothing.')),
+      },
+
+      decision: {
+        show: !!top,
+        programme: top ? top.programme : '',
+        funder: top ? top.funder : '',
+        closesLong: top ? longDate(top.closes) : '',
+        reasons: top ? (top.reasons || []).map((t) => ({ text: t })) : [],
+        notProbability: top
+          ? top.fit + ' is fit against award history, banded High at 70 and Medium at 45, with plausibility ' + top.plausibility + ' rated ' + top.plausibility_confidence + '. 360Giving publishes awards only, so no rejection data exists anywhere — your own archive is the only record of those.'
+          : '',
+        checks,
+        checksLabel: 'Eligibility · ' + checks.length + ' checks',
+        checksSplit: top ? (top.eligibility_met || []).length + ' passed · ' + (top.eligibility_gaps || []).length + ' need a human' : '',
+        hasStats: !!fs,
+        statsLabel: fs ? 'What this funder actually buys · ' + fs.awards_measured + ' awards' : '',
+        stats: fs ? [
+          { label: 'Median award', value: gbp(fs.median_award) },
+          { label: 'Typical range (p10–p90)', value: gbp(fs.p10) + ' – ' + gbp(fs.p90) },
+          { label: 'Recipient legal forms', value: fs.legal_forms },
+          { label: 'Repeat funding', value: Math.round(fs.repeat_funding_rate * 100) + '%' },
+          { label: 'Awards measured', value: String(fs.awards_measured) },
+        ] : [],
+        statsSource: fs ? fs.source : '',
+        regions: fs && fs.regions ? fs.regions.map((r) => ({
+          name: r.name, n: String(r.n), width: Math.round((r.n / maxRegion) * 100) + '%',
+          bar: r.n === (fs.regions[1] ? fs.regions[1].n : -1) ? ACC : 'var(--color-neutral-500)',
+          ink: r.n === (fs.regions[1] ? fs.regions[1].n : -1) ? 'var(--color-text)' : NEU,
+          weight: r.n === (fs.regions[1] ? fs.regions[1].n : -1) ? '600' : '400',
+        })) : [],
+        regionNote: fs && fs.regions && fs.regions[1] ? fs.regions[1].name + ' is their second-largest concentration. That is why this one cleared and the others did not.' : '',
+      },
+
+      metrics: top ? [
+        { label: 'Fit', value: String(top.fit), unit: '/100', note: top.band + ' band · gate ' + threshold, bg: 'var(--color-accent-100)', border: 'var(--color-accent-300)', ink: 'var(--color-accent-800)', labelInk: 'var(--color-accent-700)' },
+        { label: 'Alignment', value: String(top.alignment ?? '—'), unit: '/100', note: 'against their award history', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        { label: 'Plausibility', value: String(top.plausibility ?? '—'), unit: '/100', note: top.plausibility_confidence || 'confidence unknown', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        top.suggested_ask ? { label: 'Suggested ask', value: gbp(top.suggested_ask), unit: '', note: fs && top.suggested_ask === fs.median_award ? 'their median award, exactly' : 'inside their usual range', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU } : null,
+        { label: 'Deadline', value: String(top.days_left ?? '—'), unit: 'days', note: longDate(top.closes), bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+      ].filter(Boolean) : [],
+
+      trace: [
+        { step: (d.calls_considered || 0) + ' calls read', cost: Object.keys(d.sources || {}).map((k) => ({ 'find-a-grant': 'Find a grant', 'national-lottery': 'Lottery', 'innovate-uk': 'Innovate UK' }[k] || k)).join(' · ') || 'Find a grant + 360Giving', arrow: true },
+        { step: notPursued.length + (allVetoed ? ' vetoed at triage' : ' stopped at triage'), cost: 'arithmetic · £0 · 0 tokens', arrow: true },
+        { step: scoredCount + ' scored', cost: (d.model_calls ?? 0) + ' model calls · ' + (d.duration_s ? Math.round(d.duration_s) : 0) + 's', arrow: true },
+        { step: (d.files_written || []).length + ' files written', cost: (d.provider || 'bedrock') + ' · ' + (d.model || '').split('.').pop(), arrow: false },
+      ],
+
+      radar: {
+        line: (d.calls_considered || 0) + ' calls considered, banded High above 70 and Medium above 45. ' + surfaced.length + ' cleared the gate of ' + threshold + '.',
+        bands: 'High ' + (bands.High ?? 0) + ' · Medium ' + (bands.Medium ?? 0) + ' · Low ' + (bands.Low ?? 0),
+        foot: notPursued.length && allVetoed
+          ? notPursued.length + ' of the ' + (d.calls_considered || 0) + ' were vetoed on time alone: a veto forces Low whatever the alignment score would have been. They stopped before a model was called, so ruling them out cost nothing — no tokens, no workspace, no tabs.'
+          : notPursued.length
+            ? notPursued.length + ' of the ' + (d.calls_considered || 0) + ' stopped before a model was called: ' + vetoedCount + ' vetoed on time or eligibility, the rest below the triage floor or with no award history to score against. Ruling them out cost nothing — no tokens, no workspace, no tabs.'
+            : 'Nothing was vetoed this run. Triage is arithmetic over the funder’s published award history, so anything ruled out costs nothing.',
+      },
+      calls,
+
+      direction: (d.direction || []).map((t, i) => ({ text: t, ink: i === (d.direction || []).length - 1 ? 'var(--color-accent-900)' : 'var(--color-text)' })),
+      voice: {
+        heading: 'Your voice, measured from ' + (voice.corpus_documents || 0) + ' past bids',
+        flagLine: (vFlags.term_violations || []).length
+          ? 'One flag in this draft: it ' + (vFlags.term_violations || [])[0] + '.'
+          : 'No voice flags. The draft uses your own vocabulary throughout.',
+        note: (vFlags.term_violations || []).length
+          ? 'Not a house style. Yours — read off the language in your filing cabinet, not a rulebook.'
+          : 'Measured against your own past bids, not a rulebook.',
+        bg: (vFlags.term_violations || []).length ? 'var(--color-accent-2-100)' : 'var(--color-accent-2-100)',
+        ink: 'var(--color-accent-2-900)',
+        subInk: 'var(--color-accent-2-800)',
+        facts: [
+          voice.beneficiary_term ? { label: 'What you call the people you serve', value: voice.beneficiary_term } : null,
+          voice.median_sentence_words ? { label: 'Median sentence length', value: voice.median_sentence_words + ' words' } : null,
+          voice.corpus_sentences ? { label: 'Sentences read', value: String(voice.corpus_sentences) } : null,
+          (vFlags.tells || []).length ? { label: 'Phrases you never use', value: (vFlags.tells || []).join(', ') } : null,
+        ].filter(Boolean),
+      },
+      gapsLabel: 'Before you start · ' + (top ? (top.eligibility_gaps || []).length + (draft.unevidenced_gaps || []).length : 0) + ' gaps',
+      gapList: (top ? (top.eligibility_gaps || []) : []).concat(draft.unevidenced_gaps || []).map((t) => ({ text: t })),
+
+      planStats: [
+        { label: 'Done', value: String(nDone), unit: 'of ' + steps.length, note: nDone ? 'ticked by you' : 'nothing started', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        { label: 'Estimated work', value: String(Math.round(timeline.total_hours_estimate || 0)), unit: 'hrs', note: 'written by the timeliner', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        { label: 'Remaining, pro-rata', value: String(proRata), unit: 'hrs', note: steps.length - nDone + ' steps left', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        inFlight
+          ? { label: 'Days to close', value: String(inFlight.days_left), unit: 'days', note: inFlight.feasible ? 'fits at a realistic pace' : 'does not fit at a realistic pace', bg: inFlight.feasible ? 'var(--color-accent-2-100)' : 'var(--color-accent-100)', border: inFlight.feasible ? 'var(--color-accent-2-300)' : 'var(--color-accent-300)', ink: inFlight.feasible ? 'var(--color-accent-2-800)' : 'var(--color-accent-800)', labelInk: inFlight.feasible ? 'var(--color-accent-2-700)' : 'var(--color-accent-700)' }
+          : { label: 'Days to close', value: String(top && top.days_left !== null && top.days_left !== undefined ? top.days_left : '—'), unit: 'days', note: 'not yet in flight', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+      ],
+      flow,
+      flight: inFlight
+        ? { show: true, summary: inFlight.summary, showWithdraw: !inFlight.feasible,
+            tag: inFlight.feasible ? 'on schedule' : 'behind_schedule',
+            tagClass: inFlight.feasible ? 'tag-accent-2' : 'tag-accent',
+            bg: inFlight.feasible ? 'var(--color-accent-2-100)' : 'var(--color-accent-100)',
+            border: inFlight.feasible ? 'var(--color-accent-2-300)' : 'var(--color-accent-300)',
+            ink: inFlight.feasible ? 'var(--color-accent-2-900)' : 'var(--color-accent-900)' }
+        : { show: false },
+      localNote: nDone === (this.state.doneLocal ? nDone : doneFromFile.length)
+        ? 'Ticks are yours and stay local until the next run reads done.txt. The verdict above is the timeliner’s own sentence, not a recalculation.'
+        : 'Ticks are yours and stay local until the next run reads done.txt. The verdict above is the timeliner’s own sentence, not a recalculation.',
+
+      hasDirection: (d.direction || []).length > 0,
+      noDirection: !(d.direction || []).length,
+      hasDraft: !!draft.answer,
+      noDraft: !draft.answer,
+      noSteps: !steps.length,
+      draft: { question: draft.question || '' },
+      paras,
+      bars: Array.from({ length: totalClaims || 1 }, (_, i) => ({ fill: i < grounded ? SAGE : 'var(--color-neutral-400)' })),
+      grounding: { label: grounded + ' of ' + totalClaims + ' claims' },
+      cite: {
+        kicker: 'Source ' + active + ' of ' + (claims.length || totalClaims),
+        claim: src.text || '',
+        quote: src.source_line ? '“' + src.source_line + '”' : '',
+        locator: src.locator ? src.locator + (src.source_heading ? ' · ' + src.source_heading : '') : '',
+      },
+      sourceList: claims.map((c, i) => ({
+        n: String(i + 1),
+        locator: c.locator,
+        bg: active === i + 1 ? 'var(--color-accent-200)' : 'transparent',
+        click: () => this.setState({ cite: i + 1 }),
+      })),
+      needsHumanLabel: 'Needs a human · ' + (draft.unevidenced_gaps || []).length,
+      needsHuman: (draft.unevidenced_gaps || []).map((t) => ({ text: t })),
+
+      changes: {
+        show: (d.changes || []).length > 0,
+        items: (d.changes || []).map((c) => ({
+          kind: c.kind,
+          line: c.funder + ' — ' + c.detail,
+          tagClass: c.urgent ? 'tag-accent' : 'tag-neutral',
+          bg: c.urgent ? 'var(--color-accent-100)' : 'var(--color-neutral-100)',
+          border: c.urgent ? 'var(--color-accent-300)' : 'var(--color-divider)',
+          ink: c.urgent ? 'var(--color-accent-900)' : 'var(--color-neutral-900)',
+          subInk: c.urgent ? 'var(--color-accent-800)' : NEU,
+        })),
+      },
+      portfolio: {
+        inFlightLabel: 'In flight · ' + surfaced.length,
+        inFlight: surfaced.map((c) => ({
+          programme: c.programme, funder: c.funder, band: c.band, bandClass: bandClassOf(c.band),
+          watcher: inFlight && inFlight.programme === c.programme ? (inFlight.feasible ? 'on_schedule' : 'behind_schedule') : 'open',
+          ask: gbp(c.suggested_ask), fit: String(c.fit), closes: dayMonth(inFlight && inFlight.programme === c.programme ? inFlight.deadline : c.closes),
+        })),
+        watcherLine: (d.watcher_state || {}).tracked + ' tracked · ' + (d.watcher_state || {}).silent + ' silent this run',
+        hasRejected: notPursued.length > 0,
+        notPursuedLabel: 'Not pursued · ' + notPursued.length + ' · cost £0',
+        rejected: notPursued.map((c) => ({
+          programme: c.programme,
+          meta: c.band + (c.vetoed ? ' · vetoed · ' : ' · ') + (c.days_left ?? '—') + ' days left',
+          reason: c.vetoed || (c.reasons || [])[0] || '',
+        })),
+      },
+
+      outcomeStatus: this.state.outcome || (d.outcome || {}).status || 'pending',
+      outcomeUnknownLine: (archive.n_unknown_outcome || 0) + ' older bids still have no outcome recorded',
+      outcomes: ['Awarded', 'Rejected', 'Withdrawn'].map((label) => ({
+        label,
+        btnClass: this.state.outcome === label.toLowerCase() ? 'btn-primary' : 'btn-secondary',
+        pick: () => this.setState({ outcome: label.toLowerCase() }),
+      })),
+      outcomeNote: this.state.outcome
+        ? 'Recorded ' + this.state.outcome + ' locally. Writing it to outcome.meta.json changes the win rate, the ask anchor, and which funders count as neglected on the next run.'
+        : 'Nothing recorded yet. Until you do, this bid stays out of your own track record.',
+
+      record: {
+        heading: 'Your own record · read from ' + (archive.n_files || 0) + ' past bids',
+        cold: coldStart,
+        show: !coldStart,
+        rate: rate || '—',
+        qualifier: rateQualifier,
+        stats: [
+          { value: String(archive.n_decided ?? 0), label: 'decided applications' },
+          { value: String(archive.n_awarded ?? 0), label: 'awarded' },
+          { value: gbp(archive.median_successful_ask), label: 'median winning ask' },
+          { value: gbp(archive.median_unsuccessful_ask), label: 'median losing ask' },
+        ],
+        note: 'At n=' + (archive.n_decided ?? 0) + ' this is ' + (archive.confidence || 'indicative') + ', not a statistic, and it is never used as a probability. It is also the only rejection record that exists — 360Giving publishes awards only.',
+      },
+
+      archiveStats: [
+        { label: 'Bids read', value: String(scope.files_read ?? 0), unit: 'files', note: 'of ' + (scope.files_seen ?? 0) + ' seen in the folder', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        { label: 'Refused', value: String(scope.files_skipped ?? 0), unit: 'files', note: 'logged, never opened', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        { label: 'Outcomes recorded', value: String(archive.n_decided ?? 0), unit: 'of ' + (archive.n_files ?? 0), note: (archive.n_unknown_outcome ?? 0) + ' still unknown', bg: 'var(--color-surface)', border: 'transparent', ink: 'var(--color-text)', labelInk: NEU },
+        { label: 'Left on the table', value: String((d.revisit || []).length), unit: 'funders', note: 'won from, never re-approached', bg: 'var(--color-accent-2-100)', border: 'var(--color-accent-2-300)', ink: 'var(--color-accent-2-800)', labelInk: 'var(--color-accent-2-700)' },
+      ],
+      revisit: {
+        show: (d.revisit || []).length > 0,
+        items: (d.revisit || []).map((line) => {
+          const parts = String(line).split(' — ');
+          return { funder: parts[0], detail: parts[1] || 'No contact recorded since they last said yes.' };
+        }),
+      },
+      nearby: {
+        show: (d.local_funders || []).length > 0,
+        showQuiet: (d.local_funders || []).length > 0 && !(d.surfaced || []).length,
+        where: d.place ? 'near ' + d.place : '',
+        items: (d.local_funders || []).slice(0, 8).map((f) => ({
+          name: f.name,
+          link: f.website || f.grantnav,
+          detail: (f.awards_near_you
+            ? f.awards_near_you + ' of ' + f.sample + ' sampled awards near you'
+            : f.awards_in_region + ' of ' + f.sample + ' sampled awards in your region')
+            + (f.median_award ? ', typically £' + Math.round(f.median_award).toLocaleString('en-GB') : ''),
+          tag: f.awards_near_you ? 'Funds near you' : 'Funds in your region',
+        })),
+      },
+      scope: {
+        skippedLabel: (scope.files_read ?? 0) + ' read, ' + (scope.files_skipped ?? 0) + ' skipped',
+        open: this.state.scopeOpen,
+        expanded: this.state.scopeOpen ? 'true' : 'false',
+        toggleLabel: this.state.scopeOpen ? 'Hide reasons' : 'Show reasons',
+        toggle: () => this.setState({ scopeOpen: !this.state.scopeOpen }),
+        skipped: (scope.skipped_detail || []).map((s) => ({
+          name: s.name,
+          reason: s.reason.indexOf('sensitive') >= 0 ? 'sensitive name' : s.reason,
+          tagClass: s.reason.indexOf('sensitive') >= 0 ? 'tag-accent' : 'tag-neutral',
+        })),
+        policy: scope.policy || '',
+        folderLine: (scope.folder || '—') + '/ · ' + (scope.files_seen ?? 0) + ' files seen',
+      },
+      files: d.files_written || [],
+      producedBy: Object.keys(d._produced_by || {}).map((k) => ({ fields: k, module: d._produced_by[k] })),
+    };
+  }
+}
+</script>
+</body>
+</html>

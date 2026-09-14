@@ -1,0 +1,27 @@
+{
+  "_comment": "Find a grant funder name -> 360Giving org id, for `granted run --calls find-a-grant --funder-ids funders.json`. Every id below was confirmed against api.threesixtygiving.org on 2026-09-10 to exist and to have published grants (counts in _verified). Names are written as Find a grant prints them and matched on letters and digits only. Joint funders ('Defra and Innovate UK') are left out on purpose: there is no single award history to judge them against. The British Film Institute and the Forestry Commission are in 360Giving with no grants made, so they cannot be scored. To add a funder, find it on GrantNav and take the org id from its URL. Keys starting with an underscore are ignored.",
+  "_verified": {
+    "GB-GOR-D5": "Department for Culture, Media & Sport, 50197 grants",
+    "GB-GOR-D6": "Department for Education, 87821 grants",
+    "GB-GOR-D7": "Department for Environment, Food and Rural Affairs, 53049 grants",
+    "GB-GOR-D9": "Department for Transport, 20097 grants",
+    "GB-GOR-D10": "Department for Work and Pensions, 26833 grants",
+    "GB-GOR-D16": "Home Office, 13261 grants",
+    "GB-GOR-D17": "Ministry of Defence, 3299 grants",
+    "GB-GOR-D18": "Ministry of Justice, 4230 grants",
+    "GB-GOR-DA1020": "Scottish Government, 5539 grants",
+    "GB-CHC-266780": "Architectural Heritage Fund, 1136 grants"
+  },
+  "Department for Digital, Culture, Media and Sport": "GB-GOR-D5",
+  "Department for Education (DfE)": "GB-GOR-D6",
+  "Department for Education": "GB-GOR-D6",
+  "Department for Environment, Food and Rural Affairs": "GB-GOR-D7",
+  "The Department for Environment, Food and Rural Affairs (Defra)": "GB-GOR-D7",
+  "Department for Transport": "GB-GOR-D9",
+  "Department for Work and Pensions": "GB-GOR-D10",
+  "Home Office": "GB-GOR-D16",
+  "Ministry of Defence": "GB-GOR-D17",
+  "Ministry of Justice": "GB-GOR-D18",
+  "Scottish Government": "GB-GOR-DA1020",
+  "Architectural Heritage Fund": "GB-CHC-266780"
+}

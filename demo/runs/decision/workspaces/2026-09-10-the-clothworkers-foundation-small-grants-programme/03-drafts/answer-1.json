@@ -1,0 +1,76 @@
+{
+  "question": "What difference will this funding make to the people you work with, and how will you know? Give us evidence from your existing work.",
+  "answer": "A replacement commercial freezer will allow us to serve our Community meals programme consistently. Our 2016 unit fails monthly, disrupting meal preparation. We currently serve 7,400 meals across 148 sittings each year from Rye Lane Baptist Hall with no referral needed. Seventy-four percent of surveyed members reported eating at least one hot meal a day more often than before attending.\n\nA refrigerated van will let us expand our Food Pantry model beyond our current 190 member households. Members pay £4.50 a week for approximately £22 of food and reported an average £61 monthly reduction in food spend. We know this works because we retain 58% of members year on year and have run beneficiary surveys twice yearly since 2022, with a 31% response rate.\n\nAn independent evaluation by Southwark Impact Partnership, published June 2025, documents our Impact. We submit quarterly monitoring returns to Southwark Council since 2021. We will continue running our twice-yearly survey to track whether these additions help more members eat regularly and reduce food spending further.",
+  "claims": [
+    {
+      "text": "Our 2016 commercial freezer fails monthly, disrupting meal preparation",
+      "source_heading": "Funding history",
+      "source_line": "replacement commercial freezer (the 2016 unit fails monthly)",
+      "grounded": true
+    },
+    {
+      "text": "We serve 7,400 meals across 148 sittings each year from Rye Lane Baptist Hall with no referral needed",
+      "source_heading": "Community meals",
+      "source_line": "Volume 2025-26: 7,400 meals served across 148 sittings",
+      "grounded": true
+    },
+    {
+      "text": "Seventy-four percent of surveyed members reported eating at least one hot meal a day more often than before attending",
+      "source_heading": "Community meals",
+      "source_line": "Outcome: 74% of surveyed members (n=180) reported eating at least one hot meal a day more often than before attending",
+      "grounded": true
+    },
+    {
+      "text": "Our Food Pantry has 190 member households",
+      "source_heading": "Food pantry",
+      "source_line": "Volume 2025-26: 190 member households, 58% retention year on year",
+      "grounded": true
+    },
+    {
+      "text": "Members pay £4.50 a week for approximately £22 of food",
+      "source_heading": "Food pantry",
+      "source_line": "Delivery: membership model, £4.50 a week for approximately £22 of food",
+      "grounded": true
+    },
+    {
+      "text": "Members reported an average £61 monthly reduction in food spend",
+      "source_heading": "Food pantry",
+      "source_line": "Outcome: members reported an average £61 monthly reduction in food spend (self-reported, n=74, survey ran Jan 2026)",
+      "grounded": true
+    },
+    {
+      "text": "We retain 58% of members year on year",
+      "source_heading": "Food pantry",
+      "source_line": "Volume 2025-26: 190 member households, 58% retention year on year",
+      "grounded": true
+    },
+    {
+      "text": "We have run beneficiary surveys twice yearly since 2022, with a 31% response rate",
+      "source_heading": "Evidence and evaluation",
+      "source_line": "Beneficiary survey run twice yearly since 2022, response rate 31%",
+      "grounded": true
+    },
+    {
+      "text": "An independent evaluation by Southwark Impact Partnership was published June 2025",
+      "source_heading": "Evidence and evaluation",
+      "source_line": "Independent evaluation by Southwark Impact Partnership, published June 2025",
+      "grounded": true
+    },
+    {
+      "text": "We submit quarterly monitoring returns to Southwark Council since 2021",
+      "source_heading": "Evidence and evaluation",
+      "source_line": "Quarterly monitoring returns submitted to Southwark Council since 2021",
+      "grounded": true
+    },
+    {
+      "text": "A refrigerated van will let us expand our Food Pantry model beyond our current 190 member households",
+      "source_heading": null,
+      "source_line": null,
+      "grounded": false
+    }
+  ],
+  "unevidenced_gaps": [
+    "How a refrigerated van will specifically expand the Food Pantry model or geographical reach (funding history lists it as needed, but does not explain the intended use or expansion mechanism)",
+    "Specific new capacity or member numbers expected from van addition"
+  ]
+}

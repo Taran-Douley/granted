@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #faf9f6; color: #24211c;
+           font-family: Newsreader, Georgia, 'Times New Roman', serif; }
+    a { color: #1f6f77; } a:hover { color: #14484e; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace; }
+    .q:hover { background: #f3f1eb; }
+    .cite { border-bottom: 1px solid #9ec6c9; cursor: help; }
+  </style>
+</helmet>
+
+<div style="min-height: 100%; padding: 48px 56px 56px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+
+  <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #24211c; padding-bottom: 14px">
+    <div style="display: flex; align-items: baseline; gap: 16px">
+      <span style="font-size: 24px; font-weight: 500">Drafts</span>
+      <span class="mono" style="font-size: 11px; color: #7c766a">CORNERSTONE FUND &middot; 2 SCORED QUESTIONS</span>
+    </div>
+    <span class="mono" style="font-size: 11px; color: #1f6f77">{{active.grounding}} CITED</span>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 0">
+    <sc-for list="{{questions}}" as="q" hint-placeholder-count="2">
+      <div class="q" onClick="{{ q.pick }}" style="cursor: pointer; border-left: 3px solid {{q.edge}}; padding: 13px 16px; display: flex; align-items: baseline; gap: 16px; background: {{q.bg}}">
+        <span class="mono" style="font-size: 10px; color: {{q.numTone}}; flex-shrink: 0">Q{{q.n}}</span>
+        <span style="font-size: 15px; line-height: 1.45; color: {{q.ink}}; flex-grow: 1; text-wrap: pretty">{{q.text}}</span>
+        <span class="mono" style="font-size: 10px; color: #a09889; flex-shrink: 0">{{q.state}}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px; flex-grow: 1">
+
+    <div style="grid-column: span 2; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <span style="font-size: 17px; font-style: italic">Draft answer</span>
+        <span class="mono" style="font-size: 10px; color: #a09889; letter-spacing: 0.06em">UNDERLINED = TRACES TO A LINE IN ORG.MD</span>
+      </div>
+      <sc-for list="{{active.paras}}" as="p" hint-placeholder-count="3">
+        <span style="font-size: 15px; line-height: 1.68; color: #24211c; text-wrap: pretty">{{p.text}}</span>
+      </sc-for>
+
+      <div style="border-top: 1px solid #ded9cd; padding-top: 15px; margin-top: 6px; display: flex; flex-direction: column; gap: 9px">
+        <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #7c766a">SOURCES</span>
+        <sc-for list="{{active.sources}}" as="s" hint-placeholder-count="4">
+          <div style="display: flex; gap: 13px; align-items: baseline">
+            <span class="mono" style="font-size: 10px; color: #1f6f77; width: 68px; flex-shrink: 0">{{s.locator}}</span>
+            <span style="font-size: 13px; line-height: 1.45; color: #7c766a; font-style: italic; text-wrap: pretty">&ldquo;{{s.line}}&rdquo;</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 24px">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #b07a2b; border-bottom: 1px solid #ded9cd; padding-bottom: 7px">VOICE CHECK</span>
+        <span style="font-size: 13px; line-height: 1.5; color: #4a453c; text-wrap: pretty">
+          Measured from 20 of your own past applications, not assumed.
+        </span>
+        <sc-for list="{{active.voice}}" as="v" hint-placeholder-count="2">
+          <div style="display: flex; gap: 11px; align-items: baseline">
+            <span class="mono" style="font-size: 11px; color: {{v.tone}}; flex-shrink: 0">{{v.mark}}</span>
+            <span style="font-size: 13px; line-height: 1.5; color: #4a453c; text-wrap: pretty">{{v.text}}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #7c766a; border-bottom: 1px solid #ded9cd; padding-bottom: 7px">YOUR MEASURED STYLE</span>
+        <sc-for list="{{style}}" as="s" hint-placeholder-count="4">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px">
+            <span class="mono" style="font-size: 10px; color: #a09889; letter-spacing: 0.06em">{{s.label}}</span>
+            <span class="mono" style="font-size: 12px; color: #24211c; text-align: right">{{s.value}}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; border-top: 1px solid #ded9cd; padding-top: 14px">
+        <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #b07a2b">NEEDS A HUMAN</span>
+        <sc-for list="{{active.needs}}" as="n" hint-placeholder-count="2">
+          <span style="font-size: 13px; line-height: 1.5; color: #4a453c; text-wrap: pretty">&mdash; {{n.text}}</span>
+        </sc-for>
+        <span style="font-size: 12px; line-height: 1.5; color: #a09889; font-style: italic; margin-top: 2px; text-wrap: pretty">
+          A gap flagged is useful. A gap papered over is a rejected application.
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { q: 0 };
+  }
+  renderVals() {
+    const TEAL = '#1f6f77', AMBER = '#b07a2b', MUTED = '#a09889', INK = '#24211c';
+    const questions = [
+      { text: 'What difference will this funding make to the people you work with, and how will you know? Give us evidence from your existing work.', state: 'DRAFTED' },
+      { text: 'How is your organisation rooted in the community it serves?', state: 'NOT YET DRAFTED' },
+    ];
+    const answers = [
+      {
+        grounding: '11 OF 14',
+        paras: [
+          { text: 'This funding will let us hold open and extend provision we are already delivering, and we can show what it does. Our community meals programme reached 1,120 individuals and 410 households last year. Of the 180 members we surveyed, 74 per cent told us they now eat a hot meal daily more often than they managed before they came to us.' },
+          { text: 'The Pantry runs on a membership model at £4.50 a week for roughly £22 of food. It holds 190 member households at 58 per cent year-on-year retention, and members report an average £61 monthly reduction in what they spend on food.' },
+          { text: 'We will know whether this works the same way we have known for four years: a beneficiary survey run twice yearly since 2022, quarterly monitoring returns to Southwark Council since 2021, and an independent evaluation by Southwark Impact Partnership published in June 2025.' },
+        ],
+        sources: [
+          { locator: 'ORG.md#L17', line: 'Beneficiaries reached 2025-26: 1,120 individuals, 410 households' },
+          { locator: 'ORG.md#L24', line: 'Outcome: 74% of surveyed members (n=180) reported eating at least one hot meal a day more often' },
+          { locator: 'ORG.md#L29', line: 'Volume 2025-26: 190 member households, 58% retention year on year' },
+          { locator: 'ORG.md#L30', line: 'Outcome: members reported an average £61 monthly reduction in food spend' },
+          { locator: 'ORG.md#L36', line: 'Beneficiary survey run twice yearly since 2022, response rate 31%' },
+        ],
+        voice: [
+          { mark: '!', tone: AMBER, text: 'Used “attendees” where your own past bids say “members”.' },
+          { mark: '×', tone: TEAL, text: 'No machine tells found. No “leverage”, no “holistic”, no “impactful”.' },
+          { mark: '×', tone: TEAL, text: 'Sentence rhythm matches yours — sd 8.4 against your measured 8.9.' },
+        ],
+        needs: [
+          { text: 'The London Community Foundation’s award statistics are funder data, not yours. They cannot be cited to ORG.md.' },
+          { text: 'Which unfunded priority this ask targets: crèche provision, or van running costs.' },
+        ],
+      },
+      {
+        grounding: 'NOT YET DRAFTED',
+        paras: [
+          { text: 'Nothing drafted for this question yet.' },
+          { text: 'Granted drafts one scored question at a time, against the wording the funder actually published. Paste the next question into the call file and it will draft that one in your voice, with every claim traced back to a line in ORG.md.' },
+        ],
+        sources: [],
+        voice: [{ mark: '·', tone: MUTED, text: 'The voice check runs once there is a draft to check.' }],
+        needs: [{ text: 'Nothing yet.' }],
+      },
+    ];
+    const picked = this.state.q;
+    return {
+      questions: questions.map((q, i) => ({
+        ...q,
+        n: String(i + 1),
+        pick: () => this.setState({ q: i }),
+        edge: i === picked ? TEAL : '#ded9cd',
+        bg: i === picked ? '#f3f1eb' : 'transparent',
+        ink: i === picked ? INK : '#7c766a',
+        numTone: i === picked ? TEAL : MUTED,
+      })),
+      active: answers[picked],
+      style: [
+        { label: 'CORPUS', value: '20 documents' },
+        { label: 'MEDIAN SENTENCE', value: '12 words' },
+        { label: 'VARIATION (SD)', value: '8.9' },
+        { label: 'PERSON', value: 'first person plural' },
+        { label: 'THE PEOPLE YOU SERVE', value: '“members”' },
+        { label: 'HOUSE CAPITALS', value: 'Trustee, Pantry' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

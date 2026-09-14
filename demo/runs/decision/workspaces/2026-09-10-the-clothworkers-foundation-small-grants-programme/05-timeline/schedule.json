@@ -1,0 +1,41 @@
+{
+  "deadline": "2026-10-23",
+  "steps": [
+    {
+      "days_before_deadline": 40,
+      "task": "Board approves £6,000 match funding from reserves",
+      "owner_role": "Coordinator (with trustee chair)"
+    },
+    {
+      "days_before_deadline": 38,
+      "task": "Draft application narrative: freezer impact on meals, van on reach",
+      "owner_role": "Coordinator"
+    },
+    {
+      "days_before_deadline": 32,
+      "task": "Compile evidence: evaluation summary, survey outcomes, quotes",
+      "owner_role": "Coordinator"
+    },
+    {
+      "days_before_deadline": 28,
+      "task": "Internal review: trustee checks narrative against ORG.md",
+      "owner_role": "Designated trustee"
+    },
+    {
+      "days_before_deadline": 24,
+      "task": "Draft budget breakdown: freezer, van, match funding allocation",
+      "owner_role": "Finance lead"
+    },
+    {
+      "days_before_deadline": 18,
+      "task": "Coordinator + finance review: narratives match budget, edit for word limits",
+      "owner_role": "Coordinator + Finance lead"
+    },
+    {
+      "days_before_deadline": 10,
+      "task": "Final trustee sign-off: full application, declaration, submit",
+      "owner_role": "Trustee (chair or designated)"
+    }
+  ],
+  "total_hours_estimate": 38.0
+}

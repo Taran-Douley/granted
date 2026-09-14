@@ -1,0 +1,196 @@
+{
+  "run_date": "2026-09-09",
+  "run_time": "21:26",
+  "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+  "provider": "bedrock",
+  "duration_s": 104.2,
+  "model_calls": 9,
+  "threshold": 65,
+  "calls_considered": 3,
+  "bands": {
+    "High": 3,
+    "Medium": 0,
+    "Low": 0
+  },
+  "surfaced": [
+    {
+      "funder": "Department for Environment Food and Rural Affairs / Forestry Commission",
+      "programme": "Trees, woodlands and forestry - Woodland Creation Planning Grant",
+      "band": "High",
+      "fit": 79,
+      "alignment": 100,
+      "plausibility": 72,
+      "plausibility_confidence": "indicative",
+      "days_left": 1299,
+      "closes": "2030-03-31",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/trees-woodlands-and-forestry---woodland-creation-planning-grant-1",
+      "vetoed": null,
+      "reasons": [
+        "funder has backed GB-CHC organisations (100% of awards)",
+        "funds in Bristol",
+        "\u00a315,000 sits inside their usual range"
+      ]
+    },
+    {
+      "funder": "Ministry of Justice",
+      "programme": "Commissioned Rehabilitative Services General Grant Scheme",
+      "band": "High",
+      "fit": 79,
+      "alignment": 100,
+      "plausibility": 72,
+      "plausibility_confidence": "indicative",
+      "days_left": 201,
+      "closes": "2027-03-29",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/commissioned-rehabilitative-services-general-grant-scheme-1",
+      "vetoed": null,
+      "reasons": [
+        "funder has backed GB-CHC organisations (100% of awards)",
+        "funds in Bristol",
+        "\u00a315,000 sits inside their usual range"
+      ]
+    },
+    {
+      "funder": "Scottish Government",
+      "programme": "Business Support for Scotland",
+      "band": "High",
+      "fit": 79,
+      "alignment": 100,
+      "plausibility": 72,
+      "plausibility_confidence": "indicative",
+      "days_left": 1482,
+      "closes": "2030-09-30",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/business-support-for-scotland",
+      "vetoed": null,
+      "reasons": [
+        "funder has backed GB-CHC organisations (100% of awards)",
+        "funds in Bristol",
+        "\u00a315,000 sits inside their usual range"
+      ]
+    }
+  ],
+  "not_pursued": [],
+  "watcher_state": {
+    "tracked": 3,
+    "by_status": {
+      "open": 3
+    },
+    "silent": 0,
+    "in_flight": {
+      "deadline": "2026-09-20",
+      "days_left": 11,
+      "overdue": [
+        "Gather evidence"
+      ],
+      "due_now": [
+        "Draft"
+      ],
+      "hours_estimate": 22.0,
+      "feasible": false,
+      "summary": "11 days to deadline. Overdue: Gather evidence. Due now: Draft. The remaining work is estimated at 22 hours against the time left. This is no longer realistic at the current pace. Either commit someone this week or withdraw and keep the time."
+    }
+  },
+  "changes": [
+    {
+      "kind": "new",
+      "funder": "Department for Environment Food and Rural Affairs / Forestry Commission",
+      "detail": "fit 78/100, closes 2030-03-31",
+      "urgent": false
+    },
+    {
+      "kind": "new",
+      "funder": "Ministry of Justice",
+      "detail": "fit 78/100, closes 2027-03-29",
+      "urgent": false
+    },
+    {
+      "kind": "new",
+      "funder": "Scottish Government",
+      "detail": "fit 78/100, closes 2030-09-30",
+      "urgent": false
+    }
+  ],
+  "archive": {
+    "n_files": 21,
+    "n_decided": 17,
+    "n_awarded": 10,
+    "n_unknown_outcome": 4,
+    "win_rate": 0.588,
+    "confidence": "indicative",
+    "median_successful_ask": 8900.0,
+    "median_unsuccessful_ask": 39000.0
+  },
+  "revisit": [
+    "Bristol City Council",
+    "John James Bristol Foundation",
+    "Screwfix Foundation",
+    "Souter Charitable Trust"
+  ],
+  "scope": {
+    "files_seen": 28,
+    "files_read": 21,
+    "files_skipped": 7,
+    "skipped_detail": [
+      {
+        "name": "DBS check register.md",
+        "reason": "name matches sensitive-record pattern"
+      },
+      {
+        "name": "HR - staff contracts.md",
+        "reason": "name matches sensitive-record pattern"
+      },
+      {
+        "name": "beneficiary contact list.md",
+        "reason": "name matches sensitive-record pattern"
+      },
+      {
+        "name": "budget template.xlsx",
+        "reason": "unsupported type .xlsx"
+      },
+      {
+        "name": "logo.png",
+        "reason": "unsupported type .png"
+      },
+      {
+        "name": "referral form blank.md",
+        "reason": "name matches sensitive-record pattern"
+      },
+      {
+        "name": "safeguarding log 2025.md",
+        "reason": "name matches sensitive-record pattern"
+      }
+    ]
+  },
+  "voice": {
+    "corpus_documents": 20,
+    "corpus_sentences": 204,
+    "median_sentence_words": 10.5,
+    "sentence_word_sd": 9.5,
+    "beneficiary_term": "members",
+    "first_person_plural": true,
+    "flags": {
+      "tells": [
+        "holistic approach",
+        "robust",
+        "seamless"
+      ],
+      "uniformity": null,
+      "term_violations": [
+        "used \"service users\" where they say \"members\""
+      ],
+      "clean": false
+    }
+  },
+  "grounded": 11,
+  "total_claims": 12,
+  "gaps": 3,
+  "schema_version": 2,
+  "_comment": "Written by granted.digest on every run. Every figure here is computed by a module; none are hand-entered. The dashboard reads this file directly and needs no rebuild.",
+  "_produced_by": {
+    "bands, surfaced, not_pursued": "triage.triage / triage.rank",
+    "watcher_state, changes": "watcher.Register.poll",
+    "archive, revisit": "archive.summarise",
+    "scope": "archive.scan",
+    "voice": "voice.build_style_card / voice.check",
+    "grounded, total_claims, gaps": "citations.CitedDraft"
+  }
+}

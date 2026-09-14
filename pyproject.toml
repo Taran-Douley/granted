@@ -1,0 +1,45 @@
+[project]
+name = "granted"
+version = "0.1.0"
+description = "A background agent that tells small UK organisations when not to apply for funding"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "strands-agents>=1.0",
+    "requests>=2.31",
+    "pydantic>=2.0",
+    "boto3>=1.34",
+    # Past applications arrive as PDFs; this reads their text.
+    "pypdf>=4.0",
+]
+
+readme = "README.md"
+keywords = ["grants", "funding", "charity", "nonprofit", "agents", "bedrock", "360giving"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Other Audience",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Office/Business",
+]
+
+[project.optional-dependencies]
+# For organisations that use an Anthropic API key instead of an AWS account.
+anthropic = ["strands-agents[anthropic]"]
+
+[project.urls]
+Homepage = "https://github.com/example/granted"
+
+[project.scripts]
+granted = "granted.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+# Shipped with every install: the verified funder ids a new folder starts from.
+granted = ["data/*.json", "data/*.html"]

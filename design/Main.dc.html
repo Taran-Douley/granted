@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #faf9f6; color: #24211c;
+           font-family: Newsreader, Georgia, 'Times New Roman', serif; }
+    a { color: #1f6f77; } a:hover { color: #14484e; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace; }
+    .row:hover { background: #f3f1eb; }
+  </style>
+</helmet>
+
+<div style="min-height: 100%; padding: 48px 56px 56px; box-sizing: border-box; display: flex; flex-direction: column; gap: 34px">
+
+  <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #24211c; padding-bottom: 14px">
+    <div style="display: flex; align-items: baseline; gap: 18px">
+      <span style="font-size: 26px; font-weight: 500; letter-spacing: -0.01em">Granted</span>
+      <span class="mono" style="font-size: 12px; color: #7c766a; letter-spacing: 0.04em">RYE LANE COMMUNITY KITCHEN &middot; SOUTHWARK</span>
+    </div>
+    <span class="mono" style="font-size: 12px; color: #7c766a">9 SEPTEMBER 2026</span>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 5px">
+      <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #7c766a">CALLS CONSIDERED</span>
+      <span style="font-size: 30px; font-weight: 300">3</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 5px">
+      <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #7c766a">SURFACED TODAY</span>
+      <span style="font-size: 30px; font-weight: 300; color: #1f6f77">1</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 5px">
+      <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #7c766a">GATE THRESHOLD</span>
+      <span style="font-size: 30px; font-weight: 300">65<span style="font-size: 15px; color: #7c766a">/100</span></span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 5px">
+      <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #7c766a">HOURS SAVED</span>
+      <span style="font-size: 30px; font-weight: 300">60<span style="font-size: 15px; color: #7c766a"> est.</span></span>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 52px; flex-grow: 1">
+
+    <div style="grid-column: span 2; display: flex; flex-direction: column; gap: 0">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px">
+        <span style="font-size: 17px; font-style: italic; color: #24211c">Open calls, in triaged order</span>
+        <span class="mono" style="font-size: 10px; color: #a09889; letter-spacing: 0.06em">SELECT A ROW FOR THE REASONING</span>
+      </div>
+
+      <sc-for list="{{calls}}" as="call" hint-placeholder-count="3">
+        <div class="row" onClick="{{ call.pick }}" style="cursor: pointer; border-top: 1px solid {{call.rule}}; padding: 18px 8px 18px 0; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; align-items: baseline; gap: 20px">
+            <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; width: 62px; flex-shrink: 0; color: {{call.tone}}">{{call.priority}}</span>
+            <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px">
+              <span style="font-size: 18px; color: {{call.ink}}">{{call.programme}}</span>
+              <span class="mono" style="font-size: 11px; color: #a09889">{{call.funder}}</span>
+            </div>
+            <div style="display: flex; align-items: baseline; gap: 26px; flex-shrink: 0">
+              <span class="mono" style="font-size: 11px; color: #7c766a; width: 96px; text-align: right">{{call.closes}}</span>
+              <span class="mono" style="font-size: 19px; color: {{call.ink}}; width: 62px; text-align: right">{{call.fit}}</span>
+            </div>
+          </div>
+          <sc-if value="{{call.open}}" hint-placeholder-val="{{ true }}">
+            <div style="padding: 4px 0 6px 82px; display: flex; flex-direction: column; gap: 9px; border-left: 0">
+              <sc-for list="{{call.reasons}}" as="reason" hint-placeholder-count="3">
+                <div style="display: flex; gap: 12px; align-items: baseline">
+                  <span class="mono" style="font-size: 11px; color: {{reason.mark}}; flex-shrink: 0">{{reason.sign}}</span>
+                  <span style="font-size: 14px; line-height: 1.5; color: #4a453c; text-wrap: pretty">{{reason.text}}</span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+
+      <div style="border-top: 1px solid #24211c; padding-top: 16px; margin-top: 2px">
+        <span style="font-size: 14px; font-style: italic; color: #7c766a; line-height: 1.55">
+          Two calls stop before a model is ever asked. Triage is arithmetic over this funder&rsquo;s
+          award history, and it costs nothing.
+        </span>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 26px">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #7c766a; border-bottom: 1px solid #ded9cd; padding-bottom: 7px">WHAT THIS FUNDER ACTUALLY BUYS</span>
+        <span style="font-size: 13px; line-height: 1.5; color: #4a453c">
+          Measured from 200 published awards, not from their brief.
+        </span>
+      </div>
+
+      <sc-for list="{{funder}}" as="f" hint-placeholder-count="4">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <span class="mono" style="font-size: 10px; letter-spacing: 0.08em; color: #a09889">{{f.label}}</span>
+          <span class="mono" style="font-size: 14px; color: #24211c">{{f.value}}</span>
+        </div>
+      </sc-for>
+
+      <div style="display: flex; flex-direction: column; gap: 9px; margin-top: 2px">
+        <span class="mono" style="font-size: 10px; letter-spacing: 0.08em; color: #a09889">WHERE THE MONEY GOES</span>
+        <sc-for list="{{regions}}" as="r" hint-placeholder-count="5">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span class="mono" style="font-size: 11px; width: 84px; color: {{r.ink}}">{{r.name}}</span>
+            <div style="height: 3px; width: {{r.width}}; background: {{r.bar}}"></div>
+            <span class="mono" style="font-size: 10px; color: #a09889">{{r.n}}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="border-top: 1px solid #ded9cd; padding-top: 13px">
+        <span style="font-size: 13px; font-style: italic; line-height: 1.55; color: #7c766a; text-wrap: pretty">
+          Southwark is their second-largest concentration. That is why this one cleared and the others did not.
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"density":{"editor":"enum","options":["comfortable","compact"],"default":"comfortable","section":"Layout"}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { picked: 'cornerstone' };
+  }
+  renderVals() {
+    const HIGH = '#24211c', MUTED = '#a09889', TEAL = '#1f6f77', AMBER = '#b07a2b';
+    const rows = [
+      { id: 'cornerstone', priority: 'HIGH', programme: 'Cornerstone Fund',
+        funder: 'The London Community Foundation', closes: '23 OCT · 44d', fit: '78',
+        ink: HIGH, tone: TEAL, rule: '#24211c',
+        reasons: [
+          { sign: '+', mark: TEAL, text: 'Funder has backed GB-CHC organisations — 43% of 200 recorded awards.' },
+          { sign: '+', mark: TEAL, text: 'Funds in Southwark. 15 awards, their second-largest concentration.' },
+          { sign: '+', mark: TEAL, text: '£9,979 sits inside their usual £5,642–£20,000, and is their median award exactly.' },
+          { sign: '!', mark: AMBER, text: 'Call names youth and mental health alongside food insecurity. ORG.md evidences one of the three.' },
+        ] },
+      { id: 'winter', priority: 'LOW', programme: 'Emergency Winter Response',
+        funder: 'The London Community Foundation', closes: '11 SEP · 2d', fit: '15',
+        ink: MUTED, tone: MUTED, rule: '#ded9cd',
+        reasons: [
+          { sign: '−', mark: AMBER, text: 'Ceiling of £3,000 sits below this funder’s own p10 of £5,642 — 2.0x outside the band they actually award in.' },
+          { sign: '−', mark: AMBER, text: 'Two days to deadline against 28 hours of work. Urgency is a veto here, not a reason to hurry.' },
+        ] },
+      { id: 'capital', priority: 'LOW', programme: 'Major Capital Programme',
+        funder: 'The London Community Foundation', closes: '12 SEP · 3d', fit: '5',
+        ink: MUTED, tone: MUTED, rule: '#ded9cd',
+        reasons: [
+          { sign: '−', mark: AMBER, text: 'Requires turnover above £1m and freehold premises. Turnover is £136,000 and the hall is hired.' },
+          { sign: '−', mark: AMBER, text: 'Stopped at triage. No model was called, so this cost nothing to rule out.' },
+        ] },
+    ];
+    return {
+      calls: rows.map((r) => ({
+        ...r,
+        open: this.state.picked === r.id,
+        pick: () => this.setState({ picked: this.state.picked === r.id ? null : r.id }),
+      })),
+      funder: [
+        { label: 'MEDIAN AWARD', value: '£9,979' },
+        { label: 'TYPICAL RANGE (p10–p90)', value: '£5,642 – £20,000' },
+        { label: 'AWARDS OF THE AMOUNT ASKED', value: '102% (n=200)' },
+        { label: 'RECIPIENT LEGAL FORMS', value: 'GB-COH 108 · GB-CHC 86' },
+        { label: 'REPEAT FUNDING', value: '0% of recipients' },
+      ],
+      regions: [
+        { name: 'Lambeth', n: '18', width: '100%', bar: '#ded9cd', ink: '#7c766a' },
+        { name: 'Southwark', n: '15', width: '83%', bar: TEAL, ink: HIGH },
+        { name: 'Islington', n: '13', width: '72%', bar: '#ded9cd', ink: '#7c766a' },
+        { name: 'Wandsworth', n: '12', width: '67%', bar: '#ded9cd', ink: '#7c766a' },
+        { name: 'Hackney', n: '11', width: '61%', bar: '#ded9cd', ink: '#7c766a' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

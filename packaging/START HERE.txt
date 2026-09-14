@@ -1,0 +1,118 @@
+GRANTED
+Tells your organisation which funding to go for, and which to leave alone.
+==========================================================================
+
+Most funding tools help you write more applications. Granted helps you write
+fewer. Every morning it checks open funding calls against what each funder has
+actually funded before, and against your own track record. Most days it says
+nothing. When a call genuinely fits, it opens a folder for it with a decision,
+a draft answer and a timeline, ready for you to edit.
+
+
+1. INSTALL IT (once on each computer that will use this folder)
+--------------------------------------------------------------------------
+Windows:    double-click  Install Granted (Windows).bat
+            If Windows says it protected your PC, click More info, then
+            Run anyway.
+Mac/Linux:  open Terminal in this folder and type  ./install.sh
+
+The installer asks four things:
+  - How Granted should reach its AI model. An Anthropic API key is the
+    simplest (console.anthropic.com); an AWS account with Amazon Bedrock
+    also works. The key is saved on this computer only, never in this
+    folder.
+  - Your organisation's name.
+  - Where your past funding applications are. Word, PDF and text files all
+    work. Press Enter to use the "Past applications" folder in here.
+  - Whether to run every morning at 8.
+
+It needs Python 3.11 or newer. On Windows it offers to install it for you.
+
+
+2. CHECK ORG.md
+--------------------------------------------------------------------------
+Granted drafts ORG.md from your past applications: who you are, what you do,
+what you have achieved. It lists what it could not find. Open it (on Windows:
+right-click, Open with, Notepad), fill the gaps, and correct anything wrong.
+Put your postcode on the Postcode line: it decides which regional and local
+funding applies to you.
+
+ORG.md is the only file you maintain. Every fact Granted puts in a draft
+comes from a line in it, so a trustee can check any figure.
+
+
+3. RUN IT, THEN OPEN THE DASHBOARD
+--------------------------------------------------------------------------
+Windows:    double-click  Run Granted now.bat
+Mac/Linux:  ./run-granted.sh
+
+Then double-click Dashboard.html. It opens in your browser and shows what
+Granted looked at and what it decided. Leave it open: it picks up each new
+run within a minute. It needs an internet connection.
+
+
+WHAT IS IN THIS FOLDER
+--------------------------------------------------------------------------
+Dashboard.html       The dashboard. Updates itself after every run.
+Bid folders.html     Every bid folder and its files. Works offline.
+Bids                 One folder per call worth your time, named by date,
+                     funder and programme. Inside each:
+                       01-decision    Decision.docx: fit, suggested ask, why
+                       02-direction   Direction.docx: the angle to lead with
+                       03-drafts      Draft answer v1.docx: edit this one
+                       04-evidence    Evidence and sources.docx
+                       05-timeline    Timeline.docx: who does what, by when
+                       06-submitted   outcome.meta.json: record the result
+Daily notes          What each run looked at, and why it stayed quiet.
+Past applications    Your past bids, if you keep them here.
+ORG.md               About your organisation. Yours to maintain.
+granted.json         Settings. Change them in Notepad if you need to.
+funders.json         Funders whose award histories Granted can check.
+.granted             The program and Granted's memory. Leave it alone.
+
+
+WHERE THE CALLS COME FROM
+--------------------------------------------------------------------------
+Government grants (Find a grant, GOV.UK), the National Lottery Community
+Fund's open programmes, and Innovate UK's competitions. Calls for another
+part of the UK, or for businesses only, are ruled out straight away.
+
+Local funders, such as your community foundation and council, do not list
+their calls in one place. Once a week Granted checks which of them have
+actually funded organisations near you, and lists them on the dashboard and
+in the daily note, with links. Their calls are on their own websites.
+
+
+MOST DAYS IT SAYS NOTHING
+--------------------------------------------------------------------------
+That is the point. A quiet day means nothing open was worth thirty hours of
+your time. The daily note says what was checked and why each call stopped,
+so you can see it looked.
+
+
+WHEN YOU HEAR BACK FROM A FUNDER
+--------------------------------------------------------------------------
+Open the bid's 06-submitted\outcome.meta.json in Notepad and change
+"pending" to "awarded" or "rejected". That is how Granted learns your track
+record, so next year it knows which funders say yes to you.
+
+
+WHAT LEAVES YOUR COMPUTER
+--------------------------------------------------------------------------
+Granted reads only the past-applications folder you give it. It skips files
+whose names suggest safeguarding, referral or personal records, and it never
+changes your files.
+
+When a call is worth drafting, it sends the AI model the call, ORG.md, and a
+summary of your writing style, which can include short passages from your
+past applications. It also looks up public data on funders (360Giving), open
+calls (Find a grant, the National Lottery Community Fund, Innovate UK) and
+the region your postcode is in (postcodes.io). Granted sends nothing else
+anywhere.
+
+
+MOVING OR SHARING THIS FOLDER
+--------------------------------------------------------------------------
+The folder can live in OneDrive, SharePoint or Dropbox, and it can be moved.
+Each computer that uses it needs the installer once. Only one computer should
+run it on a schedule, or two will write to the same folder at once.

@@ -1,0 +1,556 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Granted</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--ground:#faf9f6;--raised:#f3f1eb;--ink:#24211c;--body:#4a453c;--muted:#7c766a;
+--faint:#a09889;--rule:#ded9cd;--strong:#24211c;--accent:#1f6f77;--soft:#9ec6c9;
+--warn:#b07a2b;--focus:#1f6f77}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ground:#171612;
+--raised:#201e18;--ink:#eae5d9;--body:#c6bfb0;--muted:#9b9384;--faint:#6f695d;
+--rule:#332f26;--strong:#6f695d;--accent:#6fb9bf;--soft:#2f5f63;--warn:#d6a256;--focus:#6fb9bf}}
+:root[data-theme=dark]{--ground:#171612;--raised:#201e18;--ink:#eae5d9;--body:#c6bfb0;
+--muted:#9b9384;--faint:#6f695d;--rule:#332f26;--strong:#6f695d;--accent:#6fb9bf;
+--soft:#2f5f63;--warn:#d6a256;--focus:#6fb9bf}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:16px/1.5 Newsreader,Georgia,serif}
+.mono,.lbl{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
+.lbl{font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:pointer;text-align:left}
+a{color:var(--accent)} a:hover{opacity:.75}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.shell{max-width:1280px;margin:0 auto;padding:30px 26px 52px}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+border-bottom:1px solid var(--strong);padding-bottom:12px}
+.top h1{margin:0;font-size:25px;font-weight:500;letter-spacing:-.01em}
+.banner{display:flex;gap:14px;align-items:baseline;padding:20px 0 22px;border-bottom:1px solid var(--rule)}
+.banner .n{font-size:42px;font-weight:300;line-height:1;color:var(--accent)}
+.banner p{margin:0;font-size:15px;line-height:1.55;color:var(--body);max-width:66ch;text-wrap:pretty}
+.alert{display:flex;gap:12px;align-items:baseline;padding:12px 14px;background:var(--raised);
+border-left:3px solid var(--warn);margin:16px 0 0}
+.alert p{margin:0;font-size:14px;line-height:1.5;color:var(--body);text-wrap:pretty}
+.cols{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:40px;
+align-items:start;padding-top:24px}
+@media (max-width:920px){.cols{grid-template-columns:minmax(0,1fr)}}
+.grant{display:flex;flex-direction:column;gap:5px;width:100%;border-top:1px solid var(--rule);
+padding:13px 10px 13px 12px;border-left:3px solid transparent;transition:background .12s}
+.grant:hover{background:var(--raised)}
+.grant[aria-current=true]{background:var(--raised);border-left-color:var(--accent)}
+.grant .gn{font-size:15px;line-height:1.3}
+.grant .gs{display:flex;justify-content:space-between;gap:8px;font-size:10px;letter-spacing:.07em;
+text-transform:uppercase;color:var(--faint);font-family:'IBM Plex Mono',Menlo,monospace}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--rule);margin-bottom:22px;
+overflow-x:auto;scrollbar-width:thin}
+.tab{padding:9px 14px;font-family:'IBM Plex Mono',Menlo,monospace;font-size:11px;letter-spacing:.07em;
+text-transform:uppercase;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;
+white-space:nowrap}
+.tab[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent)}
+.tab[disabled]{color:var(--faint);cursor:not-allowed;text-decoration:line-through}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-bottom:20px;
+border-bottom:1px solid var(--rule);margin-bottom:22px}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{display:flex;flex-direction:column;gap:4px}
+.stat .v{font-size:30px;font-weight:300;line-height:1}
+.stat .u{font-size:15px;color:var(--faint)}
+h2.sec{font-size:17px;font-style:italic;font-weight:400;margin:0 0 11px}
+.rows{display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
+.row{display:flex;gap:12px;align-items:baseline}
+.row .sg{font-family:'IBM Plex Mono',Menlo,monospace;font-size:11px;flex-shrink:0;width:10px}
+.row p{margin:0;font-size:15px;line-height:1.55;color:var(--body);text-wrap:pretty}
+.pos{color:var(--accent)}.neg,.flag{color:var(--warn)}
+.prose{font-size:16px;line-height:1.68;max-width:68ch;text-wrap:pretty}
+.prose p{margin:0 0 14px}
+.evid{display:flex;gap:3px;height:6px;margin:10px 0 12px}
+.evid i{flex-grow:1;background:var(--rule)}.evid i.on{background:var(--accent)}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;align-items:baseline;gap:15px;width:100%;border-top:1px solid var(--rule);
+padding:12px 8px 12px 0;transition:background .12s}
+.step:hover{background:var(--raised)}
+.step .bx{font-family:'IBM Plex Mono',Menlo,monospace;font-size:13px;width:14px;flex-shrink:0}
+.step .dy{font-family:'IBM Plex Mono',Menlo,monospace;font-size:11px;width:44px;flex-shrink:0}
+.step .tk{flex-grow:1;font-size:15px;line-height:1.4;text-wrap:pretty}
+.step .ow{font-family:'IBM Plex Mono',Menlo,monospace;font-size:10px;letter-spacing:.06em;
+color:var(--faint);width:104px;text-align:right;flex-shrink:0}
+.step.done .tk{color:var(--muted);text-decoration:line-through}
+@media (max-width:640px){.step .ow{display:none}}
+.kv{display:flex;justify-content:space-between;gap:14px;align-items:baseline;padding:6px 0;
+border-bottom:1px solid var(--rule)}
+.kv .k{font-family:'IBM Plex Mono',Menlo,monospace;font-size:10px;letter-spacing:.06em;
+color:var(--faint);text-transform:uppercase}
+.kv .v{font-family:'IBM Plex Mono',Menlo,monospace;font-size:12px;text-align:right}
+.files{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:2px}
+.file{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:11px 12px;
+border:1px solid var(--rule);text-decoration:none;color:var(--ink);transition:background .12s}
+.file:hover{background:var(--raised);opacity:1}
+.file .fl{font-size:15px}
+.file .fp{font-family:'IBM Plex Mono',Menlo,monospace;font-size:9px;color:var(--faint)}
+.quiet{font-size:14px;font-style:italic;line-height:1.6;color:var(--muted);max-width:66ch;text-wrap:pretty}
+pre.raw{background:var(--raised);padding:14px 16px;overflow-x:auto;font-family:'IBM Plex Mono',Menlo,monospace;
+font-size:12px;line-height:1.6;color:var(--body);margin:0;border-left:2px solid var(--rule)}
+.foot{margin-top:38px;padding-top:13px;border-top:1px solid var(--rule);display:flex;
+justify-content:space-between;gap:16px;flex-wrap:wrap}
+.empty{padding:40px 0;color:var(--muted);font-style:italic}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="top">
+    <div style="display:flex;align-items:baseline;gap:15px;flex-wrap:wrap">
+      <h1>Granted</h1><span class="lbl" id="org"></span>
+    </div>
+    <span class="lbl" id="built"></span>
+  </div>
+  <div id="banner"></div>
+  <div class="cols">
+    <div>
+      <div class="lbl" style="margin-bottom:7px">Grants in this folder</div>
+      <div id="grants"></div>
+      <div style="margin-top:24px">
+        <div class="lbl" style="margin-bottom:7px">Runs</div>
+        <div id="runs"></div>
+      </div>
+    </div>
+    <div><div class="tabs" id="tabs" role="tablist"></div><div id="pane"></div></div>
+  </div>
+  <div class="foot">
+    <span class="lbl" id="root"></span>
+    <span class="lbl">Grant data from 360Giving, CC-BY-SA</span>
+  </div>
+</div>
+<script id="gr-data" type="application/json">{
+ "built": "2026-09-09",
+ "root": "/mnt/c/Users/Taran/Documents/AWS Hackathon/demo/runs/drift",
+ "runs": [
+  {
+   "org": "Rye Lane Community Kitchen",
+   "run_date": "2026-09-09",
+   "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+   "threshold": 65,
+   "calls_considered": 3,
+   "unreadable": [],
+   "decision": null,
+   "considered": [
+    {
+     "funder": "The London Community Foundation",
+     "programme": "Cornerstone Fund",
+     "title": "The London Community Foundation — Cornerstone Fund",
+     "fit": 0,
+     "reason": "11 days left is about 16 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 11,
+     "stopped_at": "triage"
+    },
+    {
+     "funder": "The London Community Foundation",
+     "programme": "Major Capital Programme",
+     "title": "The London Community Foundation — Major Capital Programme",
+     "fit": 0,
+     "reason": "3 days left is about 4 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 3,
+     "stopped_at": "triage"
+    },
+    {
+     "funder": "The London Community Foundation",
+     "programme": "Emergency Winter Response",
+     "title": "The London Community Foundation — Emergency Winter Response",
+     "fit": 0,
+     "reason": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 2,
+     "stopped_at": "triage"
+    }
+   ],
+   "alerts": [
+    {
+     "title": "The London Community Foundation — Cornerstone Fund",
+     "kind": "deadline_moved",
+     "detail": "deadline brought forward from 2026-10-23 to 2026-09-20; timeline needs regenerating",
+     "urgent": true,
+     "workspace": "demo/runs/drift/workspaces/2026-09-09-the-london-community-foundation-cornerstone-fund"
+    }
+   ],
+   "digest_md": "digests/2026-09-09.md"
+  }
+ ],
+ "grants": [
+  {
+   "slug": "2026-09-09-the-london-community-foundation-cornerstone-fund",
+   "folder": "workspaces/2026-09-09-the-london-community-foundation-cornerstone-fund",
+   "files": [
+    {
+     "label": "Brief",
+     "path": "workspaces/2026-09-09-the-london-community-foundation-cornerstone-fund/00-brief/call.md"
+    },
+    {
+     "label": "Decision",
+     "path": "workspaces/2026-09-09-the-london-community-foundation-cornerstone-fund/01-decision/match.json"
+    },
+    {
+     "label": "Direction",
+     "path": "workspaces/2026-09-09-the-london-community-foundation-cornerstone-fund/02-direction/angle.md"
+    },
+    {
+     "label": "Draft",
+     "path": "workspaces/2026-09-09-the-london-community-foundation-cornerstone-fund/03-drafts/answer-1.md"
+    },
+    {
+     "label": "Draft (structured)",
+     "path": "workspaces/2026-09-09-the-london-community-foundation-cornerstone-fund/03-drafts/answer-1.json"
+    },
+    {
+     "label": "Style card",
+     "path": "workspaces/2026-09-09-the-london-community-foundation-cornerstone-fund/03-drafts/style-card.md"
+    },
+    {
+     "label": "Evidence",
+     "path": "workspaces/2026-09-09-the-london-community-foundation-cornerstone-fund/04-evidence/claims.md"
+    },
+    {
+     "label": "Timeline",
+     "path": "workspaces/2026-09-09-the-london-community-foundation-cornerstone-fund/05-timeline/schedule.json"
+    },
+    {
+     "label": "Outcome",
+     "path": "workspaces/2026-09-09-the-london-community-foundation-cornerstone-fund/06-submitted/outcome.meta.json"
+    }
+   ],
+   "brief": "# The London Community Foundation — Cornerstone Fund\n\n- **Source**: https://example.org/lcf/cornerstone\n- **Opens**: 2026-08-01\n- **Closes**: 2026-10-23\n- **Maximum award**: £20,000\n\n## As published\n\nUnrestricted and project funding for grassroots organisations working on food insecurity, youth and mental health across London boroughs.\n\n_Recorded 2026-09-09. Funders edit and withdraw pages; this is the version the decision was made against._",
+   "decision": {
+    "fit_score": 78,
+    "recommend_apply": true,
+    "suggested_ask_gbp": null,
+    "eligibility_met": [
+     "Legal form: Charitable Incorporated Organisation (GB-CHC) is the funder's second-most funded legal form (86 awards)",
+     "Geography: Southwark is the funder's second-most concentrated borough (15 awards on record)",
+     "Mission alignment: Food insecurity is explicitly named in the call",
+     "Scale: £136k turnover sits comfortably within the funder's typical portfolio",
+     "Track record: Three years of monitored delivery with independent evaluation",
+     "Ask amount: £9,979 is exactly the median award size in the funder's history"
+    ],
+    "eligibility_gaps": [
+     "No evidence of youth or mental health work: org focuses purely on food insecurity. The call names three priorities; only one is demonstrated",
+     "No data on reach by age group: cannot evidence whether young people benefit from community meals or food pantry"
+    ],
+    "blocking": [],
+    "reasoning": "Strong case for application, with caveats on positioning.\n\nMATCH QUALITY:\nThe funder's award history shows unmistakable concentration on Southwark (15 awards) and preference for charitable incorporated organisations (86 awards). Rye Lane Community Kitchen meets both hard criteria. The £9,979 ask sits exactly at the funder's median.\n\nMISSION FIT:\nFood insecurity is an exact match. The org has strong evidence: 7,400 meals served in 2025-26, 74% of members eating more hot meals daily, 190-member food pantry with £61/month savings per household. This is delivered, not aspirational.\n\nHowever, the call names three priorities: food insecurity, youth, and mental health. The org profile contains zero evidence of work with young people or mental health beneficiaries. The community meals are open-access, so young people *may* attend, but there is no age breakdown. If youth engagement is scored, this is a gap.\n\nTIME PRESSURE:\n44 days to close is tight but workable for a prepared org. The funder's typical award duration is 5 months, so turnaround is feasible.\n\nRISK FACTORS:\n1. **Repeat funding:** The funder has funded 0% of recipients twice. The org has recent awards from Southwark Council (2024) and National Lottery (2023). This may signal the funder avoids co-funding or overlapping support. Clarify before investing time.\n\n2. **Youth/mental health gap:** The call wording is ambiguous. Does it require *all three* priorities or *any one*? The funder's 200-award history would clarify this—if 95% of recipients work solely on one, the gap is not material. If most span two or three, it becomes significant.\n\n3. **Match funding:** The call doesn't state if match funding is required. The org has £6k available subject to board approval.\n\nSUGGESTED ASK:\n£9,979 matches the funder's median exactly, sits well within their typical range (5,642–20,000), and is below the stated maximum (£20,000). Asking the median removes uncertainty and reflects the org's prior modest funding history.\n\nSCORE RATIONALE (78, not higher):\n- Excellent geography and legal form fit (+20)\n- Perfect ask calibration (+15)\n- Strong food insecurity evidence (+20)\n- Significant gap on youth/mental health priorities (-15)\n- Funder's 0% repeat funding creates uncertainty on appetite for already-funded orgs (-10)\n- 44 days is workable but not generous for a three-person team (-5)\n\nRECOMMENDATION:\n**Yes, apply for £9,979.** But clarify two things first:\n1. Phone the funder and ask whether the call seeks organisations addressing all three priorities or any one of them.\n2. Confirm whether match funding is required or suggested.\n\nThe drafter's answer to \"what difference will this funding make\" should pull directly from existing survey data: \"Last year our members reported eating hot meals 74% more frequently than before. We surveyed 180 people; 31% response rate. This funding will let us [expand/continue]. We'll know it worked by tracking the same outcome metric quarterly, as we have done for three years.\"\n\nThis is a genuine fit. 30 hours will not be wasted.<\/reasoning>\n<parameter name=\"suggested_ask_gbp\">9979"
+   },
+   "direction": "Lead the application by anchoring the ask to measurable outcomes already proven in your existing beneficiary data, not aspirations.\n\nYour independent evaluation (Southwark Impact Partnership, June 2025) and twice-yearly surveys since 2022 give you the evidence base the funder expects. Specifically: 74% of surveyed members (n=180) now eat at least one hot meal daily more often than before; food pantry members report £61 monthly savings (n=74, January 2026 survey). These are not promises—they are tracked outcomes from real people you already serve. Frame this funding as scaling what works, not piloting what might.\n\nAvoid repositioning the organisation as addressing youth or mental health unless you have demographic breakdowns showing young people or people citing mental health as a primary reason for attending. The call names three priorities; the funder's award history will show whether they fund organisations addressing all three or any one. Assume single-issue focus is acceptable unless you can prove otherwise—but do not invent youth or mental health impact where your data does not show it.\n\nAvoid framing this as additive funding for new programmes (the crèche, the van). The funder typically funds for short periods (median 5 months) and has never re-funded the same recipient. Position this as operational continuity for food insecurity work already delivering tracked results, not expansion into unfunded areas.",
+   "draft": "We know from direct evidence what difference our work makes. Last year, 74% of surveyed members reported eating at least one hot meal a day more often than before attending. We ran that survey twice yearly since 2022, with a 31% response rate across 180 people. Members using our Food Pantry reported an average £61 monthly reduction in food spend.\n\nThis funding will allow us to sustain and expand these programmes. We will track the same outcomes we measure now. We submit quarterly monitoring returns to Southwark Council and conduct beneficiary surveys twice yearly. Our independent evaluation by Southwark Impact Partnership, published June 2025, confirmed the reach and impact of our work. We served 7,400 meals across 148 sittings in 2025-26, reaching 1,120 individuals and 410 households.\n\nWe will know this funding has made a difference because we will continue to measure what we already measure: how often members eat hot meals, how much they spend on food, and how many people we reach. Our existing systems are in place.",
+   "draft_structured": {
+    "question": "What difference will this funding make to the people you work with, and how will you know? Give us evidence from your existing work.",
+    "answer": "We know from direct evidence what difference our work makes. Last year, 74% of surveyed members reported eating at least one hot meal a day more often than before attending. We ran that survey twice yearly since 2022, with a 31% response rate across 180 people. Members using our Food Pantry reported an average £61 monthly reduction in food spend.\n\nThis funding will allow us to sustain and expand these programmes. We will track the same outcomes we measure now. We submit quarterly monitoring returns to Southwark Council and conduct beneficiary surveys twice yearly. Our independent evaluation by Southwark Impact Partnership, published June 2025, confirmed the reach and impact of our work. We served 7,400 meals across 148 sittings in 2025-26, reaching 1,120 individuals and 410 households.\n\nWe will know this funding has made a difference because we will continue to measure what we already measure: how often members eat hot meals, how much they spend on food, and how many people we reach. Our existing systems are in place.",
+    "claims": [
+     {
+      "text": "74% of surveyed members reported eating at least one hot meal a day more often than before attending",
+      "source_heading": "Community meals",
+      "source_line": "Outcome: 74% of surveyed members (n=180) reported eating at least one hot meal a day more often than before attending",
+      "grounded": true
+     },
+     {
+      "text": "We ran that survey twice yearly since 2022, with a 31% response rate across 180 people",
+      "source_heading": "Evidence and evaluation",
+      "source_line": "Beneficiary survey run twice yearly since 2022, response rate 31%",
+      "grounded": true
+     },
+     {
+      "text": "Members using our Food Pantry reported an average £61 monthly reduction in food spend",
+      "source_heading": "Food pantry",
+      "source_line": "Outcome: members reported an average £61 monthly reduction in food spend (self-reported, n=74, survey ran Jan 2026)",
+      "grounded": true
+     },
+     {
+      "text": "We submit quarterly monitoring returns to Southwark Council",
+      "source_heading": "Evidence and evaluation",
+      "source_line": "Quarterly monitoring returns submitted to Southwark Council since 2021",
+      "grounded": true
+     },
+     {
+      "text": "Our independent evaluation by Southwark Impact Partnership, published June 2025, confirmed the reach and impact of our work",
+      "source_heading": "Evidence and evaluation",
+      "source_line": "Independent evaluation by Southwark Impact Partnership, published June 2025",
+      "grounded": true
+     },
+     {
+      "text": "We served 7,400 meals across 148 sittings in 2025-26, reaching 1,120 individuals and 410 households",
+      "source_heading": "Community meals",
+      "source_line": "Volume 2025-26: 7,400 meals served across 148 sittings",
+      "grounded": true
+     },
+     {
+      "text": "We served 7,400 meals across 148 sittings in 2025-26, reaching 1,120 individuals and 410 households",
+      "source_heading": "Scale",
+      "source_line": "Beneficiaries reached 2025-26: 1,120 individuals, 410 households",
+      "grounded": true
+     },
+     {
+      "text": "We conduct beneficiary surveys twice yearly",
+      "source_heading": "Evidence and evaluation",
+      "source_line": "Beneficiary survey run twice yearly since 2022, response rate 31%",
+      "grounded": true
+     }
+    ],
+    "unevidenced_gaps": [
+     "What specific outputs or expansion will this £9,979 funding enable (e.g. additional meals, new members, extended hours)?"
+    ]
+   },
+   "style_card": "VOICE CONSTRAINTS, measured from this organisation's own past applications.\nCorpus: 20 documents, 199 sentences.\n\nSentence length: median 12 words, typical range 2 to 31, standard deviation 8.9.\nMatch that variance. Do not write sentences of uniform length. Real writing puts a short sentence next to a long one. Even rhythm is the clearest tell that a machine wrote something.\n\nParagraphs run about 1 sentences.\nPerson: first person plural (we, our). Do not switch.\nContractions: not used.\nThis organisation calls the people it serves \"members\". Use that exact word. Never substitute a synonym, however natural it feels.\nTheir vocabulary includes: because, members, climbed, rather, trustee, pantry, before, southwark, applying, squarely, within, properly, letter, everywhere, sittings.\nThese terms appear capitalised in their writing: Trustee, Pantry, Community, Southwark, Impact, Partnership, Kitchen, Peckham. Preserve that capitalisation, do not normalise it. Note that this list mixes house conventions with proper nouns; both should be left as written.\n\nNever use: delve, tapestry, underscores, moreover, furthermore, it is worth noting, in today's, navigating the, landscape of, plays a vital role, stands as a, testament to, serves as, fostering a sense of, holistic approach, leverage, robust, seamless, multifaceted, ever-evolving, at the heart of, the \"not just X, but Y\" construction, a three-item list where two items would do.\n\nPrefer reusing their own sentences verbatim over paraphrasing them. If a past application already states something well, lift it rather than rewriting it.",
+   "evidence": "We know from direct evidence what difference our work makes. Last year, 74% of surveyed members reported eating at least one hot meal a day more often than before attending. We ran that survey twice yearly since 2022, with a 31% response rate across 180 people. Members using our Food Pantry reported an average £61 monthly reduction in food spend.\n\nThis funding will allow us to sustain and expand these programmes. We will track the same outcomes we measure now. We submit quarterly monitoring returns to Southwark Council and conduct beneficiary surveys twice yearly. Our independent evaluation by Southwark Impact Partnership, published June 2025, confirmed the reach and impact of our work. We served 7,400 meals across 148 sittings in 2025-26, reaching 1,120 individuals and 410 households.\n\nWe will know this funding has made a difference because we will continue to measure what we already measure: how often members eat hot meals, how much they spend on food, and how many people we reach. Our existing systems are in place.\n\n---\n### Sources\n1. 74% of surveyed members reported eating at least one hot meal a day more often than before attending\n   - ORG.md, Community meals — ORG.md#L24 — \"Outcome: 74% of surveyed members (n=180) reported eating at least one hot\"\n2. We ran that survey twice yearly since 2022, with a 31% response rate across 180 people\n   - ORG.md, Evidence and evaluation — ORG.md#L36 — \"Beneficiary survey run twice yearly since 2022, response rate 31%\"\n3. Members using our Food Pantry reported an average £61 monthly reduction in food spend\n   - ORG.md, Food pantry — ORG.md#L30 — \"Outcome: members reported an average £61 monthly reduction in food spend\"\n4. We submit quarterly monitoring returns to Southwark Council\n   - ORG.md, Evidence and evaluation — ORG.md#L37 — \"Quarterly monitoring returns submitted to Southwark Council since 2021\"\n5. Our independent evaluation by Southwark Impact Partnership, published June 2025, confirmed the reach and impact of our work\n   - ORG.md, Evidence and evaluation — ORG.md#L35 — \"Independent evaluation by Southwark Impact Partnership, published June 2025\"\n6. We served 7,400 meals across 148 sittings in 2025-26, reaching 1,120 individuals and 410 households\n   - ORG.md, Community meals — ORG.md#L23 — \"Volume 2025-26: 7,400 meals served across 148 sittings\"\n7. We served 7,400 meals across 148 sittings in 2025-26, reaching 1,120 individuals and 410 households\n   - ORG.md, Community meals — ORG.md#L23 — \"Volume 2025-26: 7,400 meals served across 148 sittings\"\n8. We conduct beneficiary surveys twice yearly\n   - ORG.md, Evidence and evaluation — ORG.md#L36 — \"Beneficiary survey run twice yearly since 2022, response rate 31%\"\n9. Suggested ask is anchored on The London Community Foundation's award history (200 grants).\n   - 360Giving award history, The London Community Foundation — https://grantnav.threesixtygiving.org/org/GB-CHC-1091263 — \"median £9,979; p10-p90 £5,642-£20,000\" — accessed 2026-09-09\n\n### Needs a human\n\n- What specific outputs or expansion will this £9,979 funding enable (e.g. additional meals, new members, extended hours)?\n\n_Grounding: 9 of 9 claims traced to a source (100%)._",
+   "timeline": {
+    "deadline": "2026-10-23",
+    "steps": [
+     {
+      "days_before_deadline": 43,
+      "task": "Coordinator phones funder: priority scope (all three or any one).",
+      "owner_role": "Coordinator"
+     },
+     {
+      "days_before_deadline": 40,
+      "task": "Finance Lead prepares budget, match funding plan, reserves sign-off.",
+      "owner_role": "Finance Lead"
+     },
+     {
+      "days_before_deadline": 37,
+      "task": "Coordinator drafts application narrative and evidence sections.",
+      "owner_role": "Coordinator"
+     },
+     {
+      "days_before_deadline": 32,
+      "task": "Trustee reviews draft: mission fit, youth/mental health positioning.",
+      "owner_role": "Trustee"
+     },
+     {
+      "days_before_deadline": 28,
+      "task": "Coordinator revises, pulls outcome data from June 2025 evaluation.",
+      "owner_role": "Coordinator"
+     },
+     {
+      "days_before_deadline": 20,
+      "task": "Finance Lead and Trustee sign-off final budget and narrative.",
+      "owner_role": "Trustee"
+     },
+     {
+      "days_before_deadline": 14,
+      "task": "Coordinator submits application and confirms receipt.",
+      "owner_role": "Coordinator"
+     },
+     {
+      "days_before_deadline": 7,
+      "task": "Coordinator sends funder any final clarifications if requested.",
+      "owner_role": "Coordinator"
+     }
+    ],
+    "total_hours_estimate": 30.0
+   },
+   "outcome": {
+    "funder": "The London Community Foundation",
+    "programme": "Cornerstone Fund",
+    "submitted": null,
+    "amount_asked": null,
+    "amount_awarded": null,
+    "outcome": "pending",
+    "feedback": null,
+    "_note": "Set outcome to awarded or rejected when you hear back. Paste any assessor feedback into feedback, verbatim, good or bad."
+   },
+   "fit": 78,
+   "ask": null,
+   "blocking": [],
+   "title": "The London Community Foundation Cornerstone Fund"
+  }
+ ]
+}</script>
+<script>
+const D = JSON.parse(document.getElementById("gr-data").textContent);
+const esc = s => String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const TABS = [["decision","Decision"],["direction","Direction"],["timeline","Timeline"],
+              ["drafts","Drafts"],["evidence","Evidence"],["brief","Brief"],["files","Files"]];
+const S = { grant: 0, tab: "decision", done: {} };
+try { Object.assign(S, JSON.parse(localStorage.getItem("gr-dash") || "{}")); } catch (e) {}
+const save = () => { try { localStorage.setItem("gr-dash", JSON.stringify(S)); } catch (e) {} };
+const g = () => D.grants[S.grant] || null;
+const latest = () => D.runs[0] || null;
+
+function banner() {
+  const r = latest(), el = document.getElementById("banner");
+  if (!r) { el.innerHTML = ""; return; }
+  const dec = r.decision;
+  const alerts = (r.alerts || []).map(a =>
+    `<div class="alert"><span class="mono" style="color:var(--warn)">${a.urgent ? "!" : "·"}</span>
+     <p><strong style="font-weight:500">${esc(a.title)}</strong> &mdash; ${esc(a.detail)}</p></div>`).join("");
+  const head = dec
+    ? `<span class="n">1</span><p><strong style="font-weight:500">One decision.</strong>
+       ${esc(dec.title)} cleared the gate at ${dec.fit}/100.
+       ${r.calls_considered} call${r.calls_considered === 1 ? "" : "s"} considered on ${esc(r.run_date)}.</p>`
+    : `<span class="n" style="color:var(--muted)">0</span><p><strong style="font-weight:500">Nothing to report.</strong>
+       ${r.calls_considered} call${r.calls_considered === 1 ? "" : "s"} considered on ${esc(r.run_date)}, none clearing
+       ${r.threshold}/100. Silence is the expected result.</p>`;
+  el.innerHTML = `<div class="banner">${head}</div>${alerts}`;
+}
+
+function rail() {
+  document.getElementById("org").textContent =
+    latest() ? `${latest().org} · ${D.grants.length} grant folder${D.grants.length === 1 ? "" : "s"}` : D.root;
+  document.getElementById("built").textContent = `Built ${D.built}`;
+  document.getElementById("root").textContent = D.root;
+  document.getElementById("grants").innerHTML = D.grants.length
+    ? D.grants.map((x, i) => `<button class="grant" data-grant="${i}" aria-current="${i === S.grant}">
+        <span class="gn">${esc(x.title)}</span>
+        <span class="gs"><span>${x.fit != null ? "fit " + x.fit + "/100" : "no decision file"}</span>
+        <span>${x.ask != null ? "£" + Number(x.ask).toLocaleString() : ""}</span></span></button>`).join("")
+    : `<p class="quiet">No grant folders yet. One is created the first time the gate fires.</p>`;
+  document.getElementById("runs").innerHTML = D.runs.length
+    ? D.runs.slice(0, 8).map(r => `<div class="kv"><span class="k">${esc(r.run_date)}</span>
+        <span class="v"><a href="${esc(r.digest_md)}">${r.decision ? "1 decision" : "silent"}</a></span></div>`).join("")
+    : `<p class="quiet">No digests yet.</p>`;
+}
+
+function tabs() {
+  const x = g();
+  document.getElementById("tabs").innerHTML = TABS.map(([id, label]) => {
+    const off = !x || !hasTab(x, id);
+    return `<button class="tab" role="tab" data-tab="${id}" ${off ? "disabled" : ""}
+      aria-selected="${!off && S.tab === id}"
+      title="${off ? "Not produced for this grant" : ""}">${label}</button>`;
+  }).join("");
+}
+
+function hasTab(x, id) {
+  if (id === "files") return (x.files || []).length > 0;
+  if (id === "drafts") return !!x.draft_structured || !!x.draft;
+  if (id === "evidence") return !!x.evidence;
+  if (id === "direction") return !!x.direction;
+  if (id === "timeline") return !!x.timeline;
+  if (id === "brief") return !!x.brief;
+  return !!x.decision;
+}
+
+function link(x, label) {
+  const f = (x.files || []).find(f => f.label === label);
+  return f ? `<a class="lbl" style="color:var(--accent)" href="${esc(f.path)}">Open ${esc(f.path)}</a>` : "";
+}
+
+function rows(list, sign, cls) {
+  return `<div class="rows">` + list.map(t =>
+    `<div class="row"><span class="sg ${cls}">${sign}</span><p>${esc(t)}</p></div>`).join("") + `</div>`;
+}
+
+function paneDecision(x) {
+  const m = x.decision || {}, r = latest(), dec = r && r.decision;
+  const why = dec && dec.title && x.title.toLowerCase().includes(dec.programme ? dec.programme.toLowerCase() : "@")
+    ? dec.why : (m.eligibility_met || []);
+  return `<div class="stats">
+    <div class="stat"><span class="lbl">Fit</span><span class="v" style="color:var(--accent)">${m.fit_score ?? "—"}<span class="u">/100</span></span></div>
+    <div class="stat"><span class="lbl">Suggested ask</span><span class="v">${m.suggested_ask_gbp != null ? "£" + Number(m.suggested_ask_gbp).toLocaleString() : "—"}</span></div>
+    <div class="stat"><span class="lbl">Recommend apply</span><span class="v" style="font-size:19px">${m.recommend_apply ? "Yes" : "No"}</span></div>
+    <div class="stat"><span class="lbl">Blockers</span><span class="v">${(m.blocking || []).length}</span></div>
+  </div>
+  ${why && why.length ? `<h2 class="sec">Why this one</h2>${rows(why, "+", "pos")}` : ""}
+  ${(m.eligibility_gaps || []).length ? `<h2 class="sec" style="color:var(--warn)">Before you start</h2>
+    ${rows(m.eligibility_gaps, "—", "flag")}` : ""}
+  ${m.reasoning ? `<h2 class="sec">The matcher's reasoning</h2><div class="prose"><p>${esc(m.reasoning)}</p></div>` : ""}
+  ${link(x, "Decision")}`;
+}
+
+function paneDirection(x) {
+  return `<h2 class="sec">The angle to lead with</h2>
+    <div class="prose">${esc(x.direction).split(/\n{2,}/).map(p => `<p>${p.replace(/\n/g, " ")}</p>`).join("")}</div>
+    ${link(x, "Direction")}`;
+}
+
+function paneTimeline(x) {
+  const t = x.timeline || {}, steps = t.steps || [];
+  const left = steps.reduce((a, s, i) => a + (S.done[x.slug + i] ? 0 : (s.hours || 0)), 0);
+  const nDone = steps.filter((_, i) => S.done[x.slug + i]).length;
+  return `<div class="stats">
+    <div class="stat"><span class="lbl">Steps</span><span class="v">${nDone}<span class="u"> of ${steps.length}</span></span></div>
+    <div class="stat"><span class="lbl">Estimated effort</span><span class="v">${t.total_hours_estimate ?? "—"}<span class="u"> hrs</span></span></div>
+    <div class="stat"><span class="lbl">Deadline</span><span class="v" style="font-size:19px">${esc(t.deadline || "—")}</span></div>
+    <div class="stat"><span class="lbl">Remaining</span><span class="v">${left || "—"}<span class="u"> hrs</span></span></div>
+  </div>
+  <h2 class="sec">Work back from the deadline</h2>
+  <div class="steps">${steps.map((s, i) => {
+    const d = !!S.done[x.slug + i];
+    return `<button class="step ${d ? "done" : ""}" data-step="${i}">
+      <span class="bx" style="color:${d ? "var(--accent)" : "var(--faint)"}">${d ? "×" : "○"}</span>
+      <span class="dy">${s.days_before_deadline}d</span>
+      <span class="tk">${esc(s.task)}</span>
+      <span class="ow">${esc(String(s.owner_role || "").toUpperCase())}</span></button>`;
+  }).join("")}</div>
+  <p class="quiet" style="margin-top:16px">Ticking here is the same gesture as a line in
+    <span class="mono">05-timeline/done.txt</span>. Granted reads that file on the next run
+    and stays quiet while the plan still fits the time left.</p>
+  ${link(x, "Timeline")}`;
+}
+
+function paneDrafts(x) {
+  const d = x.draft_structured || {};
+  const claims = d.claims || [];
+  const grounded = claims.filter(c => c.grounded).length;
+  return `<h2 class="sec">The question this answers</h2>
+    <div class="prose"><p style="font-style:italic">${esc(d.question || "—")}</p></div>
+    <div class="evid">${claims.map((c, i) => `<i class="${c.grounded ? "on" : ""}"></i>`).join("")}</div>
+    <p class="quiet" style="margin:0 0 20px">${grounded} of ${claims.length} claims trace to a line in ORG.md.</p>
+    <h2 class="sec">Draft answer</h2>
+    <div class="prose">${esc(x.draft || d.answer || "").split(/\n{2,}/).map(p => `<p>${p.replace(/\n/g, " ")}</p>`).join("")}</div>
+    ${(d.unevidenced_gaps || []).length ? `<h2 class="sec" style="color:var(--warn)">Needs a human</h2>
+      ${rows(d.unevidenced_gaps, "—", "flag")}` : ""}
+    ${x.style_card ? `<h2 class="sec">Your measured voice</h2><pre class="raw">${esc(x.style_card)}</pre>` : ""}
+    <div style="margin-top:14px">${link(x, "Draft")}</div>`;
+}
+
+function paneEvidence(x) {
+  const d = x.draft_structured || {}, claims = (d.claims || []).filter(c => c.source_line);
+  return `<h2 class="sec">Every figure, and the line it came from</h2>
+    ${claims.length ? claims.map(c => `<div style="padding:11px 0;border-bottom:1px solid var(--rule)">
+        <p style="margin:0 0 5px;font-size:15px;line-height:1.5">${esc(c.text)}</p>
+        <span class="lbl" style="color:var(--accent)">${esc(c.source_heading || "ORG.md")}</span>
+        <p style="margin:3px 0 0;font-size:13px;font-style:italic;color:var(--muted)">&ldquo;${esc(c.source_line)}&rdquo;</p>
+      </div>`).join("") : `<pre class="raw">${esc(x.evidence || "")}</pre>`}
+    <div style="margin-top:16px">${link(x, "Evidence")}</div>`;
+}
+
+function paneBrief(x) {
+  return `<h2 class="sec">The call, as it stood the day the gate fired</h2>
+    <pre class="raw">${esc(x.brief)}</pre>${link(x, "Brief")}`;
+}
+
+function paneFiles(x) {
+  return `<h2 class="sec">Everything in this grant folder</h2>
+    <div class="files">${(x.files || []).map(f =>
+      `<a class="file" href="${esc(f.path)}"><span class="fl">${esc(f.label)}</span>
+       <span class="fp">${esc(f.path.split("/").slice(2).join("/"))}</span></a>`).join("")}</div>
+    <p class="quiet" style="margin-top:18px">These are real files on disk, not a view of a database.
+      Open them, edit them, put them in a shared drive, keep them after this tool is gone.</p>`;
+}
+
+function render() {
+  const x = g();
+  if (x && !hasTab(x, S.tab)) S.tab = "decision";
+  banner(); rail(); tabs();
+  const pane = document.getElementById("pane");
+  if (!x) { pane.innerHTML = `<p class="empty">No grant folder selected.</p>`; save(); return; }
+  pane.innerHTML =
+    S.tab === "direction" ? paneDirection(x) :
+    S.tab === "timeline"  ? paneTimeline(x)  :
+    S.tab === "drafts"    ? paneDrafts(x)    :
+    S.tab === "evidence"  ? paneEvidence(x)  :
+    S.tab === "brief"     ? paneBrief(x)     :
+    S.tab === "files"     ? paneFiles(x)     : paneDecision(x);
+  save();
+}
+
+document.addEventListener("click", e => {
+  const gr = e.target.closest("[data-grant]"), tb = e.target.closest("[data-tab]"),
+        st = e.target.closest("[data-step]");
+  if (gr) { S.grant = +gr.dataset.grant; render(); }
+  else if (tb && !tb.disabled) { S.tab = tb.dataset.tab; render(); }
+  else if (st) { const x = g(), k = x.slug + st.dataset.step; S.done[k] = !S.done[k]; render(); }
+});
+
+render();
+</script>
+</body>
+</html>
+

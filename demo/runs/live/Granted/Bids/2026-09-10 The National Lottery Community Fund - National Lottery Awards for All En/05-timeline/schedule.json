@@ -1,0 +1,36 @@
+{
+  "deadline": "rolling",
+  "steps": [
+    {
+      "days_before_deadline": 21,
+      "task": "Coordinator drafts project narrative and outcomes section",
+      "owner_role": "Coordinator"
+    },
+    {
+      "days_before_deadline": 16,
+      "task": "Finance lead compiles budget, match funding evidence, reserves approval",
+      "owner_role": "Finance Lead"
+    },
+    {
+      "days_before_deadline": 14,
+      "task": "Designated safeguarding lead reviews compliance and governance attachments",
+      "owner_role": "Designated Safeguarding Lead"
+    },
+    {
+      "days_before_deadline": 10,
+      "task": "Trustee chair reviews full draft application and sign-off",
+      "owner_role": "Trustee"
+    },
+    {
+      "days_before_deadline": 7,
+      "task": "Coordinator incorporates feedback and finalises supporting evidence pack",
+      "owner_role": "Coordinator"
+    },
+    {
+      "days_before_deadline": 3,
+      "task": "Finance lead audits all figures against Xero and submits application",
+      "owner_role": "Finance Lead"
+    }
+  ],
+  "total_hours_estimate": 18.0
+}

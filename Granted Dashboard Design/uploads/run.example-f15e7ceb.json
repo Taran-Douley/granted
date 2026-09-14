@@ -1,0 +1,240 @@
+{
+  "run_date": "2026-09-09",
+  "run_time": "22:08",
+  "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+  "provider": "bedrock",
+  "duration_s": 104.2,
+  "model_calls": 9,
+  "threshold": 65,
+  "calls_considered": 2,
+  "bands": {
+    "High": 1,
+    "Medium": 1,
+    "Low": 0
+  },
+  "surfaced": [
+    {
+      "funder": "Quartet Community Foundation",
+      "programme": "Express Grants",
+      "band": "High",
+      "fit": 96,
+      "alignment": 100,
+      "plausibility": 90,
+      "plausibility_confidence": "indicative",
+      "days_left": 44,
+      "closes": "2026-10-23",
+      "url": "https://x/1",
+      "vetoed": null,
+      "reasons": [
+        "funder has backed GB-CHC organisations (100% of awards)",
+        "funds in Bristol",
+        "\u00a315,000 sits inside their usual range"
+      ]
+    },
+    {
+      "funder": "Tudor Trust",
+      "programme": "Main",
+      "band": "Medium",
+      "fit": 57,
+      "alignment": 100,
+      "plausibility": 90,
+      "plausibility_confidence": "indicative",
+      "days_left": 3,
+      "closes": "2026-09-12",
+      "url": "https://x/2",
+      "vetoed": null,
+      "reasons": [
+        "funder has backed GB-CHC organisations (100% of awards)",
+        "funds in Bristol",
+        "\u00a315,000 sits inside their usual range"
+      ]
+    }
+  ],
+  "not_pursued": [],
+  "watcher_state": {
+    "tracked": 2,
+    "by_status": {
+      "open": 1,
+      "final_call": 1
+    },
+    "silent": 1,
+    "in_flight": {
+      "deadline": "2026-10-23",
+      "days_left": 44,
+      "overdue": [],
+      "due_now": [
+        "Confirm board approval"
+      ],
+      "hours_estimate": 28.0,
+      "feasible": true,
+      "summary": "On track. 44 days left."
+    }
+  },
+  "changes": [
+    {
+      "kind": "new",
+      "funder": "Quartet Community Foundation",
+      "detail": "fit 78/100, closes 2026-10-23",
+      "urgent": false
+    }
+  ],
+  "archive": {
+    "n_files": 21,
+    "n_decided": 17,
+    "n_awarded": 10,
+    "n_unknown_outcome": 4,
+    "win_rate": 0.588,
+    "confidence": "indicative",
+    "median_successful_ask": 8900.0,
+    "median_unsuccessful_ask": 39000.0
+  },
+  "revisit": [
+    "Bristol City Council \u2014 one award, \u00a322,000 in total, last said yes July 2022",
+    "John James Bristol Foundation \u2014 one award, \u00a312,000 in total, last said yes March 2024",
+    "Screwfix Foundation \u2014 one award, \u00a34,500 in total, last said yes March 2023",
+    "Souter Charitable Trust \u2014 one award, \u00a37,000 in total, last said yes September 2024"
+  ],
+  "scope": {
+    "files_seen": 28,
+    "files_read": 21,
+    "files_skipped": 7,
+    "skipped_detail": [
+      {
+        "name": "DBS check register.md",
+        "reason": "name matches sensitive-record pattern"
+      },
+      {
+        "name": "HR - staff contracts.md",
+        "reason": "name matches sensitive-record pattern"
+      },
+      {
+        "name": "beneficiary contact list.md",
+        "reason": "name matches sensitive-record pattern"
+      },
+      {
+        "name": "budget template.xlsx",
+        "reason": "unsupported type .xlsx"
+      },
+      {
+        "name": "logo.png",
+        "reason": "unsupported type .png"
+      },
+      {
+        "name": "referral form blank.md",
+        "reason": "name matches sensitive-record pattern"
+      },
+      {
+        "name": "safeguarding log 2025.md",
+        "reason": "name matches sensitive-record pattern"
+      }
+    ]
+  },
+  "org": "Easton Community Kitchen",
+  "workspace": "/tmp/ws3/2026-09-09-quartet-community-foundation-express-grants",
+  "direction": [
+    "Lead with your existing outcome measurement: two quantified changes members report."
+  ],
+  "draft": {
+    "question": "What difference will this funding make, and how will you know?",
+    "answer": "Granted draft, grounded in ORG.md.",
+    "claims": [
+      {
+        "text": "We served 8,900 meals across 156 sittings",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Community meals \u2014 ORG.md#L32 \u2014 \"Volume 2025-26: 8,900 meals served across 156 sittings\""
+        ]
+      },
+      {
+        "text": "78% of surveyed attendees ate a hot meal more often",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Community meals \u2014 ORG.md#L33 \u2014 \"Outcome: 78% of surveyed attendees (n=210) reported eating at least one hot meal\""
+        ]
+      },
+      {
+        "text": "Members save \u00a364 monthly on food",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Food pantry \u2014 ORG.md#L39 \u2014 \"Outcome: members reported an average \u00a364 monthly reduction in food spend\""
+        ]
+      }
+    ],
+    "unevidenced_gaps": [
+      "Funder asks cost per beneficiary; ORG.md has no unit cost."
+    ]
+  },
+  "timeline": {
+    "deadline": "2026-10-23",
+    "total_hours_estimate": 28.0,
+    "steps": [
+      {
+        "days_before_deadline": 44,
+        "task": "Confirm board approval for match funding",
+        "owner_role": "Coordinator"
+      },
+      {
+        "days_before_deadline": 30,
+        "task": "Pull outcome figures from monitoring returns",
+        "owner_role": "Coordinator"
+      },
+      {
+        "days_before_deadline": 14,
+        "task": "Trustee review of full draft",
+        "owner_role": "Trustee"
+      }
+    ]
+  },
+  "files_written": [
+    {
+      "name": "02-direction/angle.md",
+      "size": "0.0 kb"
+    },
+    {
+      "name": "03-drafts/answer-1.json",
+      "size": "0.0 kb"
+    },
+    {
+      "name": "06-submitted/outcome.meta.json",
+      "size": "0.3 kb"
+    }
+  ],
+  "outcome": {
+    "status": "pending",
+    "note": "Set outcome to awarded or rejected when you hear back. Paste any assessor feedback into feedback, verbatim, good or bad."
+  },
+  "voice": {
+    "corpus_documents": 20,
+    "corpus_sentences": 204,
+    "median_sentence_words": 10.5,
+    "sentence_word_sd": 9.5,
+    "beneficiary_term": "members",
+    "first_person_plural": true,
+    "flags": {
+      "tells": [
+        "holistic approach",
+        "robust"
+      ],
+      "uniformity": null,
+      "term_violations": [
+        "used \"service users\" where they say \"members\""
+      ],
+      "clean": false
+    }
+  },
+  "grounded": 3,
+  "total_claims": 3,
+  "gaps": 1,
+  "schema_version": 2,
+  "_comment": "Written by granted.digest on every run. Every figure here is computed by a module; none are hand-entered. The dashboard reads this file directly and needs no rebuild.",
+  "_produced_by": {
+    "bands, surfaced, not_pursued": "triage.triage / triage.rank",
+    "watcher_state, changes": "watcher.Register.poll",
+    "archive, revisit": "archive.summarise",
+    "direction, draft, timeline": "graph director / drafter / timeliner",
+    "workspace, files_written, outcome": "workspace.create",
+    "scope": "archive.scan",
+    "voice": "voice.build_style_card / voice.check",
+    "grounded, total_claims, gaps": "citations.CitedDraft"
+  }
+}

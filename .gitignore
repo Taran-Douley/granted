@@ -1,0 +1,26 @@
+# Real organisational data never enters this repo.
+calibration/
+fixtures/real-*
+ORG.md
+*.local.md
+
+__pycache__/
+*.py[cod]
+.venv/
+dist/
+build/
+*.egg-info/
+release/
+
+# Credentials. `.env` alone does not match `.env.txt`, which is what
+# this project actually uses.
+.env
+.env.*
+.env.txt
+*.pem
+credentials
+
+# Local build cruft, not for the public repo
+VENV_DONE
+venv_install.log
+*.zip

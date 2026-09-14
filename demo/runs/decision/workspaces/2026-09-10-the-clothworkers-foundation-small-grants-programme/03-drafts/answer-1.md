@@ -1,0 +1,5 @@
+A replacement commercial freezer will allow us to serve our Community meals programme consistently. Our 2016 unit fails monthly, disrupting meal preparation. We currently serve 7,400 meals across 148 sittings each year from Rye Lane Baptist Hall with no referral needed. Seventy-four percent of surveyed members reported eating at least one hot meal a day more often than before attending.
+
+A refrigerated van will let us expand our Food Pantry model beyond our current 190 member households. Members pay £4.50 a week for approximately £22 of food and reported an average £61 monthly reduction in food spend. We know this works because we retain 58% of members year on year and have run beneficiary surveys twice yearly since 2022, with a 31% response rate.
+
+An independent evaluation by Southwark Impact Partnership, published June 2025, documents our Impact. We submit quarterly monitoring returns to Southwark Council since 2021. We will continue running our twice-yearly survey to track whether these additions help more members eat regularly and reduce food spending further.

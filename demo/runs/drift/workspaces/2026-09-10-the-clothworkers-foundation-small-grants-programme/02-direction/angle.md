@@ -1,0 +1,5 @@
+**Lead with the operational criticality and measurable impact of the freezer replacement on your existing beneficiaries' outcomes.**
+
+Your 2025–26 data show 7,400 meals served and 74% of surveyed members eating hot meals daily more often than before — but your 2016 commercial freezer fails monthly, directly limiting your capacity to serve more of the 1,120 individuals and 410 households already reached in Peckham and Nunhead. Replacing it removes a concrete barrier to scaling within your existing, evidence-tracked programme; you already survey beneficiaries twice yearly (31% response rate) and submit quarterly monitoring to Southwark Council, so you can measure whether meal volume and consistency improve post-replacement.
+
+Avoid framing this as a thematic fit to "disadvantaged minority communities" unless you have explicit data on the ethnic or identity composition of your beneficiaries — your profile does not provide it, and the funder will expect specificity. Do not ask for the van in this application; the freezer is a single, urgent capital need with direct operational data behind it, and splitting the ask dilutes the case for either item.

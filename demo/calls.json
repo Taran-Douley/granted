@@ -1,0 +1,35 @@
+{
+  "calls": [
+    {
+      "funder": "The Clothworkers Foundation",
+      "programme": "Small Grants Programme",
+      "url": "https://example.org/clothworkers/small-grants",
+      "opens": "2026-08-01",
+      "closes": "2026-10-23",
+      "amount_max": 30000,
+      "summary": "Capital grants to smaller UK charities for buildings, equipment and vehicles. Priority areas include disadvantaged minority communities, domestic and sexual violence, and provision for people facing financial hardship.",
+      "questions": [
+        "What difference will this funding make to the people you work with, and how will you know? Give us evidence from your existing work.",
+        "How is your organisation rooted in the community it serves?"
+      ]
+    },
+    {
+      "funder": "The Clothworkers Foundation",
+      "programme": "Proactive Programme",
+      "url": "https://example.org/clothworkers/proactive",
+      "opens": "2026-07-15",
+      "closes": "2026-09-13",
+      "amount_max": 250000,
+      "summary": "Invitation-only strategic funding for organisations with a turnover above \u00a31m and a national footprint."
+    },
+    {
+      "funder": "The Clothworkers Foundation",
+      "programme": "Emergency Winter Response",
+      "url": "https://example.org/clothworkers/winter",
+      "opens": "2026-09-01",
+      "closes": "2026-09-12",
+      "amount_max": 3000,
+      "summary": "Small, fast grants for immediate winter pressures. Decisions within ten working days."
+    }
+  ]
+}

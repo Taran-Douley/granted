@@ -1,0 +1,8 @@
+{
+  "total_claims": 11,
+  "grounded_claims": 10,
+  "ungrounded": [
+    "A refrigerated van will let us expand our Food Pantry model beyond our current 190 member households"
+  ],
+  "verdict": "revise"
+}

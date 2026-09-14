@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #faf9f6; color: #24211c;
+           font-family: Newsreader, Georgia, 'Times New Roman', serif; }
+    a { color: #1f6f77; } a:hover { color: #14484e; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace; }
+  </style>
+</helmet>
+
+<div style="min-height: 100%; padding: 48px 56px 56px; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
+
+  <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #24211c; padding-bottom: 14px">
+    <div style="display: flex; align-items: baseline; gap: 16px">
+      <span class="mono" style="font-size: 10px; letter-spacing: 0.14em; color: #1f6f77">ONE DECISION</span>
+      <span style="font-size: 24px; font-weight: 500">Cornerstone Fund</span>
+    </div>
+    <span class="mono" style="font-size: 11px; color: #7c766a">THE LONDON COMMUNITY FOUNDATION</span>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 36px; border-bottom: 1px solid #ded9cd; padding-bottom: 26px">
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #7c766a">FIT</span>
+      <span style="font-size: 40px; font-weight: 300; line-height: 1; color: #1f6f77">78<span style="font-size: 17px; color: #a09889">/100</span></span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #7c766a">SUGGESTED ASK</span>
+      <span style="font-size: 40px; font-weight: 300; line-height: 1">£9,979</span>
+      <span class="mono" style="font-size: 10px; color: #a09889">THEIR MEDIAN AWARD</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #7c766a">DEADLINE</span>
+      <span style="font-size: 40px; font-weight: 300; line-height: 1">44<span style="font-size: 17px; color: #a09889"> days</span></span>
+      <span class="mono" style="font-size: 10px; color: #a09889">23 OCTOBER 2026</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #7c766a">EFFORT</span>
+      <span style="font-size: 40px; font-weight: 300; line-height: 1">28<span style="font-size: 17px; color: #a09889"> hrs</span></span>
+      <span class="mono" style="font-size: 10px; color: #a09889">ACROSS 8 STEPS</span>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; flex-grow: 1">
+
+    <div style="grid-column: span 2; display: flex; flex-direction: column; gap: 30px">
+      <div style="display: flex; flex-direction: column; gap: 13px">
+        <span style="font-size: 17px; font-style: italic">Why this one</span>
+        <sc-for list="{{reasons}}" as="r" hint-placeholder-count="3">
+          <div style="display: flex; gap: 14px; align-items: baseline">
+            <span class="mono" style="font-size: 11px; color: #1f6f77; flex-shrink: 0">+</span>
+            <span style="font-size: 15px; line-height: 1.55; color: #4a453c; text-wrap: pretty">{{r.text}}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 11px; border-top: 1px solid #ded9cd; padding-top: 22px">
+        <span style="font-size: 17px; font-style: italic">The angle</span>
+        <span style="font-size: 16px; line-height: 1.62; color: #24211c; text-wrap: pretty">
+          Lead with your food pantry&rsquo;s proven ability to reduce financial strain. The £61 monthly
+          saving per member speaks directly to food insecurity, and 58% year-on-year retention shows
+          sustained impact for people who need it most.
+        </span>
+        <div style="display: flex; flex-direction: column; gap: 7px; margin-top: 8px">
+          <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #a09889">AVOID</span>
+          <span style="font-size: 14px; line-height: 1.55; color: #7c766a; text-wrap: pretty">
+            Framing this as emergency or crisis funding &mdash; their Covid-era awards were time-bound and
+            this is not that. And any hint of delivering beyond the Southwark boundary.
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 26px">
+      <div style="display: flex; flex-direction: column; gap: 13px">
+        <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #7c766a; border-bottom: 1px solid #ded9cd; padding-bottom: 7px">EVIDENCE</span>
+        <div style="display: flex; align-items: baseline; gap: 10px">
+          <span style="font-size: 34px; font-weight: 300; line-height: 1">11</span>
+          <span class="mono" style="font-size: 13px; color: #7c766a">of 14 claims cited</span>
+        </div>
+        <div style="display: flex; gap: 3px; height: 5px">
+          <sc-for list="{{bars}}" as="b" hint-placeholder-count="14">
+            <div style="flex-grow: 1; background: {{b.fill}}"></div>
+          </sc-for>
+        </div>
+        <span style="font-size: 13px; line-height: 1.5; color: #7c766a; font-style: italic; text-wrap: pretty">
+          Every figure resolves to a line in ORG.md. The three that do not are about the funder,
+          and became gaps rather than footnotes nobody can follow.
+        </span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 11px">
+        <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #b07a2b; border-bottom: 1px solid #ded9cd; padding-bottom: 7px">BEFORE YOU START</span>
+        <sc-for list="{{gaps}}" as="g" hint-placeholder-count="2">
+          <div style="display: flex; gap: 11px; align-items: baseline">
+            <span class="mono" style="font-size: 11px; color: #b07a2b; flex-shrink: 0">&mdash;</span>
+            <span style="font-size: 14px; line-height: 1.5; color: #4a453c; text-wrap: pretty">{{g.text}}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 7px; border-top: 1px solid #ded9cd; padding-top: 14px; margin-top: auto">
+        <span class="mono" style="font-size: 10px; letter-spacing: 0.1em; color: #a09889">WORKSPACE</span>
+        <span class="mono" style="font-size: 11px; color: #4a453c; line-height: 1.5; word-break: break-all">2026-09-09-the-london-community-foundation-cornerstone-fund/</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      reasons: [
+        { text: 'Funder has backed GB-CHC organisations — 43% of 200 recorded awards.' },
+        { text: 'Funds in Southwark. 15 awards, their second-largest concentration by volume.' },
+        { text: '£9,979 sits inside their usual £5,642–£20,000, and is their median award exactly.' },
+        { text: 'Two themes shared with the funder’s own classification labels.' },
+      ],
+      gaps: [
+        { text: 'Which unfunded priority the ask should target — crèche provision or van running costs.' },
+        { text: 'Youth and mental health work. The call names all three; ORG.md evidences food insecurity only.' },
+      ],
+      bars: Array.from({ length: 14 }, (_, i) => ({ fill: i < 11 ? '#1f6f77' : '#ded9cd' })),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "query": "Peckham and Nunhead wards, Southwark, London",
+  "place": {
+    "country": "England",
+    "region": "London",
+    "county": "Greater London",
+    "district": "Southwark",
+    "source": "place Peckham"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",     "x": 0,    "y": 0,    "w": 1280, "h": 940,
+      "title": "Triage board", "is_interactive": true },
+    { "file": "Decision.dc.html", "x": 1400, "y": 0,    "w": 1280, "h": 940,
+      "title": "One decision" },
+    { "file": "Timeline.dc.html", "x": 0,    "y": 1080, "w": 1280, "h": 940,
+      "title": "Timeline", "is_interactive": true },
+    { "file": "Drafts.dc.html",   "x": 1400, "y": 1080, "w": 1280, "h": 940,
+      "title": "Drafts and citations", "is_interactive": true }
+  ],
+  "annotations": [
+    { "id": "thesis", "x": 0, "y": -150, "w": 620,
+      "text": "Silence is the default.\n\nMost days this produces nothing. The triage board shows what was\nconsidered and why each one stops — an empty screen is indistinguishable\nfrom a crash, a short accounting is trustworthy." },
+    { "id": "data-note", "x": 1400, "y": -150, "w": 620,
+      "text": "Every number here came out of a real run against the live 360Giving API:\nThe London Community Foundation, 200 published awards, median £9,979.\nNothing on these boards is invented." }
+  ],
+  "launch": { "view": "canvas" }
+}

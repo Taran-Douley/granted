@@ -1,0 +1,64 @@
+{
+  "org": "Rye Lane Community Kitchen",
+  "run_date": "2026-09-10",
+  "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+  "threshold": 65,
+  "calls_considered": 3,
+  "unreadable": [],
+  "model_calls": 0,
+  "tool_calls": 0,
+  "duration_s": 6.4,
+  "trace": {
+    "model_calls": 0,
+    "tool_calls": 0,
+    "duration_s": 6.4,
+    "tools_used": {},
+    "lookups": []
+  },
+  "archive": {
+    "confidence": "indicative",
+    "n_decided": 14,
+    "n_awarded": 9,
+    "win_rate": 0.6428571428571429,
+    "note": "Your own record: 14 decided applications, 64% won. Treat as indicative."
+  },
+  "decision": null,
+  "considered": [
+    {
+      "funder": "The Clothworkers Foundation",
+      "programme": "Small Grants Programme",
+      "title": "The Clothworkers Foundation \u2014 Small Grants Programme",
+      "fit": 0,
+      "reason": "10 days left is about 15 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "days_left": 10,
+      "stopped_at": "triage"
+    },
+    {
+      "funder": "The Clothworkers Foundation",
+      "programme": "Proactive Programme",
+      "title": "The Clothworkers Foundation \u2014 Proactive Programme",
+      "fit": 0,
+      "reason": "3 days left is about 4 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "days_left": 3,
+      "stopped_at": "triage"
+    },
+    {
+      "funder": "The Clothworkers Foundation",
+      "programme": "Emergency Winter Response",
+      "title": "The Clothworkers Foundation \u2014 Emergency Winter Response",
+      "fit": 0,
+      "reason": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "days_left": 2,
+      "stopped_at": "triage"
+    }
+  ],
+  "alerts": [
+    {
+      "title": "The Clothworkers Foundation \u2014 Small Grants Programme",
+      "kind": "deadline_moved",
+      "detail": "deadline brought forward from 2026-10-23 to 2026-09-20; timeline needs regenerating",
+      "urgent": true,
+      "workspace": "demo/runs/drift/workspaces/2026-09-10-the-clothworkers-foundation-small-grants-programme"
+    }
+  ]
+}

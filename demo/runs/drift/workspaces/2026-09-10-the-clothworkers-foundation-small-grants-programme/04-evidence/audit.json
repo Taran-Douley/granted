@@ -1,0 +1,8 @@
+{
+  "total_claims": 8,
+  "grounded_claims": 7,
+  "ungrounded": [
+    "Our commercial freezer, installed in 2016, fails monthly and restricts the volume and variety of meals we can prepare for our three weekly sittings."
+  ],
+  "verdict": "revise"
+}
