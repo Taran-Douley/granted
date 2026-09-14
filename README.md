@@ -2,6 +2,10 @@
 
 A background agent that tells small UK organisations when **not** to apply for funding.
 
+![The Granted dashboard — a decision that cleared the gate, scored against the funder's real award history. Most days, this screen stays empty.](docs/dashboard.png)
+
+> Built with the **Strands Agents SDK** on **Amazon Bedrock** for the Agents for Humans hackathon. **[Live dashboard →](http://granted-dashboard-2026.s3-website.us-west-2.amazonaws.com)**
+
 Most funding tools help you write more applications. Small charities do not have an
 application-writing problem, they have a triage problem. A four-person food bank
 spends thirty hours on a bid to a funder who has never, in nine hundred recorded
