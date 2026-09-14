@@ -24,3 +24,6 @@ credentials
 VENV_DONE
 venv_install.log
 *.zip
+
+# Submission drafts (video script, Devpost text, blog posts) — kept local
+submission/

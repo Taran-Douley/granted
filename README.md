@@ -77,6 +77,25 @@ Agents SDK**. The gate between the `matcher` and the three downstream agents is 
 Strands `GraphBuilder` conditional edge: nothing past it executes unless a genuine
 decision exists. **[Live dashboard](http://granted-dashboard-2026.s3-website.us-west-2.amazonaws.com).**
 
+## Try it in two minutes (no AWS needed)
+
+Everything except a live model call runs offline against prebuilt demo data.
+
+```bash
+git clone <this-repo> && cd granted
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -e .
+python scripts/preflight_offline.py                 # 30 checks, no AWS required
+```
+
+Then open a prebuilt run in a browser:
+
+- `demo/runs/live/Granted/Dashboard.html` — the dashboard, as an organisation sees it
+- or the **[live version on AWS](http://granted-dashboard-2026.s3-website.us-west-2.amazonaws.com)**
+
+For a real run against Amazon Bedrock, add AWS credentials and run `granted run`
+(details further down).
+
 ## Silence is the default
 
 The brief for this agent was "runs autonomously and only surfaces when there's a
