@@ -1,5 +1,5 @@
 {
-  "built": "2026-09-10",
+  "built": "2026-09-14",
   "place": "England|London|Greater London|Southwark",
   "funders": [
     {
@@ -7,22 +7,11 @@
       "org_id": "GB-CHC-1091263",
       "website": "https://londoncf.org.uk/",
       "grantnav": "https://grantnav.threesixtygiving.org/org/GB-CHC-1091263",
-      "awards_near_you": 9,
+      "awards_near_you": 8,
       "awards_in_region": 0,
       "sample": 100,
-      "median_award": 8772,
+      "median_award": 8376.0,
       "latest_in_sample": "2020-12-11"
-    },
-    {
-      "name": "Sport England",
-      "org_id": "GB-COH-RC000766",
-      "website": "https://www.sportengland.org/",
-      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-COH-RC000766",
-      "awards_near_you": 2,
-      "awards_in_region": 0,
-      "sample": 100,
-      "median_award": 257870.5,
-      "latest_in_sample": "2009-06-25"
     },
     {
       "name": "London Councils",
@@ -41,10 +30,10 @@
       "website": "http://www.lloydsbankfoundation.org.uk/",
       "grantnav": "https://grantnav.threesixtygiving.org/org/GB-CHC-327114",
       "awards_near_you": 0,
-      "awards_in_region": 20,
+      "awards_in_region": 11,
       "sample": 100,
-      "median_award": 37463.5,
-      "latest_in_sample": "2015-12-17"
+      "median_award": 20000,
+      "latest_in_sample": "2014-02-28"
     },
     {
       "name": "Arts Council England",

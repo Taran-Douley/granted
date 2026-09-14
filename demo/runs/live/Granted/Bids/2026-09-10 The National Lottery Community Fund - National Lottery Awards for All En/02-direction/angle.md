@@ -1,7 +1,0 @@
-**Lead with the freezer replacement as essential infrastructure for scaling your existing community meals programme.**
-
-Rye Lane's community meals deliver measurable outcomes (74% of surveyed members eating hot meals daily more than before), reach 1,120 individuals annually, and operate at high capacity (7,400 meals across 148 sittings in 2025-26). The monthly failures of your 2016 commercial freezer currently constrain this proven delivery model. A £10,000 grant for replacement equipment removes this bottleneck, enabling you to expand sittings or serve additional households without operational risk—and the investment directly enables the "bring people together" outcome the funder prioritises.
-
-Avoid framing this as a general funding gap or using language about financial hardship. The funder sees you as operationally competent (5-star food hygiene, unqualified audit, Level 3 safeguarding); they fund activity expansion, not deficit cover.
-
-Avoid proposing the crèche provision within this grant. You have no track record delivering childcare, no staff capacity noted, and it dilutes focus from your core strength. If childcare barriers emerge from beneficiary feedback, that's a future application to a different funder; for now, solve the freezer and deepen what you do brilliantly.

@@ -186,15 +186,15 @@ Each line is a whole class of call ruled out before a model was called:
      5 calls   this call is for Scotland
 
 > 126 calls this morning. 106 of them stopped for nothing: wrong nation, wrong
-> kind of organisation, wrong subject, too little time. Seven reached a model.
+> kind of organisation, wrong subject, too little time. Eight reached a model.
 > That is beat 3's arithmetic at the scale of a real morning, and it is why a
 > run costs pennies.
 
 Then the one it kept. Switch to the second tab, `demo/runs/live/Granted/Dashboard.html`:
 
 > This is the dashboard sitting in the charity's own folder, opened with a
-> double-click. No server. National Lottery Awards for All England, fit 82, ask
-> £10,000. Leave it open and tomorrow's run appears here within a minute. Its
+> double-click. No server. National Lottery Awards for All England, fit 79, ask
+> £7,706. Leave it open and tomorrow's run appears here within a minute. Its
 > folder is already open and drafted, with the Word documents a trustee would edit.
 
 ```bash

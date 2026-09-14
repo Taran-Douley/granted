@@ -1,24 +1,24 @@
 {
-  "run_date": "2026-09-10",
-  "run_time": "21:52",
+  "run_date": "2026-09-14",
+  "run_time": "23:54",
   "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
   "provider": "bedrock",
-  "duration_s": 377.6,
-  "model_calls": 20,
+  "duration_s": 451.6,
+  "model_calls": 22,
   "threshold": 65,
-  "calls_considered": 113,
+  "calls_considered": 114,
   "bands": {
     "High": 0,
-    "Medium": 7,
-    "Low": 56
+    "Medium": 8,
+    "Low": 57
   },
   "surfaced": [
     {
       "funder": "The National Lottery Community Fund",
       "programme": "National Lottery Awards for All England",
       "band": "Medium",
-      "fit": 82,
-      "alignment": 76,
+      "fit": 79,
+      "alignment": 73,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
       "days_left": null,
@@ -26,8 +26,8 @@
       "url": "https://www.tnlcommunityfund.org.uk/funding/funding-programmes/national-lottery-awards-for-all-england",
       "vetoed": null,
       "reasons": [
-        "funder has backed GB-CHC organisations (56% of awards)",
-        "£10,000 sits inside this programme's stated range (£300 to £20,000)"
+        "funder has backed GB-CHC organisations (38% of awards)",
+        "£7,706 sits inside this programme's stated range (£300 to £20,000)"
       ],
       "stage": "surfaced",
       "basis": "award history"
@@ -42,7 +42,7 @@
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 1299,
+      "days_left": 1295,
       "closes": "2030-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/trees-woodlands-and-forestry---woodland-creation-planning-grant-1",
       "vetoed": null,
@@ -62,7 +62,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 1299,
+      "days_left": 1295,
       "closes": "2030-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/england-woodland-creation-offer-ewco-1",
       "vetoed": null,
@@ -82,7 +82,7 @@
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 203,
+      "days_left": 199,
       "closes": "2027-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/electric-vehicle-chargepoint-and-infrastructure-grants-for-landlords-1",
       "vetoed": null,
@@ -102,7 +102,7 @@
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 203,
+      "days_left": 199,
       "closes": "2027-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/workplace-charging-scheme-2",
       "vetoed": null,
@@ -122,7 +122,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 1481,
+      "days_left": 1477,
       "closes": "2030-09-30",
       "url": "https://www.find-government-grants.service.gov.uk/grants/business-support-for-scotland",
       "vetoed": null,
@@ -140,7 +140,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 1664,
+      "days_left": 1660,
       "closes": "2031-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/national-highways-lorry-parking-facilities-improvements-scheme-1",
       "vetoed": null,
@@ -160,7 +160,7 @@
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 934,
+      "days_left": 930,
       "closes": "2029-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/uk-global-screen-fund-business-development-1",
       "vetoed": null,
@@ -180,7 +180,7 @@
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 934,
+      "days_left": 930,
       "closes": "2029-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/uk-global-screen-fund-co-production-1",
       "vetoed": null,
@@ -200,7 +200,7 @@
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 569,
+      "days_left": 565,
       "closes": "2028-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/uk-global-screen-fund-international-distribution-pa-support-1",
       "vetoed": null,
@@ -220,7 +220,7 @@
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 934,
+      "days_left": 930,
       "closes": "2029-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/uk-global-screen-fund-international-distribution-festival-launch-support-1",
       "vetoed": null,
@@ -240,7 +240,7 @@
       "alignment": 0,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 1299,
+      "days_left": 1295,
       "closes": "2030-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/cladding-safety-scheme-1",
       "vetoed": null,
@@ -260,7 +260,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 12,
+      "days_left": 8,
       "closes": "2026-09-22",
       "url": "https://www.find-government-grants.service.gov.uk/grants/ahrc-responsive-mode-working-with-brazilian-researchers-grant-1",
       "vetoed": null,
@@ -278,7 +278,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 12,
+      "days_left": 8,
       "closes": "2026-09-22",
       "url": "https://www.find-government-grants.service.gov.uk/grants/ahrc-responsive-mode-collaborate-with-researchers-in-luxembourg-grant-1",
       "vetoed": null,
@@ -296,7 +296,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 12,
+      "days_left": 8,
       "closes": "2026-09-22",
       "url": "https://www.find-government-grants.service.gov.uk/grants/ahrc-responsive-mode-standard-research-grant-grant-1",
       "vetoed": null,
@@ -314,7 +314,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 494,
+      "days_left": 490,
       "closes": "2028-01-17",
       "url": "https://www.find-government-grants.service.gov.uk/grants/opportunities-for-the-advanced-research-and-invention-agency-aria-1",
       "vetoed": null,
@@ -334,12 +334,12 @@
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 12,
+      "days_left": 8,
       "closes": "2026-09-22",
       "url": "https://www.find-government-grants.service.gov.uk/grants/ahrc-responsive-mode-curiosity-award-grant-1",
-      "vetoed": "12 days left is about 18 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "vetoed": "8 days left is about 12 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
       "reasons": [
-        "12 days left is about 18 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "8 days left is about 12 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
         "nothing in the call matches what you do (food insecurity)",
         "open across the UK"
       ],
@@ -354,7 +354,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 12,
+      "days_left": 8,
       "closes": "2026-09-22",
       "url": "https://www.find-government-grants.service.gov.uk/grants/ahrc-responsive-mode-catalyst-awards-grant-1",
       "vetoed": null,
@@ -372,7 +372,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 1299,
+      "days_left": 1295,
       "closes": "2030-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/heat-network-efficiency-scheme-hnes-1",
       "vetoed": null,
@@ -389,17 +389,17 @@
       "programme": "Electric Car Grant",
       "band": "Low",
       "fit": 30,
-      "alignment": 46,
+      "alignment": 50,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 1299,
+      "days_left": 1295,
       "closes": "2030-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/electric-car-grant-1",
       "vetoed": null,
       "reasons": [
-        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (4% of its awards)",
-        "funder has backed GB-CHC organisations (4% of awards)",
-        "no recorded awards in London; concentrated in Redacted, BRISTOL, BIRMINGHAM"
+        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (0% of its awards)",
+        "funder has never funded a GB-CHC in 300 recorded awards",
+        "funds in London"
       ],
       "stage": "triage",
       "basis": "award history"
@@ -412,7 +412,7 @@
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 297,
+      "days_left": 293,
       "closes": "2027-07-04",
       "url": "https://www.find-government-grants.service.gov.uk/grants/community-hub-bursaries-1",
       "vetoed": null,
@@ -432,7 +432,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 934,
+      "days_left": 930,
       "closes": "2029-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/spruce-site-assessment-1",
       "vetoed": null,
@@ -450,7 +450,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 47,
+      "days_left": 43,
       "closes": "2026-10-27",
       "url": "https://www.find-government-grants.service.gov.uk/grants/depot-charging-scheme-1",
       "vetoed": null,
@@ -467,17 +467,17 @@
       "programme": "Zero Emission Vessels and Infrastructure 2: Electric Power",
       "band": "Low",
       "fit": 0,
-      "alignment": 46,
+      "alignment": 50,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 6,
+      "days_left": 2,
       "closes": "2026-09-16",
       "url": "https://www.find-government-grants.service.gov.uk/grants/zero-emission-vessels-and-infrastructure-2-electric-power-1",
-      "vetoed": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "vetoed": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
       "reasons": [
-        "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (4% of its awards)",
-        "funder has backed GB-CHC organisations (4% of awards)"
+        "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (0% of its awards)",
+        "funder has never funded a GB-CHC in 300 recorded awards"
       ],
       "stage": "triage",
       "basis": "award history"
@@ -487,17 +487,17 @@
       "programme": "Zero Emission Vessels and Infrastructure 2: Energy Efficiency",
       "band": "Low",
       "fit": 0,
-      "alignment": 46,
+      "alignment": 50,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 6,
+      "days_left": 2,
       "closes": "2026-09-16",
       "url": "https://www.find-government-grants.service.gov.uk/grants/zero-emission-vessels-and-infrastructure-2-energy-efficiency-1",
-      "vetoed": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "vetoed": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
       "reasons": [
-        "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (4% of its awards)",
-        "funder has backed GB-CHC organisations (4% of awards)"
+        "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (0% of its awards)",
+        "funder has never funded a GB-CHC in 300 recorded awards"
       ],
       "stage": "triage",
       "basis": "award history"
@@ -507,17 +507,17 @@
       "programme": "Zero Emission Vessels and Infrastructure 2: Alternative Fuels",
       "band": "Low",
       "fit": 0,
-      "alignment": 46,
+      "alignment": 50,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 6,
+      "days_left": 2,
       "closes": "2026-09-16",
       "url": "https://www.find-government-grants.service.gov.uk/grants/zero-emission-vessels-and-infrastructure-2-alternative-fuels-1",
-      "vetoed": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "vetoed": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
       "reasons": [
-        "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (4% of its awards)",
-        "funder has backed GB-CHC organisations (4% of awards)"
+        "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (0% of its awards)",
+        "funder has never funded a GB-CHC in 300 recorded awards"
       ],
       "stage": "triage",
       "basis": "award history"
@@ -530,7 +530,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 12,
+      "days_left": 8,
       "closes": "2026-09-22",
       "url": "https://www.find-government-grants.service.gov.uk/grants/pushing-the-frontiers-of-environmental-research-grant-1",
       "vetoed": null,
@@ -548,7 +548,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 203,
+      "days_left": 199,
       "closes": "2027-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/places-grants-1",
       "vetoed": null,
@@ -568,7 +568,7 @@
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 203,
+      "days_left": 199,
       "closes": "2027-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/people-and-research-1",
       "vetoed": null,
@@ -588,7 +588,7 @@
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 934,
+      "days_left": 930,
       "closes": "2029-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/uk-global-screen-fund-international-distribution-video-game-release-funding-1",
       "vetoed": null,
@@ -608,7 +608,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 144,
+      "days_left": 140,
       "closes": "2027-02-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/forest-creation-grant-1",
       "vetoed": null,
@@ -622,18 +622,18 @@
       "funder": "Environment Agency",
       "programme": "Local Water Environment Grant",
       "band": "Low",
-      "fit": 30,
+      "fit": 0,
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 16,
+      "days_left": 12,
       "closes": "2026-09-26",
       "url": "https://www.find-government-grants.service.gov.uk/grants/local-water-environment-grant-1",
-      "vetoed": null,
+      "vetoed": "12 days left is about 18 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
       "reasons": [
+        "12 days left is about 18 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
         "nothing in the call matches what you do (food insecurity)",
-        "open to organisations in Southwark, London (England)",
-        "awards up to £100,000 suit an organisation your size"
+        "open to organisations in Southwark, London (England)"
       ],
       "stage": "triage",
       "basis": "stated criteria"
@@ -643,17 +643,17 @@
       "programme": "Plug-in Wheelchair Accessible Vehicle Grant",
       "band": "Low",
       "fit": 30,
-      "alignment": 46,
+      "alignment": 50,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 208,
+      "days_left": 204,
       "closes": "2027-04-06",
       "url": "https://www.find-government-grants.service.gov.uk/grants/plug-in-wheelchair-accessible-vehicle-grant-1",
       "vetoed": null,
       "reasons": [
-        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (4% of its awards)",
-        "funder has backed GB-CHC organisations (4% of awards)",
-        "no recorded awards in London; concentrated in Redacted, BRISTOL, BIRMINGHAM"
+        "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (0% of its awards)",
+        "funder has never funded a GB-CHC in 300 recorded awards",
+        "funds in London"
       ],
       "stage": "triage",
       "basis": "award history"
@@ -666,7 +666,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 231,
+      "days_left": 227,
       "closes": "2027-04-29",
       "url": "https://www.find-government-grants.service.gov.uk/grants/bbsrc-standard-research-grant-applicant-led-mode-1",
       "vetoed": null,
@@ -684,7 +684,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 231,
+      "days_left": 227,
       "closes": "2027-04-29",
       "url": "https://www.find-government-grants.service.gov.uk/grants/bbsrc-new-investigator-award-applicant-led-mode-grant-1",
       "vetoed": null,
@@ -702,7 +702,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 1299,
+      "days_left": 1295,
       "closes": "2030-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/heritage-at-risk-capital-fund-1",
       "vetoed": null,
@@ -722,7 +722,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 1299,
+      "days_left": 1295,
       "closes": "2030-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/places-of-worship-renewal-fund-1",
       "vetoed": null,
@@ -742,7 +742,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 202,
+      "days_left": 198,
       "closes": "2027-03-31",
       "url": "https://www.find-government-grants.service.gov.uk/grants/mathematical-sciences-early-independence-fellowship-fellowship-1",
       "vetoed": null,
@@ -762,7 +762,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 20,
+      "days_left": 16,
       "closes": "2026-09-30",
       "url": "https://www.find-government-grants.service.gov.uk/grants/early-independence-ernest-rutherford-fellowships-2026-fellowship-1",
       "vetoed": null,
@@ -780,12 +780,12 @@
       "alignment": 0,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 6,
+      "days_left": 2,
       "closes": "2026-09-16",
       "url": "https://www.find-government-grants.service.gov.uk/grants/drive35-innovation-fund-collaborate-03-1",
-      "vetoed": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "vetoed": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
       "reasons": [
-        "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
         "nothing in the call matches what you do (food insecurity)",
         "the smallest award (£2,500,000) is more than your annual income (£136,000)"
       ],
@@ -800,7 +800,7 @@
       "alignment": 0,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 22,
+      "days_left": 18,
       "closes": "2026-10-02",
       "url": "https://www.find-government-grants.service.gov.uk/grants/scaling-performance-of-quantum-computing-hardware-crd-1",
       "vetoed": null,
@@ -820,12 +820,12 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 9,
+      "days_left": 5,
       "closes": "2026-09-19",
       "url": "https://www.find-government-grants.service.gov.uk/grants/lowland-peat-water-implementation-grant-1",
-      "vetoed": "9 days left is about 14 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "vetoed": "5 days left is about 8 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
       "reasons": [
-        "9 days left is about 14 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "5 days left is about 8 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
         "nothing in the call matches what you do (food insecurity)",
         "awards run to £2,000,000, over three times your income; expect to compete with much larger organisations"
       ],
@@ -837,16 +837,16 @@
       "programme": "Youth Jobs Grant",
       "band": "Low",
       "fit": 30,
-      "alignment": 81,
+      "alignment": 50,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 783,
+      "days_left": 779,
       "closes": "2028-11-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/youth-jobs-grant-2",
       "vetoed": null,
       "reasons": [
-        "nothing in the call matches what you do (food insecurity), and Department for Work and Pensions rarely funds charities (3% of its awards)",
-        "funder has backed GB-CHC organisations (3% of awards)",
+        "nothing in the call matches what you do (food insecurity), and Department for Work and Pensions rarely funds charities (0% of its awards)",
+        "funder has never funded a GB-CHC in 300 recorded awards",
         "funds in London"
       ],
       "stage": "triage",
@@ -860,7 +860,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 6,
+      "days_left": 2,
       "closes": "2026-09-16",
       "url": "https://www.find-government-grants.service.gov.uk/grants/doctoral-focal-awards-in-data-intensive-sciences-grant-1",
       "vetoed": null,
@@ -878,7 +878,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 21,
+      "days_left": 17,
       "closes": "2026-10-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/enhancing-resilience-to-wildfires-in-the-wildland-urban-interface-grant-1",
       "vetoed": null,
@@ -896,7 +896,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 13,
+      "days_left": 9,
       "closes": "2026-09-23",
       "url": "https://www.find-government-grants.service.gov.uk/grants/early-independence-bbsrc-fellowships-full-stage-fellowship-1",
       "vetoed": null,
@@ -914,7 +914,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 5,
+      "days_left": 1,
       "closes": "2026-09-15",
       "url": "https://www.find-government-grants.service.gov.uk/grants/optical-wireless-communications-research-and-testing-facility-grant-1",
       "vetoed": null,
@@ -932,7 +932,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 34,
+      "days_left": 30,
       "closes": "2026-10-14",
       "url": "https://www.find-government-grants.service.gov.uk/grants/doctoral-focal-award-plus-innovating-in-data-driven-research-grant-1",
       "vetoed": null,
@@ -950,7 +950,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 7,
+      "days_left": 3,
       "closes": "2026-09-17",
       "url": "https://www.find-government-grants.service.gov.uk/grants/ukri-translation-impact-acceleration-cheri-ikc-grant-1",
       "vetoed": null,
@@ -968,7 +968,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 26,
+      "days_left": 22,
       "closes": "2026-10-06",
       "url": "https://www.find-government-grants.service.gov.uk/grants/japan-uk-joint-call-for-collaborations-in-advanced-connectivity-technologies-grant-1",
       "vetoed": null,
@@ -986,7 +986,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 62,
+      "days_left": 58,
       "closes": "2026-11-11",
       "url": "https://www.find-government-grants.service.gov.uk/grants/ukri-translation-mrc-impact-acceleration-awards-grant-1",
       "vetoed": null,
@@ -1000,11 +1000,11 @@
       "funder": "Department for Science, Innovation and Technology",
       "programme": "National Space Innovation Programme - Call 3",
       "band": "Low",
-      "fit": 27,
+      "fit": 30,
       "alignment": 0,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 64,
+      "days_left": 60,
       "closes": "2026-11-13",
       "url": "https://www.find-government-grants.service.gov.uk/grants/national-space-innovation-programme---call-3-1",
       "vetoed": null,
@@ -1024,7 +1024,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 19,
+      "days_left": 15,
       "closes": "2026-09-29",
       "url": "https://www.find-government-grants.service.gov.uk/grants/design-generators-round-two-grant-1",
       "vetoed": null,
@@ -1042,7 +1042,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 321,
+      "days_left": 317,
       "closes": "2027-07-28",
       "url": "https://www.find-government-grants.service.gov.uk/grants/bbsrc-brazil-pump-priming-award-fappa-grant-1",
       "vetoed": null,
@@ -1060,7 +1060,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 35,
+      "days_left": 31,
       "closes": "2026-10-15",
       "url": "https://www.find-government-grants.service.gov.uk/grants/a-guide-for-the-commercialisation-of-creative-industries-research-grant-1",
       "vetoed": null,
@@ -1071,26 +1071,6 @@
       "basis": null
     },
     {
-      "funder": "Department for Digital, Culture, Media and Sport",
-      "programme": "DCMS 'Connections Through Gaming' Pilot Fund (Boys 11-16)",
-      "band": "Low",
-      "fit": 0,
-      "alignment": 84,
-      "plausibility": 68,
-      "plausibility_confidence": "indicative",
-      "days_left": 2,
-      "closes": "2026-09-12",
-      "url": "https://www.find-government-grants.service.gov.uk/grants/dcms-connections-through-gaming-pilot-fund-boys-11-16-1",
-      "vetoed": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-      "reasons": [
-        "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-        "nothing in the call matches what you do (food insecurity), and Department for Culture, Media & Sport rarely funds charities (18% of its awards)",
-        "funder has backed GB-CHC organisations (18% of awards)"
-      ],
-      "stage": "triage",
-      "basis": "award history"
-    },
-    {
       "funder": "Department for Business, Innovation, Science and Trade",
       "programme": "AI Growth Lab",
       "band": "Low",
@@ -1098,7 +1078,7 @@
       "alignment": 25,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 18,
+      "days_left": 14,
       "closes": "2026-09-28",
       "url": "https://www.find-government-grants.service.gov.uk/grants/ai-growth-labs-1",
       "vetoed": null,
@@ -1117,7 +1097,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 20,
+      "days_left": 16,
       "closes": "2026-09-30",
       "url": "https://www.find-government-grants.service.gov.uk/grants/farming-futures-rd-fund-automation-and-robotics-round-2-1",
       "vetoed": null,
@@ -1133,18 +1113,18 @@
       "funder": "Innovate UK, part of UK Research and Innovation (UKRI)",
       "programme": "Quantum computing applications for large scale impact: CR&D",
       "band": "Low",
-      "fit": 30,
+      "fit": 0,
       "alignment": 0,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 14,
+      "days_left": 10,
       "closes": "2026-09-24",
       "url": "https://www.find-government-grants.service.gov.uk/grants/quantum-computing-applications-for-large-scale-impact-crd-1",
-      "vetoed": null,
+      "vetoed": "10 days left is about 15 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
       "reasons": [
+        "10 days left is about 15 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
         "nothing in the call matches what you do (food insecurity)",
-        "the smallest award (£300,000) is more than your annual income (£136,000)",
-        "open across the UK"
+        "the smallest award (£300,000) is more than your annual income (£136,000)"
       ],
       "stage": "triage",
       "basis": "stated criteria"
@@ -1157,12 +1137,12 @@
       "alignment": 0,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 6,
+      "days_left": 2,
       "closes": "2026-09-16",
       "url": "https://www.find-government-grants.service.gov.uk/grants/accelerating-adoption-of-quantum-enabled-sensing-and-pnt-1",
-      "vetoed": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "vetoed": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
       "reasons": [
-        "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
         "nothing in the call matches what you do (food insecurity)",
         "the smallest award (£1,000,000) is more than your annual income (£136,000)"
       ],
@@ -1174,16 +1154,16 @@
       "programme": "Farmer Collaboration Fund",
       "band": "Low",
       "fit": 30,
-      "alignment": 50,
+      "alignment": 80,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 21,
+      "days_left": 17,
       "closes": "2026-10-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/famer-collaboration-fund-1",
       "vetoed": null,
       "reasons": [
-        "nothing in the call matches what you do (food insecurity), and Department for Environment, Food and Rural Affairs rarely funds charities (0% of its awards)",
-        "funder has never funded a GB-CHC in 300 recorded awards",
+        "nothing in the call matches what you do (food insecurity), and Department for Environment, Food and Rural Affairs rarely funds charities (1% of its awards)",
+        "funder has backed GB-CHC organisations (1% of awards)",
         "funds in London"
       ],
       "stage": "triage",
@@ -1197,7 +1177,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 34,
+      "days_left": 30,
       "closes": "2026-10-14",
       "url": "https://www.find-government-grants.service.gov.uk/grants/ukri-translation-bbsrc-proof-of-concept-2026-grant-1",
       "vetoed": null,
@@ -1215,7 +1195,7 @@
       "alignment": 0,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 55,
+      "days_left": 51,
       "closes": "2026-11-04",
       "url": "https://www.find-government-grants.service.gov.uk/grants/drive35-scale-up-fund-drawdown-5-1",
       "vetoed": null,
@@ -1235,7 +1215,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 40,
+      "days_left": 36,
       "closes": "2026-10-20",
       "url": "https://www.find-government-grants.service.gov.uk/grants/next-generation-artificial-intelligence-ai-explainable-ai-grant-1",
       "vetoed": null,
@@ -1250,16 +1230,16 @@
       "programme": "An Official Oral History of Women Veterans in the UK",
       "band": "Low",
       "fit": 0,
-      "alignment": 86,
+      "alignment": 85,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 13,
+      "days_left": 9,
       "closes": "2026-09-23",
       "url": "https://www.find-government-grants.service.gov.uk/grants/an-official-oral-history-of-women-veterans-in-the-uk-1",
-      "vetoed": "13 days left is about 20 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "vetoed": "9 days left is about 14 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
       "reasons": [
-        "13 days left is about 20 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-        "funder has backed GB-CHC organisations (31% of awards)",
+        "9 days left is about 14 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "funder has backed GB-CHC organisations (25% of awards)",
         "funds in London"
       ],
       "stage": "triage",
@@ -1273,7 +1253,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 42,
+      "days_left": 38,
       "closes": "2026-10-22",
       "url": "https://www.find-government-grants.service.gov.uk/grants/resilient-economy-and-security-through-ecosystem-transitions-grants-grant-1",
       "vetoed": null,
@@ -1293,7 +1273,7 @@
       "alignment": 0,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 56,
+      "days_left": 52,
       "closes": "2026-11-05",
       "url": "https://www.find-government-grants.service.gov.uk/grants/purchase-mid-range-equipment-for-biomedical-research-mrc-equip-grant-1",
       "vetoed": null,
@@ -1313,7 +1293,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 41,
+      "days_left": 37,
       "closes": "2026-10-21",
       "url": "https://www.find-government-grants.service.gov.uk/grants/advancing-atmospheric-and-aerial-autonomy-grant-1",
       "vetoed": null,
@@ -1331,7 +1311,7 @@
       "alignment": 0,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 41,
+      "days_left": 37,
       "closes": "2026-10-21",
       "url": "https://www.find-government-grants.service.gov.uk/grants/research-infrastructure-renewal-grant-1",
       "vetoed": null,
@@ -1351,12 +1331,12 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 6,
+      "days_left": 2,
       "closes": "2026-09-16",
       "url": "https://www.find-government-grants.service.gov.uk/grants/electricity-demand-turn-up-trial-eoi-for-flexibility-providers-1",
-      "vetoed": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+      "vetoed": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
       "reasons": [
-        "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+        "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
         "nothing in the call matches what you do (food insecurity)",
         "awards run to £3,000,000, over three times your income; expect to compete with much larger organisations"
       ],
@@ -1371,7 +1351,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 61,
+      "days_left": 57,
       "closes": "2026-11-10",
       "url": "https://www.find-government-grants.service.gov.uk/grants/transformative-sustainable-ai-technologies-grant-1",
       "vetoed": null,
@@ -1389,7 +1369,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 49,
+      "days_left": 45,
       "closes": "2026-10-29",
       "url": "https://www.find-government-grants.service.gov.uk/grants/costar-satellite-labs-accessible-creative-rd-infrastructure-grant-1",
       "vetoed": null,
@@ -1407,7 +1387,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 49,
+      "days_left": 45,
       "closes": "2026-10-29",
       "url": "https://www.find-government-grants.service.gov.uk/grants/costar-showcase-labs-createch-infrastructure-and-commercialisation-grant-1",
       "vetoed": null,
@@ -1422,37 +1402,17 @@
       "programme": "Sustainable Drainage Systems (SuDS) in Schools Grant Scheme",
       "band": "Low",
       "fit": 30,
-      "alignment": 50,
+      "alignment": 80,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 53,
+      "days_left": 49,
       "closes": "2026-11-02",
       "url": "https://www.find-government-grants.service.gov.uk/grants/sustainable-drainage-systems-suds-in-schools-fy-202728-1",
       "vetoed": null,
       "reasons": [
         "nothing in the call matches what you do (food insecurity), and Department for Education rarely funds charities (0% of its awards)",
-        "funder has never funded a GB-CHC in 300 recorded awards",
+        "funder has backed GB-CHC organisations (0% of awards)",
         "funds in London"
-      ],
-      "stage": "triage",
-      "basis": "award history"
-    },
-    {
-      "funder": "Department for Education (DfE)",
-      "programme": "Sustainable Drainage Systems (SuDS) in Schools Market Engagement Event",
-      "band": "Low",
-      "fit": 0,
-      "alignment": 50,
-      "plausibility": 68,
-      "plausibility_confidence": "indicative",
-      "days_left": 1,
-      "closes": "2026-09-11",
-      "url": "https://www.find-government-grants.service.gov.uk/grants/sustainable-drainage-systems-suds-in-schools-market-engagement-event-fy-27-28-1",
-      "vetoed": "1 day left is about 2 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-      "reasons": [
-        "1 day left is about 2 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-        "nothing in the call matches what you do (food insecurity), and Department for Education rarely funds charities (0% of its awards)",
-        "funder has never funded a GB-CHC in 300 recorded awards"
       ],
       "stage": "triage",
       "basis": "award history"
@@ -1465,7 +1425,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 33,
+      "days_left": 29,
       "closes": "2026-10-13",
       "url": "https://www.find-government-grants.service.gov.uk/grants/future-computing-paradigms-network-plus-grant-1",
       "vetoed": null,
@@ -1483,7 +1443,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 47,
+      "days_left": 43,
       "closes": "2026-10-27",
       "url": "https://www.find-government-grants.service.gov.uk/grants/high-performance-compute-resources-for-epsrc-communities-grant-1",
       "vetoed": null,
@@ -1498,16 +1458,16 @@
       "programme": "Farming Innovation Programme: Small R&D Partnership Projects Rd 5",
       "band": "Low",
       "fit": 30,
-      "alignment": 50,
+      "alignment": 80,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 34,
+      "days_left": 30,
       "closes": "2026-10-14",
       "url": "https://www.find-government-grants.service.gov.uk/grants/farming-innovation-programme-small-rd-partnership-projects-rd-5-1",
       "vetoed": null,
       "reasons": [
-        "nothing in the call matches what you do (food insecurity), and Department for Environment, Food and Rural Affairs rarely funds charities (0% of its awards)",
-        "funder has never funded a GB-CHC in 300 recorded awards",
+        "nothing in the call matches what you do (food insecurity), and Department for Environment, Food and Rural Affairs rarely funds charities (1% of its awards)",
+        "funder has backed GB-CHC organisations (1% of awards)",
         "funds in London"
       ],
       "stage": "triage",
@@ -1518,16 +1478,16 @@
       "programme": "Support for Victims and Survivors of Child Sexual Abuse Fund 2027 - 2029",
       "band": "Low",
       "fit": 30,
-      "alignment": 82,
+      "alignment": 80,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 18,
+      "days_left": 14,
       "closes": "2026-09-28",
       "url": "https://www.find-government-grants.service.gov.uk/grants/support-for-victims-and-survivors-of-child-sexual-abuse-fund-2027---2029-1",
       "vetoed": null,
       "reasons": [
-        "nothing in the call matches what you do (food insecurity), and Home Office rarely funds charities (8% of its awards)",
-        "funder has backed GB-CHC organisations (8% of awards)",
+        "nothing in the call matches what you do (food insecurity), and Home Office rarely funds charities (2% of its awards)",
+        "funder has backed GB-CHC organisations (2% of awards)",
         "funds in London"
       ],
       "stage": "triage",
@@ -1541,7 +1501,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 54,
+      "days_left": 50,
       "closes": "2026-11-03",
       "url": "https://www.find-government-grants.service.gov.uk/grants/ukri-integration-of-aihpc-with-quantum-computing-grant-1",
       "vetoed": null,
@@ -1559,7 +1519,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 76,
+      "days_left": 72,
       "closes": "2026-11-25",
       "url": "https://www.find-government-grants.service.gov.uk/grants/unlocking-advanced-capabilities-in-conservation-and-heritage-science-grant-1",
       "vetoed": null,
@@ -1577,7 +1537,7 @@
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 34,
+      "days_left": 30,
       "closes": "2026-10-14",
       "url": "https://www.find-government-grants.service.gov.uk/grants/medicines-manufacturing-data-institute-phase-1-1",
       "vetoed": null,
@@ -1597,7 +1557,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 54,
+      "days_left": 50,
       "closes": "2026-11-03",
       "url": "https://www.find-government-grants.service.gov.uk/grants/focal-award-epsrc-and-mhclg-fire-engineering-skills-hub-grant-1",
       "vetoed": null,
@@ -1615,7 +1575,7 @@
       "alignment": 35,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 140,
+      "days_left": 136,
       "closes": "2027-01-28",
       "url": "https://www.find-government-grants.service.gov.uk/grants/small-molecule-high-throughput-screen-using-astrazeneca-facilities-grant-1",
       "vetoed": null,
@@ -1635,7 +1595,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 70,
+      "days_left": 66,
       "closes": "2026-11-19",
       "url": "https://www.find-government-grants.service.gov.uk/grants/economic-research-on-the-returns-to-rd-investment-grant-1",
       "vetoed": null,
@@ -1653,7 +1613,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 63,
+      "days_left": 59,
       "closes": "2026-11-12",
       "url": "https://www.find-government-grants.service.gov.uk/grants/exploring-the-frontiers-of-environmental-research-2026-grant-1",
       "vetoed": null,
@@ -1662,6 +1622,46 @@
       ],
       "stage": "triage",
       "basis": null
+    },
+    {
+      "funder": "Innovate UK on behalf of the Department for Business, Innovation, Science and Trade (BIST).",
+      "programme": "Battery Innovation: Feasibility Studies Rd 3",
+      "band": "Low",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 79,
+      "closes": "2026-12-02",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/battery-innovation-feasibility-studies-rd-3-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £500,000, over three times your income; expect to compete with much larger organisations",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Innovate UK, part of UK Research and Innovation (UKRI), is delivering the Battery Innovation Programme on behalf of the Department for Business, Innovation, Science and Trade (BIST).",
+      "programme": "Battery Innovation: Concept Development Rd 3",
+      "band": "Low",
+      "fit": 27,
+      "alignment": 0,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 79,
+      "closes": "2026-12-02",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/battery-innovation-concept-development-rd-3-1",
+      "vetoed": null,
+      "reasons": [
+        "nothing in the call matches what you do (food insecurity)",
+        "the smallest award (£500,000) is more than your annual income (£136,000)",
+        "open across the UK"
+      ],
+      "stage": "triage",
+      "basis": "stated criteria"
     },
     {
       "funder": "The National Lottery Community Fund",
@@ -1791,21 +1791,22 @@
     },
     {
       "funder": "Innovate UK",
-      "programme": "Battery Innovation: Concept Development Rd 3",
+      "programme": "Ultra Long Duration Energy Storage Project Development Studies Relaunch",
       "band": "Low",
-      "fit": null,
-      "alignment": null,
-      "plausibility": null,
-      "plausibility_confidence": null,
-      "days_left": 83,
-      "closes": "2026-12-02",
-      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2572/overview/7410b013-814e-4db6-9011-c39efe67e2d6",
+      "fit": 30,
+      "alignment": 15,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 16,
+      "closes": "2026-09-30",
+      "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2574/overview/48cb1c09-fcef-4ae8-a700-d79db606fba8",
       "vetoed": null,
       "reasons": [
-        "only businesses can apply or lead; you are a registered charity"
+        "nothing in the call matches what you do (food insecurity)",
+        "awards run to £3,000,000, over three times your income; expect to compete with much larger organisations"
       ],
       "stage": "triage",
-      "basis": null
+      "basis": "stated criteria"
     },
     {
       "funder": "Innovate UK",
@@ -1815,7 +1816,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 54,
+      "days_left": 50,
       "closes": "2026-11-03",
       "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2542/overview/b687b240-4dff-4149-889b-308e61447460",
       "vetoed": null,
@@ -1833,7 +1834,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 41,
+      "days_left": 37,
       "closes": "2026-10-21",
       "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2546/overview/d8b3252c-a147-4088-89ab-7991141da64a",
       "vetoed": null,
@@ -1852,7 +1853,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 48,
+      "days_left": 44,
       "closes": "2026-10-28",
       "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2569/overview/a3448c9e-38ae-4759-957c-bccf6c40c281",
       "vetoed": null,
@@ -1870,7 +1871,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 34,
+      "days_left": 30,
       "closes": "2026-10-14",
       "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2567/overview/53ee8d14-5670-4f09-8825-0d7ca9c09100",
       "vetoed": null,
@@ -1888,7 +1889,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 34,
+      "days_left": 30,
       "closes": "2026-10-14",
       "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2566/overview/bd333690-b6c6-4bdc-8447-4c8b5853ef52",
       "vetoed": null,
@@ -1907,7 +1908,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 48,
+      "days_left": 44,
       "closes": "2026-10-28",
       "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2527/overview/d48f61f8-2bd5-4067-9c05-29dd08487623",
       "vetoed": null,
@@ -1926,7 +1927,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 27,
+      "days_left": 23,
       "closes": "2026-10-07",
       "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2559/overview/54e68d9c-8be2-449c-8b6b-07fcd5014582",
       "vetoed": null,
@@ -1944,7 +1945,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 97,
+      "days_left": 93,
       "closes": "2026-12-16",
       "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2526/overview/4a4b67b9-9b73-4816-8e21-bdfab83f5909",
       "vetoed": null,
@@ -1962,7 +1963,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 20,
+      "days_left": 16,
       "closes": "2026-09-30",
       "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2556/overview/ff6d6e0a-92ee-4719-a0fb-2e4bc2aa9c4d",
       "vetoed": null,
@@ -1980,7 +1981,7 @@
       "alignment": null,
       "plausibility": null,
       "plausibility_confidence": null,
-      "days_left": 27,
+      "days_left": 23,
       "closes": "2026-10-07",
       "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2544/overview/fe16ecd4-5413-4fa5-8ccc-4bfdcb390944",
       "vetoed": null,
@@ -1998,7 +1999,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 34,
+      "days_left": 30,
       "closes": "2026-10-14",
       "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2514/overview/81b3dcb8-7d03-42ed-8b97-5e6e51c4d1ed",
       "vetoed": null,
@@ -2017,7 +2018,7 @@
       "alignment": 15,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 55,
+      "days_left": 51,
       "closes": "2026-11-04",
       "url": "https://apply-for-innovation-funding.service.gov.uk/competition/2499/overview/60da9000-d438-47fb-92aa-e8d9435a17ab",
       "vetoed": null,
@@ -2052,16 +2053,16 @@
       "funder": "HS2 Ltd",
       "programme": "Community and Environment Fund (CEF) and Business and Local Economy Fund (BLEF)",
       "band": "Medium",
-      "fit": 25,
+      "fit": 18,
       "alignment": 60,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 3124,
+      "days_left": 3120,
       "closes": "2035-03-31",
       "url": "https://www.find-government-grants.service.gov.uk/grants/community-and-environment-fund-cef-and-business-and-local-economy-fund-blef-1",
       "vetoed": null,
       "reasons": [
-        "Geographic scope: HS2 CEF/BLEF targets communities disrupted by Phase One/2a construction (London–Crewe route). Peckham and Nunhead do not sit on or immediately adjacent to the published HS2 corridor. Call is route-specific, not open to all England.",
+        "Fund is purpose-designed for HS2 construction disruption; organisation has not evidenced that their beneficiaries or service area experience such disruption",
         "open to organisations in Southwark, London (England)",
         "open to charities and community groups generally, not tied to one cause"
       ],
@@ -2072,18 +2073,18 @@
       "funder": "Ministry of Justice",
       "programme": "Commissioned Rehabilitative Services General Grant Scheme",
       "band": "Medium",
-      "fit": 5,
-      "alignment": 86,
+      "fit": 8,
+      "alignment": 53,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 200,
+      "days_left": 196,
       "closes": "2027-03-29",
       "url": "https://www.find-government-grants.service.gov.uk/grants/commissioned-rehabilitative-services-general-grant-scheme-1",
       "vetoed": null,
       "reasons": [
-        "Organisation's work (food security) does not align with this call's scope (criminal justice rehabilitative services)",
-        "funder has backed GB-CHC organisations (29% of awards)",
-        "funds in London"
+        "Call is for rehabilitative/criminal justice services; organisation's core work is food security and community meals with no stated justice involvement",
+        "funder has backed GB-CHC organisations (41% of awards)",
+        "no recorded awards in London; concentrated in England; Wales, Durham"
       ],
       "stage": "gate",
       "basis": "award history"
@@ -2096,12 +2097,12 @@
       "alignment": 49,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 1299,
+      "days_left": 1295,
       "closes": "2030-04-01",
       "url": "https://www.find-government-grants.service.gov.uk/grants/heritage-revival-fund-1",
       "vetoed": null,
       "reasons": [
-        "Mission mismatch: Funder exists to rescue and repurpose historic buildings; organisation operates a community food bank with no heritage asset involvement",
+        "Purpose mismatch: Architectural Heritage Fund funds heritage building rescue and repurposing. Rye Lane Community Kitchen is a food poverty organisation with no stated heritage asset focus.",
         "funder has backed GB-CHC organisations (18% of awards)",
         "no recorded awards in London; concentrated in Scotland, England, Wales"
       ],
@@ -2112,18 +2113,38 @@
       "funder": "UK Research and Innovation, AHRC, BBSRC, ESRC, EPSRC, MRC, NERC, STFC",
       "programme": "Trust and confidence in policing: Research & Innovation Consortium (Grant)",
       "band": "Medium",
-      "fit": 5,
+      "fit": 2,
       "alignment": 40,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
-      "days_left": 47,
+      "days_left": 43,
       "closes": "2026-10-27",
       "url": "https://www.find-government-grants.service.gov.uk/grants/trust-and-confidence-in-policing-research--innovation-consortium-grant-1",
       "vetoed": null,
       "reasons": [
-        "Mission scope: call funds research and innovation in policing trust measurement; organisation runs community food services. No operational connection.",
+        "Call requires research design and delivery capability; organisation is a food service charity with no evidenced research infrastructure, methodology expertise, or prior research delivery",
         "awards run to £2,000,000, over three times your income; expect to compete with much larger organisations",
         "open across the UK"
+      ],
+      "stage": "gate",
+      "basis": "stated criteria"
+    },
+    {
+      "funder": "Ministry of Housing, Communities and Local Government",
+      "programme": "Common Ground Award 2026-2027",
+      "band": "Medium",
+      "fit": 58,
+      "alignment": 60,
+      "plausibility": 68,
+      "plausibility_confidence": "indicative",
+      "days_left": 28,
+      "closes": "2026-10-12",
+      "url": "https://www.find-government-grants.service.gov.uk/grants/common-ground-award-2026-27-1",
+      "vetoed": null,
+      "reasons": [
+        "Tenure unclear: call funds facility construction/renovation; organisation operates from rented space (Rye Lane Baptist Hall); no evidence of ownership or long-term secured lease with landlord consent for capital works. This is typically a hard blocker for capital grants.",
+        "open to organisations in Southwark, London (England)",
+        "open to charities and community groups generally, not tied to one cause"
       ],
       "stage": "gate",
       "basis": "stated criteria"
@@ -2133,7 +2154,7 @@
       "programme": "National Lottery Awards for All England – Environment",
       "band": "Medium",
       "fit": 15,
-      "alignment": 76,
+      "alignment": 73,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
       "days_left": null,
@@ -2141,9 +2162,9 @@
       "url": "https://www.tnlcommunityfund.org.uk/funding/funding-programmes/national-lottery-awards-for-all-england-environment",
       "vetoed": null,
       "reasons": [
-        "Programme theme mismatch: Awards for All Environment requires climate/nature/environment focus. Rye Lane does food security and community cohesion with no environmental component evidenced.",
-        "funder has backed GB-CHC organisations (56% of awards)",
-        "£10,000 sits inside this programme's stated range (£300 to £20,000)"
+        "Call requires projects that 'tackle the climate and nature emergency, improve the environment, and help people connect with and enjoy nature locally'. Rye Lane Community Kitchen delivers community meals and a food pantry. No evidence in ORG.md of any environment, climate, nature connection, or habitat work. This is a food insecurity and social isolation charity, not an environmental charity. The fit is categorical mismatch, not marginal.",
+        "funder has backed GB-CHC organisations (38% of awards)",
+        "£7,706 sits inside this programme's stated range (£300 to £20,000)"
       ],
       "stage": "gate",
       "basis": "award history"
@@ -2152,8 +2173,8 @@
       "funder": "The National Lottery Community Fund",
       "programme": "Reaching Communities England",
       "band": "Medium",
-      "fit": 68,
-      "alignment": 76,
+      "fit": 28,
+      "alignment": 73,
       "plausibility": 68,
       "plausibility_confidence": "indicative",
       "days_left": null,
@@ -2161,8 +2182,8 @@
       "url": "https://www.tnlcommunityfund.org.uk/funding/funding-programmes/reaching-communities-england",
       "vetoed": null,
       "reasons": [
-        "the matcher recommends not applying: Project definition: No specific use of £20,001 is stated. The application question requires clarity on 'the difference this funding will make, who it will reach, and how you will evidence the outcomes.' Current funding model and target beneficiaries are already defined; the application must articulate what changes with this grant.",
-        "funder has backed GB-CHC organisations (56% of awards)",
+        "the matcher recommends not applying: Rye Lane Community Kitchen meets the hard eligibility criteria: it is a registered charity (GB-CHC), operating in England (Southwark), and has been funded by this funder before (Awards for All, £9,700, 2023).",
+        "funder has backed GB-CHC organisations (38% of awards)",
         "£20,001 sits inside this programme's stated range (£20,001 to £20,000,000)"
       ],
       "stage": "gate",
@@ -2171,9 +2192,9 @@
   ],
   "calls_source": "find-a-grant,national-lottery,innovate-uk",
   "sources": {
-    "find-a-grant": 90,
+    "find-a-grant": 91,
     "national-lottery": 10,
-    "innovate-uk": 26
+    "innovate-uk": 28
   },
   "place": "Southwark, London (England)",
   "local_funders": [
@@ -2182,22 +2203,11 @@
       "org_id": "GB-CHC-1091263",
       "website": "https://londoncf.org.uk/",
       "grantnav": "https://grantnav.threesixtygiving.org/org/GB-CHC-1091263",
-      "awards_near_you": 9,
+      "awards_near_you": 8,
       "awards_in_region": 0,
       "sample": 100,
-      "median_award": 8772,
+      "median_award": 8376.0,
       "latest_in_sample": "2020-12-11"
-    },
-    {
-      "name": "Sport England",
-      "org_id": "GB-COH-RC000766",
-      "website": "https://www.sportengland.org/",
-      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-COH-RC000766",
-      "awards_near_you": 2,
-      "awards_in_region": 0,
-      "sample": 100,
-      "median_award": 257870.5,
-      "latest_in_sample": "2009-06-25"
     },
     {
       "name": "London Councils",
@@ -2216,10 +2226,10 @@
       "website": "http://www.lloydsbankfoundation.org.uk/",
       "grantnav": "https://grantnav.threesixtygiving.org/org/GB-CHC-327114",
       "awards_near_you": 0,
-      "awards_in_region": 20,
+      "awards_in_region": 11,
       "sample": 100,
-      "median_award": 37463.5,
-      "latest_in_sample": "2015-12-17"
+      "median_award": 20000,
+      "latest_in_sample": "2014-02-28"
     },
     {
       "name": "Arts Council England",
@@ -2234,25 +2244,19 @@
     }
   ],
   "watcher_state": {
-    "tracked": 113,
+    "tracked": 114,
     "by_status": {
-      "open": 83,
-      "closing_soon": 19,
-      "final_call": 11
+      "open": 84,
+      "closing_soon": 20,
+      "final_call": 10
     },
-    "silent": 111
+    "silent": 113
   },
   "changes": [
     {
       "kind": "new",
       "funder": "The National Lottery Community Fund",
-      "detail": "fit 82/100, closes no stated deadline",
-      "urgent": false
-    },
-    {
-      "kind": "new",
-      "funder": "The National Lottery Community Fund",
-      "detail": "fit 68/100, closes no stated deadline",
+      "detail": "fit 79/100, closes no stated deadline",
       "urgent": false
     }
   ],
@@ -2308,47 +2312,67 @@
   },
   "org": "Rye Lane Community Kitchen",
   "org_id": "GB-CHC-1178432",
-  "workspace": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En",
+  "workspace": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En",
   "direction": [
-    "**Lead with the freezer replacement as essential infrastructure for scaling your existing community meals programme.**",
-    "Rye Lane's community meals deliver measurable outcomes (74% of surveyed members eating hot meals daily more than before), reach 1,120 individuals annually, and operate at high capacity (7,400 meals across 148 sittings in 2025-26). The monthly failures of your 2016 commercial freezer currently constrain this proven delivery model. A £10,000 grant for replacement equipment removes this bottleneck, enabling you to expand sittings or serve additional households without operational risk—and the investment directly enables the \"bring people together\" outcome the funder prioritises.",
-    "Avoid framing this as a general funding gap or using language about financial hardship. The funder sees you as operationally competent (5-star food hygiene, unqualified audit, Level 3 safeguarding); they fund activity expansion, not deficit cover.",
-    "Avoid proposing the crèche provision within this grant. You have no track record delivering childcare, no staff capacity noted, and it dilutes focus from your core strength. If childcare barriers emerge from beneficiary feedback, that's a future application to a different funder; for now, solve the freezer and deepen what you do brilliantly."
+    "Lead with community meals as the anchor for measurable social outcomes and volunteer mobilisation, since the funder backs \"bringing people together\" and your track record shows 74% of surveyed members eating hot meals more regularly—the kind of concrete behaviour change this funder funds.",
+    "Your twice-yearly beneficiary surveys since 2022 (31% response rate), independent evaluation by Southwark Impact Partnership (June 2025), and quarterly monitoring returns to Southwark Council since 2021 give you a robust evidence spine. The 1,120 individuals and 410 households you reached in 2025–26, plus the 38 active volunteers, show you're already delivering the \"bring people together\" outcome this funder explicitly names. The £61 monthly food spend reduction in the food pantry (n=74, Jan 2026) is a tangible secondary metric.",
+    "Avoid framing this as asset replacement or infrastructure (the freezer and van). Avoid claiming match funding unless the call explicitly requires it—your £6,000 reserves exist but need board sign-off, and the call brief does not state a match requirement, so naming it unprompted may create unnecessary friction."
   ],
   "draft": {
     "question": "Describe the difference this funding will make, who it will reach, and how you will evidence the outcomes.",
-    "answer": "We will use this funding to replace our commercial freezer, which fails monthly and limits our capacity to serve members reliably. The new freezer will enable us to store prepared meals in advance and expand our Community meals provision from three sittings a week to four sittings, reaching an additional 200 members annually.\n\nWe will reach members from Peckham and Nunhead wards, Southwark, who currently access our Community meals and Food Pantry. Our members are typically on low incomes and struggle to afford regular hot meals; 74% of surveyed members reported eating at least one hot meal a day more often than before attending our sittings.\n\nWe will evidence outcomes through our established monitoring systems. We run beneficiary surveys twice yearly with a 31% response rate, asking members about meal frequency and food security. We will track the number of additional meals served at the new fourth sitting and measure whether members report further improvements in eating patterns. We submit quarterly monitoring returns to Southwark Council, which will include data on freezer reliability and meal output. Our independent evaluation by Southwark Impact Partnership, published June 2025, provides a baseline for comparison.",
+    "answer": "This funding will allow us to expand our Community meals and Food Pantry programmes, reaching more members across Peckham and Nunhead wards in Southwark. We currently serve 1,120 individuals and 410 households each year, but demand exceeds our current capacity.\n\nThe difference will be tangible. Our Community meals reach members who reported eating at least one hot meal a day more often than before attending—74% of surveyed members (n=180) confirmed this. Our Food Pantry members save an average of £61 monthly on food spend. Additional funding will enable us to increase sittings and expand membership, directly reducing food insecurity and social isolation.\n\nWe will reach members from across both wards, including those experiencing food poverty and isolation. There is no referral needed for Community meals; membership to the Food Pantry costs £4.50 weekly for approximately £22 of food.\n\nWe evidence outcomes rigorously. An independent evaluation by Southwark Impact Partnership was published in June 2025. We run beneficiary surveys twice yearly since 2022, with a 31% response rate. We submit quarterly monitoring returns to Southwark Council. Our Food Pantry tracks member retention (currently 58% year on year) and self-reported food spend savings. These approaches capture both the scale of impact and the lived experience of members we serve.",
     "claims": [
       {
-        "text": "Our commercial freezer fails monthly",
+        "text": "We currently serve 1,120 individuals and 410 households each year",
         "grounded": true,
         "sources": [
-          "ORG.md, Funding history — ORG.md#L51 — \"Currently unfunded for: replacement commercial freezer (the 2016 unit fails monthly), a second-hand refrigerated van,...\""
+          "ORG.md, Scale — ORG.md#L17 — \"Beneficiaries reached 2025-26: 1,120 individuals, 410 households\""
         ]
       },
       {
-        "text": "We currently serve members at three sittings a week from Rye Lane Baptist Hall",
-        "grounded": true,
-        "sources": [
-          "ORG.md, Community meals — ORG.md#L22 — \"Delivery: three sittings a week from Rye Lane Baptist Hall, no referral needed\""
-        ]
-      },
-      {
-        "text": "We serve members from Peckham and Nunhead wards, Southwark",
+        "text": "We serve members across Peckham and Nunhead wards in Southwark",
         "grounded": true,
         "sources": [
           "ORG.md, Identity — ORG.md#L9 — \"Area served: Peckham and Nunhead wards, Southwark, London\""
         ]
       },
       {
-        "text": "74% of surveyed members reported eating at least one hot meal a day more often than before attending",
+        "text": "74% of surveyed members (n=180) reported eating at least one hot meal a day more often than before attending",
         "grounded": true,
         "sources": [
           "ORG.md, Community meals — ORG.md#L24 — \"Outcome: 74% of surveyed members (n=180) reported eating at least one hot\""
         ]
       },
       {
-        "text": "We run beneficiary surveys twice yearly with a 31% response rate",
+        "text": "Food Pantry members save an average of £61 monthly on food spend",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Food pantry — ORG.md#L30 — \"Outcome: members reported an average £61 monthly reduction in food spend\""
+        ]
+      },
+      {
+        "text": "Community meals delivery requires no referral",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Community meals — ORG.md#L22 — \"Delivery: three sittings a week from Rye Lane Baptist Hall, no referral needed\""
+        ]
+      },
+      {
+        "text": "Food Pantry membership costs £4.50 weekly for approximately £22 of food",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Food pantry — ORG.md#L28 — \"Delivery: membership model, £4.50 a week for approximately £22 of food\""
+        ]
+      },
+      {
+        "text": "An independent evaluation by Southwark Impact Partnership was published in June 2025",
+        "grounded": true,
+        "sources": [
+          "ORG.md, Evidence and evaluation — ORG.md#L35 — \"Independent evaluation by Southwark Impact Partnership, published June 2025\""
+        ]
+      },
+      {
+        "text": "We run beneficiary surveys twice yearly since 2022, with a 31% response rate",
         "grounded": true,
         "sources": [
           "ORG.md, Evidence and evaluation — ORG.md#L36 — \"Beneficiary survey run twice yearly since 2022, response rate 31%\""
@@ -2362,59 +2386,58 @@
         ]
       },
       {
-        "text": "Our independent evaluation by Southwark Impact Partnership was published June 2025",
+        "text": "Food Pantry member retention is currently 58% year on year",
         "grounded": true,
         "sources": [
-          "ORG.md, Evidence and evaluation — ORG.md#L35 — \"Independent evaluation by Southwark Impact Partnership, published June 2025\""
+          "ORG.md, Food pantry — ORG.md#L29 — \"Volume 2025-26: 190 member households, 58% retention year on year\""
         ]
       },
       {
         "text": "Suggested ask is anchored on The National Lottery Community Fund's award history (300 grants).",
         "grounded": true,
         "sources": [
-          "360Giving award history, The National Lottery Community Fund — https://grantnav.threesixtygiving.org/org/GB-GOR-PB188 — \"median £10,000; p10-p90 £10,000-£10,000\" — accessed 2026-09-10"
+          "360Giving award history, The National Lottery Community Fund — https://grantnav.threesixtygiving.org/org/GB-GOR-PB188 — \"median £7,706; p10-p90 £2,182-£10,000\" — accessed 2026-09-14"
         ]
       }
     ],
     "unevidenced_gaps": [
-      "Whether we can realistically expand from three sittings to four sittings per week with the new freezer (operational capacity question)",
-      "Confirmation that 200 additional members annually is an achievable target with improved freezer capacity",
-      "Specific metrics or thresholds we will track to measure success of the additional sitting"
+      "Specific detail on how the £7,706 will be deployed (e.g., additional sittings per week, expansion of Pantry membership capacity, or other operational improvements)",
+      "Quantified targets for expanded reach—how many additional members or meals over the funding period"
     ]
   },
   "timeline": {
     "deadline": "rolling",
-    "total_hours_estimate": 18.0,
+    "total_hours_estimate": 24.0,
     "steps": [
       {
-        "days_before_deadline": 21,
-        "task": "Coordinator drafts project narrative and outcomes section",
+        "days_before_deadline": 42,
+        "task": "Coordinator drafts narrative: difference, reach, evidence framework",
         "owner_role": "Coordinator"
       },
       {
-        "days_before_deadline": 16,
-        "task": "Finance lead compiles budget, match funding evidence, reserves approval",
+        "days_before_deadline": 35,
+        "task": "Finance lead gathers match funding detail and board approval memo",
         "owner_role": "Finance Lead"
       },
       {
-        "days_before_deadline": 14,
-        "task": "Designated safeguarding lead reviews compliance and governance attachments",
-        "owner_role": "Designated Safeguarding Lead"
-      },
-      {
-        "days_before_deadline": 10,
-        "task": "Trustee chair reviews full draft application and sign-off",
+        "days_before_deadline": 28,
+        "task": "Trustee reviews draft narrative and outcomes evidence alignment",
         "owner_role": "Trustee"
       },
       {
-        "days_before_deadline": 7,
-        "task": "Coordinator incorporates feedback and finalises supporting evidence pack",
+        "days_before_deadline": 21,
+        "task": "Coordinator incorporates feedback and completes application form",
         "owner_role": "Coordinator"
       },
       {
-        "days_before_deadline": 3,
-        "task": "Finance lead audits all figures against Xero and submits application",
+        "days_before_deadline": 14,
+        "task": "Finance lead and trustee sign-off on budget and match funding",
         "owner_role": "Finance Lead"
+      },
+      {
+        "days_before_deadline": 7,
+        "task": "Coordinator performs final checks and submits application",
+        "owner_role": "Coordinator"
       }
     ]
   },
@@ -2425,19 +2448,19 @@
     },
     {
       "name": "01-decision/Decision.docx",
-      "size": "3.5 kb"
+      "size": "3.6 kb"
     },
     {
       "name": "01-decision/match.json",
-      "size": "2.1 kb"
+      "size": "2.6 kb"
     },
     {
       "name": "02-direction/Direction.docx",
-      "size": "2.7 kb"
+      "size": "2.6 kb"
     },
     {
       "name": "02-direction/angle.md",
-      "size": "1.3 kb"
+      "size": "1.1 kb"
     },
     {
       "name": "03-drafts/Draft answer v1.docx",
@@ -2445,11 +2468,11 @@
     },
     {
       "name": "03-drafts/answer-1.json",
-      "size": "3.6 kb"
+      "size": "4.4 kb"
     },
     {
       "name": "03-drafts/answer-1.md",
-      "size": "1.2 kb"
+      "size": "1.3 kb"
     },
     {
       "name": "03-drafts/style-card.md",
@@ -2457,7 +2480,7 @@
     },
     {
       "name": "04-evidence/Evidence and sources.docx",
-      "size": "3.0 kb"
+      "size": "3.1 kb"
     },
     {
       "name": "04-evidence/audit.json",
@@ -2465,7 +2488,7 @@
     },
     {
       "name": "04-evidence/claims.md",
-      "size": "3.3 kb"
+      "size": "3.9 kb"
     },
     {
       "name": "05-timeline/Timeline.docx",
@@ -2473,7 +2496,7 @@
     },
     {
       "name": "05-timeline/schedule.json",
-      "size": "1.1 kb"
+      "size": "1.0 kb"
     },
     {
       "name": "06-submitted/outcome.meta.json",
@@ -2494,18 +2517,20 @@
     "flags": {
       "tells": [],
       "uniformity": null,
-      "term_violations": [],
-      "clean": true
+      "term_violations": [
+        "used \"households\" where they say \"members\""
+      ],
+      "clean": false
     }
   },
-  "grounded": 8,
-  "total_claims": 8,
+  "grounded": 11,
+  "total_claims": 11,
   "gaps": 3,
   "audit": {
     "verdict": "pass",
     "rate": 1.0,
-    "grounded_claims": 7,
-    "total_claims": 7,
+    "grounded_claims": 10,
+    "total_claims": 10,
     "ungrounded": []
   },
   "schema_version": 2,

@@ -5,19 +5,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Granted</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Caprasimo&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-:root{--ground:#faf9f6;--raised:#f3f1eb;--ink:#24211c;--body:#4a453c;--muted:#7c766a;
---faint:#a09889;--rule:#ded9cd;--strong:#24211c;--accent:#1f6f77;--soft:#9ec6c9;
---warn:#b07a2b;--focus:#1f6f77}
+:root{--ground:#f9f4ed;--raised:#eee7db;--ink:#201e1d;--body:#645c50;--muted:#82796a;
+--faint:#a19786;--rule:#dcd3c4;--strong:#2e2b25;--accent:#b2622d;--soft:#ffd0b3;
+--warn:#b07a2b;--focus:#b2622d}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ground:#171612;
 --raised:#201e18;--ink:#eae5d9;--body:#c6bfb0;--muted:#9b9384;--faint:#6f695d;
---rule:#332f26;--strong:#6f695d;--accent:#6fb9bf;--soft:#2f5f63;--warn:#d6a256;--focus:#6fb9bf}}
+--rule:#332f26;--strong:#6f695d;--accent:#e08a52;--soft:#6b3f24;--warn:#d6a256;--focus:#e08a52}}
 :root[data-theme=dark]{--ground:#171612;--raised:#201e18;--ink:#eae5d9;--body:#c6bfb0;
---muted:#9b9384;--faint:#6f695d;--rule:#332f26;--strong:#6f695d;--accent:#6fb9bf;
---soft:#2f5f63;--warn:#d6a256;--focus:#6fb9bf}
+--muted:#9b9384;--faint:#6f695d;--rule:#332f26;--strong:#6f695d;--accent:#e08a52;
+--soft:#6b3f24;--warn:#d6a256;--focus:#e08a52}
 *{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);font:16px/1.5 Newsreader,Georgia,serif}
+body{margin:0;background:var(--ground);color:var(--ink);font:15px/1.55 Figtree,system-ui,sans-serif}
+.top h1,.banner .n{font-family:Caprasimo,Georgia,serif;font-weight:400;letter-spacing:0}
 .mono,.lbl{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
 .lbl{font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
 button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:pointer;text-align:left}
@@ -127,42 +128,42 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
   </div>
 </div>
 <script id="gr-data" type="application/json">{
- "built": "2026-09-10",
+ "built": "2026-09-14",
  "root": "/mnt/c/Users/Taran/Documents/AWS Hackathon/demo/runs/live/Granted",
  "runs": [
   {
    "org": "Rye Lane Community Kitchen",
-   "run_date": "2026-09-10",
+   "run_date": "2026-09-14",
    "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
    "threshold": 65,
-   "calls_considered": 113,
+   "calls_considered": 114,
    "unreadable": [],
-   "model_calls": 20,
-   "tool_calls": 39,
-   "duration_s": 377.6,
+   "model_calls": 22,
+   "tool_calls": 38,
+   "duration_s": 451.6,
    "trace": {
-    "model_calls": 20,
-    "tool_calls": 39,
-    "duration_s": 377.6,
+    "model_calls": 22,
+    "tool_calls": 38,
+    "duration_s": 451.6,
     "tools_used": {
      "awards_in_place": 9,
-     "has_funded": 5,
      "awards_to_legal_form": 5,
-     "funder_themes": 5,
-     "awards_near_amount": 4
+     "funder_themes": 4,
+     "awards_near_amount": 4,
+     "has_funded": 3
     },
     "lookups": [
      "awards_in_place(Southwark)",
-     "has_funded(Rye Lane Community Kitchen)",
      "awards_to_legal_form(GB-CHC)",
      "funder_themes(all)",
-     "awards_near_amount(153230)",
-     "awards_in_place(London)",
-     "funder_themes(all)",
-     "awards_in_place(Southwark)",
+     "awards_near_amount(60000)",
+     "awards_in_place(England)",
+     "awards_to_legal_form(GB-CHC)",
      "awards_near_amount(10000)",
+     "awards_in_place(London)",
+     "awards_in_place(Southwark)",
+     "funder_themes(all)",
      "awards_to_legal_form(GB-CHC)",
-     "has_funded(Community Kitchen)",
      "awards_in_place(Southwark)"
     ]
    },
@@ -177,38 +178,40 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
     "funder": "The National Lottery Community Fund",
     "programme": "National Lottery Awards for All England",
     "title": "The National Lottery Community Fund — National Lottery Awards for All England",
-    "fit": 82,
-    "suggested_ask": 10000,
+    "fit": 79,
+    "suggested_ask": 7706,
     "closes": null,
     "days_left": null,
     "why": [
-     "funder has backed GB-CHC organisations (56% of awards)",
-     "£10,000 sits inside this programme's stated range (£300 to £20,000)"
+     "funder has backed GB-CHC organisations (38% of awards)",
+     "£7,706 sits inside this programme's stated range (£300 to £20,000)"
     ],
     "gaps": [
-     "Whether we can realistically expand from three sittings to four sittings per week with the new freezer (operational capacity question)",
-     "Confirmation that 200 additional members annually is an achievable target with improved freezer capacity",
-     "Specific metrics or thresholds we will track to measure success of the additional sitting"
+     "No stated evidence of match funding requirement in the call brief, though org has £6,000 in reserves available with board approval — this will need clarifying before application",
+     "Specific detail on how the £7,706 will be deployed (e.g., additional sittings per week, expansion of Pantry membership capacity, or other operational improvements)",
+     "Quantified targets for expanded reach—how many additional members or meals over the funding period"
     ],
-    "direction": "**Lead with the freezer replacement as essential infrastructure for scaling your existing community meals programme.**\n\nRye Lane's community meals deliver measurable outcomes (74% of surveyed members eating hot meals daily more than before), reach 1,120 individuals annually, and operate at high capacity (7,400 meals across 148 sittings in 2025-26). The monthly failures of your 2016 commercial freezer currently constrain this proven delivery model. A £10,000 grant for replacement equipment removes this bottleneck, enabling you to expand sittings or serve additional households without operational risk—and the investment directly enables the \"bring people together\" outcome the funder prioritises.\n\nAvoid framing this as a general funding gap or using language about financial hardship. The funder sees you as operationally competent (5-star food hygiene, unqualified audit, Level 3 safeguarding); they fund activity expansion, not deficit cover.\n\nAvoid proposing the crèche provision within this grant. You have no track record delivering childcare, no staff capacity noted, and it dilutes focus from your core strength. If childcare barriers emerge from beneficiary feedback, that's a future application to a different funder; for now, solve the freezer and deepen what you do brilliantly.",
+    "direction": "Lead with community meals as the anchor for measurable social outcomes and volunteer mobilisation, since the funder backs \"bringing people together\" and your track record shows 74% of surveyed members eating hot meals more regularly—the kind of concrete behaviour change this funder funds.\n\nYour twice-yearly beneficiary surveys since 2022 (31% response rate), independent evaluation by Southwark Impact Partnership (June 2025), and quarterly monitoring returns to Southwark Council since 2021 give you a robust evidence spine. The 1,120 individuals and 410 households you reached in 2025–26, plus the 38 active volunteers, show you're already delivering the \"bring people together\" outcome this funder explicitly names. The £61 monthly food spend reduction in the food pantry (n=74, Jan 2026) is a tangible secondary metric.\n\nAvoid framing this as asset replacement or infrastructure (the freezer and van). Avoid claiming match funding unless the call explicitly requires it—your £6,000 reserves exist but need board sign-off, and the call brief does not state a match requirement, so naming it unprompted may create unnecessary friction.",
     "question": "Describe the difference this funding will make, who it will reach, and how you will evidence the outcomes.",
     "question_is_generic": true,
     "timeline": null,
     "timeline_steps": [],
-    "hours_estimate": 18.0,
+    "hours_estimate": 24.0,
     "own_record": [
      "your own win rate is 64% across 14 decided applications (indicative)"
     ],
     "voice_checked": true,
-    "voice_flags": [],
-    "grounded": 8,
-    "total_claims": 8,
+    "voice_flags": [
+     "wrong term for the people you serve: used \"households\" where they say \"members\""
+    ],
+    "grounded": 11,
+    "total_claims": 11,
     "audit": {
      "verdict": "pass",
      "rate": 1.0,
      "ungrounded": []
     },
-    "workspace": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En"
+    "workspace": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En"
    },
    "considered": [
     {
@@ -217,16 +220,16 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Department for Environment Food and Rural Affairs / Forestry Commission – Defra Trees Programme — Trees, woodlands and forestry - Woodland Creation Planning Grant",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 1299,
+     "days_left": 1295,
      "stopped_at": "triage"
     },
     {
      "funder": "HS2 Ltd",
      "programme": "Community and Environment Fund (CEF) and Business and Local Economy Fund (BLEF)",
      "title": "HS2 Ltd — Community and Environment Fund (CEF) and Business and Local Economy Fund (BLEF)",
-     "fit": 25,
-     "reason": "Geographic scope: HS2 CEF/BLEF targets communities disrupted by Phase One/2a construction (London–Crewe route). Peckham and Nunhead do not sit on or immediately adjacent to the published HS2 corridor. Call is route-specific, not open to all England.",
-     "days_left": 3124,
+     "fit": 18,
+     "reason": "Fund is purpose-designed for HS2 construction disruption; organisation has not evidenced that their beneficiaries or service area experience such disruption",
+     "days_left": 3120,
      "stopped_at": "gate"
     },
     {
@@ -235,7 +238,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Department for Environment, Food and Rural Affairs / Forestry Commission – Defra Trees Programme — England Woodland Creation Offer (EWCO)",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 1299,
+     "days_left": 1295,
      "stopped_at": "triage"
     },
     {
@@ -244,7 +247,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Office for Zero Emission Vehicles — Electric vehicle chargepoint grant for residential landlords",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 203,
+     "days_left": 199,
      "stopped_at": "triage"
     },
     {
@@ -253,16 +256,16 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Office for Zero Emission Vehicles — Workplace Charging Scheme",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 203,
+     "days_left": 199,
      "stopped_at": "triage"
     },
     {
      "funder": "Ministry of Justice",
      "programme": "Commissioned Rehabilitative Services General Grant Scheme",
      "title": "Ministry of Justice — Commissioned Rehabilitative Services General Grant Scheme",
-     "fit": 5,
-     "reason": "Organisation's work (food security) does not align with this call's scope (criminal justice rehabilitative services)",
-     "days_left": 200,
+     "fit": 8,
+     "reason": "Call is for rehabilitative/criminal justice services; organisation's core work is food security and community meals with no stated justice involvement",
+     "days_left": 196,
      "stopped_at": "gate"
     },
     {
@@ -271,7 +274,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Scottish Government — Business Support for Scotland",
      "fit": null,
      "reason": "this call is for Scotland; you are in Southwark, London (England)",
-     "days_left": 1481,
+     "days_left": 1477,
      "stopped_at": "triage"
     },
     {
@@ -280,7 +283,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "National Highways — National Highways Lorry Parking Facilities Improvements Scheme",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 1664,
+     "days_left": 1660,
      "stopped_at": "triage"
     },
     {
@@ -289,7 +292,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "British Film Institute — UK Global Screen Fund: International Business Development",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 934,
+     "days_left": 930,
      "stopped_at": "triage"
     },
     {
@@ -298,7 +301,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "British Film Institute — UK Global Screen Fund: International Co-production",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 934,
+     "days_left": 930,
      "stopped_at": "triage"
     },
     {
@@ -307,7 +310,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "British Film Institute — UK Global Screen Fund: International Distribution (P&A Support)",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 569,
+     "days_left": 565,
      "stopped_at": "triage"
     },
     {
@@ -316,7 +319,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "British Film Institute — UK Global Screen Fund International Distribution Festival Launch Support",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 934,
+     "days_left": 930,
      "stopped_at": "triage"
     },
     {
@@ -325,7 +328,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Homes England (England), Department for Levelling up, Housing & Communities (NI) — Cladding Safety Scheme",
      "fit": 27,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 1299,
+     "days_left": 1295,
      "stopped_at": "triage"
     },
     {
@@ -334,7 +337,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Arts and Humanities Research Council (AHRC), State of São Paulo Research Foundation (FAPESP) — AHRC responsive mode: working with Brazilian researchers (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 12,
+     "days_left": 8,
      "stopped_at": "triage"
     },
     {
@@ -343,7 +346,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Arts and Humanities Research Council (AHRC), Fonds National de la Recherche (FNR) — AHRC responsive mode: collaborate with researchers in Luxembourg (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 12,
+     "days_left": 8,
      "stopped_at": "triage"
     },
     {
@@ -352,7 +355,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Arts and Humanities Research Council (AHRC) — AHRC responsive mode: standard research grant (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 12,
+     "days_left": 8,
      "stopped_at": "triage"
     },
     {
@@ -361,7 +364,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Advanced Research and Invention Agency — Opportunities for the Advanced Research and Invention Agency (ARIA)",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 494,
+     "days_left": 490,
      "stopped_at": "triage"
     },
     {
@@ -369,8 +372,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "AHRC responsive mode: Curiosity Award (Grant)",
      "title": "UK Research and Innovation, Arts and Humanities Research Council — AHRC responsive mode: Curiosity Award (Grant)",
      "fit": 0,
-     "reason": "12 days left is about 18 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-     "days_left": 12,
+     "reason": "8 days left is about 12 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 8,
      "stopped_at": "triage"
     },
     {
@@ -379,7 +382,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Arts and Humanities Research Council — AHRC responsive mode: catalyst awards (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 12,
+     "days_left": 8,
      "stopped_at": "triage"
     },
     {
@@ -388,7 +391,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Department for Energy Security and Net Zero — Heat Network Efficiency Scheme (HNES)",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 1299,
+     "days_left": 1295,
      "stopped_at": "triage"
     },
     {
@@ -396,8 +399,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "Electric Car Grant",
      "title": "Department for Transport — Electric Car Grant",
      "fit": 30,
-     "reason": "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (4% of its awards)",
-     "days_left": 1299,
+     "reason": "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (0% of its awards)",
+     "days_left": 1295,
      "stopped_at": "triage"
     },
     {
@@ -406,7 +409,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "The National Archives — Community Hub Bursaries",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 297,
+     "days_left": 293,
      "stopped_at": "triage"
     },
     {
@@ -415,7 +418,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Forestry Commission — Spruce Site Assessment",
      "fit": null,
      "reason": "this call is for South East England; you are in Southwark, London (England)",
-     "days_left": 934,
+     "days_left": 930,
      "stopped_at": "triage"
     },
     {
@@ -424,7 +427,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Office for Zero Emission Vehicles, Department for Transport — Depot Charging Scheme",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 47,
+     "days_left": 43,
      "stopped_at": "triage"
     },
     {
@@ -432,8 +435,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "Zero Emission Vessels and Infrastructure 2: Electric Power",
      "title": "Department for Transport — Zero Emission Vessels and Infrastructure 2: Electric Power",
      "fit": 0,
-     "reason": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-     "days_left": 6,
+     "reason": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 2,
      "stopped_at": "triage"
     },
     {
@@ -441,8 +444,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "Zero Emission Vessels and Infrastructure 2: Energy Efficiency",
      "title": "Department for Transport — Zero Emission Vessels and Infrastructure 2: Energy Efficiency",
      "fit": 0,
-     "reason": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-     "days_left": 6,
+     "reason": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 2,
      "stopped_at": "triage"
     },
     {
@@ -450,8 +453,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "Zero Emission Vessels and Infrastructure 2: Alternative Fuels",
      "title": "Department for Transport — Zero Emission Vessels and Infrastructure 2: Alternative Fuels",
      "fit": 0,
-     "reason": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-     "days_left": 6,
+     "reason": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 2,
      "stopped_at": "triage"
     },
     {
@@ -460,7 +463,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Natural Environment Research Council (NERC) — Pushing the frontiers of environmental research (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 12,
+     "days_left": 8,
      "stopped_at": "triage"
     },
     {
@@ -469,7 +472,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Historic England — Places grants",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 203,
+     "days_left": 199,
      "stopped_at": "triage"
     },
     {
@@ -478,7 +481,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Historic England — People and Research",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 203,
+     "days_left": 199,
      "stopped_at": "triage"
     },
     {
@@ -487,7 +490,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "British Film Institute — UK Global Screen Fund (UKGSF) International Distribution Video Game Release funding",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 934,
+     "days_left": 930,
      "stopped_at": "triage"
     },
     {
@@ -496,16 +499,16 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "The National Forest Company, Department for Environment, Food and Rural Affairs — Forest Creation Grant",
      "fit": null,
      "reason": "this call is for Midlands; you are in Southwark, London (England)",
-     "days_left": 144,
+     "days_left": 140,
      "stopped_at": "triage"
     },
     {
      "funder": "Environment Agency",
      "programme": "Local Water Environment Grant",
      "title": "Environment Agency — Local Water Environment Grant",
-     "fit": 30,
-     "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 16,
+     "fit": 0,
+     "reason": "12 days left is about 18 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 12,
      "stopped_at": "triage"
     },
     {
@@ -513,8 +516,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "Plug-in Wheelchair Accessible Vehicle Grant",
      "title": "Department for Transport — Plug-in Wheelchair Accessible Vehicle Grant",
      "fit": 30,
-     "reason": "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (4% of its awards)",
-     "days_left": 208,
+     "reason": "nothing in the call matches what you do (food insecurity), and Department for Transport rarely funds charities (0% of its awards)",
+     "days_left": 204,
      "stopped_at": "triage"
     },
     {
@@ -523,7 +526,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Biotechnology and Biological Sciences Research Council — BBSRC standard research grant: applicant-led mode (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 231,
+     "days_left": 227,
      "stopped_at": "triage"
     },
     {
@@ -532,7 +535,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Biotechnology and Biological Sciences Research Council — BBSRC new investigator award: applicant-led mode (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 231,
+     "days_left": 227,
      "stopped_at": "triage"
     },
     {
@@ -541,7 +544,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Historic England — Heritage at Risk Capital Fund",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 1299,
+     "days_left": 1295,
      "stopped_at": "triage"
     },
     {
@@ -550,7 +553,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Historic England — Places of Worship Renewal Fund",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 1299,
+     "days_left": 1295,
      "stopped_at": "triage"
     },
     {
@@ -558,8 +561,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "Heritage Revival Fund",
      "title": "Architectural Heritage Fund — Heritage Revival Fund",
      "fit": 8,
-     "reason": "Mission mismatch: Funder exists to rescue and repurpose historic buildings; organisation operates a community food bank with no heritage asset involvement",
-     "days_left": 1299,
+     "reason": "Purpose mismatch: Architectural Heritage Fund funds heritage building rescue and repurposing. Rye Lane Community Kitchen is a food poverty organisation with no stated heritage asset focus.",
+     "days_left": 1295,
      "stopped_at": "gate"
     },
     {
@@ -568,7 +571,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Engineering and Physical Sciences Research Council (EPSRC) — Mathematical Sciences Early Independence Fellowship (Fellowship)",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 202,
+     "days_left": 198,
      "stopped_at": "triage"
     },
     {
@@ -577,7 +580,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Science and Technology Facilities Council (STFC) — Early Independence: Ernest Rutherford Fellowships 2026 (Fellowship)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 20,
+     "days_left": 16,
      "stopped_at": "triage"
     },
     {
@@ -585,8 +588,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "DRIVE35 Innovation Fund: Collaborate 3",
      "title": "Department for Business and Trade (DBT) — DRIVE35 Innovation Fund: Collaborate 3",
      "fit": 0,
-     "reason": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-     "days_left": 6,
+     "reason": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 2,
      "stopped_at": "triage"
     },
     {
@@ -595,7 +598,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK, part of UK Research and Innovation (UKRI) — Scaling performance of quantum computing hardware: CR&D",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 22,
+     "days_left": 18,
      "stopped_at": "triage"
     },
     {
@@ -603,8 +606,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "Lowland Peat Water Implementation Grant",
      "title": "Environment Agency — Lowland Peat Water Implementation Grant",
      "fit": 0,
-     "reason": "9 days left is about 14 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-     "days_left": 9,
+     "reason": "5 days left is about 8 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 5,
      "stopped_at": "triage"
     },
     {
@@ -612,8 +615,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "Youth Jobs Grant",
      "title": "Department for Work and Pensions — Youth Jobs Grant",
      "fit": 30,
-     "reason": "nothing in the call matches what you do (food insecurity), and Department for Work and Pensions rarely funds charities (3% of its awards)",
-     "days_left": 783,
+     "reason": "nothing in the call matches what you do (food insecurity), and Department for Work and Pensions rarely funds charities (0% of its awards)",
+     "days_left": 779,
      "stopped_at": "triage"
     },
     {
@@ -622,7 +625,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Science and Technology Research Council — Doctoral focal awards in data-intensive sciences (grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 6,
+     "days_left": 2,
      "stopped_at": "triage"
     },
     {
@@ -631,7 +634,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation — Enhancing resilience to wildfires in the wildland-urban interface (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 21,
+     "days_left": 17,
      "stopped_at": "triage"
     },
     {
@@ -640,7 +643,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Biotechnology and Biological Sciences Research Council (BBSRC) — Early independence: BBSRC fellowships: full stage (Fellowship)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 13,
+     "days_left": 9,
      "stopped_at": "triage"
     },
     {
@@ -649,7 +652,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Engineering and Physical Sciences Research Council — Optical wireless communications research and testing facility (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 5,
+     "days_left": 1,
      "stopped_at": "triage"
     },
     {
@@ -658,7 +661,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Economic and Social Research Council — Doctoral focal award plus: innovating in data-driven research (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 34,
+     "days_left": 30,
      "stopped_at": "triage"
     },
     {
@@ -667,7 +670,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Engineering and Physical Sciences Research Council (EPSRC) — UKRI Translation: Impact Acceleration: CHERI IKC (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 7,
+     "days_left": 3,
      "stopped_at": "triage"
     },
     {
@@ -676,7 +679,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research & Innovation, Engineering & Physical Sciences Research Council, NICT — Japan-UK Joint call for collaborations in Advanced Connectivity Technologies (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 26,
+     "days_left": 22,
      "stopped_at": "triage"
     },
     {
@@ -685,16 +688,16 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Medical Research Council — UKRI Translation: MRC Impact Acceleration Awards (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 62,
+     "days_left": 58,
      "stopped_at": "triage"
     },
     {
      "funder": "Department for Science, Innovation and Technology",
      "programme": "National Space Innovation Programme - Call 3",
      "title": "Department for Science, Innovation and Technology — National Space Innovation Programme - Call 3",
-     "fit": 27,
+     "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 64,
+     "days_left": 60,
      "stopped_at": "triage"
     },
     {
@@ -703,7 +706,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Arts and Humanities Research Council — Design Generators round two (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 19,
+     "days_left": 15,
      "stopped_at": "triage"
     },
     {
@@ -712,7 +715,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Biotechnology and Biological Sciences Research Council (BBSRC) — BBSRC Brazil pump-priming award (FAPPA) (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 321,
+     "days_left": 317,
      "stopped_at": "triage"
     },
     {
@@ -721,16 +724,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Arts and Humanities Research Council — A guide for the commercialisation of Creative Industries Research (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 35,
-     "stopped_at": "triage"
-    },
-    {
-     "funder": "Department for Digital, Culture, Media and Sport",
-     "programme": "DCMS 'Connections Through Gaming' Pilot Fund (Boys 11-16)",
-     "title": "Department for Digital, Culture, Media and Sport — DCMS 'Connections Through Gaming' Pilot Fund (Boys 11-16)",
-     "fit": 0,
-     "reason": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-     "days_left": 2,
+     "days_left": 31,
      "stopped_at": "triage"
     },
     {
@@ -739,7 +733,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Department for Business, Innovation, Science and Trade — AI Growth Lab",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 18,
+     "days_left": 14,
      "stopped_at": "triage"
     },
     {
@@ -748,16 +742,16 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Defra and Innovate UK — Farming Futures R&D fund: Automation and Robotics Round 2",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 20,
+     "days_left": 16,
      "stopped_at": "triage"
     },
     {
      "funder": "Innovate UK, part of UK Research and Innovation (UKRI)",
      "programme": "Quantum computing applications for large scale impact: CR&D",
      "title": "Innovate UK, part of UK Research and Innovation (UKRI) — Quantum computing applications for large scale impact: CR&D",
-     "fit": 30,
-     "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 14,
+     "fit": 0,
+     "reason": "10 days left is about 15 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 10,
      "stopped_at": "triage"
     },
     {
@@ -765,8 +759,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "Accelerating adoption of quantum enabled sensing and PNT",
      "title": "Innovate UK, part of UK Research and Innovation (UKRI) — Accelerating adoption of quantum enabled sensing and PNT",
      "fit": 0,
-     "reason": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-     "days_left": 6,
+     "reason": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 2,
      "stopped_at": "triage"
     },
     {
@@ -774,8 +768,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "Farmer Collaboration Fund",
      "title": "Department for Environment, Food and Rural Affairs — Farmer Collaboration Fund",
      "fit": 30,
-     "reason": "nothing in the call matches what you do (food insecurity), and Department for Environment, Food and Rural Affairs rarely funds charities (0% of its awards)",
-     "days_left": 21,
+     "reason": "nothing in the call matches what you do (food insecurity), and Department for Environment, Food and Rural Affairs rarely funds charities (1% of its awards)",
+     "days_left": 17,
      "stopped_at": "triage"
     },
     {
@@ -784,7 +778,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Biotechnology and Biological Sciences Research Council (BBSRC) — UKRI Translation: BBSRC Proof of Concept 2026 (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 34,
+     "days_left": 30,
      "stopped_at": "triage"
     },
     {
@@ -793,7 +787,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK, part of UK Research and Innovation (UKRI), will work with the Department for Business, Innovation, Science and Trade (BIST) and the Advanced Propulsion Centre UK (APC) — DRIVE35 Scale-up Fund Drawdown 5",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 55,
+     "days_left": 51,
      "stopped_at": "triage"
     },
     {
@@ -802,7 +796,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Engineering and Physical Sciences Research Council (EPSRC) — Next generation artificial intelligence (AI): explainable AI (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 40,
+     "days_left": 36,
      "stopped_at": "triage"
     },
     {
@@ -810,8 +804,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "An Official Oral History of Women Veterans in the UK",
      "title": "Ministry of Defence — An Official Oral History of Women Veterans in the UK",
      "fit": 0,
-     "reason": "13 days left is about 20 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-     "days_left": 13,
+     "reason": "9 days left is about 14 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 9,
      "stopped_at": "triage"
     },
     {
@@ -820,7 +814,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Natural Environment Research Council — Resilient economy and security through ecosystem transitions grants (Grant)",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 42,
+     "days_left": 38,
      "stopped_at": "triage"
     },
     {
@@ -829,7 +823,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Medical Research Council — Purchase mid-range equipment for biomedical research: MRC Equip (Grant)",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 56,
+     "days_left": 52,
      "stopped_at": "triage"
     },
     {
@@ -838,7 +832,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Natural Environment Research Council (NERC) — Advancing atmospheric and aerial autonomy (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 41,
+     "days_left": 37,
      "stopped_at": "triage"
     },
     {
@@ -847,7 +841,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Natural Environment Research Council (NERC) — Research Infrastructure Renewal (Grant)",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 41,
+     "days_left": 37,
      "stopped_at": "triage"
     },
     {
@@ -855,8 +849,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "Electricity Demand Turn Up trial: EOI for flexibility providers",
      "title": "UK Research and Innovation (UKRI) and the Department for Energy Security and Net Zero (DESNZ) — Electricity Demand Turn Up trial: EOI for flexibility providers",
      "fit": 0,
-     "reason": "6 days left is about 9 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-     "days_left": 6,
+     "reason": "2 days left is about 3 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
+     "days_left": 2,
      "stopped_at": "triage"
     },
     {
@@ -865,7 +859,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation — Transformative sustainable AI technologies (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 61,
+     "days_left": 57,
      "stopped_at": "triage"
     },
     {
@@ -874,7 +868,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Arts and Humanities Research Council — CoSTAR Satellite Labs: Accessible creative R&D infrastructure (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 49,
+     "days_left": 45,
      "stopped_at": "triage"
     },
     {
@@ -883,7 +877,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Arts and Humanities Research Council — CoSTAR Showcase Labs: Createch infrastructure and commercialisation (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 49,
+     "days_left": 45,
      "stopped_at": "triage"
     },
     {
@@ -892,16 +886,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Department for Education (DfE) — Sustainable Drainage Systems (SuDS) in Schools Grant Scheme",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity), and Department for Education rarely funds charities (0% of its awards)",
-     "days_left": 53,
-     "stopped_at": "triage"
-    },
-    {
-     "funder": "Department for Education (DfE)",
-     "programme": "Sustainable Drainage Systems (SuDS) in Schools Market Engagement Event",
-     "title": "Department for Education (DfE) — Sustainable Drainage Systems (SuDS) in Schools Market Engagement Event",
-     "fit": 0,
-     "reason": "1 day left is about 2 hours at a realistic pace, against the 20 hours an application of this kind takes at minimum. Starting this now costs the week and probably loses anyway.",
-     "days_left": 1,
+     "days_left": 49,
      "stopped_at": "triage"
     },
     {
@@ -910,16 +895,16 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Engineering and Physical Sciences Research Council (EPSRC) — Future computing paradigms Network Plus (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 33,
+     "days_left": 29,
      "stopped_at": "triage"
     },
     {
      "funder": "UK Research and Innovation, AHRC, BBSRC, ESRC, EPSRC, MRC, NERC, STFC",
      "programme": "Trust and confidence in policing: Research & Innovation Consortium (Grant)",
      "title": "UK Research and Innovation, AHRC, BBSRC, ESRC, EPSRC, MRC, NERC, STFC — Trust and confidence in policing: Research & Innovation Consortium (Grant)",
-     "fit": 5,
-     "reason": "Mission scope: call funds research and innovation in policing trust measurement; organisation runs community food services. No operational connection.",
-     "days_left": 47,
+     "fit": 2,
+     "reason": "Call requires research design and delivery capability; organisation is a food service charity with no evidenced research infrastructure, methodology expertise, or prior research delivery",
+     "days_left": 43,
      "stopped_at": "gate"
     },
     {
@@ -928,7 +913,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Engineering and Physical Sciences Research Council (EPSRC) — High performance compute resources for EPSRC communities (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 47,
+     "days_left": 43,
      "stopped_at": "triage"
     },
     {
@@ -936,8 +921,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "Farming Innovation Programme: Small R&D Partnership Projects Rd 5",
      "title": "The Department for Environment, Food and Rural Affairs (Defra) — Farming Innovation Programme: Small R&D Partnership Projects Rd 5",
      "fit": 30,
-     "reason": "nothing in the call matches what you do (food insecurity), and Department for Environment, Food and Rural Affairs rarely funds charities (0% of its awards)",
-     "days_left": 34,
+     "reason": "nothing in the call matches what you do (food insecurity), and Department for Environment, Food and Rural Affairs rarely funds charities (1% of its awards)",
+     "days_left": 30,
      "stopped_at": "triage"
     },
     {
@@ -945,8 +930,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "Support for Victims and Survivors of Child Sexual Abuse Fund 2027 - 2029",
      "title": "Home Office — Support for Victims and Survivors of Child Sexual Abuse Fund 2027 - 2029",
      "fit": 30,
-     "reason": "nothing in the call matches what you do (food insecurity), and Home Office rarely funds charities (8% of its awards)",
-     "days_left": 18,
+     "reason": "nothing in the call matches what you do (food insecurity), and Home Office rarely funds charities (2% of its awards)",
+     "days_left": 14,
      "stopped_at": "triage"
     },
     {
@@ -955,7 +940,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Engineering and Physical Sciences Research Council, Science and Technology Facilities Council — UKRI: Integration of AI/HPC with quantum computing (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 54,
+     "days_left": 50,
      "stopped_at": "triage"
     },
     {
@@ -964,7 +949,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Arts and Humanities Research Council — Unlocking advanced capabilities in conservation and heritage science (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 76,
+     "days_left": 72,
      "stopped_at": "triage"
     },
     {
@@ -973,7 +958,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK, part of UK Research and Innovation (UKRI) — Medicines Manufacturing Data Institute: Phase 1",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 34,
+     "days_left": 30,
      "stopped_at": "triage"
     },
     {
@@ -982,7 +967,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Engineering and Physical Sciences Research Council — Focal award: EPSRC and MHCLG Fire Engineering Skills Hub (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 54,
+     "days_left": 50,
      "stopped_at": "triage"
     },
     {
@@ -991,7 +976,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Medical Research Council — Small molecule high throughput screen using AstraZeneca facilities (Grant)",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 140,
+     "days_left": 136,
      "stopped_at": "triage"
     },
     {
@@ -1000,7 +985,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Economic and Social Research Council — Economic research on the returns to R&D investment (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 70,
+     "days_left": 66,
      "stopped_at": "triage"
     },
     {
@@ -1009,8 +994,35 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "UK Research and Innovation, Natural Environment Research Council (NERC) — Exploring the frontiers of environmental research 2026 (Grant)",
      "fit": null,
      "reason": "only UK research organisations eligible for UKRI funding can apply; you are a registered charity",
-     "days_left": 63,
+     "days_left": 59,
      "stopped_at": "triage"
+    },
+    {
+     "funder": "Innovate UK on behalf of the Department for Business, Innovation, Science and Trade (BIST).",
+     "programme": "Battery Innovation: Feasibility Studies Rd 3",
+     "title": "Innovate UK on behalf of the Department for Business, Innovation, Science and Trade (BIST). — Battery Innovation: Feasibility Studies Rd 3",
+     "fit": 30,
+     "reason": "nothing in the call matches what you do (food insecurity)",
+     "days_left": 79,
+     "stopped_at": "triage"
+    },
+    {
+     "funder": "Innovate UK, part of UK Research and Innovation (UKRI), is delivering the Battery Innovation Programme on behalf of the Department for Business, Innovation, Science and Trade (BIST).",
+     "programme": "Battery Innovation: Concept Development Rd 3",
+     "title": "Innovate UK, part of UK Research and Innovation (UKRI), is delivering the Battery Innovation Programme on behalf of the Department for Business, Innovation, Science and Trade (BIST). — Battery Innovation: Concept Development Rd 3",
+     "fit": 27,
+     "reason": "nothing in the call matches what you do (food insecurity)",
+     "days_left": 79,
+     "stopped_at": "triage"
+    },
+    {
+     "funder": "Ministry of Housing, Communities and Local Government",
+     "programme": "Common Ground Award 2026-2027",
+     "title": "Ministry of Housing, Communities and Local Government — Common Ground Award 2026-2027",
+     "fit": 58,
+     "reason": "Tenure unclear: call funds facility construction/renovation; organisation operates from rented space (Rye Lane Baptist Hall); no evidence of ownership or long-term secured lease with landlord consent for capital works. This is typically a hard blocker for capital grants.",
+     "days_left": 28,
+     "stopped_at": "gate"
     },
     {
      "funder": "The National Lottery Community Fund",
@@ -1044,7 +1056,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "programme": "National Lottery Awards for All England – Environment",
      "title": "The National Lottery Community Fund — National Lottery Awards for All England – Environment",
      "fit": 15,
-     "reason": "Programme theme mismatch: Awards for All Environment requires climate/nature/environment focus. Rye Lane does food security and community cohesion with no environmental component evidenced.",
+     "reason": "Call requires projects that 'tackle the climate and nature emergency, improve the environment, and help people connect with and enjoy nature locally'. Rye Lane Community Kitchen delivers community meals and a food pantry. No evidence in ORG.md of any environment, climate, nature connection, or habitat work. This is a food insecurity and social isolation charity, not an environmental charity. The fit is categorical mismatch, not marginal.",
      "days_left": null,
      "stopped_at": "gate"
     },
@@ -1079,8 +1091,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "funder": "The National Lottery Community Fund",
      "programme": "Reaching Communities England",
      "title": "The National Lottery Community Fund — Reaching Communities England",
-     "fit": 68,
-     "reason": "the matcher recommends not applying: Project definition: No specific use of £20,001 is stated. The application question requires clarity on 'the difference this funding will make, who it will reach, and how you will evidence the outcomes.' Current funding model and target beneficiaries are already defined; the application must articulate what changes with this grant.",
+     "fit": 28,
+     "reason": "the matcher recommends not applying: Rye Lane Community Kitchen meets the hard eligibility criteria: it is a registered charity (GB-CHC), operating in England (Southwark), and has been funded by this funder before (Awards for All, £9,700, 2023).",
      "days_left": null,
      "stopped_at": "gate"
     },
@@ -1095,11 +1107,11 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
     },
     {
      "funder": "Innovate UK",
-     "programme": "Battery Innovation: Concept Development Rd 3",
-     "title": "Innovate UK — Battery Innovation: Concept Development Rd 3",
-     "fit": null,
-     "reason": "only businesses can apply or lead; you are a registered charity",
-     "days_left": 83,
+     "programme": "Ultra Long Duration Energy Storage Project Development Studies Relaunch",
+     "title": "Innovate UK — Ultra Long Duration Energy Storage Project Development Studies Relaunch",
+     "fit": 30,
+     "reason": "nothing in the call matches what you do (food insecurity)",
+     "days_left": 16,
      "stopped_at": "triage"
     },
     {
@@ -1108,7 +1120,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK — Engineering Biology Collaborative R&D: Round 3",
      "fit": null,
      "reason": "only businesses can apply or lead; you are a registered charity",
-     "days_left": 54,
+     "days_left": 50,
      "stopped_at": "triage"
     },
     {
@@ -1117,7 +1129,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK — Engineering Biology Access to Infrastructure Pilot",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 41,
+     "days_left": 37,
      "stopped_at": "triage"
     },
     {
@@ -1126,7 +1138,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK — National Materials Innovation Programme: CR&D Rd1",
      "fit": null,
      "reason": "only businesses can apply or lead; you are a registered charity",
-     "days_left": 48,
+     "days_left": 44,
      "stopped_at": "triage"
     },
     {
@@ -1135,7 +1147,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK — Investor Partnerships – ACT and Semiconductors",
      "fit": null,
      "reason": "only businesses can apply or lead; you are a registered charity",
-     "days_left": 34,
+     "days_left": 30,
      "stopped_at": "triage"
     },
     {
@@ -1144,7 +1156,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK — CfI: Engineering Biology for Defra and FSA Phase 1",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 34,
+     "days_left": 30,
      "stopped_at": "triage"
     },
     {
@@ -1153,7 +1165,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK — Advancing innovation in accelerated cancer diagnosis",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 48,
+     "days_left": 44,
      "stopped_at": "triage"
     },
     {
@@ -1162,7 +1174,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK — Advanced Manufacturing: Measurement and Sensing Pilot",
      "fit": null,
      "reason": "only businesses can apply or lead; you are a registered charity",
-     "days_left": 27,
+     "days_left": 23,
      "stopped_at": "triage"
     },
     {
@@ -1171,7 +1183,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK — UK-Singapore CRD 2026",
      "fit": null,
      "reason": "only businesses can apply or lead; you are a registered charity",
-     "days_left": 97,
+     "days_left": 93,
      "stopped_at": "triage"
     },
     {
@@ -1180,7 +1192,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK — ADOPT Facilitator Support Grant: Round 11",
      "fit": null,
      "reason": "only businesses can apply or lead; you are a registered charity",
-     "days_left": 20,
+     "days_left": 16,
      "stopped_at": "triage"
     },
     {
@@ -1189,7 +1201,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK — Full ADOPT Grant: Round 9",
      "fit": null,
      "reason": "only businesses can apply or lead; you are a registered charity",
-     "days_left": 27,
+     "days_left": 23,
      "stopped_at": "triage"
     },
     {
@@ -1198,7 +1210,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK — Knowledge Transfer Partnership (KTP): 2026 – 2027 Round 3",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 34,
+     "days_left": 30,
      "stopped_at": "triage"
     },
     {
@@ -1207,7 +1219,7 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "title": "Innovate UK — Future Leaders Fellowships: Round 11, business and non-academic",
      "fit": 30,
      "reason": "nothing in the call matches what you do (food insecurity)",
-     "days_left": 55,
+     "days_left": 51,
      "stopped_at": "triage"
     },
     {
@@ -1228,22 +1240,11 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "org_id": "GB-CHC-1091263",
      "website": "https://londoncf.org.uk/",
      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-CHC-1091263",
-     "awards_near_you": 9,
+     "awards_near_you": 8,
      "awards_in_region": 0,
      "sample": 100,
-     "median_award": 8772,
+     "median_award": 8376.0,
      "latest_in_sample": "2020-12-11"
-    },
-    {
-     "name": "Sport England",
-     "org_id": "GB-COH-RC000766",
-     "website": "https://www.sportengland.org/",
-     "grantnav": "https://grantnav.threesixtygiving.org/org/GB-COH-RC000766",
-     "awards_near_you": 2,
-     "awards_in_region": 0,
-     "sample": 100,
-     "median_award": 257870.5,
-     "latest_in_sample": "2009-06-25"
     },
     {
      "name": "London Councils",
@@ -1262,10 +1263,10 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "website": "http://www.lloydsbankfoundation.org.uk/",
      "grantnav": "https://grantnav.threesixtygiving.org/org/GB-CHC-327114",
      "awards_near_you": 0,
-     "awards_in_region": 20,
+     "awards_in_region": 11,
      "sample": 100,
-     "median_award": 37463.5,
-     "latest_in_sample": "2015-12-17"
+     "median_award": 20000,
+     "latest_in_sample": "2014-02-28"
     },
     {
      "name": "Arts Council England",
@@ -1279,121 +1280,141 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
      "latest_in_sample": "2018-04-19"
     }
    ],
-   "digest_md": "Daily notes/2026-09-10.md"
+   "digest_md": "Daily notes/2026-09-14.md"
   }
  ],
  "grants": [
   {
-   "slug": "2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En",
-   "folder": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En",
+   "slug": "2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En",
+   "folder": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En",
    "files": [
     {
      "label": "Brief",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/00-brief/call.md"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/00-brief/call.md"
     },
     {
      "label": "Decision",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/01-decision/match.json"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/01-decision/match.json"
     },
     {
      "label": "Direction",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/02-direction/angle.md"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/02-direction/angle.md"
     },
     {
      "label": "Draft",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/03-drafts/answer-1.md"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/03-drafts/answer-1.md"
     },
     {
      "label": "Draft (structured)",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/03-drafts/answer-1.json"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/03-drafts/answer-1.json"
     },
     {
      "label": "Style card",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/03-drafts/style-card.md"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/03-drafts/style-card.md"
     },
     {
      "label": "Evidence",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/04-evidence/claims.md"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/04-evidence/claims.md"
     },
     {
      "label": "Timeline",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/05-timeline/schedule.json"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/05-timeline/schedule.json"
     },
     {
      "label": "Outcome",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/06-submitted/outcome.meta.json"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/06-submitted/outcome.meta.json"
     },
     {
      "label": "Decision",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/01-decision/Decision.docx"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/01-decision/Decision.docx"
     },
     {
      "label": "Direction",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/02-direction/Direction.docx"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/02-direction/Direction.docx"
     },
     {
      "label": "Draft answer v1",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/03-drafts/Draft answer v1.docx"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/03-drafts/Draft answer v1.docx"
     },
     {
      "label": "Evidence and sources",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/04-evidence/Evidence and sources.docx"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/04-evidence/Evidence and sources.docx"
     },
     {
      "label": "Timeline",
-     "path": "Bids/2026-09-10 The National Lottery Community Fund - National Lottery Awards for All En/05-timeline/Timeline.docx"
+     "path": "Bids/2026-09-14 The National Lottery Community Fund - National Lottery Awards for All En/05-timeline/Timeline.docx"
     }
    ],
-   "brief": "# The National Lottery Community Fund — National Lottery Awards for All England\n\n- **Source**: https://www.tnlcommunityfund.org.uk/funding/funding-programmes/national-lottery-awards-for-all-england\n- **Maximum award**: £20,000\n\n## As published\n\nLocation: England. We fund projects in England that bring people together and improve communities. Apply for grants of £300 to £20,000 for projects up to 2 years. A decision in 16 weeks.\n\n_Recorded 2026-09-10. Funders edit and withdraw pages; this is the version the decision was made against._",
+   "brief": "# The National Lottery Community Fund — National Lottery Awards for All England\n\n- **Source**: https://www.tnlcommunityfund.org.uk/funding/funding-programmes/national-lottery-awards-for-all-england\n- **Maximum award**: £20,000\n\n## As published\n\nLocation: England. We fund projects in England that bring people together and improve communities. Apply for grants of £300 to £20,000 for projects up to 2 years. A decision in 16 weeks.\n\n_Recorded 2026-09-14. Funders edit and withdraw pages; this is the version the decision was made against._",
    "decision": {
-    "fit_score": 82,
+    "fit_score": 79,
     "recommend_apply": true,
-    "suggested_ask_gbp": null,
+    "suggested_ask_gbp": 7706,
     "eligibility_met": [
-     "Registered charity (GB-CHC, 56% of funder awards)",
-     "Operating in England (Awards for All England programme)",
-     "Ask within funder's range (£300–£20,000) and at median (£10,000)",
-     "Prior successful funding from National Lottery Community Fund (2023, £9,700)",
-     "Strong evidence of community impact and outcomes",
-     "Exemplary safeguarding, governance, and compliance",
-     "Activities align with 'bring people together, improve communities' brief"
+     "Legal form: registered charity (GB-CHC), 38% of this funder's awards go to charities",
+     "Geography: England, Southwark (within call area)",
+     "Award amount: £7,706 sits exactly at the median of this funder's observed range, with 99 awards falling within 25% of it",
+     "Rolling programme: no closing date pressure, realistic time to prepare application",
+     "Track record: previously funded by this funder (Awards for All, 2023, £9,700)",
+     "Scale and capacity: 3 FTE staff, independent examination track record, active safeguarding and insurance in place",
+     "Outcome evidence: independent evaluation published, twice-yearly beneficiary surveys, quarterly monitoring returns to local authority"
     ],
-    "eligibility_gaps": [],
+    "eligibility_gaps": [
+     "No stated evidence of match funding requirement in the call brief, though org has £6,000 in reserves available with board approval — this will need clarifying before application"
+    ],
     "blocking": [],
-    "reasoning": "Rye Lane Community Kitchen is a strong fit for this Awards for All programme. The organisation is a registered charity (GB-CHC, 56% of funder's awards), operating in England (the funder's explicit geography for this programme). The £10,000 ask sits at the funder's median award and is well within the stated range (£300–£20,000). Critically, this is a repeat applicant: Rye Lane received £9,700 from National Lottery Community Fund Awards for All in 2023 and has since completed that grant and maintained operational continuity. The organisation demonstrates strong evidence of impact (independent evaluation June 2025, twice-yearly beneficiary surveys, quarterly monitoring), clear outcomes (74% of surveyed members eat more hot meals; members save £61/month on food), and exemplary governance (Level 3 safeguarding, 5-star food hygiene rating, unqualified audit for 3 years). The programmes (community meals, food pantry) directly align with the funder's brief to 'bring people together and improve communities'. The rolling deadline eliminates time pressure. The only minor constraint is that match funding (£6,000 available from reserves) would need board approval if required, and the organisation should be explicit about which of its unfunded priorities (freezer, van, or crèche) the grant will address. However, these are application-management issues, not disqualifiers. The application is realistic and well-founded.\",\n<parameter name=\"suggest_ask_gbp\">10000"
+    "reasoning": "Strong fit. Rye Lane Community Kitchen is a registered charity (legal form verified: 38% of this funder's sample awards go to GB-CHC recipients), operating in Southwark, England, within the stated call area. The organisation has previously received Awards for All funding (£9,700 in 2023), suggesting both familiarity with this funder's process and prior confidence in their ability to deliver. The ask of £7,706 is precisely at the median of this funder's observed distribution (median £7,706; range £225–£10,000 in the sample, which aligns with the programme's stated £300–£20,000 range). The funder awards 97% of requested amounts on average, so this ask is realistic. The rolling programme has no closing date, removing time pressure. The organisation demonstrates strong governance: independent examination unqualified for 3 years, safeguarding policy current (Oct 2025), Level 3 DSL in place, and adequate insurance. Outcome evidence is robust: independent evaluation published June 2025, beneficiary surveys run twice yearly since 2022, quarterly monitoring to Southwark Council. With 1,120 beneficiaries reached and measurable impact (74% eating hot meals more frequently, £61 monthly food spend reduction), this is a credible grant application. The only minor gap is explicit confirmation of match funding requirements in the call brief — the org has £6,000 available but this would need board approval. Community meals and food pantry both address the social isolation and food insecurity that Awards for All typically prioritises. Recommendation: apply.\","
    },
-   "direction": "**Lead with the freezer replacement as essential infrastructure for scaling your existing community meals programme.**\n\nRye Lane's community meals deliver measurable outcomes (74% of surveyed members eating hot meals daily more than before), reach 1,120 individuals annually, and operate at high capacity (7,400 meals across 148 sittings in 2025-26). The monthly failures of your 2016 commercial freezer currently constrain this proven delivery model. A £10,000 grant for replacement equipment removes this bottleneck, enabling you to expand sittings or serve additional households without operational risk—and the investment directly enables the \"bring people together\" outcome the funder prioritises.\n\nAvoid framing this as a general funding gap or using language about financial hardship. The funder sees you as operationally competent (5-star food hygiene, unqualified audit, Level 3 safeguarding); they fund activity expansion, not deficit cover.\n\nAvoid proposing the crèche provision within this grant. You have no track record delivering childcare, no staff capacity noted, and it dilutes focus from your core strength. If childcare barriers emerge from beneficiary feedback, that's a future application to a different funder; for now, solve the freezer and deepen what you do brilliantly.",
-   "draft": "We will use this funding to replace our commercial freezer, which fails monthly and limits our capacity to serve members reliably. The new freezer will enable us to store prepared meals in advance and expand our Community meals provision from three sittings a week to four sittings, reaching an additional 200 members annually.\n\nWe will reach members from Peckham and Nunhead wards, Southwark, who currently access our Community meals and Food Pantry. Our members are typically on low incomes and struggle to afford regular hot meals; 74% of surveyed members reported eating at least one hot meal a day more often than before attending our sittings.\n\nWe will evidence outcomes through our established monitoring systems. We run beneficiary surveys twice yearly with a 31% response rate, asking members about meal frequency and food security. We will track the number of additional meals served at the new fourth sitting and measure whether members report further improvements in eating patterns. We submit quarterly monitoring returns to Southwark Council, which will include data on freezer reliability and meal output. Our independent evaluation by Southwark Impact Partnership, published June 2025, provides a baseline for comparison.",
+   "direction": "Lead with community meals as the anchor for measurable social outcomes and volunteer mobilisation, since the funder backs \"bringing people together\" and your track record shows 74% of surveyed members eating hot meals more regularly—the kind of concrete behaviour change this funder funds.\n\nYour twice-yearly beneficiary surveys since 2022 (31% response rate), independent evaluation by Southwark Impact Partnership (June 2025), and quarterly monitoring returns to Southwark Council since 2021 give you a robust evidence spine. The 1,120 individuals and 410 households you reached in 2025–26, plus the 38 active volunteers, show you're already delivering the \"bring people together\" outcome this funder explicitly names. The £61 monthly food spend reduction in the food pantry (n=74, Jan 2026) is a tangible secondary metric.\n\nAvoid framing this as asset replacement or infrastructure (the freezer and van). Avoid claiming match funding unless the call explicitly requires it—your £6,000 reserves exist but need board sign-off, and the call brief does not state a match requirement, so naming it unprompted may create unnecessary friction.",
+   "draft": "This funding will allow us to expand our Community meals and Food Pantry programmes, reaching more members across Peckham and Nunhead wards in Southwark. We currently serve 1,120 individuals and 410 households each year, but demand exceeds our current capacity.\n\nThe difference will be tangible. Our Community meals reach members who reported eating at least one hot meal a day more often than before attending—74% of surveyed members (n=180) confirmed this. Our Food Pantry members save an average of £61 monthly on food spend. Additional funding will enable us to increase sittings and expand membership, directly reducing food insecurity and social isolation.\n\nWe will reach members from across both wards, including those experiencing food poverty and isolation. There is no referral needed for Community meals; membership to the Food Pantry costs £4.50 weekly for approximately £22 of food.\n\nWe evidence outcomes rigorously. An independent evaluation by Southwark Impact Partnership was published in June 2025. We run beneficiary surveys twice yearly since 2022, with a 31% response rate. We submit quarterly monitoring returns to Southwark Council. Our Food Pantry tracks member retention (currently 58% year on year) and self-reported food spend savings. These approaches capture both the scale of impact and the lived experience of members we serve.",
    "draft_structured": {
     "question": "Describe the difference this funding will make, who it will reach, and how you will evidence the outcomes.",
-    "answer": "We will use this funding to replace our commercial freezer, which fails monthly and limits our capacity to serve members reliably. The new freezer will enable us to store prepared meals in advance and expand our Community meals provision from three sittings a week to four sittings, reaching an additional 200 members annually.\n\nWe will reach members from Peckham and Nunhead wards, Southwark, who currently access our Community meals and Food Pantry. Our members are typically on low incomes and struggle to afford regular hot meals; 74% of surveyed members reported eating at least one hot meal a day more often than before attending our sittings.\n\nWe will evidence outcomes through our established monitoring systems. We run beneficiary surveys twice yearly with a 31% response rate, asking members about meal frequency and food security. We will track the number of additional meals served at the new fourth sitting and measure whether members report further improvements in eating patterns. We submit quarterly monitoring returns to Southwark Council, which will include data on freezer reliability and meal output. Our independent evaluation by Southwark Impact Partnership, published June 2025, provides a baseline for comparison.",
+    "answer": "This funding will allow us to expand our Community meals and Food Pantry programmes, reaching more members across Peckham and Nunhead wards in Southwark. We currently serve 1,120 individuals and 410 households each year, but demand exceeds our current capacity.\n\nThe difference will be tangible. Our Community meals reach members who reported eating at least one hot meal a day more often than before attending—74% of surveyed members (n=180) confirmed this. Our Food Pantry members save an average of £61 monthly on food spend. Additional funding will enable us to increase sittings and expand membership, directly reducing food insecurity and social isolation.\n\nWe will reach members from across both wards, including those experiencing food poverty and isolation. There is no referral needed for Community meals; membership to the Food Pantry costs £4.50 weekly for approximately £22 of food.\n\nWe evidence outcomes rigorously. An independent evaluation by Southwark Impact Partnership was published in June 2025. We run beneficiary surveys twice yearly since 2022, with a 31% response rate. We submit quarterly monitoring returns to Southwark Council. Our Food Pantry tracks member retention (currently 58% year on year) and self-reported food spend savings. These approaches capture both the scale of impact and the lived experience of members we serve.",
     "claims": [
      {
-      "text": "Our commercial freezer fails monthly",
-      "source_heading": "Funding history",
-      "source_line": "Currently unfunded for: replacement commercial freezer (the 2016 unit fails monthly)",
+      "text": "We currently serve 1,120 individuals and 410 households each year",
+      "source_heading": "Scale",
+      "source_line": "Beneficiaries reached 2025-26: 1,120 individuals, 410 households",
       "grounded": true
      },
      {
-      "text": "We currently serve members at three sittings a week from Rye Lane Baptist Hall",
-      "source_heading": "Community meals",
-      "source_line": "Delivery: three sittings a week from Rye Lane Baptist Hall, no referral needed",
-      "grounded": true
-     },
-     {
-      "text": "We serve members from Peckham and Nunhead wards, Southwark",
+      "text": "We serve members across Peckham and Nunhead wards in Southwark",
       "source_heading": "Identity",
       "source_line": "Area served: Peckham and Nunhead wards, Southwark, London",
       "grounded": true
      },
      {
-      "text": "74% of surveyed members reported eating at least one hot meal a day more often than before attending",
+      "text": "74% of surveyed members (n=180) reported eating at least one hot meal a day more often than before attending",
       "source_heading": "Community meals",
       "source_line": "Outcome: 74% of surveyed members (n=180) reported eating at least one hot meal a day more often than before attending",
       "grounded": true
      },
      {
-      "text": "We run beneficiary surveys twice yearly with a 31% response rate",
+      "text": "Food Pantry members save an average of £61 monthly on food spend",
+      "source_heading": "Food pantry",
+      "source_line": "Outcome: members reported an average £61 monthly reduction in food spend (self-reported, n=74, survey ran Jan 2026)",
+      "grounded": true
+     },
+     {
+      "text": "Community meals delivery requires no referral",
+      "source_heading": "Community meals",
+      "source_line": "Delivery: three sittings a week from Rye Lane Baptist Hall, no referral needed",
+      "grounded": true
+     },
+     {
+      "text": "Food Pantry membership costs £4.50 weekly for approximately £22 of food",
+      "source_heading": "Food pantry",
+      "source_line": "Delivery: membership model, £4.50 a week for approximately £22 of food",
+      "grounded": true
+     },
+     {
+      "text": "An independent evaluation by Southwark Impact Partnership was published in June 2025",
+      "source_heading": "Evidence and evaluation",
+      "source_line": "Independent evaluation by Southwark Impact Partnership, published June 2025",
+      "grounded": true
+     },
+     {
+      "text": "We run beneficiary surveys twice yearly since 2022, with a 31% response rate",
       "source_heading": "Evidence and evaluation",
       "source_line": "Beneficiary survey run twice yearly since 2022, response rate 31%",
       "grounded": true
@@ -1405,55 +1426,54 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
       "grounded": true
      },
      {
-      "text": "Our independent evaluation by Southwark Impact Partnership was published June 2025",
-      "source_heading": "Evidence and evaluation",
-      "source_line": "Independent evaluation by Southwark Impact Partnership, published June 2025",
+      "text": "Food Pantry member retention is currently 58% year on year",
+      "source_heading": "Food pantry",
+      "source_line": "Volume 2025-26: 190 member households, 58% retention year on year",
       "grounded": true
      }
     ],
     "unevidenced_gaps": [
-     "Whether we can realistically expand from three sittings to four sittings per week with the new freezer (operational capacity question)",
-     "Confirmation that 200 additional members annually is an achievable target with improved freezer capacity",
-     "Specific metrics or thresholds we will track to measure success of the additional sitting"
+     "Specific detail on how the £7,706 will be deployed (e.g., additional sittings per week, expansion of Pantry membership capacity, or other operational improvements)",
+     "Quantified targets for expanded reach—how many additional members or meals over the funding period"
     ]
    },
    "style_card": "VOICE CONSTRAINTS, measured from this organisation's own past applications.\nCorpus: 20 documents, 199 sentences.\n\nSentence length: median 12 words, typical range 2 to 31, standard deviation 8.9.\nMatch that variance. Do not write sentences of uniform length. Real writing puts a short sentence next to a long one. Even rhythm is the clearest tell that a machine wrote something.\n\nParagraphs run about 1 sentences.\nPerson: first person plural (we, our). Do not switch.\nContractions: not used.\nThis organisation calls the people it serves \"members\". Use that exact word. Never substitute a synonym, however natural it feels.\nTheir vocabulary includes: because, members, climbed, rather, trustee, pantry, before, southwark, applying, squarely, within, properly, letter, everywhere, sittings.\nThese terms appear capitalised in their writing: Trustee, Pantry, Community, Southwark, Impact, Partnership, Kitchen, Peckham. Preserve that capitalisation, do not normalise it. Note that this list mixes house conventions with proper nouns; both should be left as written.\n\nNever use: delve, tapestry, underscores, moreover, furthermore, it is worth noting, in today's, navigating the, landscape of, plays a vital role, stands as a, testament to, serves as, fostering a sense of, holistic approach, leverage, robust, seamless, multifaceted, ever-evolving, at the heart of, the \"not just X, but Y\" construction, a three-item list where two items would do.\n\nPrefer reusing their own sentences verbatim over paraphrasing them. If a past application already states something well, lift it rather than rewriting it.",
-   "evidence": "We will use this funding to replace our commercial freezer, which fails monthly and limits our capacity to serve members reliably. The new freezer will enable us to store prepared meals in advance and expand our Community meals provision from three sittings a week to four sittings, reaching an additional 200 members annually.\n\nWe will reach members from Peckham and Nunhead wards, Southwark, who currently access our Community meals and Food Pantry. Our members are typically on low incomes and struggle to afford regular hot meals; 74% of surveyed members reported eating at least one hot meal a day more often than before attending our sittings.\n\nWe will evidence outcomes through our established monitoring systems. We run beneficiary surveys twice yearly with a 31% response rate, asking members about meal frequency and food security. We will track the number of additional meals served at the new fourth sitting and measure whether members report further improvements in eating patterns. We submit quarterly monitoring returns to Southwark Council, which will include data on freezer reliability and meal output. Our independent evaluation by Southwark Impact Partnership, published June 2025, provides a baseline for comparison.\n\n---\n### Sources\n1. Our commercial freezer fails monthly\n   - ORG.md, Funding history — ORG.md#L51 — \"Currently unfunded for: replacement commercial freezer (the 2016 unit fails monthly), a second-hand refrigerated van,...\"\n2. We currently serve members at three sittings a week from Rye Lane Baptist Hall\n   - ORG.md, Community meals — ORG.md#L22 — \"Delivery: three sittings a week from Rye Lane Baptist Hall, no referral needed\"\n3. We serve members from Peckham and Nunhead wards, Southwark\n   - ORG.md, Identity — ORG.md#L9 — \"Area served: Peckham and Nunhead wards, Southwark, London\"\n4. 74% of surveyed members reported eating at least one hot meal a day more often than before attending\n   - ORG.md, Community meals — ORG.md#L24 — \"Outcome: 74% of surveyed members (n=180) reported eating at least one hot\"\n5. We run beneficiary surveys twice yearly with a 31% response rate\n   - ORG.md, Evidence and evaluation — ORG.md#L36 — \"Beneficiary survey run twice yearly since 2022, response rate 31%\"\n6. We submit quarterly monitoring returns to Southwark Council\n   - ORG.md, Evidence and evaluation — ORG.md#L37 — \"Quarterly monitoring returns submitted to Southwark Council since 2021\"\n7. Our independent evaluation by Southwark Impact Partnership was published June 2025\n   - ORG.md, Evidence and evaluation — ORG.md#L35 — \"Independent evaluation by Southwark Impact Partnership, published June 2025\"\n8. Suggested ask is anchored on The National Lottery Community Fund's award history (300 grants).\n   - 360Giving award history, The National Lottery Community Fund — https://grantnav.threesixtygiving.org/org/GB-GOR-PB188 — \"median £10,000; p10-p90 £10,000-£10,000\" — accessed 2026-09-10\n\n### Needs a human\n\n- Whether we can realistically expand from three sittings to four sittings per week with the new freezer (operational capacity question)\n- Confirmation that 200 additional members annually is an achievable target with improved freezer capacity\n- Specific metrics or thresholds we will track to measure success of the additional sitting\n\n_Grounding: 8 of 8 claims traced to a source (100%)._",
+   "evidence": "This funding will allow us to expand our Community meals and Food Pantry programmes, reaching more members across Peckham and Nunhead wards in Southwark. We currently serve 1,120 individuals and 410 households each year, but demand exceeds our current capacity.\n\nThe difference will be tangible. Our Community meals reach members who reported eating at least one hot meal a day more often than before attending—74% of surveyed members (n=180) confirmed this. Our Food Pantry members save an average of £61 monthly on food spend. Additional funding will enable us to increase sittings and expand membership, directly reducing food insecurity and social isolation.\n\nWe will reach members from across both wards, including those experiencing food poverty and isolation. There is no referral needed for Community meals; membership to the Food Pantry costs £4.50 weekly for approximately £22 of food.\n\nWe evidence outcomes rigorously. An independent evaluation by Southwark Impact Partnership was published in June 2025. We run beneficiary surveys twice yearly since 2022, with a 31% response rate. We submit quarterly monitoring returns to Southwark Council. Our Food Pantry tracks member retention (currently 58% year on year) and self-reported food spend savings. These approaches capture both the scale of impact and the lived experience of members we serve.\n\n---\n### Sources\n1. We currently serve 1,120 individuals and 410 households each year\n   - ORG.md, Scale — ORG.md#L17 — \"Beneficiaries reached 2025-26: 1,120 individuals, 410 households\"\n2. We serve members across Peckham and Nunhead wards in Southwark\n   - ORG.md, Identity — ORG.md#L9 — \"Area served: Peckham and Nunhead wards, Southwark, London\"\n3. 74% of surveyed members (n=180) reported eating at least one hot meal a day more often than before attending\n   - ORG.md, Community meals — ORG.md#L24 — \"Outcome: 74% of surveyed members (n=180) reported eating at least one hot\"\n4. Food Pantry members save an average of £61 monthly on food spend\n   - ORG.md, Food pantry — ORG.md#L30 — \"Outcome: members reported an average £61 monthly reduction in food spend\"\n5. Community meals delivery requires no referral\n   - ORG.md, Community meals — ORG.md#L22 — \"Delivery: three sittings a week from Rye Lane Baptist Hall, no referral needed\"\n6. Food Pantry membership costs £4.50 weekly for approximately £22 of food\n   - ORG.md, Food pantry — ORG.md#L28 — \"Delivery: membership model, £4.50 a week for approximately £22 of food\"\n7. An independent evaluation by Southwark Impact Partnership was published in June 2025\n   - ORG.md, Evidence and evaluation — ORG.md#L35 — \"Independent evaluation by Southwark Impact Partnership, published June 2025\"\n8. We run beneficiary surveys twice yearly since 2022, with a 31% response rate\n   - ORG.md, Evidence and evaluation — ORG.md#L36 — \"Beneficiary survey run twice yearly since 2022, response rate 31%\"\n9. We submit quarterly monitoring returns to Southwark Council\n   - ORG.md, Evidence and evaluation — ORG.md#L37 — \"Quarterly monitoring returns submitted to Southwark Council since 2021\"\n10. Food Pantry member retention is currently 58% year on year\n   - ORG.md, Food pantry — ORG.md#L29 — \"Volume 2025-26: 190 member households, 58% retention year on year\"\n11. Suggested ask is anchored on The National Lottery Community Fund's award history (300 grants).\n   - 360Giving award history, The National Lottery Community Fund — https://grantnav.threesixtygiving.org/org/GB-GOR-PB188 — \"median £7,706; p10-p90 £2,182-£10,000\" — accessed 2026-09-14\n\n### Needs a human\n\n- Specific detail on how the £7,706 will be deployed (e.g., additional sittings per week, expansion of Pantry membership capacity, or other operational improvements)\n- Quantified targets for expanded reach—how many additional members or meals over the funding period\n\n_Grounding: 11 of 11 claims traced to a source (100%)._",
    "timeline": {
     "deadline": "rolling",
     "steps": [
      {
-      "days_before_deadline": 21,
-      "task": "Coordinator drafts project narrative and outcomes section",
+      "days_before_deadline": 42,
+      "task": "Coordinator drafts narrative: difference, reach, evidence framework",
       "owner_role": "Coordinator"
      },
      {
-      "days_before_deadline": 16,
-      "task": "Finance lead compiles budget, match funding evidence, reserves approval",
+      "days_before_deadline": 35,
+      "task": "Finance lead gathers match funding detail and board approval memo",
       "owner_role": "Finance Lead"
      },
      {
-      "days_before_deadline": 14,
-      "task": "Designated safeguarding lead reviews compliance and governance attachments",
-      "owner_role": "Designated Safeguarding Lead"
-     },
-     {
-      "days_before_deadline": 10,
-      "task": "Trustee chair reviews full draft application and sign-off",
+      "days_before_deadline": 28,
+      "task": "Trustee reviews draft narrative and outcomes evidence alignment",
       "owner_role": "Trustee"
      },
      {
-      "days_before_deadline": 7,
-      "task": "Coordinator incorporates feedback and finalises supporting evidence pack",
+      "days_before_deadline": 21,
+      "task": "Coordinator incorporates feedback and completes application form",
       "owner_role": "Coordinator"
      },
      {
-      "days_before_deadline": 3,
-      "task": "Finance lead audits all figures against Xero and submits application",
+      "days_before_deadline": 14,
+      "task": "Finance lead and trustee sign-off on budget and match funding",
       "owner_role": "Finance Lead"
+     },
+     {
+      "days_before_deadline": 7,
+      "task": "Coordinator performs final checks and submits application",
+      "owner_role": "Coordinator"
      }
     ],
-    "total_hours_estimate": 18.0
+    "total_hours_estimate": 24.0
    },
    "outcome": {
     "funder": "The National Lottery Community Fund",
@@ -1465,8 +1485,8 @@ justify-content:space-between;gap:16px;flex-wrap:wrap}
     "feedback": null,
     "_note": "Set outcome to awarded or rejected when you hear back. Paste any assessor feedback into feedback, verbatim, good or bad."
    },
-   "fit": 82,
-   "ask": null,
+   "fit": 79,
+   "ask": 7706,
    "blocking": [],
    "title": "The National Lottery Community Fund - National Lottery Awards for All En"
   }

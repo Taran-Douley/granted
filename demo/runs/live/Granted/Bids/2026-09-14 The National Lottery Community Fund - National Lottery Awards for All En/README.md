@@ -1,6 +1,6 @@
 # The National Lottery Community Fund — National Lottery Awards for All England
 
-Opened 2026-09-10. Fit score 82/100.
+Opened 2026-09-14. Fit score 79/100.
 
 | Folder | What's in it |
 | --- | --- |

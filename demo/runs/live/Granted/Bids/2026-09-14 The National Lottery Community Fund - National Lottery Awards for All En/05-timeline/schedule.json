@@ -1,0 +1,36 @@
+{
+  "deadline": "rolling",
+  "steps": [
+    {
+      "days_before_deadline": 42,
+      "task": "Coordinator drafts narrative: difference, reach, evidence framework",
+      "owner_role": "Coordinator"
+    },
+    {
+      "days_before_deadline": 35,
+      "task": "Finance lead gathers match funding detail and board approval memo",
+      "owner_role": "Finance Lead"
+    },
+    {
+      "days_before_deadline": 28,
+      "task": "Trustee reviews draft narrative and outcomes evidence alignment",
+      "owner_role": "Trustee"
+    },
+    {
+      "days_before_deadline": 21,
+      "task": "Coordinator incorporates feedback and completes application form",
+      "owner_role": "Coordinator"
+    },
+    {
+      "days_before_deadline": 14,
+      "task": "Finance lead and trustee sign-off on budget and match funding",
+      "owner_role": "Finance Lead"
+    },
+    {
+      "days_before_deadline": 7,
+      "task": "Coordinator performs final checks and submits application",
+      "owner_role": "Coordinator"
+    }
+  ],
+  "total_hours_estimate": 24.0
+}

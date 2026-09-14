@@ -173,19 +173,20 @@ TEMPLATE = r"""
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Granted</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Caprasimo&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-:root{--ground:#faf9f6;--raised:#f3f1eb;--ink:#24211c;--body:#4a453c;--muted:#7c766a;
---faint:#a09889;--rule:#ded9cd;--strong:#24211c;--accent:#1f6f77;--soft:#9ec6c9;
---warn:#b07a2b;--focus:#1f6f77}
+:root{--ground:#f9f4ed;--raised:#eee7db;--ink:#201e1d;--body:#645c50;--muted:#82796a;
+--faint:#a19786;--rule:#dcd3c4;--strong:#2e2b25;--accent:#b2622d;--soft:#ffd0b3;
+--warn:#b07a2b;--focus:#b2622d}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ground:#171612;
 --raised:#201e18;--ink:#eae5d9;--body:#c6bfb0;--muted:#9b9384;--faint:#6f695d;
---rule:#332f26;--strong:#6f695d;--accent:#6fb9bf;--soft:#2f5f63;--warn:#d6a256;--focus:#6fb9bf}}
+--rule:#332f26;--strong:#6f695d;--accent:#e08a52;--soft:#6b3f24;--warn:#d6a256;--focus:#e08a52}}
 :root[data-theme=dark]{--ground:#171612;--raised:#201e18;--ink:#eae5d9;--body:#c6bfb0;
---muted:#9b9384;--faint:#6f695d;--rule:#332f26;--strong:#6f695d;--accent:#6fb9bf;
---soft:#2f5f63;--warn:#d6a256;--focus:#6fb9bf}
+--muted:#9b9384;--faint:#6f695d;--rule:#332f26;--strong:#6f695d;--accent:#e08a52;
+--soft:#6b3f24;--warn:#d6a256;--focus:#e08a52}
 *{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);font:16px/1.5 Newsreader,Georgia,serif}
+body{margin:0;background:var(--ground);color:var(--ink);font:15px/1.55 Figtree,system-ui,sans-serif}
+.top h1,.banner .n{font-family:Caprasimo,Georgia,serif;font-weight:400;letter-spacing:0}
 .mono,.lbl{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
 .lbl{font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
 button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:pointer;text-align:left}

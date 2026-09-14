@@ -1,0 +1,5 @@
+Lead with community meals as the anchor for measurable social outcomes and volunteer mobilisation, since the funder backs "bringing people together" and your track record shows 74% of surveyed members eating hot meals more regularly—the kind of concrete behaviour change this funder funds.
+
+Your twice-yearly beneficiary surveys since 2022 (31% response rate), independent evaluation by Southwark Impact Partnership (June 2025), and quarterly monitoring returns to Southwark Council since 2021 give you a robust evidence spine. The 1,120 individuals and 410 households you reached in 2025–26, plus the 38 active volunteers, show you're already delivering the "bring people together" outcome this funder explicitly names. The £61 monthly food spend reduction in the food pantry (n=74, Jan 2026) is a tangible secondary metric.
+
+Avoid framing this as asset replacement or infrastructure (the freezer and van). Avoid claiming match funding unless the call explicitly requires it—your £6,000 reserves exist but need board sign-off, and the call brief does not state a match requirement, so naming it unprompted may create unnecessary friction.

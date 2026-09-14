@@ -1,0 +1,7 @@
+This funding will allow us to expand our Community meals and Food Pantry programmes, reaching more members across Peckham and Nunhead wards in Southwark. We currently serve 1,120 individuals and 410 households each year, but demand exceeds our current capacity.
+
+The difference will be tangible. Our Community meals reach members who reported eating at least one hot meal a day more often than before attending—74% of surveyed members (n=180) confirmed this. Our Food Pantry members save an average of £61 monthly on food spend. Additional funding will enable us to increase sittings and expand membership, directly reducing food insecurity and social isolation.
+
+We will reach members from across both wards, including those experiencing food poverty and isolation. There is no referral needed for Community meals; membership to the Food Pantry costs £4.50 weekly for approximately £22 of food.
+
+We evidence outcomes rigorously. An independent evaluation by Southwark Impact Partnership was published in June 2025. We run beneficiary surveys twice yearly since 2022, with a 31% response rate. We submit quarterly monitoring returns to Southwark Council. Our Food Pantry tracks member retention (currently 58% year on year) and self-reported food spend savings. These approaches capture both the scale of impact and the lived experience of members we serve.
