@@ -1,5 +1,10 @@
 # Granted
 
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Built with Strands Agents](https://img.shields.io/badge/Built%20with-Strands%20Agents-orange)
+![Amazon Bedrock](https://img.shields.io/badge/Amazon-Bedrock-232F3E)
+![Agents for Humans](https://img.shields.io/badge/Hackathon-Agents%20for%20Humans-1f6feb)
+
 A background agent that tells small UK organisations when **not** to apply for funding.
 
 ![The Granted dashboard — a decision that cleared the gate, scored against the funder's real award history. Most days, this screen stays empty.](docs/dashboard.png)
