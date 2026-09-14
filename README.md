@@ -89,8 +89,9 @@ Everything except a live model call runs offline against prebuilt demo data.
 ```bash
 git clone <this-repo> && cd granted
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -e .
+pip install -e ".[dev]"
 python scripts/preflight_offline.py                 # 30 checks, no AWS required
+pytest -q                                           # fast unit smoke tests
 ```
 
 Then open a prebuilt run in a browser:
