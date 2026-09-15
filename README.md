@@ -125,6 +125,27 @@ agentcore invoke '{"home": "/path/to/workspace"}'
 The endpoint takes a workspace path, runs Granted's home-mode pipeline on it, and
 returns the run record the dashboard reads.
 
+## Testing
+
+Four ways to exercise Granted, easiest first:
+
+1. **View the live demo** — no setup (type `http://`, it will not load over https):
+   `http://granted-dashboard-2026.s3-website.us-west-2.amazonaws.com`
+2. **Run it offline, no AWS:**
+   ```bash
+   pip install -e ".[dev]"
+   python scripts/preflight_offline.py     # 30 checks, no AWS required
+   pytest -q                               # fast unit smoke tests
+   ```
+   Then open `demo/runs/live/Granted/Dashboard.html` (and `Bid folders.html` for the
+   per-bid documents).
+3. **A real run against Amazon Bedrock** — AWS credentials with Bedrock access
+   (region `us-west-2`), then `granted run --home ./my-workspace`. It scores open
+   calls against funders' 360Giving histories and either stays silent (the common
+   case, by design) or writes a decision and a bid folder.
+4. **AgentCore health check** — no AWS:
+   `python -c "from granted.agentcore_app import invoke; print(invoke({'ping': True}))"`
+
 ## Silence is the default
 
 The brief for this agent was "runs autonomously and only surfaces when there's a
